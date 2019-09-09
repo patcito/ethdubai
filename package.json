@@ -27,7 +27,8 @@
     "gatsby-remark-smartypants": "2.1.7",
     "gatsby-source-filesystem": "2.1.21",
     "gatsby-transformer-remark": "2.6.21",
-    "gatsby-transformer-sharp": "2.2.13"
+    "gatsby-transformer-sharp": "2.2.13",
+    "react-spring-carousel": "^0.0.4"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.22",

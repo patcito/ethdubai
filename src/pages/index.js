@@ -2,7 +2,7 @@ import { graphql } from 'gatsby'
 import React from 'react'
 import get from 'lodash/get'
 
-import Post from 'templates/post'
+import Caroussel from 'components/caroussel'
 import Meta from 'components/meta'
 import Layout from 'components/layout'
 
@@ -11,101 +11,6 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
-      <header class="desktop_header">
-        <div class="container">
-          <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="#">
-              <img src="images/Logo.png?x=3" />
-            </a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="nav_icon"></span>
-              <span class="nav_icon"></span>
-              <span class="nav_icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#speakers">
-                    Speakers
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#schedule">
-                    Schedule
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#tickets">
-                    Tickets
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#sprs">
-                    Sponsors
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#location">
-                    Location
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://2019.react-europe.org">
-                    '19
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </header>
-      <header class="Mobile_header">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3 col-sm-2">
-              <div class="logo">
-                <a href="#">
-                  <img src="images/logo_icon.png?x=2" alt="" />
-                </a>
-              </div>
-            </div>
-            <div class="col-md-9 col-sm-10">
-              <div class="navigation">
-                <ul>
-                  <li>
-                    <a href="#speaker">speakers</a>
-                  </li>
-                  <li>
-                    <a href="#schedule">schedule</a>
-                  </li>
-                  <li>
-                    <a href="#tickets">tickets</a>
-                  </li>
-                  <li>
-                    <a href="#location">
-                      <img src="images/pin.png" alt="" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#subscribe">contact</a>
-                  </li>
-                  <li>
-                    <a href="#"> jobs</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
       <section class="react_section">
         <div class="container">
           <div class="row">
@@ -145,10 +50,17 @@ const BlogIndex = ({ data, location }) => {
           <div class="headings">
             <img src="images/react-europe-plain-round.png" alt="" />
             <h2>Conference Events</h2>
-            <p style={{width: "100", margin:0, "max-width":"100%", "text-align": "justify"}}>
+            <p
+              style={{
+                width: '100',
+                margin: 0,
+                'max-width': '100%',
+                'text-align': 'justify',
+              }}
+            >
               ReactEurope is coming back on May 2020 with a new venue this year
               to provide more comfort and a whole new experience.
-              <strong style={{"text-decoration": "underline"}}>
+              <strong style={{ 'text-decoration': 'underline' }}>
                 We've grown a lot these past 5 years along with the React
                 community and our new venue will be more spacious and give
                 people more room to socialize, learn, relax and have fun
@@ -157,14 +69,28 @@ const BlogIndex = ({ data, location }) => {
               very <strong>core teams</strong> to the coolest people from the
               community we love.
             </p>
-            <p style={{width: "100", margin:0, "max-width":"100%", "text-align": "justify"}}>
+            <p
+              style={{
+                width: '100',
+                margin: 0,
+                'max-width': '100%',
+                'text-align': 'justify',
+              }}
+            >
               After changing the way we think about state management in
               JavaScript applications, the way we write native mobile apps with
               React Native, how we interact with remote data with GraphQL or
               even how we manage CSS, the React community keeps innovating and
               its ecosystem growing.
             </p>
-            <p style={{width: "100", margin:0, "max-width":"100%", "text-align": "justify"}}>
+            <p
+              style={{
+                width: '100',
+                margin: 0,
+                'max-width': '100%',
+                'text-align': 'justify',
+              }}
+            >
               At this conference, you will learn how new projects such as
               ReasonML will bring web and mobile React Native apps to the next
               level and how projects such as React Native Web, React Primitive
@@ -178,12 +104,26 @@ const BlogIndex = ({ data, location }) => {
               </strong>
               .
             </p>
-            <p style={{width: "100", margin:0, "max-width":"100%", "text-align": "justify"}}>
+            <p
+              style={{
+                width: '100',
+                margin: 0,
+                'max-width': '100%',
+                'text-align': 'justify',
+              }}
+            >
               ReactEurope is also a great occasion to socialize, meet new people
               and old friends, hack together, taste delicious food and have fun
               in the beautiful city of Paris.
             </p>
-            <p style={{width: "100", margin:0, "max-width":"100%", "text-align": "justify"}}>
+            <p
+              style={{
+                width: '100',
+                margin: 0,
+                'max-width': '100%',
+                'text-align': 'justify',
+              }}
+            >
               <strong>
                 Join us at ReactEurope Conf to shape the future of client-side,
                 mobile and universal applications!
@@ -192,7 +132,8 @@ const BlogIndex = ({ data, location }) => {
           </div>
         </div>
         <div class="conference_slider">
-          <div class="slick-carousel">
+          <Caroussel />
+          <div class="slick-carousel d-none">
             <div>
               <a
                 href="#"
@@ -1816,7 +1757,7 @@ const BlogIndex = ({ data, location }) => {
               <iframe
                 src="https://www.react-europe.org?iframe=true"
                 width="100%"
-                style={{border: "0px", height: "900px"}}
+                style={{ border: '0px', height: '900px' }}
                 iscrolling="no"
                 class="tickets-iframe"
               ></iframe>

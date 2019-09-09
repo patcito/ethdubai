@@ -3594,3 +3594,53 @@ iframe {
     transition: all .3s;
     z-index: 10;
 }
+
+.App-slide{
+  margin: "0px 25px 0px 25px !important"
+}
+.react-spring-carousel__controls__dots{
+  display: none;
+}
+
+.react-spring-carousel__controls {
+    .react-spring-carousel__controls__arrow{
+      .react-spring-carousel__controls__arrow--left {
+display: none;
+}
+      }      }
+      .react-spring-carousel__controls__arrow{
+top: 95% !important;
+
+      }
+      .react-spring-carousel__controls__arrow--left {
+            content: "" !important;
+  background: url(../../../static/images/left.png) !important;
+    width: 28px !important;
+    height: 20px !important;
+    background-size: 100% !important;
+    display: block !important;
+    background-repeat: no-repeat !important;
+img{
+  display: none !important;
+}
+       }
+      .react-spring-carousel__controls__arrow--right {
+    left: 45px !important;
+        content: "" !important;
+  background: url(../../../static/images/right.png) !important;
+    width: 28px !important;
+    height: 20px !important;
+    background-size: 100% !important;
+    display: block !important;
+    background-repeat: no-repeat !important;
+img{
+  display: none !important;
+}
+  }
+
+.react-spring-carousel {
+}
+.slider_box{
+    text-align: left;
+    margin-bottom: 25px;
+}
