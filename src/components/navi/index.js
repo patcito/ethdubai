@@ -5,38 +5,103 @@ class Navi extends React.Component {
   render() {
     const { location, title } = this.props
     return (
-      <nav className="navbar navbar-expand navbar-dark flex-column flex-md-row bg-primary">
-        <div className="container">
-          <Link className="text-center" to="/">
-            <h1 className="navbar-brand mb-0">{title}</h1>
-          </Link>
-          <div className="navbar-nav-scroll">
-            <ul className="navbar-nav bd-navbar-nav flex-row">
-              <li
-                className={
-                  location.pathname === '/' ? 'nav-item active' : 'nav-item'
-                }
+      <>
+        <header class="desktop_header">
+          <div class="container">
+            <nav class="navbar navbar-expand-lg">
+              <a class="navbar-brand" href="#">
+                <img src="images/Logo.png?x=3" />
+              </a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
               >
-                <Link to="/" className="nav-link">
-                  Home
-                </Link>
-              </li>
-              <li
-                className={
-                  location.pathname === '/profile/'
-                    ? 'nav-item active'
-                    : 'nav-item'
-                }
-              >
-                <Link to="/profile/" className="nav-link">
-                  Profile
-                </Link>
-              </li>
-            </ul>
+                <span class="nav_icon"></span>
+                <span class="nav_icon"></span>
+                <span class="nav_icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#speakers">
+                      Speakers
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#schedule">
+                      Schedule
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#tickets">
+                      Tickets
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#sprs">
+                      Sponsors
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#location">
+                      Location
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://2019.react-europe.org">
+                      '19
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
           </div>
-          <div className="navbar-nav flex-row ml-md-auto d-none d-md-flex" />
-        </div>
-      </nav>
+        </header>
+        <header class="Mobile_header">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3 col-sm-2">
+                <div class="logo">
+                  <a href="#">
+                    <img src="images/logo_icon.png?x=2" alt="" />
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-9 col-sm-10">
+                <div class="navigation">
+                  <ul>
+                    <li>
+                      <a href="#speaker">speakers</a>
+                    </li>
+                    <li>
+                      <a href="#schedule">schedule</a>
+                    </li>
+                    <li>
+                      <a href="#tickets">tickets</a>
+                    </li>
+                    <li>
+                      <a href="#location">
+                        <img src="images/pin.png" alt="" />
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#subscribe">contact</a>
+                    </li>
+                    <li>
+                      <a href="#"> jobs</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </>
     )
   }
 }
