@@ -1,13 +1,47 @@
 import { graphql } from 'gatsby'
-import React from 'react'
+import React, { useState } from 'react'
 import get from 'lodash/get'
+import { Modal, Tab } from 'react-bootstrap'
 
 import Caroussel from 'components/caroussel'
 import Meta from 'components/meta'
 import Layout from 'components/layout'
-
 const BlogIndex = ({ data, location }) => {
   const posts = get(data, 'remark.posts')
+  const [currentScheduleTab, setCurrentScheduleTab] = useState(0)
+  const [showSponsor, setShowSponsor] = useState(false)
+  const [currentSponsor, setCurrentSponsor] = useState({
+    name: 'url',
+    url: '',
+    logoUrl: '',
+    jobUrl: '',
+    description: '',
+    level: '',
+  })
+  const [speakerProps, setSpeakerProps] = useState({
+    name: '',
+    twitter: '',
+    github: '',
+    url: '',
+    shortBio: '',
+    longBio: '',
+    pic: '',
+  })
+  const handleCloseSponsor = () => setShowSponsor(false)
+  const handleClose = () => setShow(false)
+  const handleShowSponsor = (sponsor, e) => {
+    setShowSponsor(true)
+    setCurrentSponsor(sponsor)
+    e.preventDefault()
+    return false
+  }
+  const handleShow = (speaker, e) => {
+    setShow(true)
+    setSpeakerProps(speaker)
+    e.preventDefault()
+    return false
+  }
+  const [show, setShow] = useState(false)
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
@@ -265,67 +299,6 @@ const BlogIndex = ({ data, location }) => {
                 <h5>Hackathon</h5>
                 <h6>More details coming soon</h6>
                 <p> 9:00am to 5:00pm</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal fade" id="event_popup" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="event_popup_content">
-                      <h3 id="event-date-popup">12th-13th</h3>
-                      <h4>MAY</h4>
-                      <h5 id="event-title-popup">2-DAY WORKSHOPS</h5>
-                      <h6>
-                        {' '}
-                        <span id="event-hours-popup">8:30am to 7:00pm</span>
-                      </h6>
-                      <p id="event-description-popup">
-                        2 days to learn from the best ranging from topics such
-                        as React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more! 2
-                        days to learn from the best ranging from topics such as
-                        React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more!
-                      </p>
-                    </div>
-                  </div>
-                  <div class="col-md-7">
-                    <div class="event_popup_images">
-                      <ul>
-                        <li>
-                          <img
-                            id="event-pic1-popup"
-                            src="images/workshop-big.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            id="event-pic2-popup"
-                            src="images/Event_popup2.png"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            id="event-pic3-popup"
-                            src="images/Event_popup3.png"
-                            alt=""
-                          />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -689,6 +662,21 @@ const BlogIndex = ({ data, location }) => {
                     class="add_icon show-speaker"
                     data-toggle="modal"
                     data-target="#speaker_popup"
+                    onClick={e => {
+                      handleShow(
+                        {
+                          name: 'Ives van Hoorne',
+                          twitter: 'CompuIves',
+                          github: 'CompuIves',
+                          url: 'https://ivesvh.com/',
+                          shortBio: 'Creator of @codesandbox',
+                          longBio:
+                            'Creator of @codesandbox and now working full-time on it!',
+                          pic: 'images/p1.png',
+                        },
+                        e
+                      )
+                    }}
                   >
                     +
                   </a>
@@ -729,10 +717,24 @@ const BlogIndex = ({ data, location }) => {
                     </ul>
                   </div>
                   <a
-                    href="#"
                     class="add_icon show-speaker"
                     data-toggle="modal"
                     data-target="#speaker_popup"
+                    onClick={e => {
+                      handleShow(
+                        {
+                          name: 'Shruti Kapoor',
+                          twitter: 'shrutikapoor08',
+                          github: 'shrutikapoor08',
+                          url: '',
+                          shortBio: 'Software Engineer @PayPal',
+                          longBio:
+                            '🙋 Software Engineer @PayPal | GraphQL & React Developer | Speaker | DevJoke Connoisseur',
+                          pic: 'images/shruti-round.png',
+                        },
+                        e
+                      )
+                    }}
                   >
                     +
                   </a>
@@ -786,6 +788,21 @@ const BlogIndex = ({ data, location }) => {
                     class="add_icon show-speaker"
                     data-toggle="modal"
                     data-target="#speaker_popup"
+                    onClick={e => {
+                      handleShow(
+                        {
+                          name: 'Devon Govett',
+                          twitter: 'devongovett',
+                          github: 'devongovett',
+                          url: 'https://badassjs.com/',
+                          shortBio: 'Creator of Parceljs',
+                          longBio:
+                            'Engineer at Adobe working on the React design systems team. Lead of the Parcel bundler project.',
+                          pic: 'images/devon-round.png',
+                        },
+                        e
+                      )
+                    }}
                   >
                     +
                   </a>
@@ -839,6 +856,21 @@ const BlogIndex = ({ data, location }) => {
                     class="add_icon show-speaker"
                     data-toggle="modal"
                     data-target="#speaker_popup"
+                    onClick={e => {
+                      handleShow(
+                        {
+                          name: 'Tim Neutkens',
+                          twitter: 'timneutkens',
+                          github: 'timneutkens',
+                          url: 'http://www.timneutkens.nl/',
+                          shortBio: 'Co-author of Next.js',
+                          longBio:
+                            'Software Engineer at ZEIT. Lead maintainer of Next.js. Co-author of Next.js, MDX and Micro. Has a passion for creating scalable applications and improving developer experience.',
+                          pic: 'images/tim-round.png',
+                        },
+                        e
+                      )
+                    }}
                   >
                     +
                   </a>
@@ -887,6 +919,21 @@ const BlogIndex = ({ data, location }) => {
                     class="add_icon show-speaker"
                     data-toggle="modal"
                     data-target="#speaker_popup"
+                    onClick={e => {
+                      handleShow(
+                        {
+                          name: 'Josh Comeau',
+                          twitter: 'joshwcomeau',
+                          github: 'joshwcomeau',
+                          url: 'https://www.joshwcomeau.com',
+                          shortBio: 'Software engineer at DigitalOcean',
+                          longBio:
+                            'Software engineer at DigitalOcean. Technological craftsman. Author of Guppy, contributes to many open source projects. Cat person.',
+                          pic: 'images/p2.png',
+                        },
+                        e
+                      )
+                    }}
                   >
                     +
                   </a>
@@ -903,7 +950,7 @@ const BlogIndex = ({ data, location }) => {
                       class="speaker-bio"
                       bio-full="Software engineer at DigitalOcean. Technological craftsman. Author of Guppy, contributes to many open source projects. Cat person."
                     >
-                      Stay tuned for more awesome speakers and our CFP!
+                      Stay tuned for more awesome speakers and our CFP!{' '}
                       <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                         Subscribe here to not miss new announcements
                       </a>
@@ -917,11 +964,16 @@ const BlogIndex = ({ data, location }) => {
             </div>
           </div>
         </div>
-        <div class="modal fade" id="speaker_popup" role="dialog">
+        <Modal show={show} onHide={handleClose} id="speaker_popup">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  onClick={handleClose}
+                >
                   &times;
                 </button>
               </div>
@@ -929,13 +981,19 @@ const BlogIndex = ({ data, location }) => {
                 <div class="icon_box">
                   <ul>
                     <li>
-                      <a href="#" class="speaker-twitter-modal">
+                      <a
+                        href={'https://twitter.com/' + speakerProps.twitter}
+                        class="speaker-twitter-modal"
+                      >
                         <img src="images/pt.png" alt="" />
                       </a>
-                      <a href="#" class="speaker-github-modal">
+                      <a
+                        href={'https://github.com/' + speakerProps.github}
+                        class="speaker-github-modal"
+                      >
                         <img src="images/pi.png" alt="" />
                       </a>
-                      <a href="#" class="speaker-url-modal">
+                      <a href={speakerProps.url} class="speaker-url-modal">
                         <img src="images/pl.png" alt="" />
                       </a>
                     </li>
@@ -943,27 +1001,21 @@ const BlogIndex = ({ data, location }) => {
                 </div>
                 <div class="speaker_popup_profile">
                   <img
-                    src="images/popup_profile.png"
+                    src={speakerProps.pic}
                     alt=""
                     class="speaker-avatar-modal"
                     width="200px"
                   />
                   <div class="popup_profile_content">
-                    <h3 class="speaker-name-modal">Joshua Comeau</h3>
-                    <h5 class="speaker-bio-modal">
-                      Software engineer at Khan Academy
-                    </h5>
-                    <p class="speaker-bio-full-modal">
-                      Software engineer at Khan Academy. Technological
-                      craftsman. Author of Guppy, contributes to many open
-                      source projects. Cat person.
-                    </p>
+                    <h3 class="speaker-name-modal">{speakerProps.name}</h3>
+                    <h5 class="speaker-bio-modal">{speakerProps.shortBio}</h5>
+                    <p class="speaker-bio-full-modal">{speakerProps.longBio}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </Modal>
       </section>
       <section class="schedule" id="schedule">
         <div class="container">
@@ -978,44 +1030,97 @@ const BlogIndex = ({ data, location }) => {
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item">
                     <a
-                      class="nav-link active"
+                      className={`nav-link ${
+                        currentScheduleTab === 0 ? 'active' : null
+                      }`}
                       data-toggle="tab"
-                      href="#home"
+                      href="#"
                       role="tab"
                       aria-controls="home"
+                      onClick={e => {
+                        setCurrentScheduleTab(0)
+                        if (document) {
+                          let day = document.getElementById('day-0').offsetTop
+                          let scrolldiv = document.getElementById(
+                            'schedule-scroll'
+                          )
+                          scrolldiv.scrollTop = day - 80
+                        }
+                        e.preventDefault()
+                      }}
                     >
                       <span>MAY 12TH</span> - DAY 1 WORKSHOPS
                     </a>
                   </li>
                   <li class="nav-item">
                     <a
-                      class="nav-link"
+                      className={`nav-link ${
+                        currentScheduleTab === 1 ? 'active' : null
+                      }`}
                       data-toggle="tab"
-                      href="#profile"
+                      href="#"
                       role="tab"
                       aria-controls="profile"
+                      onClick={e => {
+                        setCurrentScheduleTab(1)
+                        if (document) {
+                          let day = document.getElementById('day-1').offsetTop
+                          let scrolldiv = document.getElementById(
+                            'schedule-scroll'
+                          )
+                          scrolldiv.scrollTop = day - 80
+                        }
+                        e.preventDefault()
+                      }}
                     >
                       <span>MAY 13TH</span> - DAY 2 WORKSHOPS
                     </a>
                   </li>
                   <li class="nav-item">
                     <a
-                      class="nav-link"
+                      className={`nav-link ${
+                        currentScheduleTab === 2 ? 'active' : null
+                      }`}
                       data-toggle="tab"
                       href="#messages"
                       role="tab"
                       aria-controls="messages"
+                      onClick={e => {
+                        setCurrentScheduleTab(2)
+                        if (document) {
+                          let day = document.getElementById('day-2').offsetTop
+                          let scrolldiv = document.getElementById(
+                            'schedule-scroll'
+                          )
+                          scrolldiv.scrollTop = day - 80
+                        }
+                        e.preventDefault()
+                      }}
                     >
                       <span>MAY 14TH</span> - DAY 1 CONFERENCE
                     </a>
                   </li>
                   <li class="nav-item">
                     <a
+                      className={`nav-link ${
+                        currentScheduleTab === 3 ? 'active' : null
+                      }`}
                       class="nav-link"
                       data-toggle="tab"
-                      href="#settings"
+                      href="#"
                       role="tab"
                       aria-controls="settings"
+                      onClick={e => {
+                        setCurrentScheduleTab(3)
+                        if (document) {
+                          let day = document.getElementById('day-3').offsetTop
+                          let scrolldiv = document.getElementById(
+                            'schedule-scroll'
+                          )
+                          scrolldiv.scrollTop = day - 80
+                        }
+                        e.preventDefault()
+                      }}
                     >
                       <span>MAY 15TH</span> - DAY 2 CONFERENCE
                     </a>
@@ -1039,8 +1144,8 @@ const BlogIndex = ({ data, location }) => {
                         </div>
                       </div>
                       <div class="tab_content_inner">
-                        <h3>Tuesday, 12 May</h3>
-                        <div class="tab_scroller">
+                        <div id="schedule-scroll" class="tab_scroller">
+                          <h3 id="day-0">Tuesday, 12 May</h3>
                           <div class="tab_text first-tab">
                             <div class="border_box_tab">
                               <h5>08:45 - 09:30</h5>
@@ -1328,27 +1433,7 @@ const BlogIndex = ({ data, location }) => {
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="profile" role="tabpane2">
-                    <div class="schedule_tab_box">
-                      <div class="schedule_search">
-                        <div class="search">
-                          <input
-                            type="text"
-                            name="search"
-                            placeholder="Search events easy"
-                          />
-                          <button>
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                          </button>
-                        </div>
-                      </div>
-                      <div class="tab_content_inner">
-                        <h3>Wednesday, 13 May</h3>
-                        <div class="tab_scroller">
+                          <h3 id="day-1">Wednesday, 13 May</h3>
                           <div class="tab_text first-tab">
                             <div class="border_box_tab">
                               <h5>08:45 - 09:30</h5>
@@ -1644,7 +1729,6 @@ const BlogIndex = ({ data, location }) => {
                               </div>
                             </div>
                           </div>
-
                           <div class="tab_text">
                             <h5>09:30 - 17:30</h5>
                             <h4>
@@ -1662,27 +1746,7 @@ const BlogIndex = ({ data, location }) => {
                               It does not include the conference ticket.
                             </p>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="messages" role="tabpane3">
-                    <div class="schedule_tab_box">
-                      <div class="schedule_search">
-                        <div class="search">
-                          <input
-                            type="text"
-                            name="search"
-                            placeholder="Search events easy"
-                          />
-                          <button>
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                          </button>
-                        </div>
-                      </div>
-                      <div class="tab_content_inner">
-                        <h3>Thursday, 14 May</h3>
-                        <div class="tab_scroller">
+                          <h3 id="day-2">Thursday, 14 May</h3>
                           <div class="tab_text first-tab">
                             <div class="border_box_tab">
                               <h5>08:30 - 19:30</h5>
@@ -1695,27 +1759,8 @@ const BlogIndex = ({ data, location }) => {
                               </p>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="settings" role="tabpane4">
-                    <div class="schedule_tab_box">
-                      <div class="schedule_search">
-                        <div class="search">
-                          <input
-                            type="text"
-                            name="search"
-                            placeholder="Search events easy"
-                          />
-                          <button>
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                          </button>
-                        </div>
-                      </div>
-                      <div class="tab_content_inner">
-                        <h3>Friday, 15 May</h3>
-                        <div class="tab_scroller">
+
+                          <h3 id="day-3">Friday, 15 May</h3>
                           <div class="tab_text first-tab">
                             <div class="border_box_tab">
                               <h5>08:30 - 19:30</h5>
@@ -1724,7 +1769,7 @@ const BlogIndex = ({ data, location }) => {
                               </h4>
                               <p>
                                 More details coming soon. Breakfast, lunch and
-                                drink-up included.
+                                drinkup included.
                               </p>
                             </div>
                           </div>
@@ -2046,7 +2091,26 @@ const BlogIndex = ({ data, location }) => {
                       Work with us
                     </a>
                   </div>
-                  <a href="#" class="read_more d-none">
+                  <a
+                    href="#"
+                    onClick={e => {
+                      handleShowSponsor(
+                        {
+                          name: 'AWS Amplify',
+                          description:
+                            'AWS Amplify makes it easy to create, configure, and implement scalable mobile applications powered by AWS. Amplify seamlessly provisions and manages your mobile backend and provides a simple framework to easily integrate your backend with your iOS, Android, Web, and React Native frontends. Amplify also automates the application release process of both your frontend and backend allowing you to deliver features faster.',
+                          url:
+                            'https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
+                          jobUrl:
+                            'https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
+                          level: 'gold',
+                          logoUrl: 'images/gold1.png',
+                        },
+                        e
+                      )
+                    }}
+                    class="read_more"
+                  >
                     Read More
                   </a>
                   <div class="mobile_icons">
@@ -2061,7 +2125,7 @@ const BlogIndex = ({ data, location }) => {
                           <i class="fa fa-handshake-o" aria-hidden="true"></i>
                         </a>
                       </li>
-                      <li class="d-none">
+                      <li>
                         <a
                           href="#"
                           data-toggle="modal"
@@ -2178,11 +2242,20 @@ const BlogIndex = ({ data, location }) => {
             </div>
           </div>
         </div>
-        <div class="modal fade" id="sponser_popup" role="dialog">
+        <Modal
+          show={showSponsor}
+          onHide={handleCloseSponsor}
+          id="sponser_popup"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  onClick={handleCloseSponsor}
+                >
                   &times;
                 </button>
               </div>
@@ -2190,48 +2263,27 @@ const BlogIndex = ({ data, location }) => {
                 <div class="row">
                   <div class="col-md-3">
                     <div class="sponser_popup_left">
-                      <img src="images/dazn.png" alt="" />
+                      <img src={currentSponsor.logoUrl} alt="" width="100%" />
                       <div class="sponser_popup_link">
-                        <a href="#">Website</a>
-                        <a href="#">Work with us</a>
+                        <a href={currentSponsor.url}>Website</a>
+                        <a href={currentSponsor.jobUrl}>Work with us</a>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-9">
                     <div class="sponser_popup_right">
-                      <h3>
-                        DAZN is a tech-first live streaming service for sports
-                        fans.
-                      </h3>
-                      <p>
-                        We use a very modern tech stack to stream content to
-                        millions of concurrent viewers globally across multiple
-                        platforms and devices. The architecture of DAZN is based
-                        on Micro Frontends and unifies a range of technologies
-                        in order to deliver a seamless user experience.
-                      </p>
-                      <p>
-                        This is an ambitious project with a fast release cycle
-                        that has scalability not only from a user point of view
-                        but also from a developer perspective. Imagine a tech
-                        start up culture but with the security and backing from
-                        a well established content and media agency. Our
-                        engineers work in small teams and are given freedom and
-                        autonomy when it comes to the code that they write. If
-                        you like solving technical problems then this is the
-                        place to be. We have a community that is here to help.
-                        We have a large network of
-                      </p>
+                      <h3>{currentSponsor.name}</h3>
+                      <p>{currentSponsor.description}</p>
                     </div>
                   </div>
                   <div class="vertical_text">
-                    <h3>PLATINUM</h3>
+                    <h3>{currentSponsor.level}</h3>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </Modal>
       </section>
       <section class="support">
         <div class="container">

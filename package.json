@@ -28,6 +28,9 @@
     "gatsby-source-filesystem": "2.1.21",
     "gatsby-transformer-remark": "2.6.21",
     "gatsby-transformer-sharp": "2.2.13",
+    "patch-package": "^6.1.4",
+    "postinstall-postinstall": "^2.0.0",
+    "react-bootstrap": "^1.0.0-beta.12",
     "react-spring-carousel": "^0.0.4"
   },
   "devDependencies": {
@@ -84,7 +87,8 @@
     "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
     "lint:text": "textlint src/pages/**/index.md",
     "lint:textfix": "textlint --fix src/pages/**/index.md",
-    "test": "prettier --write \"**/*.+(js|jsx|json|css|scss)\""
+    "test": "prettier --write \"**/*.+(js|jsx|json|css|scss)\"",
+    "postinstall": "patch-package"
   },
   "husky": {
     "hooks": {
