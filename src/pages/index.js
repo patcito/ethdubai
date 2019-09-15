@@ -4,11 +4,13 @@ import get from 'lodash/get'
 import { Modal, Tab } from 'react-bootstrap'
 
 import Caroussel from 'components/caroussel'
+import CarouselPeople from 'components/carouselpeople'
 import Meta from 'components/meta'
 import Layout from 'components/layout'
 const BlogIndex = ({ data, location }) => {
   const posts = get(data, 'remark.posts')
   const [currentScheduleTab, setCurrentScheduleTab] = useState(0)
+  const [faq, setFaq] = useState(null)
   const [showSponsor, setShowSponsor] = useState(false)
   const [currentSponsor, setCurrentSponsor] = useState({
     name: 'url',
@@ -1791,8 +1793,12 @@ const BlogIndex = ({ data, location }) => {
             <div class="headings">
               <img src="images/ticket.png" alt="" />
               <h2>Get Your Tickets</h2>
-              <h3>
+              <h3 class="d-none">
                 Tickets are now available for both conference and workshops.
+              </h3>{' '}
+              <h3>
+                We're running an update on our payment system, we'll be back
+                around 10:30 pm Paris time. Sorry for the inconvenience.
               </h3>
               <h3 class="d-none">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
@@ -1805,156 +1811,8 @@ const BlogIndex = ({ data, location }) => {
                 style={{ border: '0px', height: '900px' }}
                 iscrolling="no"
                 class="tickets-iframe"
+                class="d-none"
               ></iframe>
-            </div>
-          </div>
-          <div class="book_ticket_box d-none">
-            <div class="row ticket_first-row">
-              <div class="col-md-6">
-                <div class="ticket_heading">
-                  <h4>Tickets Information</h4>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="powerd_text">
-                  <p>
-                    Powered by <a href="#">EventLama</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="row ticket_secound-row">
-              <div class="col-md-6">
-                <div class="early_bird">
-                  <h3>Early Bird</h3>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="sold_out">
-                  <a href="#">SOLD OUT</a>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="description_input">
-                  <label>Description</label>
-                  <input type="text" name="Description" />
-                </div>
-              </div>
-              <div class="regular_tecket">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
-                    <div class="regular_tecket_heading">
-                      <h3>Regular</h3>
-                    </div>
-                  </div>
-                  <div class="col-md-8">
-                    <div class="regular_right">
-                      <h6 class="right-text">
-                        &euro;475.00 <span>(&euro;73.00 VAT)</span>
-                        <a href="#" class="close" data-dismiss="right-text">
-                          &#10006;
-                        </a>
-                      </h6>
-                      <div class="quantity">
-                        <input
-                          type="number"
-                          min="1"
-                          max="9"
-                          step="1"
-                          value="1"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="regular_ticket_content">
-                      <div class="regular_ticket_links">
-                        <ul>
-                          <li>
-                            <a href="#">Description</a>
-                          </li>
-                          <li>
-                            <img src="images/time1.png" alt="" /> 16 days left
-                          </li>
-                          <li>
-                            <img src="images/tciket.png" alt="" /> 20 tickets
-                            left
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="regular_ticket_input">
-                        <input
-                          type="text"
-                          name="text"
-                          placeholder="Our regular ticket to the conference."
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="regular_tecket">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
-                    <div class="regular_tecket_heading">
-                      <h3>Late bird</h3>
-                    </div>
-                  </div>
-                  <div class="col-md-8">
-                    <div class="regular_right">
-                      <h6 class="right-text">
-                        &euro;700.00 <span>(&euro;89.80 VAT)</span>
-                        <a href="#" class="close" data-dismiss="right-text">
-                          &#10006;
-                        </a>
-                      </h6>
-                      <div class="sold_out soon">
-                        <a href="#">SOON</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="regular_ticket_content">
-                      <div class="regular_ticket_links">
-                        <ul>
-                          <li>
-                            <a href="#">Description</a>
-                          </li>
-                          <li>
-                            <img src="images/time1.png" alt="" /> 51 days left
-                          </li>
-                          <li>
-                            <img src="images/tciket.png" alt="" /> 15 tickets
-                            left
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="checkout">
-                <div class="row no-gutters">
-                  <div class="col-md-6">
-                    <div class="discound_heading">
-                      <h3>If you have a discount code</h3>
-                    </div>
-                    <div class="discount_code">
-                      <input
-                        type="text"
-                        name="discount"
-                        placeholder="Discount Code"
-                      />
-                      <button>Apply</button>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="checkout_btn">
-                      <a href="#">Checkout</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -2130,6 +1988,22 @@ const BlogIndex = ({ data, location }) => {
                           href="#"
                           data-toggle="modal"
                           data-target="#sponser_popup"
+                          onClick={e => {
+                            handleShowSponsor(
+                              {
+                                name: 'AWS Amplify',
+                                description:
+                                  'AWS Amplify makes it easy to create, configure, and implement scalable mobile applications powered by AWS. Amplify seamlessly provisions and manages your mobile backend and provides a simple framework to easily integrate your backend with your iOS, Android, Web, and React Native frontends. Amplify also automates the application release process of both your frontend and backend allowing you to deliver features faster.',
+                                url:
+                                  'https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
+                                jobUrl:
+                                  'https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
+                                level: 'gold',
+                                logoUrl: 'images/gold1.png',
+                              },
+                              e
+                            )
+                          }}
                         >
                           <i
                             class="fa fa-long-arrow-right"
@@ -2293,13 +2167,25 @@ const BlogIndex = ({ data, location }) => {
           <div class="supporters_logo">
             <ul>
               <li>
-                <img src="images/support2.png" alt="" />
+                <a href="https://eventlama.com/" target="_blank">
+                  <img src="images/support2.png" alt="" />
+                </a>
               </li>
               <li>
-                <img src="images/support4.png" alt="" />
+                <a
+                  href="https://zeit.co/?utm_source=react-europe.org&utm_medium=web"
+                  target="_blank"
+                >
+                  <img src="images/support4.png" alt="zeit.co" />
+                </a>
               </li>
               <li>
-                <img src="images/support6.png" alt="" />
+                <a
+                  href="https://expo.io/?utm_source=react-europe.org&utm_medium=web"
+                  target="_blank"
+                >
+                  <img src="images/support6.png" alt="" />
+                </a>
               </li>
             </ul>
           </div>
@@ -2730,78 +2616,7 @@ const BlogIndex = ({ data, location }) => {
             </p>
           </div>
           <div class="testimonials-slider">
-            <div class="slick-carousel_testimonial">
-              <div>
-                <div class="testimonial_box">
-                  <img src="images/test_qoute.png" />
-                  <p>
-                    Thanks for the time @ReactEurope and for the knowledge
-                    during the Hackathon today. Falling in love with #awsamplify
-                    and #graphql. Thanks for the help @dabit3
-                  </p>
-                  <h5>- D/S (@dsbrux) May 25, 2019</h5>
-                </div>
-              </div>
-              <div>
-                <div class="testimonial_box">
-                  <img src="images/test_qoute.png" />
-                  <p>
-                    Heading back home from #ReactEurope in Paris. Thanks, folks,
-                    I had a blast! Fantastic talks. Especially the ones by @leeb
-                    and @paularmstrong blew me away.
-                  </p>
-                  <h5>- Timo Stollenwerk (@timostollenwerk) May 25, 2019</h5>
-                </div>
-              </div>
-              <div>
-                <div class="testimonial_box">
-                  <img src="images/test_qoute.png" />
-                  <p>
-                    Thanks for such a great time @ReactEurope! Learned a ton and
-                    met so many great people. I hope everyone returns to the
-                    office Monday and sets up their git hooks and performance
-                    budgets!
-                  </p>
-                  <h5>- Paul Armstrong (@paularmstrong) May 25, 2019</h5>
-                </div>
-              </div>
-              <div>
-                <div class="testimonial_box">
-                  <img src="images/test_qoute.png" />
-                  <p>
-                    Great conference @ReactEurope! Great organisation and
-                    awesome crowd! 👏👏👏 See you next year! 😉
-                  </p>
-                  <h5>- Vesko Kolev (@VeskoKolev) May 24, 2019</h5>
-                </div>
-              </div>
-              <div>
-                <div class="testimonial_box">
-                  <img src="images/test_qoute.png" />
-                  <p>
-                    This past few days, I spent at @ReactEurope. This was the
-                    first tech conference I have attended, and I got incredible
-                    value out of meeting such a diverse group of React engineers
-                    from around the world. Thank you! #conferences #reactjs
-                    #reacteurope
-                  </p>
-                  <h5>- Roo Shivkumar (@InationRoo) May 25, 2019</h5>
-                </div>
-              </div>
-              <div>
-                <div class="testimonial_box">
-                  <img src="images/test_qoute.png" />
-                  <p>
-                    I've been to @reacteurope ⚛️🇪🇺 had an awesome time, here's a
-                    break down with the things I loved the most 💕 A BIG
-                    SHOUTOUT TO @reacteurope STAFF FOR ORGANISING SUCH AN
-                    AWESOME EVENT! 🙌🏼
-                  </p>
-                  <h5>- Dennis Bruijn 🤖 (@0x1ad2) May 20, 2018</h5>
-                </div>
-              </div>
-              <div></div>
-            </div>
+            <CarouselPeople />
           </div>
         </div>
       </section>
@@ -3069,6 +2884,7 @@ const BlogIndex = ({ data, location }) => {
                         data-target="#collapseOne"
                         aria-expanded="true"
                         aria-controls="collapseOne"
+                        onClick={() => setFaq(faq === 0 ? null : 0)}
                       >
                         Why attend?
                       </button>
@@ -3077,7 +2893,7 @@ const BlogIndex = ({ data, location }) => {
 
                   <div
                     id="collapseOne"
-                    class="collapse show"
+                    className={faq === 0 ? 'collapse show' : 'collapse'}
                     aria-labelledby="headingOne"
                     data-parent="#accordionExample"
                   >
@@ -3137,6 +2953,7 @@ const BlogIndex = ({ data, location }) => {
                         data-target="#collapseTwo"
                         aria-expanded="false"
                         aria-controls="collapseTwo"
+                        onClick={() => setFaq(faq === 1 ? null : 1)}
                       >
                         Do you do refunds?
                       </button>
@@ -3144,7 +2961,7 @@ const BlogIndex = ({ data, location }) => {
                   </div>
                   <div
                     id="collapseTwo"
-                    class="collapse"
+                    className={faq === 1 ? 'collapse show' : 'collapse'}
                     aria-labelledby="headingTwo"
                     data-parent="#accordionExample"
                   >
@@ -3174,6 +2991,7 @@ const BlogIndex = ({ data, location }) => {
                         data-target="#collapseThree"
                         aria-expanded="false"
                         aria-controls="collapseThree"
+                        onClick={() => setFaq(faq === 2 ? null : 2)}
                       >
                         What do I get for each conference ticket?
                       </button>
@@ -3181,9 +2999,9 @@ const BlogIndex = ({ data, location }) => {
                   </div>
                   <div
                     id="collapseThree"
-                    class="collapse"
                     aria-labelledby="headingThree"
                     data-parent="#accordionExample"
+                    className={faq === 2 ? 'collapse show' : 'collapse'}
                   >
                     <div class="card-body">
                       All tickets called "Round X Conference" (such as Round 1
