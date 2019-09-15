@@ -31,6 +31,7 @@
     "patch-package": "^6.1.4",
     "postinstall-postinstall": "^2.0.0",
     "react-bootstrap": "^1.0.0-beta.12",
+    "react-headroom": "^2.2.8",
     "react-spring-carousel": "^0.0.4"
   },
   "devDependencies": {
