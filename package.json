@@ -4,6 +4,7 @@
   "version": "2.0.1",
   "author": "Futoshi Iwashita <jaxx2104@gmail.com>",
   "dependencies": {
+    "@loadable/component": "^5.10.2",
     "gatsby": "2.15.9",
     "gatsby-image": "2.2.17",
     "gatsby-link": "2.2.12",
@@ -32,6 +33,7 @@
     "postinstall-postinstall": "^2.0.0",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-headroom": "^2.2.8",
+    "react-on-screen": "^2.1.1",
     "react-spring-carousel": "^0.0.4"
   },
   "devDependencies": {

@@ -11,6 +11,20 @@ export default class HTML extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
+          <meta
+            property="og:title"
+            content="ReactEurope - The original European React.js &amp; Native conference on May 2020 in Paris, France"
+          />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://www.react-europe.org" />
+          <meta
+            property="og:image"
+            content="https://www.react-europe.org/images/reacteurope.png"
+          />
+          <meta
+            property="og:description"
+            content="ReactEurope is back on May 2020 to bring you the best and most passionate people from the very core teams to the coolest people from the community we love. The conference aims to give talks that inspire and explore new futuristic ideas dealing with all the techs we enjoy from the React ecosystem such as React.js, React Native, GraphQL, Relay, Universal apps, ReasonML,  Webpack, inline CSS and more."
+          />
           {this.props.headComponents}
           <link
             href="/img/apple-touch-icon.png"

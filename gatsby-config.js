@@ -1,11 +1,17 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatstrap',
-    description: 'Gatsby starter for bootstrap a blog',
-    siteUrl: 'https://gatstrap.netlify.com',
-    author: 'jaxx2104',
-    twitter: 'jaxx2104',
+    title:
+      'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
+    description:
+      'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
+    siteUrl: 'https://www.react-europe.org',
+    author: 'ReactEurope',
+    twitter: 'ReactEurope',
     adsense: '',
+    'og:title':
+      'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
+    'og:type': 'website',
+    'og:image': 'https://www.react-europe.org/images/reacteurope.png',
   },
   pathPrefix: '/',
   plugins: [
@@ -50,22 +56,25 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Gatstrap',
-        short_name: 'Gatstrap',
-        description: 'Gatsby starter for bootstrap a blog',
-        homepage_url: 'https://gatstrap.netlify.com',
+        name:
+          'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
+        short_name:
+          'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
+        description:
+          'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
+        homepage_url: 'https://www.react-europe.org',
         start_url: '/',
         background_color: '#fff',
-        theme_color: '#673ab7',
+        theme_color: '#fff',
         display: 'standalone',
         icons: [
           {
-            src: '/img/android-chrome-192x192.png',
+            src: '/img/logo_icon.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/img/android-chrome-512x512.png',
+            src: '/img/logo_icon.png',
             sizes: '512x512',
             type: 'image/png',
           },
@@ -75,7 +84,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: '',
+        trackingId: 'UA-42478610-5',
       },
     },
     {

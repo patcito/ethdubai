@@ -2,9 +2,11 @@ import { graphql } from 'gatsby'
 import React, { useState } from 'react'
 import get from 'lodash/get'
 import { Modal, Tab } from 'react-bootstrap'
+import loadable from '@loadable/component'
 
-import Caroussel from 'components/caroussel'
-import CarouselPeople from 'components/carouselpeople'
+const Caroussel = loadable(() => import('components/caroussel'))
+const CarouselPeople = loadable(() => import('components/carouselpeople'))
+
 import Meta from 'components/meta'
 import Layout from 'components/layout'
 const BlogIndex = ({ data, location }) => {
