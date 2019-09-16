@@ -25,7 +25,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/content/images/`,
+        path: `${__dirname}/static/images/`,
         name: 'images',
       },
     },
@@ -56,12 +56,10 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name:
-          'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
-        short_name:
-          'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
+        name: 'ReactEurope',
+        short_name: 'ReactEurope',
         description:
-          'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
+          'The original European React.js & Native conference on May 14-15th, 2020 in Paris, France',
         homepage_url: 'https://www.react-europe.org',
         start_url: '/',
         background_color: '#fff',
@@ -69,12 +67,12 @@ module.exports = {
         display: 'standalone',
         icons: [
           {
-            src: '/img/logo_icon.png',
+            src: '/img/android-chrome-192x192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/img/logo_icon.png',
+            src: '/img/android-chrome-512x512.png',
             sizes: '512x512',
             type: 'image/png',
           },

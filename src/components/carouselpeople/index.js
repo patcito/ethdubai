@@ -82,7 +82,7 @@ function CarouselPeople() {
         <ReactSimpleCarousel slidesToShow={5}>
           <div>
             <div class="testimonial_box">
-              <img src="images/test_qoute.png" />
+              <img loading="lazy" src="images/test_qoute.png" />
               <p>
                 Thanks for the time @ReactEurope and for the knowledge during
                 the Hackathon today. Falling in love with #awsamplify and
@@ -93,7 +93,7 @@ function CarouselPeople() {
           </div>
           <div>
             <div class="testimonial_box">
-              <img src="images/test_qoute.png" />
+              <img loading="lazy" src="images/test_qoute.png" />
               <p>
                 Heading back home from #ReactEurope in Paris. Thanks, folks, I
                 had a blast! Fantastic talks. Especially the ones by @leeb and
@@ -104,7 +104,7 @@ function CarouselPeople() {
           </div>
           <div>
             <div class="testimonial_box">
-              <img src="images/test_qoute.png" />
+              <img loading="lazy" src="images/test_qoute.png" />
               <p>
                 Thanks for such a great time @ReactEurope! Learned a ton and met
                 so many great people. I hope everyone returns to the office
@@ -115,7 +115,7 @@ function CarouselPeople() {
           </div>
           <div>
             <div class="testimonial_box">
-              <img src="images/test_qoute.png" />
+              <img loading="lazy" src="images/test_qoute.png" />
               <p>
                 Great conference @ReactEurope! Great organisation and awesome
                 crowd! 👏👏👏 See you next year! 😉
@@ -125,7 +125,7 @@ function CarouselPeople() {
           </div>
           <div>
             <div class="testimonial_box">
-              <img src="images/test_qoute.png" />
+              <img loading="lazy" src="images/test_qoute.png" />
               <p>
                 This past few days, I spent at @ReactEurope. This was the first
                 tech conference I have attended, and I got incredible value out
@@ -137,7 +137,7 @@ function CarouselPeople() {
           </div>
           <div>
             <div class="testimonial_box">
-              <img src="images/test_qoute.png" />
+              <img loading="lazy" src="images/test_qoute.png" />
               <p>
                 I've been to @reacteurope ⚛️🇪🇺 had an awesome time, here's a
                 break down with the things I loved the most 💕 A BIG SHOUTOUT TO

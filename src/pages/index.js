@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import get from 'lodash/get'
 import { Modal, Tab } from 'react-bootstrap'
 import loadable from '@loadable/component'
+import Img from 'gatsby-image'
 
 const Caroussel = loadable(() => import('components/caroussel'))
 const CarouselPeople = loadable(() => import('components/carouselpeople'))
@@ -10,6 +11,14 @@ const CarouselPeople = loadable(() => import('components/carouselpeople'))
 import Meta from 'components/meta'
 import Layout from 'components/layout'
 const BlogIndex = ({ data, location }) => {
+  if (typeof window !== 'undefined') {
+    window.addEventListener('message', message => {
+      console.log(message)
+      if (message.data && message.data.checkoutUrl) {
+        window.location = message.data.checkoutUrl
+      }
+    })
+  }
   const posts = get(data, 'remark.posts')
   const [currentScheduleTab, setCurrentScheduleTab] = useState(0)
   const [faq, setFaq] = useState(null)
@@ -77,7 +86,7 @@ const BlogIndex = ({ data, location }) => {
             </div>
             <div class="col-md-6">
               <div class="react_image">
-                <img src="images/banner-image.png" alt="" />
+                <img loading="lazy" src="images/banner-image.png" alt="" />
               </div>
             </div>
           </div>
@@ -86,7 +95,11 @@ const BlogIndex = ({ data, location }) => {
       <section class="conference" id="conference">
         <div class="container">
           <div class="headings">
-            <img src="images/react-europe-plain-round.png" alt="" />
+            <img
+              loading="lazy"
+              src="images/react-europe-plain-round.png"
+              alt=""
+            />
             <h2>Conference Events</h2>
             <p
               style={{
@@ -189,7 +202,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="slider_box">
                   <h3>12th-13th</h3>
                   <h4>MAY</h4>
-                  <img src="images/slider1.png" alt="" />
+                  <img loading="lazy" src="images/slider1.png" alt="" />
                   <h5>2-DAY WORKSHOPS</h5>
                   <h6>Palace of Paris-Est Congress</h6>
                   <p>8:45am to 5:30pm</p>
@@ -213,7 +226,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="slider_box">
                   <h3>13th</h3>
                   <h4>MAY</h4>
-                  <img src="images/slider2.png" alt="" />
+                  <img loading="lazy" src="images/slider2.png" alt="" />
                   <h5>BAR NIGHT</h5>
                   <h6 class="">More details coming soon</h6>
                   <p>6:45pm</p>
@@ -237,7 +250,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="slider_box">
                   <h3>14th-15th</h3>
                   <h4>MAY</h4>
-                  <img src="images/slider3.png" alt="" />
+                  <img loading="lazy" src="images/slider3.png" alt="" />
                   <h5>2-DAY CONFERENCE</h5>
                   <h6>Palace of Paris-Est Congress</h6>
                   <p> 8:30am to 7:00pm</p>
@@ -264,7 +277,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="slider_box">
                   <h3>12th-15th</h3>
                   <h4>MAY</h4>
-                  <img src="images/food.png" alt="" />
+                  <img loading="lazy" src="images/food.png" alt="" />
                   <h5>Delicious food buffets</h5>
                   <h6>Palace of Paris-Est Congress</h6>
                   <p> During conf &amp; workshop days</p>
@@ -288,7 +301,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="slider_box">
                   <h3>14th-15th</h3>
                   <h4>MAY</h4>
-                  <img src="images/lightnings.png" alt="" />
+                  <img loading="lazy" src="images/lightnings.png" alt="" />
                   <h5>Lightning talks</h5>
                   <h6>Palace of Paris-Est Congress</h6>
                   <p> During conference days</p>
@@ -299,7 +312,7 @@ const BlogIndex = ({ data, location }) => {
               <div class="slider_box">
                 <h3>16th</h3>
                 <h4>MAY</h4>
-                <img src="images/hackathon.png" alt="" />
+                <img loading="lazy" src="images/hackathon.png" alt="" />
                 <h5>Hackathon</h5>
                 <h6>More details coming soon</h6>
                 <p> 9:00am to 5:00pm</p>
@@ -342,13 +355,25 @@ const BlogIndex = ({ data, location }) => {
                     <div class="event_popup_images">
                       <ul>
                         <li>
-                          <img src="images/Event_popup1.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup1.png"
+                            alt=""
+                          />
                         </li>
                         <li>
-                          <img src="images/Event_popup2.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup2.png"
+                            alt=""
+                          />
                         </li>
                         <li>
-                          <img src="images/Event_popup3.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup3.png"
+                            alt=""
+                          />
                         </li>
                       </ul>
                     </div>
@@ -394,13 +419,25 @@ const BlogIndex = ({ data, location }) => {
                     <div class="event_popup_images">
                       <ul>
                         <li>
-                          <img src="images/Event_popup1.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup1.png"
+                            alt=""
+                          />
                         </li>
                         <li>
-                          <img src="images/Event_popup2.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup2.png"
+                            alt=""
+                          />
                         </li>
                         <li>
-                          <img src="images/Event_popup3.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup3.png"
+                            alt=""
+                          />
                         </li>
                       </ul>
                     </div>
@@ -446,13 +483,25 @@ const BlogIndex = ({ data, location }) => {
                     <div class="event_popup_images">
                       <ul>
                         <li>
-                          <img src="images/Event_popup1.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup1.png"
+                            alt=""
+                          />
                         </li>
                         <li>
-                          <img src="images/Event_popup2.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup2.png"
+                            alt=""
+                          />
                         </li>
                         <li>
-                          <img src="images/Event_popup3.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup3.png"
+                            alt=""
+                          />
                         </li>
                       </ul>
                     </div>
@@ -498,13 +547,25 @@ const BlogIndex = ({ data, location }) => {
                     <div class="event_popup_images">
                       <ul>
                         <li>
-                          <img src="images/Event_popup1.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup1.png"
+                            alt=""
+                          />
                         </li>
                         <li>
-                          <img src="images/Event_popup2.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup2.png"
+                            alt=""
+                          />
                         </li>
                         <li>
-                          <img src="images/Event_popup3.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup3.png"
+                            alt=""
+                          />
                         </li>
                       </ul>
                     </div>
@@ -589,13 +650,25 @@ const BlogIndex = ({ data, location }) => {
                     <div class="event_popup_images">
                       <ul>
                         <li>
-                          <img src="images/Event_popup1.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup1.png"
+                            alt=""
+                          />
                         </li>
                         <li>
-                          <img src="images/Event_popup2.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup2.png"
+                            alt=""
+                          />
                         </li>
                         <li>
-                          <img src="images/Event_popup3.png" alt="" />
+                          <img
+                            loading="lazy"
+                            src="images/Event_popup3.png"
+                            alt=""
+                          />
                         </li>
                       </ul>
                     </div>
@@ -610,7 +683,7 @@ const BlogIndex = ({ data, location }) => {
       <section class="speaker" id="speaker">
         <div class="container">
           <div class="headings">
-            <img src="images/head-2.png" alt="" />
+            <img loading="lazy" src="images/head-2.png" alt="" />
             <h2>Our Speakers</h2>
             <p>
               Stay tuned for some awesome speakers announcements soon as well as
@@ -622,7 +695,7 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="speaker_box left_box">
                   <div class="profile_image">
-                    <img src="images/p1.png" alt="" />
+                    <img loading="lazy" src="images/p1.png" alt="" />
                   </div>
                   <div class="profile_contnet">
                     <h3 class="speaker-name">Ives van Hoorne</h3>
@@ -689,7 +762,7 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="speaker_box right_box">
                   <div class="profile_image">
-                    <img src="images/shruti-round.png" alt="" />
+                    <img loading="lazy" src="images/shruti-round.png" alt="" />
                   </div>
                   <div class="profile_contnet">
                     <h3 class="speaker-name">Shruti Kapoor</h3>
@@ -747,7 +820,7 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="speaker_box left_box">
                   <div class="profile_image">
-                    <img src="images/devon-round.png" alt="" />
+                    <img loading="lazy" src="images/devon-round.png" alt="" />
                   </div>
                   <div class="profile_contnet">
                     <h3 class="speaker-name">Devon Govett</h3>
@@ -815,7 +888,7 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="speaker_box right_box">
                   <div class="profile_image">
-                    <img src="images/tim-round.png" alt="" />
+                    <img loading="lazy" src="images/tim-round.png" alt="" />
                   </div>
                   <div class="profile_contnet">
                     <h3 class="speaker-name">Tim Neutkens</h3>
@@ -946,7 +1019,7 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="speaker_box right_box">
                   <div class="profile_image">
-                    <img src="images/you-round.png" alt="" />
+                    <img loading="lazy" src="images/you-round.png" alt="" />
                   </div>
                   <div class="profile_contnet">
                     <h3 class="speaker-name">You?</h3>
@@ -989,16 +1062,16 @@ const BlogIndex = ({ data, location }) => {
                         href={'https://twitter.com/' + speakerProps.twitter}
                         class="speaker-twitter-modal"
                       >
-                        <img src="images/pt.png" alt="" />
+                        <img loading="lazy" src="images/pt.png" alt="" />
                       </a>
                       <a
                         href={'https://github.com/' + speakerProps.github}
                         class="speaker-github-modal"
                       >
-                        <img src="images/pi.png" alt="" />
+                        <img loading="lazy" src="images/pi.png" alt="" />
                       </a>
                       <a href={speakerProps.url} class="speaker-url-modal">
-                        <img src="images/pl.png" alt="" />
+                        <img loading="lazy" src="images/pl.png" alt="" />
                       </a>
                     </li>
                   </ul>
@@ -1024,7 +1097,7 @@ const BlogIndex = ({ data, location }) => {
       <section class="schedule" id="schedule">
         <div class="container">
           <div class="headings">
-            <img src="images/scedual.png" alt="" />
+            <img loading="lazy" src="images/scedual.png" alt="" />
             <h2>Schedule</h2>
             <p>Stay tuned for more update to our schedule.</p>
           </div>
@@ -1793,14 +1866,10 @@ const BlogIndex = ({ data, location }) => {
         <div class="container">
           <div class="container">
             <div class="headings">
-              <img src="images/ticket.png" alt="" />
+              <img loading="lazy" src="images/ticket.png" alt="" />
               <h2>Get Your Tickets</h2>
-              <h3 class="d-none">
-                Tickets are now available for both conference and workshops.
-              </h3>{' '}
               <h3>
-                We're running an update on our payment system, we'll be back
-                around 10:30 pm Paris time. Sorry for the inconvenience.
+                Tickets are now available for both conference and workshops.
               </h3>
               <h3 class="d-none">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
@@ -1813,7 +1882,6 @@ const BlogIndex = ({ data, location }) => {
                 style={{ border: '0px', height: '900px' }}
                 iscrolling="no"
                 class="tickets-iframe"
-                class="d-none"
               ></iframe>
             </div>
           </div>
@@ -1824,7 +1892,7 @@ const BlogIndex = ({ data, location }) => {
       <section class="sponser" id="sponser">
         <div class="container">
           <div class="headings">
-            <img src="images/sponser.png" alt="" />
+            <img loading="lazy" src="images/sponser.png" alt="" />
             <h2>Our Sponsors</h2>
             <p>
               <a
@@ -1842,7 +1910,12 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-6">
                 <div class="spnser_box">
                   <div class="sponser_image">
-                    <img class="normal_image" src="images/dazn.png" alt="" />
+                    <img
+                      loading="lazy"
+                      class="normal_image"
+                      src="images/dazn.png"
+                      alt=""
+                    />
                     <img
                       class="hover_img"
                       src="images/sponser-hover.png"
@@ -1892,8 +1965,18 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-6">
                 <div class="spnser_box">
                   <div class="sponser_image">
-                    <img class="normal_image" src="images/ekino.png" alt="" />
-                    <img class="hover_img" src="images/ekino.png" alt="" />
+                    <img
+                      loading="lazy"
+                      class="normal_image"
+                      src="images/ekino.png"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      class="hover_img"
+                      src="images/ekino.png"
+                      alt=""
+                    />
                   </div>
                   <div class="work_withweb">
                     <a href="#">Website</a>
@@ -1940,8 +2023,18 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-4">
                 <div class="spnser_box">
                   <div class="sponser_image">
-                    <img class="normal_image" src="images/gold1.png" alt="" />
-                    <img class="hover_img" src="images/gold1.png" alt="" />
+                    <img
+                      loading="lazy"
+                      class="normal_image"
+                      src="images/gold1.png"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      class="hover_img"
+                      src="images/gold1.png"
+                      alt=""
+                    />
                   </div>
                   <div class="work_withweb">
                     <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
@@ -2037,8 +2130,18 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-4">
                 <div class="spnser_box">
                   <div class="sponser_image">
-                    <img class="normal_image" src="images/brunse1.png" alt="" />
-                    <img class="hover_img" src="images/brunse1.png" alt="" />
+                    <img
+                      loading="lazy"
+                      class="normal_image"
+                      src="images/brunse1.png"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      class="hover_img"
+                      src="images/brunse1.png"
+                      alt=""
+                    />
                   </div>
                   <div class="work_withweb">
                     <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
@@ -2078,8 +2181,18 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-4">
                 <div class="spnser_box">
                   <div class="sponser_image">
-                    <img class="normal_image" src="images/brunse2.png" alt="" />
-                    <img class="hover_img" src="images/brunse2.png" alt="" />
+                    <img
+                      loading="lazy"
+                      class="normal_image"
+                      src="images/brunse2.png"
+                      alt=""
+                    />
+                    <img
+                      loading="lazy"
+                      class="hover_img"
+                      src="images/brunse2.png"
+                      alt=""
+                    />
                   </div>
                   <div class="work_withweb">
                     <a href="#">Website</a>
@@ -2139,7 +2252,12 @@ const BlogIndex = ({ data, location }) => {
                 <div class="row">
                   <div class="col-md-3">
                     <div class="sponser_popup_left">
-                      <img src={currentSponsor.logoUrl} alt="" width="100%" />
+                      <img
+                        loading="lazy"
+                        src={currentSponsor.logoUrl}
+                        alt=""
+                        width="100%"
+                      />
                       <div class="sponser_popup_link">
                         <a href={currentSponsor.url}>Website</a>
                         <a href={currentSponsor.jobUrl}>Work with us</a>
@@ -2170,7 +2288,7 @@ const BlogIndex = ({ data, location }) => {
             <ul>
               <li>
                 <a href="https://eventlama.com/" target="_blank">
-                  <img src="images/support2.png" alt="" />
+                  <img loading="lazy" src="images/support2.png" alt="" />
                 </a>
               </li>
               <li>
@@ -2178,7 +2296,7 @@ const BlogIndex = ({ data, location }) => {
                   href="https://zeit.co/?utm_source=react-europe.org&utm_medium=web"
                   target="_blank"
                 >
-                  <img src="images/support4.png" alt="zeit.co" />
+                  <img loading="lazy" src="images/support4.png" alt="zeit.co" />
                 </a>
               </li>
               <li>
@@ -2186,7 +2304,7 @@ const BlogIndex = ({ data, location }) => {
                   href="https://expo.io/?utm_source=react-europe.org&utm_medium=web"
                   target="_blank"
                 >
-                  <img src="images/support6.png" alt="" />
+                  <img loading="lazy" src="images/support6.png" alt="" />
                 </a>
               </li>
             </ul>
@@ -2199,7 +2317,7 @@ const BlogIndex = ({ data, location }) => {
             <div class="col-md-6">
               <div class="location_content">
                 <div class="location_heading">
-                  <img src="images/location.png" alt="" />
+                  <img loading="lazy" src="images/location.png" alt="" />
                   <h2>Location</h2>
                 </div>
 
@@ -2227,11 +2345,11 @@ const BlogIndex = ({ data, location }) => {
             </div>
             <div class="col-md-6">
               <div class="map_location">
-                <img src="images/map-montreuil.png" alt="" />
+                <img loading="lazy" src="images/map-montreuil.png" alt="" />
                 <a href="https://goo.gl/maps/3w2z8ZMszLtzGSD76">View on Map</a>
               </div>
               <div class="map_box">
-                <img src="images/image003.jpg" alt="" />
+                <img loading="lazy" src="images/image003.jpg" alt="" />
                 <h2>Palace of Paris-Est Congress</h2>
               </div>
             </div>
@@ -2240,7 +2358,7 @@ const BlogIndex = ({ data, location }) => {
         <div class="people-behind" id="people-behind">
           <div class="container">
             <div class="headings">
-              <img src="images/people.png" alt="" />
+              <img loading="lazy" src="images/people.png" alt="" />
               <h2>People Behind ReactEurope</h2>
               <p class="d-none">
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
@@ -2252,7 +2370,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-12">
                   <div class="speaker_box left_box">
                     <div class="profile_image">
-                      <img src="images/pb1.png" alt="" />
+                      <img loading="lazy" src="images/pb1.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3 class="speaker-name">Patrick Aljord</h3>
@@ -2283,7 +2401,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-12">
                   <div class="speaker_box right_box">
                     <div class="profile_image">
-                      <img src="images/pb2.png" alt="" />
+                      <img loading="lazy" src="images/pb2.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3 class="speaker-name">Katiuska Gamero</h3>
@@ -2314,7 +2432,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-12">
                   <div class="speaker_box left_box">
                     <div class="profile_image">
-                      <img src="images/pb3.png" alt="" />
+                      <img loading="lazy" src="images/pb3.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3 class="speaker-name">React.js Paris</h3>
@@ -2344,7 +2462,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-12">
                   <div class="speaker_box right_box">
                     <div class="profile_image">
-                      <img src="images/pb4.png" alt="" />
+                      <img loading="lazy" src="images/pb4.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3 class="speaker-name">ReasonML Paris</h3>
@@ -2378,7 +2496,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="speaker_box left_box">
                     <div class="profile_image">
-                      <img src="images/pb1.png" alt="" />
+                      <img loading="lazy" src="images/pb1.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3>Patrick Aljord</h3>
@@ -2406,7 +2524,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="speaker_box right_box">
                     <div class="profile_image">
-                      <img src="images/pb2.png" alt="" />
+                      <img loading="lazy" src="images/pb2.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3>Katiuska Gamero</h3>
@@ -2434,7 +2552,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="speaker_box left_box">
                     <div class="profile_image">
-                      <img src="images/pb3.png" alt="" />
+                      <img loading="lazy" src="images/pb3.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3>React.js Paris</h3>
@@ -2462,7 +2580,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="speaker_box right_box">
                     <div class="profile_image">
-                      <img src="images/pb4.png" alt="" />
+                      <img loading="lazy" src="images/pb4.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3>ReasonML Paris</h3>
@@ -2494,7 +2612,7 @@ const BlogIndex = ({ data, location }) => {
                 <div>
                   <div class="speaker_box left_box">
                     <div class="profile_image">
-                      <img src="images/pb1.png" alt="" />
+                      <img loading="lazy" src="images/pb1.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3>Patrick Aljordi</h3>
@@ -2522,7 +2640,7 @@ const BlogIndex = ({ data, location }) => {
                 <div>
                   <div class="speaker_box right_box">
                     <div class="profile_image">
-                      <img src="images/pb2.png" alt="" />
+                      <img loading="lazy" src="images/pb2.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3>Katiuska Gamero</h3>
@@ -2550,7 +2668,7 @@ const BlogIndex = ({ data, location }) => {
                 <div>
                   <div class="speaker_box left_box">
                     <div class="profile_image">
-                      <img src="images/pb3.png" alt="" />
+                      <img loading="lazy" src="images/pb3.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3>React.js Paris</h3>
@@ -2578,7 +2696,7 @@ const BlogIndex = ({ data, location }) => {
                 <div>
                   <div class="speaker_box right_box">
                     <div class="profile_image">
-                      <img src="images/pb4.png" alt="" />
+                      <img loading="lazy" src="images/pb4.png" alt="" />
                     </div>
                     <div class="profile_contnet">
                       <h3>ReasonML Paris</h3>
@@ -2611,7 +2729,7 @@ const BlogIndex = ({ data, location }) => {
       <section class="peaople_said">
         <div class="container">
           <div class="headings">
-            <img src="images/testimonial.png" alt="" />
+            <img loading="lazy" src="images/testimonial.png" alt="" />
             <h2>What People Said</h2>
             <p>
               What our previous attendants had to say about ReactEurope 2019.
@@ -2641,12 +2759,12 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-4">
                 <div class="article_inner">
                   <div class="article_image">
-                    <img src="images/article1.png" alt="" />
+                    <img loading="lazy" src="images/article1.png" alt="" />
                   </div>
                   <div class="article_full_contet">
                     <div class="article_boxes_content">
                       <div class="artcile_profile_image">
-                        <img src="images/article_profile.png" />
+                        <img loading="lazy" src="images/article_profile.png" />
                       </div>
                       <div class="article_profile_content">
                         <h3>Leimonis Konstantinos</h3>
@@ -2668,12 +2786,12 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-4">
                 <div class="article_inner">
                   <div class="article_image">
-                    <img src="images/article2.png" alt="" />
+                    <img loading="lazy" src="images/article2.png" alt="" />
                   </div>
                   <div class="article_full_contet">
                     <div class="article_boxes_content">
                       <div class="artcile_profile_image">
-                        <img src="images/article_profile.png" />
+                        <img loading="lazy" src="images/article_profile.png" />
                       </div>
                       <div class="article_profile_content">
                         <h3>Leimonis Konstantinos</h3>
@@ -2695,12 +2813,12 @@ const BlogIndex = ({ data, location }) => {
               <div class="col-md-4">
                 <div class="article_inner">
                   <div class="article_image">
-                    <img src="images/article3.png" alt="" />
+                    <img loading="lazy" src="images/article3.png" alt="" />
                   </div>
                   <div class="article_full_contet">
                     <div class="article_boxes_content">
                       <div class="artcile_profile_image">
-                        <img src="images/article_profile.png" />
+                        <img loading="lazy" src="images/article_profile.png" />
                       </div>
                       <div class="article_profile_content">
                         <h3>Leimonis Konstantinos</h3>
@@ -2732,41 +2850,41 @@ const BlogIndex = ({ data, location }) => {
         <div class="events_images d-sm-none">
           <ul class="">
             <li>
-              <img src="images/ourjourney-mobile.png" />
+              <img loading="lazy" src="images/ourjourney-mobile.png" />
             </li>
           </ul>
         </div>
         <div class="events_images d-none d-sm-block">
           <ul class="">
             <li>
-              <img src="images/events1.png" alt="" />
+              <img loading="lazy" src="images/events1.png" alt="" />
             </li>
             <li>
-              <img src="images/events2.png" alt="" />
+              <img loading="lazy" src="images/events2.png" alt="" />
             </li>
             <li>
-              <img src="images/events3.png" alt="" />
+              <img loading="lazy" src="images/events3.png" alt="" />
             </li>
             <li>
-              <img src="images/events4.png" alt="" />
+              <img loading="lazy" src="images/events4.png" alt="" />
             </li>
             <li>
-              <img src="images/events5.png" alt="" />
-              <img src="images/events5-2.png" alt="" />
+              <img loading="lazy" src="images/events5.png" alt="" />
+              <img loading="lazy" src="images/events5-2.png" alt="" />
             </li>
             <li>
-              <img src="images/events6.png" alt="" />
+              <img loading="lazy" src="images/events6.png" alt="" />
             </li>
             <li>
-              <img src="images/events7.png" alt="" />
-              <img src="images/events7-2.png" alt="" />
+              <img loading="lazy" src="images/events7.png" alt="" />
+              <img loading="lazy" src="images/events7-2.png" alt="" />
             </li>
             <li>
-              <img src="images/events8.png" alt="" />
+              <img loading="lazy" src="images/events8.png" alt="" />
             </li>
             <li>
-              <img src="images/events9.png" alt="" />
-              <img src="images/events9-2.png" alt="" />
+              <img loading="lazy" src="images/events9.png" alt="" />
+              <img loading="lazy" src="images/events9-2.png" alt="" />
             </li>
           </ul>
         </div>
@@ -2776,7 +2894,7 @@ const BlogIndex = ({ data, location }) => {
           <div class="row">
             <div class="col-md-4">
               <div class="subscribe_img">
-                <img src="images/subscribe_img.png" />
+                <img loading="lazy" src="images/subscribe_img.png" />
               </div>
             </div>
             <div class="col-md-8">
@@ -2805,22 +2923,22 @@ const BlogIndex = ({ data, location }) => {
               <ul>
                 <li>
                   <a href="https://www.facebook.com/ReactEurope">
-                    <img src="images/facebook.png" alt="" />
+                    <img loading="lazy" src="images/facebook.png" alt="" />
                   </a>
                 </li>
                 <li>
                   <a href="https://twitter.com/ReactEurope">
-                    <img src="images/twitter.png" alt="" />
+                    <img loading="lazy" src="images/twitter.png" alt="" />
                   </a>
                 </li>
                 <li>
                   <a href="https://www.youtube.com/c/ReacteuropeOrgConf">
-                    <img src="images/youtube.png" alt="" />
+                    <img loading="lazy" src="images/youtube.png" alt="" />
                   </a>
                 </li>
                 <li>
                   <a href="https://medium.com/@reacteurope">
-                    <img src="images/m.png" alt="" />
+                    <img loading="lazy" src="images/m.png" alt="" />
                   </a>
                 </li>
               </ul>
