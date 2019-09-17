@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import get from 'lodash/get'
 import { Modal, Tab } from 'react-bootstrap'
 import loadable from '@loadable/component'
-import Img from 'gatsby-image'
+import ZeitLogo from '../../static/images/zeit-black-full-logo.svg'
 
 const Caroussel = loadable(() => import('components/caroussel'))
 const CarouselPeople = loadable(() => import('components/carouselpeople'))
@@ -2296,7 +2296,7 @@ const BlogIndex = ({ data, location }) => {
                   href="https://zeit.co/?utm_source=react-europe.org&utm_medium=web"
                   target="_blank"
                 >
-                  <img loading="lazy" src="images/support4.png" alt="zeit.co" />
+                  <img loading="lazy" src={ZeitLogo} alt="zeit.co" />
                 </a>
               </li>
               <li>

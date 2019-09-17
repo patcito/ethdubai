@@ -15,6 +15,7 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
+    'gatsby-plugin-svgr',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
