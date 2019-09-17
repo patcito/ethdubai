@@ -149,7 +149,7 @@ function Caroussel() {
               <h4>MAY</h4>
               <img loading="lazy" src="images/slider2.png" alt="" />
               <h5>BAR NIGHT</h5>
-              <h6 class="">More details coming soon</h6>
+              <h6 class="">More details coming soon. Stay tuned.</h6>
               <p>6:45pm</p>
             </div>
           </div>
@@ -206,7 +206,7 @@ function Caroussel() {
               <img loading="lazy" src="images/food.png" alt="" />
               <h5>Delicious food buffets</h5>
               <h6>Palace of Paris-Est Congress</h6>
-              <p> During conf &amp; workshop days</p>
+              <p> During conf &amp; workshops</p>
             </div>
           </div>
           <div
@@ -247,7 +247,7 @@ function Caroussel() {
               <h4>MAY</h4>
               <img loading="lazy" src="images/hackathon.png" alt="" />
               <h5>Hackathon</h5>
-              <h6>More details coming soon</h6>
+              <h6>More details coming soon. Stay tuned.</h6>
               <p> 9:00am to 5:00pm</p>
             </div>
           </div>
