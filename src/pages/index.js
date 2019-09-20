@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import get from 'lodash/get'
 import { Modal, Tab } from 'react-bootstrap'
 import loadable from '@loadable/component'
@@ -11,6 +11,16 @@ const CarouselPeople = loadable(() => import('components/carouselpeople'))
 import Meta from 'components/meta'
 import Layout from 'components/layout'
 const BlogIndex = ({ data, location }) => {
+  useEffect(() => {
+    fetch('https://api.eventlama.com/geoip')
+      .then(res => res.json())
+      .then(json => {
+        if (json.CountryCode === 'FR') {
+          setIsFrench(true)
+        }
+      })
+      .catch(err => {})
+  }, [])
   if (typeof window !== 'undefined') {
     window.addEventListener('message', message => {
       console.log(message)
@@ -20,6 +30,7 @@ const BlogIndex = ({ data, location }) => {
     })
   }
   const posts = get(data, 'remark.posts')
+  const [isFrench, setIsFrench] = useState(false)
   const [currentScheduleTab, setCurrentScheduleTab] = useState(0)
   const [faq, setFaq] = useState(null)
   const [showSponsor, setShowSponsor] = useState(false)
@@ -1868,6 +1879,18 @@ const BlogIndex = ({ data, location }) => {
             <div class="headings">
               <img loading="lazy" src="images/ticket.png" alt="" />
               <h2>Get Your Tickets</h2>
+              {isFrench ? (
+                <h3>
+                  <a
+                    href="https://www.oxiane.com/oxiane-partenaire-formation-reacteurope-2020-la-conference-europeenne-sur-reactjs-et-react-native/"
+                    target="_blank"
+                  >
+                    🇫🇷 Si vous êtes français, vous pouvez beneficier de votre
+                    OPCA avec notre partenaire Oxiane pour l'achat de vos
+                    tickets
+                  </a>
+                </h3>
+              ) : null}
               <h3>
                 Tickets are now available for both conference and workshops.
               </h3>
@@ -2279,7 +2302,7 @@ const BlogIndex = ({ data, location }) => {
           </div>
         </Modal>
       </section>
-      <section class="support">
+      <section class="support" id="supporters">
         <div class="container">
           <div class="headings">
             <h2>Supporters</h2>

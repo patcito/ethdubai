@@ -31,6 +31,7 @@
     "gatsby-source-filesystem": "2.1.21",
     "gatsby-transformer-remark": "2.6.21",
     "gatsby-transformer-sharp": "2.2.13",
+    "iframe-resizer-react": "^1.0.0",
     "patch-package": "^6.1.4",
     "postinstall-postinstall": "^2.0.0",
     "react-bootstrap": "^1.0.0-beta.12",
