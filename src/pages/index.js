@@ -1,5 +1,7 @@
 import { graphql } from 'gatsby'
 import React, { useState, useEffect } from 'react'
+import IframeResizer from 'iframe-resizer-react'
+
 import get from 'lodash/get'
 import { Modal, Tab } from 'react-bootstrap'
 import loadable from '@loadable/component'
@@ -1880,16 +1882,16 @@ const BlogIndex = ({ data, location }) => {
               <img loading="lazy" src="images/ticket.png" alt="" />
               <h2>Get Your Tickets</h2>
               {isFrench ? (
-                <h3>
+                <h4>
                   <a
                     href="https://www.oxiane.com/oxiane-partenaire-formation-reacteurope-2020-la-conference-europeenne-sur-reactjs-et-react-native/"
                     target="_blank"
                   >
-                    🇫🇷 Si vous êtes français, vous pouvez beneficier de votre
-                    OPCA avec notre partenaire Oxiane pour l'achat de vos
-                    tickets
+                    🇫🇷 Si vous êtes français et que vous souhaitez utiliser
+                    votre budget de formation professionnelle pour financer
+                    votre inscription, contactez notre partenaire Oxiane
                   </a>
-                </h3>
+                </h4>
               ) : null}
               <h3>
                 Tickets are now available for both conference and workshops.
@@ -1899,13 +1901,11 @@ const BlogIndex = ({ data, location }) => {
                   Don't miss our tickets release by subscribing here.
                 </a>
               </h3>
-              <iframe
+              <IframeResizer
+                log
                 src="https://www.react-europe.org?iframe=true"
-                width="100%"
-                style={{ border: '0px', height: '900px' }}
-                iscrolling="no"
-                class="tickets-iframe"
-              ></iframe>
+                style={{ width: '1px', minWidth: '100%', border: '0px' }}
+              />
             </div>
           </div>
         </div>
@@ -2945,22 +2945,28 @@ const BlogIndex = ({ data, location }) => {
             <div class="footer_social">
               <ul>
                 <li>
-                  <a href="https://www.facebook.com/ReactEurope">
+                  <a
+                    href="https://www.facebook.com/ReactEurope"
+                    target="_blank"
+                  >
                     <img loading="lazy" src="images/facebook.png" alt="" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/ReactEurope">
+                  <a href="https://twitter.com/ReactEurope" target="_blank">
                     <img loading="lazy" src="images/twitter.png" alt="" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.youtube.com/c/ReacteuropeOrgConf">
+                  <a
+                    href="https://www.youtube.com/c/ReacteuropeOrgConf"
+                    target="_blank"
+                  >
                     <img loading="lazy" src="images/youtube.png" alt="" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://medium.com/@reacteurope">
+                  <a href="https://medium.com/@reacteurope" target="_blank">
                     <img loading="lazy" src="images/m.png" alt="" />
                   </a>
                 </li>
@@ -2999,7 +3005,11 @@ const BlogIndex = ({ data, location }) => {
                   </a>
                 </li>
                 <li>
-                  <a class="nav-link" href="https://medium.com/@reacteurope">
+                  <a
+                    class="nav-link"
+                    href="https://medium.com/@reacteurope"
+                    target="_blank"
+                  >
                     Blog
                   </a>
                 </li>
@@ -3008,6 +3018,24 @@ const BlogIndex = ({ data, location }) => {
                     Contact
                   </a>
                 </li>
+                <li class="d-none d-sm-block">
+                  <a
+                    class="nav-link"
+                    href="https://jobs.react-europe.org"
+                    target="_blank"
+                  >
+                    Jobs
+                  </a>
+                </li>
+                <li class="d-none d-sm-block">
+                  <a
+                    class="nav-link"
+                    href="https://learn.react-europe.org"
+                    target="_blank"
+                  >
+                    Learn
+                  </a>
+                </li>{' '}
               </ul>
             </div>
           </div>

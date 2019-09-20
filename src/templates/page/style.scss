@@ -3508,12 +3508,8 @@ div#event_popup .modal-dialog {
   border-radius: 50px;
 }
 
-iframe {
-  overflow: hidden;
-}
 @media (max-width: 767px) {
   iframe {
-    height: 1020px;
   }
   .coc-diversity {
     margin-top: 25px;
@@ -3521,7 +3517,6 @@ iframe {
 }
 @media (min-width: 767px) {
   iframe {
-    height: 850px;
   }
 }
 
@@ -3654,4 +3649,11 @@ iframe {
    a.nav-link{
   color: #2972a5;
    }
+}
+.headroom--unfixed #speaker-top-title{
+  text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 }

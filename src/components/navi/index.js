@@ -28,7 +28,7 @@ class Navi extends React.Component {
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="#speakers">
+                    <a class="nav-link" href="#speakers" id="speaker-top-title">
                       Speakers
                     </a>
                   </li>
@@ -50,6 +50,24 @@ class Navi extends React.Component {
                   <li class="nav-item">
                     <a class="nav-link" href="#location">
                       Location
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://jobs.react-europe.org"
+                      target="_blank"
+                    >
+                      Jobs
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://learn.react-europe.org"
+                      target="_blank"
+                    >
+                      Learn
                     </a>
                   </li>
                   <li class="nav-item">
@@ -93,7 +111,14 @@ class Navi extends React.Component {
                       <a href="#subscribe">contact</a>
                     </li>
                     <li>
-                      <a href="#"> jobs</a>
+                      <a href="https://jobs.react-europe.org" target="_blank">
+                        jobs
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://learn.react-europe.org" target="_blank">
+                        learn
+                      </a>
                     </li>
                   </ul>
                 </div>
