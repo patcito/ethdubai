@@ -1440,9 +1440,8 @@ const BlogIndex = ({ data, location }) => {
                                       </div>
                                     </div>
                                     <p>
-                                      Software engineer, @codecademy. Love
-                                      JavaScript & React Native.
-                                      singleoriginapp.com
+                                      Software engineer, @expo. Love JavaScript
+                                      & React Native. singleoriginapp.com
                                     </p>
                                   </div>
                                 </div>
@@ -1625,9 +1624,8 @@ const BlogIndex = ({ data, location }) => {
                               Learn from the best with a 2-day workshop this May
                               12th and 13th from 8:45am to 5:30pm with Eric
                               Vicenti, the creator of React Navigation and
-                              aven.io, and Jon Samp, React Native dev at
-                              CodeCademy and creator of
-                              react-native-header-scroll-view. This workshop
+                              aven.io, and Jon Samp, working at Expo and creator
+                              of react-native-header-scroll-view. This workshop
                               will teach you how to write professional user
                               experience using React Native with animation, fast
                               navigation, transitions, performance, web and
@@ -1728,9 +1726,8 @@ const BlogIndex = ({ data, location }) => {
                                       </div>
                                     </div>
                                     <p>
-                                      Software engineer, @codecademy. Love
-                                      JavaScript & React Native.
-                                      singleoriginapp.com
+                                      Software engineer, @expo. Love JavaScript
+                                      & React Native. singleoriginapp.com
                                     </p>
                                   </div>
                                 </div>
