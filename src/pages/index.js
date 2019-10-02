@@ -1819,19 +1819,159 @@ const BlogIndex = ({ data, location }) => {
                           <div class="tab_text">
                             <h5>09:30 - 17:30</h5>
                             <h4>
-                              <span>Next.js Workshop</span>
+                              <span>Next.js Workshop with the core team</span>
                             </h4>
                             <p>
-                              Learn to build a professional Next.js app in a
-                              day. More details coming soon on the program and
-                              trainers.
+                              Learn to build a professional Next.js app in a day
+                              with the very core team from Next.js including Joe
+                              Haddad and JJ Kasper.
                             </p>
+                            <ul>
+                              <li>
+                                Introduce Next.js (what is it, what values it
+                                provides)
+                              </li>
+                              <li>
+                                Explain Next.js' Router (pages/ or src/pages)
+                              </li>
+                              <li>Explain and Demo Dynamic Routing</li>
+                              <li>
+                                Showcase automatic prefetching for fast
+                                performance (and how to disable for seldom
+                                visited pages)
+                              </li>
+                              <li>
+                                Introduce API Routes, showcase hot reloading
+                              </li>
+                              <li>Introduce TypeScript Support</li>
+                              <li>
+                                <span>
+                                  Fetching Data in your Pages (with shared API
+                                  type shapes 😌)
+                                </span>
+                                <ul>
+                                  <li>getInitialProps</li>
+                                  <li>React Hooks</li>
+                                  <li>Explain benefits / drawbacks of both</li>
+                                </ul>
+                              </li>
+                              <li>Authentication example</li>
+                              <li>
+                                Deep dive into Next.js environment (build vs
+                                runtime)
+                              </li>
+                              <li>
+                                Maybe include how to manage, .envrc or dotenv
+                              </li>
+                              <li>Heavy CMS or Static content example</li>
+                              <li>Maybe Notion blog example</li>
+                              <li>Showcase AMP support</li>
+                              <li>
+                                Showcase client-side only rendering technique
+                              </li>
+                              <li>Maybe showcase internationalization (?)</li>
+                              <li>
+                                Show how to integrate with styled-components
+                                (considerations of SSR and CSR)
+                              </li>
+                            </ul>
                             <p>
                               The workshop requires an intermediary level in
-                              React.js (>= 3month experience). More details
-                              coming soon. Ticket includes breakfast and lunch.
-                              It does not include the conference ticket.
+                              React.js (>= 3month experience). Ticket includes
+                              breakfast and lunch.
                             </p>
+                            <div class="tab_profile_inner_box">
+                              <div class="row no-gutters">
+                                <div class="col-md-2">
+                                  <div class="tab_profile_inner_box_image">
+                                    <img
+                                      class="schedule-avatar"
+                                      src="images/joehaddad.jpeg"
+                                      alt=""
+                                    />
+                                  </div>
+                                </div>
+                                <div class="col-md-10">
+                                  <div class="tab_profile_inner_box_content">
+                                    <div class="name_icon">
+                                      <div class="name">
+                                        <h2>Joe Haddad</h2>
+                                      </div>
+                                      <div class="tab_icons">
+                                        <ul>
+                                          <li>
+                                            <a
+                                              href="https://twitter.com/timer150"
+                                              class="icon-social-button-small"
+                                            >
+                                              <i class="fa fa-twitter icon-twitter"></i>
+                                            </a>
+                                          </li>
+                                          <li>
+                                            <a
+                                              href="https://github.com/Timer"
+                                              class="icon-social-button-small"
+                                            >
+                                              <i class="fa fa-github icon-github"></i>
+                                            </a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                    <p>
+                                      Software Engineer at ▲ZEIT. Maintainer of
+                                      Next.js and Create React App.
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab_profile_inner_box">
+                              <div class="row no-gutters">
+                                <div class="col-md-2">
+                                  <div class="tab_profile_inner_box_image">
+                                    <img
+                                      class="schedule-avatar"
+                                      src="images/jj.png"
+                                      alt=""
+                                    />
+                                  </div>
+                                </div>
+                                <div class="col-md-10">
+                                  <div class="tab_profile_inner_box_content">
+                                    <div class="name_icon">
+                                      <div class="name">
+                                        <h2>JJ Kasper</h2>
+                                      </div>
+                                      <div class="tab_icons">
+                                        <ul>
+                                          <li>
+                                            <a
+                                              href="https://twitter.com/_ijjk"
+                                              class="icon-social-button-small"
+                                            >
+                                              <i class="fa fa-twitter icon-twitter"></i>
+                                            </a>
+                                          </li>
+                                          <li>
+                                            <a
+                                              href="https://github.com/ijjk"
+                                              class="icon-social-button-small"
+                                            >
+                                              <i class="fa fa-github icon-github"></i>
+                                            </a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                    <p>
+                                      Software Engineer @zeithq | Next.js |
+                                      Open-source
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <h3 id="day-2">Thursday, 14 May</h3>
                           <div class="tab_text first-tab">
