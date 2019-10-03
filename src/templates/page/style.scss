@@ -3646,14 +3646,19 @@ div#event_popup .modal-dialog {
 }
 .headroom--unpinned header.desktop_header {
   background: #fff;
-   a.nav-link{
-  color: #2972a5;
-   }
+  a.nav-link {
+    color: #2972a5;
+  }
 }
-.headroom--unfixed #speaker-top-title{
-  text-shadow:
-   -1px -1px 0 #000,  
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-     1px 1px 0 #000;
+.headroom--unfixed #speaker-top-title {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+.headings p {
+  width: 100;
+  margin: 0;
+  max-width: 100%;
+  text-align: justify;
+  strong {
+    text-decoration: underline;
+  }
 }

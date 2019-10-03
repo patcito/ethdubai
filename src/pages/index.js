@@ -12,6 +12,8 @@ const CarouselPeople = loadable(() => import('components/carouselpeople'))
 
 import Meta from 'components/meta'
 import Layout from 'components/layout'
+import ReactMarkdown from 'react-markdown'
+
 const BlogIndex = ({ data, location }) => {
   useEffect(() => {
     fetch('https://api.eventlama.com/geoip')
@@ -32,6 +34,7 @@ const BlogIndex = ({ data, location }) => {
     })
   }
   const posts = get(data, 'remark.posts')
+  const [event, setEvent] = useState(data.eventlama.events[0])
   const [isFrench, setIsFrench] = useState(false)
   const [currentScheduleTab, setCurrentScheduleTab] = useState(0)
   const [faq, setFaq] = useState(null)
@@ -50,8 +53,8 @@ const BlogIndex = ({ data, location }) => {
     github: '',
     url: '',
     shortBio: '',
-    longBio: '',
-    pic: '',
+    bio: '',
+    avatarUrl: '',
   })
   const handleCloseSponsor = () => setShowSponsor(false)
   const handleClose = () => setShow(false)
@@ -114,85 +117,7 @@ const BlogIndex = ({ data, location }) => {
               alt=""
             />
             <h2>Conference Events</h2>
-            <p
-              style={{
-                width: '100',
-                margin: 0,
-                'max-width': '100%',
-                'text-align': 'justify',
-              }}
-            >
-              ReactEurope is coming back on May 2020 with a new venue this year
-              to provide more comfort and a whole new experience.
-              <strong style={{ 'text-decoration': 'underline' }}>
-                We've grown a lot these past 5 years along with the React
-                community and our new venue will be more spacious and give
-                people more room to socialize, learn, relax and have fun
-              </strong>
-              . We will bring you the best and most passionate people from the
-              very <strong>core teams</strong> to the coolest people from the
-              community we love.
-            </p>
-            <p
-              style={{
-                width: '100',
-                margin: 0,
-                'max-width': '100%',
-                'text-align': 'justify',
-              }}
-            >
-              After changing the way we think about state management in
-              JavaScript applications, the way we write native mobile apps with
-              React Native, how we interact with remote data with GraphQL or
-              even how we manage CSS, the React community keeps innovating and
-              its ecosystem growing.
-            </p>
-            <p
-              style={{
-                width: '100',
-                margin: 0,
-                'max-width': '100%',
-                'text-align': 'justify',
-              }}
-            >
-              At this conference, you will learn how new projects such as
-              ReasonML will bring web and mobile React Native apps to the next
-              level and how projects such as React Native Web, React Primitive
-              and Expo make it easy to write, deploy and share code on all
-              platforms quickly. The conference aims to give talks that inspire
-              and explore new futuristic ideas dealing with all the techs we
-              enjoy from the React ecosystem such as{' '}
-              <strong>
-                React.js, React Native, GraphQL, Relay, Universal apps,
-                ReasonML, Webpack, inline CSS and more
-              </strong>
-              .
-            </p>
-            <p
-              style={{
-                width: '100',
-                margin: 0,
-                'max-width': '100%',
-                'text-align': 'justify',
-              }}
-            >
-              ReactEurope is also a great occasion to socialize, meet new people
-              and old friends, hack together, taste delicious food and have fun
-              in the beautiful city of Paris.
-            </p>
-            <p
-              style={{
-                width: '100',
-                margin: 0,
-                'max-width': '100%',
-                'text-align': 'justify',
-              }}
-            >
-              <strong>
-                Join us at ReactEurope Conf to shape the future of client-side,
-                mobile and universal applications!
-              </strong>
-            </p>
+            <ReactMarkdown source={event.description} />
           </div>
         </div>
         <div class="conference_slider">
@@ -705,330 +630,72 @@ const BlogIndex = ({ data, location }) => {
           </div>
           <div class="speaker_profile">
             <div class="row">
-              <div class="col-md-3 col-sm-4 col-xs-12">
-                <div class="speaker_box left_box">
-                  <div class="profile_image">
-                    <img loading="lazy" src="images/p1.png" alt="" />
-                  </div>
-                  <div class="profile_contnet">
-                    <h3 class="speaker-name">Ives van Hoorne</h3>
-                    <p
-                      class="speaker-bio"
-                      bio-full="Creator of @codesandbox and now working full-time on it!"
+              {event.speakers.map(speaker => (
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                  <div class="speaker_box left_box">
+                    <div class="profile_image">
+                      <img
+                        loading="lazy"
+                        src={
+                          'https://www.react-europe.org/avatars/events/' +
+                          event.id +
+                          '/speakers/' +
+                          speaker.id +
+                          '/avatar.png?u=' +
+                          speaker.updatedAt
+                        }
+                        alt=""
+                      />
+                    </div>
+                    <div class="profile_contnet">
+                      <h3 class="speaker-name">{speaker.name}</h3>
+                      <p class="speaker-bio" bio-full={speaker.bio}>
+                        {speaker.shortBio}
+                      </p>
+                      <ul>
+                        <li>
+                          <a
+                            href="https://twitter.com/CompuIves"
+                            class="icon-social-button"
+                          >
+                            <i class="fa fa-twitter icon-twitter"></i>
+                            <span />
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="https://github.com/CompuIves"
+                            class="icon-social-button"
+                          >
+                            <i class="fa fa-github icon-github"></i>
+                            <span />
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="https://ivesvh.com/"
+                            class="icon-social-button"
+                          >
+                            <i class="fa fa-link icon-link"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <a
+                      href="#"
+                      class="add_icon show-speaker"
+                      data-toggle="modal"
+                      data-target="#speaker_popup"
+                      onClick={e => {
+                        handleShow(speaker, e)
+                      }}
                     >
-                      Creator of @codesandbox.
-                    </p>
-                    <ul>
-                      <li>
-                        <a
-                          href="https://twitter.com/CompuIves"
-                          class="icon-social-button"
-                        >
-                          <i class="fa fa-twitter icon-twitter"></i>
-                          <span />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://github.com/CompuIves"
-                          class="icon-social-button"
-                        >
-                          <i class="fa fa-github icon-github"></i>
-                          <span />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://ivesvh.com/"
-                          class="icon-social-button"
-                        >
-                          <i class="fa fa-link icon-link"></i>
-                        </a>
-                      </li>
-                    </ul>
+                      +
+                    </a>
                   </div>
-                  <a
-                    href="#"
-                    class="add_icon show-speaker"
-                    data-toggle="modal"
-                    data-target="#speaker_popup"
-                    onClick={e => {
-                      handleShow(
-                        {
-                          name: 'Ives van Hoorne',
-                          twitter: 'CompuIves',
-                          github: 'CompuIves',
-                          url: 'https://ivesvh.com/',
-                          shortBio: 'Creator of @codesandbox',
-                          longBio:
-                            'Creator of @codesandbox and now working full-time on it!',
-                          pic: 'images/p1.png',
-                        },
-                        e
-                      )
-                    }}
-                  >
-                    +
-                  </a>
                 </div>
-              </div>
-              <div class="col-md-3 col-sm-4 col-xs-12">
-                <div class="speaker_box right_box">
-                  <div class="profile_image">
-                    <img loading="lazy" src="images/shruti-round.png" alt="" />
-                  </div>
-                  <div class="profile_contnet">
-                    <h3 class="speaker-name">Shruti Kapoor</h3>
-                    <p
-                      class="speaker-bio"
-                      bio-full="🙋 Software Engineer @PayPal | GraphQL & React Developer | Speaker | DevJoke Connoisseur"
-                    >
-                      Software Engineer @PayPal
-                    </p>
-                    <ul>
-                      <li>
-                        <a
-                          class="icon-social-button"
-                          href="https://twitter.com/shrutikapoor08"
-                        >
-                          <i class="fa fa-twitter icon-twitter"></i>
-                          <span />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          class="icon-social-button"
-                          href="https://github.com/shrutikapoor08"
-                        >
-                          <i class="fa fa-github icon-github"></i>
-                          <span />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <a
-                    class="add_icon show-speaker"
-                    data-toggle="modal"
-                    data-target="#speaker_popup"
-                    onClick={e => {
-                      handleShow(
-                        {
-                          name: 'Shruti Kapoor',
-                          twitter: 'shrutikapoor08',
-                          github: 'shrutikapoor08',
-                          url: '',
-                          shortBio: 'Software Engineer @PayPal',
-                          longBio:
-                            '🙋 Software Engineer @PayPal | GraphQL & React Developer | Speaker | DevJoke Connoisseur',
-                          pic: 'images/shruti-round.png',
-                        },
-                        e
-                      )
-                    }}
-                  >
-                    +
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-4 col-xs-12">
-                <div class="speaker_box left_box">
-                  <div class="profile_image">
-                    <img loading="lazy" src="images/devon-round.png" alt="" />
-                  </div>
-                  <div class="profile_contnet">
-                    <h3 class="speaker-name">Devon Govett</h3>
-                    <p
-                      class="speaker-bio"
-                      bio-full="Engineer at Adobe working on the React design systems team. Lead of the Parcel bundler project."
-                    >
-                      Creator of Parceljs
-                    </p>
-                    <ul>
-                      <li>
-                        <a
-                          class="icon-social-button"
-                          href="https://twitter.com/devongovett"
-                        >
-                          <i class="fa fa-twitter icon-twitter"></i>
-                          <span />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          class="icon-social-button"
-                          href="https://github.com/devongovett"
-                        >
-                          <i class="fa fa-github icon-github"></i>
-                          <span />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          class="icon-social-button"
-                          href="https://badassjs.com/"
-                        >
-                          <i class="fa fa-link icon-link"></i>
-                          <span />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <a
-                    href="#"
-                    class="add_icon show-speaker"
-                    data-toggle="modal"
-                    data-target="#speaker_popup"
-                    onClick={e => {
-                      handleShow(
-                        {
-                          name: 'Devon Govett',
-                          twitter: 'devongovett',
-                          github: 'devongovett',
-                          url: 'https://badassjs.com/',
-                          shortBio: 'Creator of Parceljs',
-                          longBio:
-                            'Engineer at Adobe working on the React design systems team. Lead of the Parcel bundler project.',
-                          pic: 'images/devon-round.png',
-                        },
-                        e
-                      )
-                    }}
-                  >
-                    +
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-4 col-xs-12">
-                <div class="speaker_box right_box">
-                  <div class="profile_image">
-                    <img loading="lazy" src="images/tim-round.png" alt="" />
-                  </div>
-                  <div class="profile_contnet">
-                    <h3 class="speaker-name">Tim Neutkens</h3>
-                    <p
-                      class="speaker-bio"
-                      bio-full="Software Engineer at ZEIT. Lead maintainer of Next.js. Co-author of Next.js, MDX and Micro. Has a passion for creating scalable applications and improving developer experience."
-                    >
-                      Co-author of Next.js
-                    </p>
-                    <ul>
-                      <li>
-                        <a
-                          class="icon-social-button"
-                          href="https://twitter.com/timneutkens"
-                        >
-                          <i class="fa fa-twitter icon-twitter"></i>
-                          <span />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          class="icon-social-button"
-                          href="https://github.com/timneutkens"
-                        >
-                          <i class="fa fa-github icon-github"></i>
-                          <span />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          class="icon-social-button"
-                          href="http://www.timneutkens.nl/"
-                        >
-                          <i class="fa fa-link icon-link"></i>
-                          <span />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <a
-                    href="#"
-                    class="add_icon show-speaker"
-                    data-toggle="modal"
-                    data-target="#speaker_popup"
-                    onClick={e => {
-                      handleShow(
-                        {
-                          name: 'Tim Neutkens',
-                          twitter: 'timneutkens',
-                          github: 'timneutkens',
-                          url: 'http://www.timneutkens.nl/',
-                          shortBio: 'Co-author of Next.js',
-                          longBio:
-                            'Software Engineer at ZEIT. Lead maintainer of Next.js. Co-author of Next.js, MDX and Micro. Has a passion for creating scalable applications and improving developer experience.',
-                          pic: 'images/tim-round.png',
-                        },
-                        e
-                      )
-                    }}
-                  >
-                    +
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-4 col-xs-12">
-                <div class="speaker_box left_box">
-                  <div class="profile_image">
-                    <img
-                      src="images/p2.png"
-                      isrc="https://2019.react-europe.org/avatars/events/215/speakers/1495/avatar.png?u=2019-02-03%2016:28:40%20+0000%20UTC"
-                      alt=""
-                    />
-                  </div>
-                  <div class="profile_contnet">
-                    <h3 class="speaker-name">Josh Comeau</h3>
-                    <p
-                      class="speaker-bio"
-                      bio-full="Software engineer at DigitalOcean. Technological craftsman. Author of Guppy, contributes to many open source projects. Cat person."
-                    >
-                      Software engineer at DigitalOcean
-                    </p>
-                    <ul>
-                      <li>
-                        <a
-                          class="icon-social-button"
-                          href="https://twitter.com/joshwcomeau"
-                        >
-                          <i class="fa fa-twitter icon-twitter"></i>
-                          <span />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          class="icon-social-button"
-                          href="https://github.com/joshwcomeau"
-                        >
-                          <i class="fa fa-github icon-github"></i>
-                          <span />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <a
-                    href="#"
-                    class="add_icon show-speaker"
-                    data-toggle="modal"
-                    data-target="#speaker_popup"
-                    onClick={e => {
-                      handleShow(
-                        {
-                          name: 'Josh Comeau',
-                          twitter: 'joshwcomeau',
-                          github: 'joshwcomeau',
-                          url: 'https://www.joshwcomeau.com',
-                          shortBio: 'Software engineer at DigitalOcean',
-                          longBio:
-                            'Software engineer at DigitalOcean. Technological craftsman. Author of Guppy, contributes to many open source projects. Cat person.',
-                          pic: 'images/p2.png',
-                        },
-                        e
-                      )
-                    }}
-                  >
-                    +
-                  </a>
-                </div>
-              </div>
+              ))}
+
               <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="speaker_box right_box">
                   <div class="profile_image">
@@ -1091,7 +758,7 @@ const BlogIndex = ({ data, location }) => {
                 </div>
                 <div class="speaker_popup_profile">
                   <img
-                    src={speakerProps.pic}
+                    src={speakerProps.avatarUrl}
                     alt=""
                     class="speaker-avatar-modal"
                     width="200px"
@@ -1099,7 +766,9 @@ const BlogIndex = ({ data, location }) => {
                   <div class="popup_profile_content">
                     <h3 class="speaker-name-modal">{speakerProps.name}</h3>
                     <h5 class="speaker-bio-modal">{speakerProps.shortBio}</h5>
-                    <p class="speaker-bio-full-modal">{speakerProps.longBio}</p>
+                    <div class="speaker-bio-full-modal">
+                      <ReactMarkdown source={speakerProps.bio} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1107,6 +776,7 @@ const BlogIndex = ({ data, location }) => {
           </div>
         </Modal>
       </section>
+
       <section class="schedule" id="schedule">
         <div class="container">
           <div class="headings">
@@ -1118,103 +788,40 @@ const BlogIndex = ({ data, location }) => {
             <div class="row">
               <div class="col-md-4">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item">
-                    <a
-                      className={`nav-link ${
-                        currentScheduleTab === 0 ? 'active' : null
-                      }`}
-                      data-toggle="tab"
-                      href="#"
-                      role="tab"
-                      aria-controls="home"
-                      onClick={e => {
-                        setCurrentScheduleTab(0)
-                        if (document) {
-                          let day = document.getElementById('day-0').offsetTop
-                          let scrolldiv = document.getElementById(
-                            'schedule-scroll'
-                          )
-                          scrolldiv.scrollTop = day - 80
-                        }
-                        e.preventDefault()
-                      }}
-                    >
-                      <span>MAY 12TH</span> - DAY 1 WORKSHOPS
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      className={`nav-link ${
-                        currentScheduleTab === 1 ? 'active' : null
-                      }`}
-                      data-toggle="tab"
-                      href="#"
-                      role="tab"
-                      aria-controls="profile"
-                      onClick={e => {
-                        setCurrentScheduleTab(1)
-                        if (document) {
-                          let day = document.getElementById('day-1').offsetTop
-                          let scrolldiv = document.getElementById(
-                            'schedule-scroll'
-                          )
-                          scrolldiv.scrollTop = day - 80
-                        }
-                        e.preventDefault()
-                      }}
-                    >
-                      <span>MAY 13TH</span> - DAY 2 WORKSHOPS
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      className={`nav-link ${
-                        currentScheduleTab === 2 ? 'active' : null
-                      }`}
-                      data-toggle="tab"
-                      href="#messages"
-                      role="tab"
-                      aria-controls="messages"
-                      onClick={e => {
-                        setCurrentScheduleTab(2)
-                        if (document) {
-                          let day = document.getElementById('day-2').offsetTop
-                          let scrolldiv = document.getElementById(
-                            'schedule-scroll'
-                          )
-                          scrolldiv.scrollTop = day - 80
-                        }
-                        e.preventDefault()
-                      }}
-                    >
-                      <span>MAY 14TH</span> - DAY 1 CONFERENCE
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      className={`nav-link ${
-                        currentScheduleTab === 3 ? 'active' : null
-                      }`}
-                      class="nav-link"
-                      data-toggle="tab"
-                      href="#"
-                      role="tab"
-                      aria-controls="settings"
-                      onClick={e => {
-                        setCurrentScheduleTab(3)
-                        if (document) {
-                          let day = document.getElementById('day-3').offsetTop
-                          let scrolldiv = document.getElementById(
-                            'schedule-scroll'
-                          )
-                          scrolldiv.scrollTop = day - 80
-                        }
-                        e.preventDefault()
-                      }}
-                    >
-                      <span>MAY 15TH</span> - DAY 2 CONFERENCE
-                    </a>
-                  </li>
+                  {event.groupedSchedule.map((day, i) => (
+                    <li class="nav-item">
+                      <a
+                        className={`nav-link ${
+                          currentScheduleTab === i ? 'active' : null
+                        }`}
+                        data-toggle="tab"
+                        href="#"
+                        role="tab"
+                        aria-controls="home"
+                        onClick={e => {
+                          setCurrentScheduleTab(i)
+                          if (document) {
+                            let dayd = document.getElementById('day-' + i)
+                              .offsetTop
+                            let scrolldiv = document.getElementById(
+                              'schedule-scroll'
+                            )
+                            scrolldiv.scrollTop = dayd - 80
+                          }
+                          e.preventDefault()
+                        }}
+                      >
+                        {' '}
+                        <span>
+                          {new Date(day.date).toLocaleString('default', {
+                            month: 'long',
+                          })}{' '}
+                          {new Date(day.date).getDate()}
+                        </span>{' '}
+                        - DAY {i + 1} {i < 2 ? 'WORKSHOPS' : 'CONFERENCE'}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div class="col-md-8">
@@ -1235,771 +842,115 @@ const BlogIndex = ({ data, location }) => {
                       </div>
                       <div class="tab_content_inner">
                         <div id="schedule-scroll" class="tab_scroller">
-                          <h3 id="day-0">Tuesday, 12 May</h3>
-                          <div class="tab_text first-tab">
-                            <div class="border_box_tab">
-                              <h5>08:45 - 09:30</h5>
-                              <h4>
-                                <span>Workshop Checkin & French Breakfast</span>
-                              </h4>
-                              <p>Make sure to get in early.</p>
-                            </div>
-                          </div>
-                          <div class="tab_text">
-                            <h5>09:30 - 17:30</h5>
-                            <h4>
-                              <span>React.js Workshop - Day 1</span>
-                            </h4>
-                            <p>
-                              Learn from the best with a 2-day workshop this May
-                              12 and 13th from 8:45am to 5:30pm
-                            </p>
-                            <p>
-                              Learn about the upcoming core features of React
-                              such as concurrent mode, Suspense for Data
-                              Fetching, server side rendering and strengthen
-                              your knowledge of the latest patterns such as
-                              hooks and other techniques in order to help you
-                              take full advantage of the latest version of React
-                              and build rock solid components with the best user
-                              experience possible.
-                            </p>
-                            <p>
-                              This workshop will be done by Nik Graf and another
-                              awesome instructor to be announced soon.
-                            </p>
-                            <p>
-                              The workshop requires an intermediary level in
-                              React.js (>= 3month experience). More details
-                              coming soon. Ticket includes breakfast and lunch.
-                              It does not include the conference ticket.
-                            </p>
-
-                            <div class="tab_profile_inner_box">
-                              <div class="row no-gutters">
-                                <div class="col-md-2">
-                                  <div class="tab_profile_inner_box_image">
-                                    <img
-                                      class="schedule-avatar"
-                                      src="https://api.eventlama.com/avatars/events/279/speakers/1909/avatar.png?u={.UpdatedAt}"
-                                      alt=""
-                                    />
+                          {event.groupedSchedule.map((day, i) => (
+                            <>
+                              <h3 id={'day-' + i}>
+                                {new Date(day.date).toLocaleString('default', {
+                                  weekday: 'long',
+                                })}
+                                , {new Date(day.date).getDate()}{' '}
+                                {new Date(day.date).toLocaleString('default', {
+                                  month: 'long',
+                                })}
+                              </h3>
+                              {day.slots.map((slot, i) => (
+                                <div class="tab_text first-tab">
+                                  <div class="border_box_tab">
+                                    <h5>
+                                      {new Date(slot.startDate)
+                                        .toLocaleTimeString('default', {
+                                          hour12: false,
+                                          timeZone: event.timezoneId,
+                                        })
+                                        .split(':')[0] +
+                                        ':' +
+                                        new Date(slot.startDate)
+                                          .toLocaleTimeString('default', {
+                                            hour12: false,
+                                          })
+                                          .split(':')[1]}
+                                      {' - '}
+                                      {new Date(
+                                        new Date(slot.startDate).setMinutes(
+                                          new Date(
+                                            slot.startDate
+                                          ).getMinutes() + slot.length
+                                        )
+                                      )
+                                        .toLocaleTimeString('default', {
+                                          hour12: false,
+                                          timeZone: event.timezoneId,
+                                        })
+                                        .split(':')[0] +
+                                        ':' +
+                                        new Date(slot.startDate)
+                                          .toLocaleTimeString('default', {
+                                            hour12: false,
+                                          })
+                                          .split(':')[1]}{' '}
+                                    </h5>
+                                    <h4>
+                                      <span>{slot.title}</span>
+                                    </h4>
+                                    <ReactMarkdown source={slot.description} />
+                                    {slot.speakers.map((speaker, i) => (
+                                      <div class="tab_profile_inner_box">
+                                        <div class="row no-gutters">
+                                          <div class="col-md-2">
+                                            <div class="tab_profile_inner_box_image">
+                                              <img
+                                                class="schedule-avatar"
+                                                src={speaker.avatarUrl}
+                                                alt=""
+                                              />
+                                            </div>
+                                          </div>
+                                          <div class="col-md-10">
+                                            <div class="tab_profile_inner_box_content">
+                                              <div class="name_icon">
+                                                <div class="name">
+                                                  <h2>{speaker.name}</h2>
+                                                </div>
+                                                <div class="tab_icons">
+                                                  <ul>
+                                                    <li>
+                                                      <a
+                                                        href={
+                                                          'https://twitter.com/' +
+                                                          speaker.twitter
+                                                        }
+                                                        class="icon-social-button-small"
+                                                      >
+                                                        <i class="fa fa-twitter icon-twitter"></i>
+                                                      </a>
+                                                    </li>
+                                                    <li>
+                                                      <a
+                                                        href={
+                                                          'https://github.com/' +
+                                                          speaker.github
+                                                        }
+                                                        class="icon-social-button-small"
+                                                      >
+                                                        <i class="fa fa-github icon-github"></i>
+                                                      </a>
+                                                    </li>
+                                                  </ul>
+                                                </div>
+                                              </div>
+                                              <ReactMarkdown
+                                                source={speaker.bio}
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
                                   </div>
                                 </div>
-                                <div class="col-md-10">
-                                  <div class="tab_profile_inner_box_content">
-                                    <div class="name_icon">
-                                      <div class="name">
-                                        <h2>Nik Graf</h2>
-                                      </div>
-                                      <div class="tab_icons">
-                                        <ul>
-                                          <li>
-                                            <a
-                                              href="https://twitter.com/nikgraf"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-twitter icon-twitter"></i>
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a
-                                              href="https://github.com/nikgraf"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-github icon-github"></i>
-                                            </a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                    <p>
-                                      Nik is a software developer and passionate
-                                      about good UX, functional programming and
-                                      dev tools. He co-organizes ReasonConf and
-                                      produced the free Egghead Reason course.
-                                      In addition he co-created several popular
-                                      open source projects like DraftJS Plugins
-                                      & Polished. In his spare-time he enjoys
-                                      cycling & skiing.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tab_text">
-                            <h5>09:30 - 17:30</h5>
-                            <h4>
-                              <span>React Native Workshop - Day 1</span>
-                            </h4>
-                            <p>
-                              Learn from the best with a 2-day workshop this May
-                              12th and 13th from 8:45am to 5:30pm with Eric
-                              Vicenti, the creator of React Navigation and
-                              aven.io, and Jon Samp, React Native dev at
-                              CodeCademy and creator of
-                              react-native-header-scroll-view. This workshop
-                              will teach you how to write professional user
-                              experience using React Native with animation, fast
-                              navigation, transitions, performance, web and
-                              more.
-                            </p>
-                            <p>
-                              The workshop requires an intermediary level in
-                              React.js and React Native (>= 3month experience).
-                              More details coming soon. Ticket includes
-                              breakfast and lunch. It does not include the
-                              conference ticket.
-                            </p>
-                            <div class="tab_profile_inner_box">
-                              <div class="row no-gutters">
-                                <div class="col-md-2">
-                                  <div class="tab_profile_inner_box_image">
-                                    <img
-                                      class="schedule-avatar"
-                                      src="https://api.eventlama.com/avatars/events/279/speakers/1910/avatar.png?u={.UpdatedAt}"
-                                      alt=""
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col-md-10">
-                                  <div class="tab_profile_inner_box_content">
-                                    <div class="name_icon">
-                                      <div class="name">
-                                        <h2>Eric Vicenti</h2>
-                                      </div>
-                                      <div class="tab_icons">
-                                        <ul>
-                                          <li>
-                                            <a
-                                              href="https://twitter.com/ericvicenti"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-twitter icon-twitter"></i>
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a
-                                              href="https://github.com/ericvicenti"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-github icon-github"></i>
-                                            </a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                    <p>
-                                      Creator of Aven, a full-stack framework
-                                      for web and React Native apps. Author of
-                                      React Navigation. Formerly on Facebook’s
-                                      open source team and the React Native
-                                      team.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="tab_profile_inner_box">
-                              <div class="row no-gutters">
-                                <div class="col-md-2">
-                                  <div class="tab_profile_inner_box_image">
-                                    <img
-                                      class="schedule-avatar"
-                                      src="https://api.eventlama.com/avatars/events/279/speakers/1911/avatar.png?u={.UpdatedAt}"
-                                      alt=""
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col-md-10">
-                                  <div class="tab_profile_inner_box_content">
-                                    <div class="name_icon">
-                                      <div class="name">
-                                        <h2>Jon Samp</h2>
-                                      </div>
-                                      <div class="tab_icons">
-                                        <ul>
-                                          <li>
-                                            <a
-                                              href="https://twitter.com/jonsamp"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-twitter icon-twitter"></i>
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a
-                                              href="https://github.com/jonsamp"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-github icon-github"></i>
-                                            </a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                    <p>
-                                      Software engineer, @expo. Love JavaScript
-                                      & React Native. singleoriginapp.com
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tab_text">
-                            <h5>09:30 - 17:30</h5>
-                            <h4>
-                              <span>
-                                Full Stack React with GraphQL and AWS Amplify
-                                Workshop
-                              </span>
-                            </h4>
-                            <p>
-                              Learn from the best with a 2-day workshop this May
-                              12 and 13th from 8:45am to 5:30pm
-                            </p>
-                            <p>
-                              In this workshop you’ll learn how to build a
-                              serverless full stack React app using the Amplify
-                              Framework by building an events app. You’ll learn
-                              how to add authentication, protected client
-                              routes, and an authenticated GraphQL back end
-                              complete with user authorization and a profile
-                              view.
-                            </p>
-                            <p>
-                              The workshop requires an intermediary level in
-                              React.js (>= 3month experience). More details
-                              coming soon. Ticket includes breakfast and lunch.
-                              It does not include the conference ticket.
-                            </p>
-                            <div class="tab_profile_inner_box">
-                              <div class="row no-gutters">
-                                <div class="col-md-2">
-                                  <div class="tab_profile_inner_box_image">
-                                    <img
-                                      class="schedule-avatar"
-                                      src="https://api.eventlama.com/avatars/events/279/speakers/1908/avatar.png?u={.UpdatedAt}"
-                                      alt=""
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col-md-10">
-                                  <div class="tab_profile_inner_box_content">
-                                    <div class="name_icon">
-                                      <div class="name">
-                                        <h2>Nader Dabit</h2>
-                                      </div>
-                                      <div class="tab_icons">
-                                        <ul>
-                                          <li>
-                                            <a
-                                              href="https://twitter.com/dabit3"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-twitter icon-twitter"></i>
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a
-                                              href="https://github.com/dabit3"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-github icon-github"></i>
-                                            </a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                    <p>
-                                      Specializing in React, React Native, and
-                                      cross-platform application development.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <h3 id="day-1">Wednesday, 13 May</h3>
-                          <div class="tab_text first-tab">
-                            <div class="border_box_tab">
-                              <h5>08:45 - 09:30</h5>
-                              <h4>
-                                <span>Workshop Checkin & French Breakfast</span>
-                              </h4>
-                              <p>Make sure to get in early.</p>
-                            </div>
-                          </div>
-                          <div class="tab_text">
-                            <h5>09:30 - 17:30</h5>
-                            <h4>
-                              <span>React.js Workshop - Day 2</span>
-                            </h4>
-                            <p>
-                              Learn from the best with a 2-day workshop this May
-                              12 and 13th from 8:45am to 5:30pm
-                            </p>
-                            <p>
-                              Learn about the upcoming core features of React
-                              such as concurrent mode, Suspense for Data
-                              Fetching, server side rendering and strengthen
-                              your knowledge of the latest patterns such as
-                              hooks and other techniques in order to help you
-                              take full advantage of the latest version of React
-                              and build rock solid components with the best user
-                              experience possible.
-                            </p>
-                            <p>
-                              This workshop will be done by Nik Graf and another
-                              awesome instructor to be announced soon.
-                              <p>
-                                The workshop requires an intermediary level in
-                                React.js (>= 3month experience). More details
-                                coming soon. Ticket includes breakfast and
-                                lunch. It does not include the conference
-                                ticket.
-                              </p>
-                            </p>
-                            <div class="tab_profile_inner_box">
-                              <div class="row no-gutters">
-                                <div class="col-md-2">
-                                  <div class="tab_profile_inner_box_image">
-                                    <img
-                                      class="schedule-avatar"
-                                      src="https://api.eventlama.com/avatars/events/279/speakers/1909/avatar.png?u={.UpdatedAt}"
-                                      alt=""
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col-md-10">
-                                  <div class="tab_profile_inner_box_content">
-                                    <div class="name_icon">
-                                      <div class="name">
-                                        <h2>Nik Graf</h2>
-                                      </div>
-                                      <div class="tab_icons">
-                                        <ul>
-                                          <li>
-                                            <a
-                                              href="https://twitter.com/nikgraf"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-twitter icon-twitter"></i>
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a
-                                              href="https://github.com/nikgraf"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-github icon-github"></i>
-                                            </a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                    <p>
-                                      Nik is a software developer and passionate
-                                      about good UX, functional programming and
-                                      dev tools. He co-organizes ReasonConf and
-                                      produced the free Egghead Reason course.
-                                      In addition he co-created several popular
-                                      open source projects like DraftJS Plugins
-                                      & Polished. In his spare-time he enjoys
-                                      cycling & skiing.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tab_text">
-                            <h5>09:30 - 17:30</h5>
-                            <h4>
-                              <span>React Native Workshop - Day 2</span>
-                            </h4>
-                            <p>
-                              Learn from the best with a 2-day workshop this May
-                              12th and 13th from 8:45am to 5:30pm with Eric
-                              Vicenti, the creator of React Navigation and
-                              aven.io, and Jon Samp, working at Expo and creator
-                              of react-native-header-scroll-view. This workshop
-                              will teach you how to write professional user
-                              experience using React Native with animation, fast
-                              navigation, transitions, performance, web and
-                              more.
-                            </p>
-                            <p>
-                              The workshop requires an intermediary level in
-                              React.js and React Native (>= 3month experience).
-                              More details coming soon. Ticket includes
-                              breakfast and lunch. It does not include the
-                              conference ticket.
-                            </p>
-                            <div class="tab_profile_inner_box">
-                              <div class="row no-gutters">
-                                <div class="col-md-2">
-                                  <div class="tab_profile_inner_box_image">
-                                    <img
-                                      class="schedule-avatar"
-                                      src="https://api.eventlama.com/avatars/events/279/speakers/1910/avatar.png?u={.UpdatedAt}"
-                                      alt=""
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col-md-10">
-                                  <div class="tab_profile_inner_box_content">
-                                    <div class="name_icon">
-                                      <div class="name">
-                                        <h2>Eric Vicenti</h2>
-                                      </div>
-                                      <div class="tab_icons">
-                                        <ul>
-                                          <li>
-                                            <a
-                                              href="https://twitter.com/ericvicenti"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-twitter icon-twitter"></i>
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a
-                                              href="https://github.com/ericvicenti"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-github icon-github"></i>
-                                            </a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                    <p>
-                                      Creator of Aven, a full-stack framework
-                                      for web and React Native apps. Author of
-                                      React Navigation. Formerly on Facebook’s
-                                      open source team and the React Native
-                                      team.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="tab_profile_inner_box">
-                              <div class="row no-gutters">
-                                <div class="col-md-2">
-                                  <div class="tab_profile_inner_box_image">
-                                    <img
-                                      class="schedule-avatar"
-                                      src="https://api.eventlama.com/avatars/events/279/speakers/1911/avatar.png?u={.UpdatedAt}"
-                                      alt=""
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col-md-10">
-                                  <div class="tab_profile_inner_box_content">
-                                    <div class="name_icon">
-                                      <div class="name">
-                                        <h2>Jon Samp</h2>
-                                      </div>
-                                      <div class="tab_icons">
-                                        <ul>
-                                          <li>
-                                            <a
-                                              href="https://twitter.com/jonsamp"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-twitter icon-twitter"></i>
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a
-                                              href="https://github.com/jonsamp"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-github icon-github"></i>
-                                            </a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                    <p>
-                                      Software engineer, @expo. Love JavaScript
-                                      & React Native. singleoriginapp.com
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tab_text">
-                            <h5>09:30 - 17:30</h5>
-                            <h4>
-                              <span>Modern Forms in React</span>
-                            </h4>
-                            <p>
-                              This workshop will take the students from building
-                              a two-field form using just useState() hooks
-                              through to using a form library to manage complex
-                              form data such as field arrays, with support for
-                              field-level and record-level client-side
-                              validation as well as submit validation, third
-                              party input components and more. It will also
-                              touch on more complex concepts like minimizing
-                              field re-renders with a useField() hook, as well
-                              as subscribing to certain parts of form state with
-                              a useFormState() hook.
-                            </p>
-                            <p>
-                              Beyond only forms, the app we build will talk to a
-                              GraphQL backend to load data into the form and
-                              mutate it upon form submission using Apollo
-                              Client, using hooks, of course!
-                            </p>
-                            <p>
-                              Students will walk away confident in their
-                              knowledge of how to build forms of any complexity
-                              with great UX.
-                            </p>
-                            <p>
-                              The workshop requires an intermediary level in
-                              React.js (>= 3month experience). More details
-                              coming soon. Ticket includes breakfast and lunch.
-                              It does not include the conference ticket.
-                            </p>
-                            <div class="tab_profile_inner_box">
-                              <div class="row no-gutters">
-                                <div class="col-md-2">
-                                  <div class="tab_profile_inner_box_image">
-                                    <img
-                                      class="schedule-avatar"
-                                      src="https://api.eventlama.com/avatars/events/279/speakers/1912/avatar.png?u={.UpdatedAt}"
-                                      alt=""
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col-md-10">
-                                  <div class="tab_profile_inner_box_content">
-                                    <div class="name_icon">
-                                      <div class="name">
-                                        <h2>Erik Rasmussen</h2>
-                                      </div>
-                                      <div class="tab_icons">
-                                        <ul>
-                                          <li>
-                                            <a
-                                              href="https://twitter.com/erikras"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-twitter icon-twitter"></i>
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a
-                                              href="https://github.com/erikras"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-github icon-github"></i>
-                                            </a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                    <p>
-                                      American expat javascript developer,
-                                      author of Redux Form and React Final Form.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="tab_text">
-                            <h5>09:30 - 17:30</h5>
-                            <h4>
-                              <span>Next.js Workshop with the core team</span>
-                            </h4>
-                            <p>
-                              Learn to build a professional Next.js app in a day
-                              with the very core team from Next.js including Joe
-                              Haddad and JJ Kasper.
-                            </p>
-                            <ul>
-                              <li>
-                                Introduce Next.js (what is it, what values it
-                                provides)
-                              </li>
-                              <li>
-                                Explain Next.js' Router (pages/ or src/pages)
-                              </li>
-                              <li>Explain and Demo Dynamic Routing</li>
-                              <li>
-                                Showcase automatic prefetching for fast
-                                performance (and how to disable for seldom
-                                visited pages)
-                              </li>
-                              <li>
-                                Introduce API Routes, showcase hot reloading
-                              </li>
-                              <li>Introduce TypeScript Support</li>
-                              <li>
-                                <span>
-                                  Fetching Data in your Pages (with shared API
-                                  type shapes 😌)
-                                </span>
-                                <ul>
-                                  <li>getInitialProps</li>
-                                  <li>React Hooks</li>
-                                  <li>Explain benefits / drawbacks of both</li>
-                                </ul>
-                              </li>
-                              <li>Authentication example</li>
-                              <li>
-                                Deep dive into Next.js environment (build vs
-                                runtime)
-                              </li>
-                              <li>
-                                Maybe include how to manage, .envrc or dotenv
-                              </li>
-                              <li>Heavy CMS or Static content example</li>
-                              <li>Maybe Notion blog example</li>
-                              <li>Showcase AMP support</li>
-                              <li>
-                                Showcase client-side only rendering technique
-                              </li>
-                              <li>Maybe showcase internationalization (?)</li>
-                              <li>
-                                Show how to integrate with styled-components
-                                (considerations of SSR and CSR)
-                              </li>
-                            </ul>
-                            <p>
-                              The workshop requires an intermediary level in
-                              React.js (>= 3month experience). Ticket includes
-                              breakfast and lunch.
-                            </p>
-                            <div class="tab_profile_inner_box">
-                              <div class="row no-gutters">
-                                <div class="col-md-2">
-                                  <div class="tab_profile_inner_box_image">
-                                    <img
-                                      class="schedule-avatar"
-                                      src="images/joehaddad.jpeg"
-                                      alt=""
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col-md-10">
-                                  <div class="tab_profile_inner_box_content">
-                                    <div class="name_icon">
-                                      <div class="name">
-                                        <h2>Joe Haddad</h2>
-                                      </div>
-                                      <div class="tab_icons">
-                                        <ul>
-                                          <li>
-                                            <a
-                                              href="https://twitter.com/timer150"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-twitter icon-twitter"></i>
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a
-                                              href="https://github.com/Timer"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-github icon-github"></i>
-                                            </a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                    <p>
-                                      Software Engineer at ▲ZEIT. Maintainer of
-                                      Next.js and Create React App.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="tab_profile_inner_box">
-                              <div class="row no-gutters">
-                                <div class="col-md-2">
-                                  <div class="tab_profile_inner_box_image">
-                                    <img
-                                      class="schedule-avatar"
-                                      src="images/jj.png"
-                                      alt=""
-                                    />
-                                  </div>
-                                </div>
-                                <div class="col-md-10">
-                                  <div class="tab_profile_inner_box_content">
-                                    <div class="name_icon">
-                                      <div class="name">
-                                        <h2>JJ Kasper</h2>
-                                      </div>
-                                      <div class="tab_icons">
-                                        <ul>
-                                          <li>
-                                            <a
-                                              href="https://twitter.com/_ijjk"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-twitter icon-twitter"></i>
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a
-                                              href="https://github.com/ijjk"
-                                              class="icon-social-button-small"
-                                            >
-                                              <i class="fa fa-github icon-github"></i>
-                                            </a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                    <p>
-                                      Software Engineer @zeithq | Next.js |
-                                      Open-source
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <h3 id="day-2">Thursday, 14 May</h3>
-                          <div class="tab_text first-tab">
-                            <div class="border_box_tab">
-                              <h5>08:30 - 19:30</h5>
-                              <h4>
-                                <span>Keynote sessions</span>
-                              </h4>
-                              <p>
-                                More details coming soon. Breakfast, lunch and
-                                dinner included.
-                              </p>
-                            </div>
-                          </div>
-
-                          <h3 id="day-3">Friday, 15 May</h3>
-                          <div class="tab_text first-tab">
-                            <div class="border_box_tab">
-                              <h5>08:30 - 19:30</h5>
-                              <h4>
-                                <span>Keynote sessions</span>
-                              </h4>
-                              <p>
-                                More details coming soon. Breakfast, lunch and
-                                drinkup included.
-                              </p>
-                            </div>
-                          </div>
+                              ))}
+                            </>
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -2890,7 +1841,7 @@ const BlogIndex = ({ data, location }) => {
         <div class="container">
           <div class="headings">
             <img loading="lazy" src="images/testimonial.png" alt="" />
-            <h2>What People Said</h2>
+            <h2 style={{ textAlign: 'center' }}>What People Said</h2>
             <p>
               What our previous attendants had to say about ReactEurope 2019.
             </p>
@@ -3371,38 +2322,151 @@ const BlogIndex = ({ data, location }) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query IndexQuery {
-    site {
-      meta: siteMetadata {
-        title
+  {
+    eventlama {
+      events(slug: "reacteurope-2020") {
+        id
         description
-        url: siteUrl
-        author
-        twitter
-        adsense
-      }
-    }
-    remark: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      posts: edges {
-        post: node {
-          html
-          frontmatter {
-            layout
+        websiteUrl
+        name
+        venueName
+        venueCountry
+        venueCity
+        cocUrl
+        twitterHandle
+        offset
+        startDate
+        endDate
+        timezoneId
+        slug
+        status {
+          hasEnded
+          hasStarted
+          onGoing
+          nextFiveScheduledItems {
+            id
             title
-            path
-            category
-            tags
             description
-            date(formatString: "YYYY/MM/DD")
-            image {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
+            startDate
+            speakers {
+              id
+              name
+              twitter
+              avatarUrl
+              bio
+              shortBio
+              talks {
+                id
+                description
+                title
+                startDate
               }
             }
+          }
+        }
+        collaborators {
+          id
+          firstName
+          lastName
+          twitter
+          github
+          url
+          role
+          avatarUrl
+        }
+        speakers {
+          id
+          name
+          twitter
+          github
+          avatarUrl
+          bio
+          shortBio
+          talks {
+            id
+            title
+            type
+            description
+            length
+            startDate
+          }
+        }
+        groupedSchedule {
+          title
+          date
+          slots {
+            id
+            title
+            likes
+            description
+            length
+            startDate
+            youtubeUrl
+            youtubeId
+            tags
+            type
+            room
+            talk
+            keynote
+            speakers {
+              id
+              name
+              twitter
+              github
+              avatarUrl
+              bio
+              shortBio
+            }
+          }
+        }
+        sponsors {
+          diamond {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
+          }
+          platinum {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
+          }
+          gold {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
+          }
+          silver {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
+          }
+          bronze {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
+          }
+          partner {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
           }
         }
       }

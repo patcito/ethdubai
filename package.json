@@ -29,6 +29,7 @@
     "gatsby-remark-responsive-iframe": "2.2.14",
     "gatsby-remark-smartypants": "2.1.7",
     "gatsby-source-filesystem": "2.1.21",
+    "gatsby-source-graphql": "^2.1.17",
     "gatsby-transformer-remark": "2.6.21",
     "gatsby-transformer-sharp": "2.2.13",
     "iframe-resizer-react": "^1.0.0",
@@ -36,6 +37,7 @@
     "postinstall-postinstall": "^2.0.0",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-headroom": "^2.2.8",
+    "react-markdown": "^4.2.2",
     "react-on-screen": "^2.1.1",
     "react-spring-carousel": "^0.0.4"
   },

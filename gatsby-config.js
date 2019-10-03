@@ -94,6 +94,18 @@ module.exports = {
         mergeCachingHeaders: true,
       },
     },
+    {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        // This type will contain remote schema Query type
+        typeName: 'eventlama',
+        // This is the field under which it's accessible
+        fieldName: 'eventlama',
+        // URL to query from
+        url: 'https://api.eventlama.com/gql',
+        refetchInterval: 60,
+      },
+    },
     'gatsby-plugin-catch-links',
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
