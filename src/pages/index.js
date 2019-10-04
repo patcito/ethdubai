@@ -16,6 +16,16 @@ import ReactMarkdown from 'react-markdown'
 
 const BlogIndex = ({ data, location }) => {
   useEffect(() => {
+    const hash = document.location.hash
+    const slot = hash.split('#slot-')
+    if (slot && slot[1]) {
+      let dayd = document.getElementById(slot[1]).offsetTop
+      let scrolldiv = document.getElementById('schedule-scroll')
+      scrolldiv.scrollIntoView()
+      scrolldiv.scrollTop = dayd - 150
+    }
+  })
+  useEffect(() => {
     fetch('https://api.eventlama.com/geoip')
       .then(res => res.json())
       .then(json => {
@@ -854,7 +864,19 @@ const BlogIndex = ({ data, location }) => {
                                 })}
                               </h3>
                               {day.slots.map((slot, i) => (
-                                <div class="tab_text first-tab">
+                                <div
+                                  class="tab_text first-tab"
+                                  id={
+                                    slot.id +
+                                    '-' +
+                                    slot.title
+                                      .toString()
+                                      .toLowerCase()
+                                      .trim()
+                                      .replace(/&/g, '-and-')
+                                      .replace(/[\s\W-]+/g, '-')
+                                  }
+                                >
                                   <div class="border_box_tab">
                                     <h5>
                                       {new Date(slot.startDate)
@@ -890,7 +912,24 @@ const BlogIndex = ({ data, location }) => {
                                           .split(':')[1]}{' '}
                                     </h5>
                                     <h4>
-                                      <span>{slot.title}</span>
+                                      <a
+                                        href={
+                                          '#slot-' +
+                                          slot.id +
+                                          '-' +
+                                          slot.title
+                                            .toString()
+                                            .toLowerCase()
+                                            .trim()
+                                            .replace(/&/g, '-and-')
+                                            .replace(/[\s\W-]+/g, '-')
+                                        }
+                                        onClick={e => {
+                                          e.preventDefault()
+                                        }}
+                                      >
+                                        {slot.title}
+                                      </a>
                                     </h4>
                                     <ReactMarkdown source={slot.description} />
                                     {slot.speakers.map((speaker, i) => (
