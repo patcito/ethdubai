@@ -110,7 +110,7 @@ const BlogIndex = ({ data, location }) => {
       </section>
       <section class="conference" id="conference">
         <div class="container">
-          <div class="headings">
+          <div class="headings" id="header-lead">
             <img
               loading="lazy"
               src="images/react-europe-plain-round.png"
