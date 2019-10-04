@@ -13,8 +13,84 @@ const CarouselPeople = loadable(() => import('components/carouselpeople'))
 import Meta from 'components/meta'
 import Layout from 'components/layout'
 import ReactMarkdown from 'react-markdown'
+import { request } from 'graphql-request'
 
 const BlogIndex = ({ data, location }) => {
+  const clientQuery = `query {
+        events(slug: "reacteurope-2020") {
+        id
+        description
+        websiteUrl
+        name
+        venueName
+        venueCountry
+        venueCity
+        cocUrl
+        twitterHandle
+        offset
+        startDate
+        endDate
+        timezoneId
+        slug
+        collaborators {
+          id
+          firstName
+          lastName
+          twitter
+          github
+          url
+          role
+          avatarUrl
+        }
+        speakers {
+          id
+          name
+          twitter
+          github
+          avatarUrl
+          bio
+          shortBio
+          talks {
+            id
+            title
+            type
+            description
+            length
+            startDate
+          }
+        }
+        groupedSchedule {
+          title
+          date
+          slots {
+            id
+            title
+            likes
+            description
+            length
+            startDate
+            youtubeUrl
+            youtubeId
+            tags
+            type
+            room
+            talk
+            keynote
+            speakers {
+              id
+              name
+              twitter
+              github
+              avatarUrl
+              bio
+              shortBio
+            }
+          }
+        }
+      }
+    }
+`
+
   useEffect(() => {
     const hash = document.location.hash
     const slot = hash.split('#slot-')
@@ -50,6 +126,7 @@ const BlogIndex = ({ data, location }) => {
     data.eventlama.events[0].groupedSchedule
   )
   const [isFrench, setIsFrench] = useState(false)
+  const [n, setN] = useState('')
   const [currentScheduleTab, setCurrentScheduleTab] = useState(0)
   const [faq, setFaq] = useState(null)
   const [showSponsor, setShowSponsor] = useState(false)
@@ -85,6 +162,12 @@ const BlogIndex = ({ data, location }) => {
     return false
   }
   const [show, setShow] = useState(false)
+  useEffect(() => {
+    request('https://api.eventlama.com/gql', clientQuery).then(data => {
+      setEvent(data.events[0])
+      setSchedule(data.events[0].groupedSchedule)
+    })
+  }, [event.id])
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
@@ -2398,31 +2481,6 @@ export const pageQuery = graphql`
         endDate
         timezoneId
         slug
-        status {
-          hasEnded
-          hasStarted
-          onGoing
-          nextFiveScheduledItems {
-            id
-            title
-            description
-            startDate
-            speakers {
-              id
-              name
-              twitter
-              avatarUrl
-              bio
-              shortBio
-              talks {
-                id
-                description
-                title
-                startDate
-              }
-            }
-          }
-        }
         collaborators {
           id
           firstName
