@@ -752,7 +752,7 @@ const BlogIndex = ({ data, location }) => {
                       <ul>
                         <li>
                           <a
-                            href="https://twitter.com/CompuIves"
+                            href={'https://twitter.com/' + speaker.twitter}
                             class="icon-social-button"
                           >
                             <i class="fa fa-twitter icon-twitter"></i>
@@ -761,21 +761,23 @@ const BlogIndex = ({ data, location }) => {
                         </li>
                         <li>
                           <a
-                            href="https://github.com/CompuIves"
+                            href={'https://github.com/' + speaker.github}
                             class="icon-social-button"
                           >
                             <i class="fa fa-github icon-github"></i>
                             <span />
                           </a>
                         </li>
-                        <li>
-                          <a
-                            href="https://ivesvh.com/"
-                            class="icon-social-button"
-                          >
-                            <i class="fa fa-link icon-link"></i>
-                          </a>
-                        </li>
+                        {speaker.url ? (
+                          <li>
+                            <a
+                              href="https://ivesvh.com/"
+                              class="icon-social-button"
+                            >
+                              <i class="fa fa-link icon-link"></i>
+                            </a>
+                          </li>
+                        ) : null}
                       </ul>
                     </div>
                     <a
