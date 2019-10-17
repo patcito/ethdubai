@@ -16,6 +16,7 @@ import ReactMarkdown from 'react-markdown'
 import { request } from 'graphql-request'
 
 const BlogIndex = ({ data, location }) => {
+  console.log(data)
   const clientQuery = `query {
         events(slug: "reacteurope-2020") {
         id
@@ -802,10 +803,7 @@ const BlogIndex = ({ data, location }) => {
                   </div>
                   <div class="profile_contnet">
                     <h3 class="speaker-name">You?</h3>
-                    <p
-                      class="speaker-bio"
-                      bio-full="Software engineer at DigitalOcean. Technological craftsman. Author of Guppy, contributes to many open source projects. Cat person."
-                    >
+                    <p class="speaker-bio">
                       Stay tuned for more awesome speakers and our CFP!{' '}
                       <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                         Subscribe here to not miss new announcements
@@ -2586,6 +2584,41 @@ export const pageQuery = graphql`
             url
             logoUrl
             jobUrl
+          }
+        }
+      }
+    }
+    site {
+      meta: siteMetadata {
+        title
+        description
+        url: siteUrl
+        author
+        twitter
+        adsense
+      }
+    }
+    remark: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      posts: edges {
+        post: node {
+          html
+          frontmatter {
+            layout
+            title
+            path
+            category
+            tags
+            description
+            date(formatString: "YYYY/MM/DD")
+            image {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
