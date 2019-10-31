@@ -816,9 +816,9 @@ const BlogIndex = ({ data, location }) => {
                         href="https://checkout.eventlama.com/#/events/reacteurope-2020/cfp"
                         target="_blank"
                       >
-                        submit a proposal to our CFP
+                        submit a proposal to our CFP!
                       </a>
-                      ! <br />
+                      <br />
                       <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                         Subscribe here to not miss new announcements
                       </a>
