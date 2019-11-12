@@ -1,5 +1,5 @@
-import { graphql } from 'gatsby'
 import React, { useState, useEffect } from 'react'
+import { graphql } from 'gatsby'
 import IframeResizer from 'iframe-resizer-react'
 
 import get from 'lodash/get'

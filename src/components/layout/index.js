@@ -1,8 +1,8 @@
 import React from 'react'
 import emergence from 'emergence.js'
-
 import Navi from 'components/navi'
-import { siteMetadata } from '../../../gatsby-config'
+import Headroom from 'react-headroom'
+import { useStaticQuery, graphql } from 'gatsby'
 
 import 'modern-normalize/modern-normalize.css'
 import 'prismjs/themes/prism.css'
@@ -11,28 +11,27 @@ import 'animate.css/animate.css'
 import 'font-awesome/css/font-awesome.css'
 import '../../templates/page/style.scss'
 
-import Headroom from 'react-headroom'
+export default function Layout({ children, ...rest }) {
+  const data = useStaticQuery(graphql`
+    query HeaderQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `)
 
-class Layout extends React.Component {
-  componentDidMount() {
+  React.useEffect(() => {
     emergence.init()
-  }
+  })
 
-  componentDidUpdate() {
-    emergence.init()
-  }
-
-  render() {
-    const { children } = this.props
-    return (
-      <div>
-        <Headroom>
-          <Navi title={siteMetadata.title} {...this.props} />
-        </Headroom>
-        {children}
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Headroom>
+        <Navi title={data.site.siteMetadata.title} {...rest} />
+      </Headroom>
+      {children}
+    </div>
+  )
 }
-
-export default Layout
