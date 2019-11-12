@@ -750,7 +750,7 @@ const BlogIndex = ({ data, location }) => {
                           event.id +
                           '/speakers/' +
                           speaker.id +
-                          '/avatar.png?u=io' +
+                          '/avatar.png?u=ioi' +
                           event.updatedAt
                         }
                         alt=""

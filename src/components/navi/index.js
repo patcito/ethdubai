@@ -94,7 +94,7 @@ class Navi extends React.Component {
                 <div class="navigation">
                   <ul>
                     <li>
-                      <a href="#speaker">speakers</a>
+                      <a href="#speakers">speakers</a>
                     </li>
                     <li>
                       <a href="#schedule">schedule</a>
