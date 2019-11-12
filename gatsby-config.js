@@ -98,7 +98,7 @@ module.exports = {
       resolve: 'gatsby-source-graphql',
       options: {
         // This type will contain remote schema Query type
-        typeName: 'eventlama',
+        typeName: 'Eventlama',
         // This is the field under which it's accessible
         fieldName: 'eventlama',
         // URL to query from
@@ -107,12 +107,12 @@ module.exports = {
       },
     },
     'gatsby-plugin-catch-links',
-    'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
     'gatsby-plugin-sharp',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-twitter',
     'gatsby-transformer-sharp',
+    'gatsby-plugin-offline',
   ],
 }

@@ -1,5 +1,6 @@
 const each = require('lodash/each')
 const path = require('path')
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const PostTemplate = path.resolve('./src/templates/index.js')
 
 exports.createPages = ({ graphql, actions }) => {
@@ -68,6 +69,38 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         components: path.resolve(__dirname, 'src/components'),
         templates: path.resolve(__dirname, 'src/templates'),
         scss: path.resolve(__dirname, 'src/scss'),
+      },
+    },
+  })
+}
+
+// https://github.com/gatsbyjs/gatsby/issues/8404
+// https://dev.to/nevernull/gatsby-with-wpgraphql-acf-and-gatbsy-image-72m
+// https://thoughtsandstuff.com/gatsby-with-wordpress-caching-downloaded-media-images-to-reduce-build-time/
+
+exports.createResolvers = ({
+  actions,
+  cache,
+  createNodeId,
+  createResolvers,
+  store,
+  reporter,
+}) => {
+  const { createNode } = actions
+  createResolvers({
+    Eventlama_Speaker: {
+      localFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: source.avatarUrl,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
       },
     },
   })

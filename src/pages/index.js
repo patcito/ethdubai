@@ -2461,165 +2461,184 @@ const BlogIndex = ({ data, location }) => {
   )
 }
 
-export default BlogIndex
+function Index({ data }) {
+  return <p>{JSON.stringify(data)}</p>
+}
+
+// export default BlogIndex
+export default Index
+
+// export const pageQuery = graphql`
+//   {
+//     eventlama {
+//       events(slug: "reacteurope-2020") {
+//         id
+//         description
+//         websiteUrl
+//         name
+//         venueName
+//         venueCountry
+//         venueCity
+//         cocUrl
+//         twitterHandle
+//         offset
+//         startDate
+//         endDate
+//         timezoneId
+//         slug
+//         collaborators {
+//           id
+//           firstName
+//           lastName
+//           twitter
+//           github
+//           url
+//           role
+//           avatarUrl
+//         }
+//         speakers {
+//           id
+//           name
+//           twitter
+//           github
+//           avatarUrl
+//           bio
+//           shortBio
+//           talks {
+//             id
+//             title
+//             type
+//             description
+//             length
+//             startDate
+//           }
+//         }
+//         groupedSchedule {
+//           title
+//           date
+//           slots {
+//             id
+//             title
+//             likes
+//             description
+//             length
+//             startDate
+//             youtubeUrl
+//             youtubeId
+//             tags
+//             type
+//             room
+//             talk
+//             keynote
+//             speakers {
+//               id
+//               name
+//               twitter
+//               github
+//               avatarUrl
+//               bio
+//               shortBio
+//             }
+//           }
+//         }
+//         sponsors {
+//           diamond {
+//             id
+//             name
+//             description
+//             url
+//             logoUrl
+//             jobUrl
+//           }
+//           platinum {
+//             id
+//             name
+//             description
+//             url
+//             logoUrl
+//             jobUrl
+//           }
+//           gold {
+//             id
+//             name
+//             description
+//             url
+//             logoUrl
+//             jobUrl
+//           }
+//           silver {
+//             id
+//             name
+//             description
+//             url
+//             logoUrl
+//             jobUrl
+//           }
+//           bronze {
+//             id
+//             name
+//             description
+//             url
+//             logoUrl
+//             jobUrl
+//           }
+//           partner {
+//             id
+//             name
+//             description
+//             url
+//             logoUrl
+//             jobUrl
+//           }
+//         }
+//       }
+//     }
+//     site {
+//       meta: siteMetadata {
+//         title
+//         description
+//         url: siteUrl
+//         author
+//         twitter
+//         adsense
+//       }
+//     }
+//     remark: allMarkdownRemark(
+//       sort: { fields: [frontmatter___date], order: DESC }
+//     ) {
+//       posts: edges {
+//         post: node {
+//           html
+//           frontmatter {
+//             layout
+//             title
+//             path
+//             category
+//             tags
+//             description
+//             date(formatString: "YYYY/MM/DD")
+//             image {
+//               childImageSharp {
+//                 fluid(maxWidth: 500) {
+//                   ...GatsbyImageSharpFluid
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
 
 export const pageQuery = graphql`
   {
     eventlama {
       events(slug: "reacteurope-2020") {
         id
-        description
-        websiteUrl
-        name
-        venueName
-        venueCountry
-        venueCity
-        cocUrl
-        twitterHandle
-        offset
-        startDate
-        endDate
-        timezoneId
-        slug
-        collaborators {
-          id
-          firstName
-          lastName
-          twitter
-          github
-          url
-          role
-          avatarUrl
-        }
         speakers {
           id
-          name
-          twitter
-          github
           avatarUrl
-          bio
-          shortBio
-          talks {
-            id
-            title
-            type
-            description
-            length
-            startDate
-          }
-        }
-        groupedSchedule {
-          title
-          date
-          slots {
-            id
-            title
-            likes
-            description
-            length
-            startDate
-            youtubeUrl
-            youtubeId
-            tags
-            type
-            room
-            talk
-            keynote
-            speakers {
-              id
-              name
-              twitter
-              github
-              avatarUrl
-              bio
-              shortBio
-            }
-          }
-        }
-        sponsors {
-          diamond {
-            id
-            name
-            description
-            url
-            logoUrl
-            jobUrl
-          }
-          platinum {
-            id
-            name
-            description
-            url
-            logoUrl
-            jobUrl
-          }
-          gold {
-            id
-            name
-            description
-            url
-            logoUrl
-            jobUrl
-          }
-          silver {
-            id
-            name
-            description
-            url
-            logoUrl
-            jobUrl
-          }
-          bronze {
-            id
-            name
-            description
-            url
-            logoUrl
-            jobUrl
-          }
-          partner {
-            id
-            name
-            description
-            url
-            logoUrl
-            jobUrl
-          }
-        }
-      }
-    }
-    site {
-      meta: siteMetadata {
-        title
-        description
-        url: siteUrl
-        author
-        twitter
-        adsense
-      }
-    }
-    remark: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      posts: edges {
-        post: node {
-          html
-          frontmatter {
-            layout
-            title
-            path
-            category
-            tags
-            description
-            date(formatString: "YYYY/MM/DD")
-            image {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
         }
       }
     }
