@@ -55,32 +55,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: 'ReactEurope',
-        short_name: 'ReactEurope',
-        description:
-          'The original European React.js & Native conference on May 14-15th, 2020 in Paris, France',
-        homepage_url: 'https://www.react-europe.org',
-        start_url: '/',
-        background_color: '#fff',
-        theme_color: '#fff',
-        display: 'standalone',
-        icons: [
-          {
-            src: '/img/android-chrome-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/img/android-chrome-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
-      },
-    },
-    {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-42478610-5',
@@ -106,6 +80,33 @@ module.exports = {
         refetchInterval: 60,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'ReactEurope',
+        short_name: 'ReactEurope',
+        description:
+          'The original European React.js & Native conference on May 14-15th, 2020 in Paris, France',
+        homepage_url: 'https://www.react-europe.org',
+        start_url: '/',
+        background_color: '#fff',
+        theme_color: '#fff',
+        display: 'standalone',
+        icons: [
+          {
+            src: '/img/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/img/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
+      },
+    },
+    'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
@@ -113,6 +114,5 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-twitter',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-offline',
   ],
 }

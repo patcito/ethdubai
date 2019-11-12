@@ -4,20 +4,49 @@ import IframeResizer from 'iframe-resizer-react'
 
 import get from 'lodash/get'
 import { Modal, Tab } from 'react-bootstrap'
-import loadable from '@loadable/component'
 import ZeitLogo from '../../static/images/zeit-black-full-logo.svg'
 
-const Caroussel = loadable(() => import('components/caroussel'))
-const CarouselPeople = loadable(() => import('components/carouselpeople'))
+import Caroussel from 'components/caroussel'
+import CarouselPeople from 'components/carouselpeople'
 
 import Meta from 'components/meta'
 import Layout from 'components/layout'
 import ReactMarkdown from 'react-markdown'
+import Hero from 'components/hero'
 import { request } from 'graphql-request'
 
 const BlogIndex = ({ data, location }) => {
-  console.log(data)
-  const clientQuery = `query {
+  //TODO: separate logic into components
+  const [event, setEvent] = useState(data.eventlama.events[0])
+  const [scheduleQuery, setScheduleQuery] = useState('')
+  const [schedule, setSchedule] = useState(
+    data.eventlama.events[0].groupedSchedule
+  )
+  const [isFrench, setIsFrench] = useState(false)
+  const [n, setN] = useState('')
+  const [currentScheduleTab, setCurrentScheduleTab] = useState(0)
+  const [faq, setFaq] = useState(null)
+  const [showSponsor, setShowSponsor] = useState(false)
+  const [show, setShow] = useState(false)
+  const [currentSponsor, setCurrentSponsor] = useState({
+    name: 'url',
+    url: '',
+    logoUrl: '',
+    jobUrl: '',
+    description: '',
+    level: '',
+  })
+  const [speakerProps, setSpeakerProps] = useState({
+    name: '',
+    twitter: '',
+    github: '',
+    url: '',
+    shortBio: '',
+    bio: '',
+    avatarUrl: '',
+  })
+
+  const clientQuery = `{
         events(slug: "reacteurope-2020") {
         id
         description
@@ -91,7 +120,15 @@ const BlogIndex = ({ data, location }) => {
       }
     }
 `
+  //TODO: useEventSchedule
+  useEffect(() => {
+    request('https://api.eventlama.com/gql', clientQuery).then(data => {
+      setEvent(data.events[0])
+      setSchedule(data.events[0].groupedSchedule)
+    })
+  }, [event.id])
 
+  // TODO: useScrollToSlot???
   useEffect(() => {
     const hash = document.location.hash
     const slot = hash.split('#slot-')
@@ -102,6 +139,8 @@ const BlogIndex = ({ data, location }) => {
       scrolldiv.scrollTop = dayd - 150
     }
   })
+
+  // TODO: useIsFrench
   useEffect(() => {
     fetch('https://api.eventlama.com/geoip')
       .then(res => res.json())
@@ -112,6 +151,8 @@ const BlogIndex = ({ data, location }) => {
       })
       .catch(err => {})
   }, [])
+
+  //TODO: useCheckoutListener
   if (typeof window !== 'undefined') {
     window.addEventListener('message', message => {
       console.log(message)
@@ -120,92 +161,19 @@ const BlogIndex = ({ data, location }) => {
       }
     })
   }
-  const posts = get(data, 'remark.posts')
-  const [event, setEvent] = useState(data.eventlama.events[0])
-  const [scheduleQuery, setScheduleQuery] = useState('')
-  const [schedule, setSchedule] = useState(
-    data.eventlama.events[0].groupedSchedule
-  )
-  const [isFrench, setIsFrench] = useState(false)
-  const [n, setN] = useState('')
-  const [currentScheduleTab, setCurrentScheduleTab] = useState(0)
-  const [faq, setFaq] = useState(null)
-  const [showSponsor, setShowSponsor] = useState(false)
-  const [currentSponsor, setCurrentSponsor] = useState({
-    name: 'url',
-    url: '',
-    logoUrl: '',
-    jobUrl: '',
-    description: '',
-    level: '',
-  })
-  const [speakerProps, setSpeakerProps] = useState({
-    name: '',
-    twitter: '',
-    github: '',
-    url: '',
-    shortBio: '',
-    bio: '',
-    avatarUrl: '',
-  })
-  const handleCloseSponsor = () => setShowSponsor(false)
-  const handleClose = () => setShow(false)
+
+  //TODO: move to modal sponsor
   const handleShowSponsor = (sponsor, e) => {
     setShowSponsor(true)
     setCurrentSponsor(sponsor)
     e.preventDefault()
     return false
   }
-  const handleShow = (speaker, e) => {
-    setShow(true)
-    setSpeakerProps(speaker)
-    e.preventDefault()
-    return false
-  }
-  const [show, setShow] = useState(false)
-  useEffect(() => {
-    request('https://api.eventlama.com/gql', clientQuery).then(data => {
-      setEvent(data.events[0])
-      setSchedule(data.events[0].groupedSchedule)
-    })
-  }, [event.id])
+
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
-      <section class="react_section">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="react_text">
-                <h2>The Original React Conference in Europe</h2>
-                <h1>ReactEurope</h1>
-                <div class="react_text_content">
-                  <h3>
-                    May 14-15th, 2020 <span>(conference)</span>
-                  </h3>
-                  <h3>
-                    May 12-13th, 2020 <span>(workshops)</span>
-                  </h3>
-                  <h4>Paris, France</h4>
-                </div>
-              </div>
-              <div class="react_btns">
-                <a href="#conference" class="learn_more">
-                  Learn More
-                </a>
-                <a href="#tickets" class="book_now">
-                  Tickets
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="react_image">
-                <img loading="lazy" src="images/banner-image.png" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero />
       <section class="conference" id="conference">
         <div class="container">
           <div class="headings" id="header-lead">
@@ -787,7 +755,9 @@ const BlogIndex = ({ data, location }) => {
                       data-toggle="modal"
                       data-target="#speaker_popup"
                       onClick={e => {
-                        handleShow(speaker, e)
+                        e.preventDefault()
+                        setShow(true)
+                        setSpeakerProps(speaker)
                       }}
                     >
                       +
@@ -818,7 +788,7 @@ const BlogIndex = ({ data, location }) => {
             </div>
           </div>
         </div>
-        <Modal show={show} onHide={handleClose} id="speaker_popup">
+        <Modal show={show} onHide={() => setShow(false)} id="speaker_popup">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -826,7 +796,7 @@ const BlogIndex = ({ data, location }) => {
                   type="button"
                   class="close"
                   data-dismiss="modal"
-                  onClick={handleClose}
+                  onClick={() => setShow(false)}
                 >
                   &times;
                 </button>
@@ -1486,7 +1456,7 @@ const BlogIndex = ({ data, location }) => {
         </div>
         <Modal
           show={showSponsor}
-          onHide={handleCloseSponsor}
+          onHide={() => setShowSponsor(false)}
           id="sponser_popup"
         >
           <div class="modal-dialog">
@@ -1496,7 +1466,7 @@ const BlogIndex = ({ data, location }) => {
                   type="button"
                   class="close"
                   data-dismiss="modal"
-                  onClick={handleCloseSponsor}
+                  onClick={() => setShowSponsor(false)}
                 >
                   &times;
                 </button>
@@ -2461,184 +2431,165 @@ const BlogIndex = ({ data, location }) => {
   )
 }
 
-function Index({ data }) {
-  return <p>{JSON.stringify(data)}</p>
-}
-
-// export default BlogIndex
-export default Index
-
-// export const pageQuery = graphql`
-//   {
-//     eventlama {
-//       events(slug: "reacteurope-2020") {
-//         id
-//         description
-//         websiteUrl
-//         name
-//         venueName
-//         venueCountry
-//         venueCity
-//         cocUrl
-//         twitterHandle
-//         offset
-//         startDate
-//         endDate
-//         timezoneId
-//         slug
-//         collaborators {
-//           id
-//           firstName
-//           lastName
-//           twitter
-//           github
-//           url
-//           role
-//           avatarUrl
-//         }
-//         speakers {
-//           id
-//           name
-//           twitter
-//           github
-//           avatarUrl
-//           bio
-//           shortBio
-//           talks {
-//             id
-//             title
-//             type
-//             description
-//             length
-//             startDate
-//           }
-//         }
-//         groupedSchedule {
-//           title
-//           date
-//           slots {
-//             id
-//             title
-//             likes
-//             description
-//             length
-//             startDate
-//             youtubeUrl
-//             youtubeId
-//             tags
-//             type
-//             room
-//             talk
-//             keynote
-//             speakers {
-//               id
-//               name
-//               twitter
-//               github
-//               avatarUrl
-//               bio
-//               shortBio
-//             }
-//           }
-//         }
-//         sponsors {
-//           diamond {
-//             id
-//             name
-//             description
-//             url
-//             logoUrl
-//             jobUrl
-//           }
-//           platinum {
-//             id
-//             name
-//             description
-//             url
-//             logoUrl
-//             jobUrl
-//           }
-//           gold {
-//             id
-//             name
-//             description
-//             url
-//             logoUrl
-//             jobUrl
-//           }
-//           silver {
-//             id
-//             name
-//             description
-//             url
-//             logoUrl
-//             jobUrl
-//           }
-//           bronze {
-//             id
-//             name
-//             description
-//             url
-//             logoUrl
-//             jobUrl
-//           }
-//           partner {
-//             id
-//             name
-//             description
-//             url
-//             logoUrl
-//             jobUrl
-//           }
-//         }
-//       }
-//     }
-//     site {
-//       meta: siteMetadata {
-//         title
-//         description
-//         url: siteUrl
-//         author
-//         twitter
-//         adsense
-//       }
-//     }
-//     remark: allMarkdownRemark(
-//       sort: { fields: [frontmatter___date], order: DESC }
-//     ) {
-//       posts: edges {
-//         post: node {
-//           html
-//           frontmatter {
-//             layout
-//             title
-//             path
-//             category
-//             tags
-//             description
-//             date(formatString: "YYYY/MM/DD")
-//             image {
-//               childImageSharp {
-//                 fluid(maxWidth: 500) {
-//                   ...GatsbyImageSharpFluid
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
+export default BlogIndex
 
 export const pageQuery = graphql`
   {
     eventlama {
       events(slug: "reacteurope-2020") {
         id
+        description
+        websiteUrl
+        name
+        venueName
+        venueCountry
+        venueCity
+        cocUrl
+        twitterHandle
+        offset
+        startDate
+        endDate
+        timezoneId
+        slug
+        collaborators {
+          id
+          firstName
+          lastName
+          twitter
+          github
+          url
+          role
+          avatarUrl
+        }
         speakers {
           id
+          name
+          twitter
+          github
           avatarUrl
+          bio
+          shortBio
+          talks {
+            id
+            title
+            type
+            description
+            length
+            startDate
+          }
+        }
+        groupedSchedule {
+          title
+          date
+          slots {
+            id
+            title
+            likes
+            description
+            length
+            startDate
+            youtubeUrl
+            youtubeId
+            tags
+            type
+            room
+            talk
+            keynote
+            speakers {
+              id
+              name
+              twitter
+              github
+              avatarUrl
+              bio
+              shortBio
+            }
+          }
+        }
+        sponsors {
+          diamond {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
+          }
+          platinum {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
+          }
+          gold {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
+          }
+          silver {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
+          }
+          bronze {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
+          }
+          partner {
+            id
+            name
+            description
+            url
+            logoUrl
+            jobUrl
+          }
+        }
+      }
+    }
+    site {
+      meta: siteMetadata {
+        title
+        description
+        url: siteUrl
+        author
+        twitter
+        adsense
+      }
+    }
+    remark: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      posts: edges {
+        post: node {
+          html
+          frontmatter {
+            layout
+            title
+            path
+            category
+            tags
+            description
+            date(formatString: "YYYY/MM/DD")
+            image {
+              childImageSharp {
+                fluid(maxWidth: 500) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
         }
       }
     }
