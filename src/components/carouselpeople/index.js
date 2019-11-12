@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
-
 import ReactSimpleCarousel from 'react-spring-carousel'
-function CarouselPeople() {
+
+export default function CarouselPeople() {
   const [show, setShow] = useState(false)
   const [eventProps, setEventProps] = useState({
     title: '',
@@ -151,5 +151,3 @@ function CarouselPeople() {
     </>
   )
 }
-
-export default CarouselPeople

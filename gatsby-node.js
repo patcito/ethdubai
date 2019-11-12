@@ -74,10 +74,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   })
 }
 
-// https://github.com/gatsbyjs/gatsby/issues/8404
-// https://dev.to/nevernull/gatsby-with-wpgraphql-acf-and-gatbsy-image-72m
-// https://thoughtsandstuff.com/gatsby-with-wordpress-caching-downloaded-media-images-to-reduce-build-time/
-
 exports.createResolvers = ({
   actions,
   cache,
@@ -105,3 +101,7 @@ exports.createResolvers = ({
     },
   })
 }
+
+// https://github.com/gatsbyjs/gatsby/issues/8404
+// https://dev.to/nevernull/gatsby-with-wpgraphql-acf-and-gatbsy-image-72m
+// https://thoughtsandstuff.com/gatsby-with-wordpress-caching-downloaded-media-images-to-reduce-build-time/
