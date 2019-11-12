@@ -306,7 +306,7 @@ img.hover_social {
 .conference_slider button:focus {
   outline: none;
 }
-.react_image img {
+.react_image {
   width: 655px;
   padding-top: 130px;
   object-fit: cover;
@@ -2005,7 +2005,7 @@ div#event_popup .modal-dialog {
     height: 210px;
     object-fit: cover;
   }
-  .react_image img {
+  .react_image {
     width: 580px;
     padding-top: 130px;
     object-fit: cover;
@@ -2102,7 +2102,7 @@ div#event_popup .modal-dialog {
   }
 }
 @media (max-width: 1139px) {
-  .react_image img {
+  .react_image {
     width: 500px;
     padding-top: 70px;
   }
@@ -2382,7 +2382,7 @@ div#event_popup .modal-dialog {
   .react_image {
     text-align: center;
   }
-  .react_image img {
+  .react_image {
     width: 100%;
     padding-top: 70px;
   }
@@ -2590,7 +2590,7 @@ div#event_popup .modal-dialog {
   .react_text {
     padding-top: 10px;
   }
-  .react_image img {
+  .react_image {
     width: 75%;
     padding-top: 50px;
   }
@@ -3067,7 +3067,7 @@ div#event_popup .modal-dialog {
     margin-top: 35px;
     display: flex;
   }
-  .react_image img {
+  .react_image {
     width: 80%;
     padding-top: 50px;
   }

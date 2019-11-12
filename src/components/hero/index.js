@@ -1,6 +1,7 @@
 import React from 'react'
+import Img from 'gatsby-image'
 
-export default function Hero() {
+export default function Hero({ banner }) {
   return (
     <section class="react_section">
       <div class="container">
@@ -30,7 +31,8 @@ export default function Hero() {
           </div>
           <div class="col-md-6">
             <div class="react_image">
-              <img loading="lazy" src="images/banner-image.png" alt="" />
+              {/* 75%, 100%, 500px, 655px */}
+              <Img fluid={banner} />
             </div>
           </div>
         </div>
