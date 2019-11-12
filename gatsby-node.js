@@ -83,6 +83,8 @@ exports.createResolvers = ({
   reporter,
 }) => {
   const { createNode } = actions
+
+  // speakers images
   createResolvers({
     Eventlama_Speaker: {
       localFile: {
@@ -90,6 +92,44 @@ exports.createResolvers = ({
         resolve(source, args, context, info) {
           return createRemoteFileNode({
             url: source.avatarUrl,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+  })
+
+  // Collaborators images
+  createResolvers({
+    Eventlama_Collaborator: {
+      localFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: source.avatarUrl,
+            store,
+            cache,
+            createNode,
+            createNodeId,
+            reporter,
+          })
+        },
+      },
+    },
+  })
+
+  // Sponsors images
+  createResolvers({
+    Eventlama_Sponsor: {
+      localFile: {
+        type: `File`,
+        resolve(source, args, context, info) {
+          return createRemoteFileNode({
+            url: source.logoUrl,
             store,
             cache,
             createNode,

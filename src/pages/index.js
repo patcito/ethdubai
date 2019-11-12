@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { graphql } from 'gatsby'
 import IframeResizer from 'iframe-resizer-react'
-
+import Img from 'gatsby-image'
 import get from 'lodash/get'
 import { Modal, Tab } from 'react-bootstrap'
 import ZeitLogo from '../../static/images/zeit-black-full-logo.svg'
@@ -77,7 +77,6 @@ const BlogIndex = ({ data, location }) => {
           name
           twitter
           github
-          avatarUrl
           bio
           shortBio
           talks {
@@ -123,7 +122,11 @@ const BlogIndex = ({ data, location }) => {
   //TODO: useEventSchedule
   useEffect(() => {
     request('https://api.eventlama.com/gql', clientQuery).then(data => {
-      setEvent(data.events[0])
+      setEvent({
+        ...event,
+        ...data.events[0],
+        speakers: event.speakers,
+      })
       setSchedule(data.events[0].groupedSchedule)
     })
   }, [event.id])
@@ -700,18 +703,15 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-12">
                   <div class="speaker_box left_box">
                     <div class="profile_image">
-                      <img
-                        loading="lazy"
-                        src={
-                          'https://www.react-europe.org/avatars/events/' +
-                          event.id +
-                          '/speakers/' +
-                          speaker.id +
-                          '/avatar.png?u=' +
-                          speaker.updatedAt
-                        }
-                        alt=""
-                      />
+                      {/* {JSON.stringify(
+                        {
+                          name: speaker.name,
+                          image: speaker.localFile,
+                        },
+                        null,
+                        4
+                      )} */}
+                      <Img fluid={speaker.localFile.childImageSharp.fluid} />
                     </div>
                     <div class="profile_contnet">
                       <h3 class="speaker-name">{speaker.name}</h3>
@@ -2459,6 +2459,13 @@ export const pageQuery = graphql`
           github
           url
           role
+          localFile {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
           avatarUrl
         }
         speakers {
@@ -2467,6 +2474,13 @@ export const pageQuery = graphql`
           twitter
           github
           avatarUrl
+          localFile {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
           bio
           shortBio
           talks {
@@ -2500,6 +2514,13 @@ export const pageQuery = graphql`
               name
               twitter
               github
+              localFile {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
               avatarUrl
               bio
               shortBio
@@ -2513,6 +2534,13 @@ export const pageQuery = graphql`
             description
             url
             logoUrl
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             jobUrl
           }
           platinum {
@@ -2521,6 +2549,13 @@ export const pageQuery = graphql`
             description
             url
             logoUrl
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             jobUrl
           }
           gold {
@@ -2529,6 +2564,13 @@ export const pageQuery = graphql`
             description
             url
             logoUrl
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             jobUrl
           }
           silver {
@@ -2537,6 +2579,13 @@ export const pageQuery = graphql`
             description
             url
             logoUrl
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             jobUrl
           }
           bronze {
@@ -2545,6 +2594,13 @@ export const pageQuery = graphql`
             description
             url
             logoUrl
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             jobUrl
           }
           partner {
@@ -2553,6 +2609,13 @@ export const pageQuery = graphql`
             description
             url
             logoUrl
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             jobUrl
           }
         }
