@@ -93,16 +93,6 @@ const BlogIndex = ({ data, location }) => {
 `
 
   useEffect(() => {
-    const hash = document.location.hash
-    const slot = hash.split('#slot-')
-    if (slot && slot[1]) {
-      let dayd = document.getElementById(slot[1]).offsetTop
-      let scrolldiv = document.getElementById('schedule-scroll')
-      scrolldiv.scrollIntoView()
-      scrolldiv.scrollTop = dayd - 150
-    }
-  })
-  useEffect(() => {
     fetch('https://api.eventlama.com/geoip')
       .then(res => res.json())
       .then(json => {
@@ -169,6 +159,16 @@ const BlogIndex = ({ data, location }) => {
       setSchedule(data.events[0].groupedSchedule)
     })
   }, [event.id])
+  useEffect(() => {
+    const hash = document.location.hash
+    const slot = hash.split('#slot-')
+    if (slot && slot[1] && document && document.getElementById(slot[1])) {
+      let dayd = document.getElementById(slot[1]).offsetTop
+      let scrolldiv = document.getElementById('schedule-scroll')
+      scrolldiv.scrollIntoView()
+      scrolldiv.scrollTop = dayd - 150
+    }
+  })
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
