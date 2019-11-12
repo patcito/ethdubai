@@ -735,9 +735,13 @@ const BlogIndex = ({ data, location }) => {
           </div>
           <div class="speaker_profile">
             <div class="row">
-              {event.speakers.map(speaker => (
+              {event.speakers.map((speaker, i) => (
                 <div class="col-md-3 col-sm-4 col-xs-12">
-                  <div class="speaker_box left_box">
+                  <div
+                    class={
+                      i % 2 ? 'speaker_box left_box' : 'speaker_box right_box'
+                    }
+                  >
                     <div class="profile_image">
                       <img
                         loading="lazy"
@@ -747,13 +751,16 @@ const BlogIndex = ({ data, location }) => {
                           '/speakers/' +
                           speaker.id +
                           '/avatar.png?u=' +
-                          speaker.updatedAt
+                          event.updatedAt
                         }
                         alt=""
                       />
                     </div>
                     <div class="profile_contnet">
-                      <h3 class="speaker-name">{speaker.name}</h3>
+                      <h3 class="speaker-name">
+                        {speaker.name}
+                        {i}
+                      </h3>
                       <p class="speaker-bio" bio-full={speaker.bio}>
                         {speaker.shortBio}
                       </p>
