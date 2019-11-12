@@ -750,17 +750,14 @@ const BlogIndex = ({ data, location }) => {
                           event.id +
                           '/speakers/' +
                           speaker.id +
-                          '/avatar.png?u=' +
+                          '/avatar.png?u=io' +
                           event.updatedAt
                         }
                         alt=""
                       />
                     </div>
                     <div class="profile_contnet">
-                      <h3 class="speaker-name">
-                        {speaker.name}
-                        {i}
-                      </h3>
+                      <h3 class="speaker-name">{speaker.name}</h3>
                       <p class="speaker-bio" bio-full={speaker.bio}>
                         {speaker.shortBio}
                       </p>
