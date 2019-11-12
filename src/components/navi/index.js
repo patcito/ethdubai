@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
 
 class Navi extends React.Component {
   render() {
-    const { location, title } = this.props
     return (
       <>
         <header class="desktop_header">
