@@ -175,15 +175,11 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
-      <Hero />
+      <Hero banner={data.banner.childImageSharp.fluid} />
       <section class="conference" id="conference">
         <div class="container">
           <div class="headings" id="header-lead">
-            <img
-              loading="lazy"
-              src="images/react-europe-plain-round.png"
-              alt=""
-            />
+            <Img fixed={data.heading_logo.childImageSharp.fixed} />
             <h2>Conference Events</h2>
             <ReactMarkdown source={event.description} />
           </div>
@@ -2452,6 +2448,20 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   {
+    banner: file(relativePath: { eq: "banner-image.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    heading_logo: file(relativePath: { eq: "react-europe-plain-round.png" }) {
+      childImageSharp {
+        fixed(width: 300) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
     eventlama {
       events(slug: "reacteurope-2020") {
         id
