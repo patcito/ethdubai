@@ -1,26 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
-
+import { graphql, useStaticQuery } from 'gatsby'
+import Img from 'gatsby-image/withIEPolyfill'
 import ReactSimpleCarousel from 'react-spring-carousel'
-const slides = [
-  {
-    text: 'Exercitation tempor',
-  },
-  {
-    text: 'dolore proident id',
-  },
-  {
-    text: 'proident id irure',
-  },
-  {
-    text: 'Exercitation irure',
-  },
-  {
-    text: 'dolore proident id irure',
-  },
-]
+
 function Caroussel() {
+  const data = useStaticQuery(query)
+  console.log('TCL: Caroussel -> data', data)
+
   const [show, setShow] = useState(false)
   const [eventProps, setEventProps] = useState({
     title: '',
@@ -67,24 +55,24 @@ function Caroussel() {
                   <div class="event_popup_images">
                     <ul>
                       <li>
-                        <img
-                          id="event-pic1-popup"
-                          src={eventProps.pictures[0]}
-                          alt=""
+                        <Img
+                          objectFit="cover"
+                          objectPosition="50% 50%"
+                          fluid={eventProps.pictures[0]}
                         />
                       </li>
                       <li>
-                        <img
-                          id="event-pic2-popup"
-                          src={eventProps.pictures[1]}
-                          alt=""
+                        <Img
+                          objectFit="cover"
+                          objectPosition="50% 50%"
+                          fluid={eventProps.pictures[1]}
                         />
                       </li>
                       <li>
-                        <img
-                          id="event-pic3-popup"
-                          src={eventProps.pictures[2]}
-                          alt=""
+                        <Img
+                          objectFit="cover"
+                          objectPosition="50% 50%"
+                          fluid={eventProps.pictures[2]}
                         />
                       </li>
                     </ul>
@@ -100,13 +88,16 @@ function Caroussel() {
           <div
             key={0}
             className="App-slide"
-            style={{ marginBottom: '45px', marginRight: '25px' }}
+            style={{
+              marginBottom: '45px',
+              marginRight: '25px',
+            }}
             onClick={() => {
               handleShow({
                 pictures: [
-                  'images/workshop1.png',
-                  'images/Event_popup2.png',
-                  'images/Event_popup3.png',
+                  data.workshop1.childImageSharp.fluid,
+                  data.event_popup_2.childImageSharp.fluid,
+                  data.event_popup_3.childImageSharp.fluid,
                 ],
                 date: '12th-13th',
                 description:
@@ -119,7 +110,11 @@ function Caroussel() {
             <div class="slider_box">
               <h3>12th-13th</h3>
               <h4>MAY</h4>
-              <img loading="lazy" src="images/slider1.png" alt="" />
+              <Img
+                objectFit="contain"
+                objectPosition="50% 50%"
+                fixed={data.slide1.childImageSharp.fixed}
+              />
               <h5>2-DAY WORKSHOPS</h5>
               <h6>Palace of Paris-Est Congress</h6>
               <p>8:45am to 5:30pm</p>
@@ -132,9 +127,9 @@ function Caroussel() {
             onClick={() => {
               handleShow({
                 pictures: [
-                  'images/bar1.jpeg',
-                  'images/bar2.png',
-                  'images/bar3.png',
+                  data.bar1.childImageSharp.fluid,
+                  data.bar2.childImageSharp.fluid,
+                  data.bar3.childImageSharp.fluid,
                 ],
                 date: '13th',
                 description:
@@ -147,7 +142,11 @@ function Caroussel() {
             <div class="slider_box">
               <h3>13th</h3>
               <h4>MAY</h4>
-              <img loading="lazy" src="images/slider2.png" alt="" />
+              <Img
+                objectFit="contain"
+                objectPosition="50% 50%"
+                fixed={data.slide2.childImageSharp.fixed}
+              />
               <h5>BAR NIGHT</h5>
               <h6 class="">More details coming soon. Stay tuned.</h6>
               <p>6:45pm</p>
@@ -160,9 +159,9 @@ function Caroussel() {
             onClick={() => {
               handleShow({
                 pictures: [
-                  'images/Event_popup1.png',
-                  'images/conf2.jpg',
-                  'images/conf3.jpg',
+                  data.event_popup_1.childImageSharp.fluid,
+                  data.conf2.childImageSharp.fluid,
+                  data.conf3.childImageSharp.fluid,
                 ],
                 date: '14th-15th',
                 description:
@@ -175,7 +174,11 @@ function Caroussel() {
             <div class="slider_box">
               <h3>14th-15th</h3>
               <h4>MAY</h4>
-              <img loading="lazy" src="images/slider3.png" alt="" />
+              <Img
+                objectFit="contain"
+                objectPosition="50% 50%"
+                fixed={data.slide3.childImageSharp.fixed}
+              />
               <h5>2-DAY CONFERENCE</h5>
               <h6>Palace of Paris-Est Congress</h6>
               <p> 8:30am to 7:00pm</p>
@@ -188,9 +191,9 @@ function Caroussel() {
             onClick={() => {
               handleShow({
                 pictures: [
-                  'images/food1.jpg',
-                  'images/food2.png',
-                  'images/food3.jpg',
+                  data.food1.childImageSharp.fluid,
+                  data.food2.childImageSharp.fluid,
+                  data.food3.childImageSharp.fluid,
                 ],
                 date: '12th-15th',
                 description:
@@ -203,7 +206,11 @@ function Caroussel() {
             <div class="slider_box">
               <h3>12th-15th</h3>
               <h4>MAY</h4>
-              <img loading="lazy" src="images/food.png" alt="" />
+              <Img
+                objectFit="contain"
+                objectPosition="50% 50%"
+                fixed={data.food.childImageSharp.fixed}
+              />
               <h5>Delicious food buffets</h5>
               <h6>Palace of Paris-Est Congress</h6>
               <p> During conf &amp; workshops</p>
@@ -216,9 +223,9 @@ function Caroussel() {
             onClick={() => {
               handleShow({
                 pictures: [
-                  'images/Event_popup1.png',
-                  'images/conf2.jpg',
-                  'images/conf3.jpg',
+                  data.event_popup_1.childImageSharp.fluid,
+                  data.conf2.childImageSharp.fluid,
+                  data.conf3.childImageSharp.fluid,
                 ],
                 date: '14th-15th',
                 description:
@@ -231,7 +238,11 @@ function Caroussel() {
             <div class="slider_box">
               <h3>14th-15th</h3>
               <h4>MAY</h4>
-              <img loading="lazy" src="images/lightnings.png" alt="" />
+              <Img
+                objectFit="contain"
+                objectPosition="50% 50%"
+                fixed={data.lightnings.childImageSharp.fixed}
+              />
               <h5>Lightning talks</h5>
               <h6>Palace of Paris-Est Congress</h6>
               <p> During conference days</p>
@@ -245,7 +256,11 @@ function Caroussel() {
             <div class="slider_box">
               <h3>16th</h3>
               <h4>MAY</h4>
-              <img loading="lazy" src="images/hackathon.png" alt="" />
+              <Img
+                objectFit="contain"
+                objectPosition="50% 50%"
+                fixed={data.hackathon.childImageSharp.fixed}
+              />
               <h5>Hackathon</h5>
               <h6>More details coming soon. Stay tuned.</h6>
               <p> 9:00am to 5:00pm</p>
@@ -256,5 +271,136 @@ function Caroussel() {
     </>
   )
 }
+
+const query = graphql`
+  {
+    slide1: file(relativePath: { eq: "slider1.png" }) {
+      childImageSharp {
+        fixed(width: 214) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    slide2: file(relativePath: { eq: "slider2.png" }) {
+      childImageSharp {
+        fixed(width: 214) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    slide3: file(relativePath: { eq: "slider3.png" }) {
+      childImageSharp {
+        fixed(width: 214) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    hackathon: file(relativePath: { eq: "hackathon.png" }) {
+      childImageSharp {
+        fixed(width: 214) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    lightnings: file(relativePath: { eq: "lightnings.png" }) {
+      childImageSharp {
+        fixed(width: 214) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    food: file(relativePath: { eq: "food.png" }) {
+      childImageSharp {
+        fixed(width: 214) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    workshop1: file(relativePath: { eq: "workshop1.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    event_popup_2: file(relativePath: { eq: "Event_popup2.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    event_popup_3: file(relativePath: { eq: "Event_popup3.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    bar1: file(relativePath: { eq: "bar1.jpeg" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    bar2: file(relativePath: { eq: "bar2.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    bar3: file(relativePath: { eq: "bar3.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    event_popup_1: file(relativePath: { eq: "Event_popup1.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    conf2: file(relativePath: { eq: "conf2.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    conf3: file(relativePath: { eq: "conf3.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    food1: file(relativePath: { eq: "food1.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    food2: file(relativePath: { eq: "food2.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    food3: file(relativePath: { eq: "food3.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`
 
 export default Caroussel
