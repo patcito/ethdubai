@@ -3,11 +3,13 @@ import { graphql } from 'gatsby'
 import IframeResizer from 'iframe-resizer-react'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
+import loadable from '@loadable/component'
+
 import { Modal, Tab } from 'react-bootstrap'
 import ZeitLogo from '../../static/images/zeit-black-full-logo.svg'
 
-import Caroussel from 'components/caroussel'
-import CarouselPeople from 'components/carouselpeople'
+const Caroussel = loadable(() => import('components/caroussel'))
+const CarouselPeople = loadable(() => import('components/carouselpeople'))
 
 import Meta from 'components/meta'
 import Layout from 'components/layout'
@@ -464,7 +466,7 @@ const BlogIndex = ({ data, location }) => {
                     <div class="event_popup_content">
                       <h3>12th-13th</h3>
                       <h4>MAY</h4>
-                      <h5>2-DAY CONFERENCE</h5>
+                      <h5>2-DAY CONFERENCE HEREEE</h5>
                       <h6>
                         {' '}
                         <span>8:30am to 7:00pm</span>
@@ -2084,7 +2086,7 @@ const BlogIndex = ({ data, location }) => {
           </div>
         </div>
         <div class="events_images d-sm-none">
-          <ul class="">
+          <ul>
             <li>
               <img loading="lazy" src="images/ourjourney-mobile.png" />
             </li>
