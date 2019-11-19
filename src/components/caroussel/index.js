@@ -7,7 +7,6 @@ import ReactSimpleCarousel from 'react-spring-carousel'
 
 function Caroussel() {
   const data = useStaticQuery(query)
-  console.log('TCL: Caroussel -> data', data)
 
   const [show, setShow] = useState(false)
   const [eventProps, setEventProps] = useState({
@@ -23,7 +22,7 @@ function Caroussel() {
     setEventProps(event)
   }
   return (
-    <>
+    <div class="conference_slider">
       <Modal show={show} onHide={handleClose} id="event_popup">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -268,7 +267,7 @@ function Caroussel() {
           </div>
         </ReactSimpleCarousel>
       </div>
-    </>
+    </div>
   )
 }
 

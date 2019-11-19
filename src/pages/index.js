@@ -46,6 +46,11 @@ const BlogIndex = ({ data, location }) => {
     shortBio: '',
     bio: '',
     avatarUrl: '',
+    localFile: {
+      childImageSharp: {
+        fluid: null,
+      },
+    },
   })
 
   const clientQuery = `{
@@ -124,6 +129,7 @@ const BlogIndex = ({ data, location }) => {
   //TODO: useEventSchedule
   useEffect(() => {
     request('https://api.eventlama.com/gql', clientQuery).then(data => {
+      // TODO: optimize this so the local images will not be erased from the query
       setEvent({
         ...event,
         ...data.events[0],
@@ -134,16 +140,16 @@ const BlogIndex = ({ data, location }) => {
   }, [event.id])
 
   // TODO: useScrollToSlot???
-  useEffect(() => {
-    const hash = document.location.hash
-    const slot = hash.split('#slot-')
-    if (slot && slot[1]) {
-      let dayd = document.getElementById(slot[1]).offsetTop
-      let scrolldiv = document.getElementById('schedule-scroll')
-      scrolldiv.scrollIntoView()
-      scrolldiv.scrollTop = dayd - 150
-    }
-  })
+  // useEffect(() => {
+  //   const hash = document.location.hash
+  //   const slot = hash.split('#slot-')
+  //   if (slot && slot[1]) {
+  //     let dayd = document.getElementById(slot[1]).offsetTop
+  //     let scrolldiv = document.getElementById('schedule-scroll')
+  //     scrolldiv.scrollIntoView()
+  //     scrolldiv.scrollTop = dayd - 150
+  //   }
+  // })
 
   // TODO: useIsFrench
   useEffect(() => {
@@ -160,7 +166,6 @@ const BlogIndex = ({ data, location }) => {
   //TODO: useCheckoutListener
   if (typeof window !== 'undefined') {
     window.addEventListener('message', message => {
-      console.log(message)
       if (message.data && message.data.checkoutUrl) {
         window.location = message.data.checkoutUrl
       }
@@ -187,508 +192,13 @@ const BlogIndex = ({ data, location }) => {
             <ReactMarkdown source={event.description} />
           </div>
         </div>
-        <div class="conference_slider">
-          <Caroussel />
-          <div class="slick-carousel d-none">
-            <div>
-              <a
-                href="#"
-                data-toggle="modal"
-                data-target="#event_popup"
-                data-pic1="images/workshop1.png"
-                data-pic2="images/Event_popup2.png"
-                data-pic3="images/Event_popup3.png"
-                class="event-popup-link"
-                data-date="12th-13th"
-                data-description="2 days to learn from the best ranging from topics such as React.js, SSR, hooks, suspense, graphql, TypeScript, React Native, Animations, next.js amplify and more! 2 days to learn from the best ranging from topics such as React.js, SSR, hooks, suspense, graphql, TypeScript, React Native, Animations, next.js amplify and more!"
-                data-title="2-DAY WORKSHOPS"
-                data-hours="8:45am to 5:30pm"
-              >
-                <div class="slider_box">
-                  <h3>12th-13th</h3>
-                  <h4>MAY</h4>
-                  <img loading="lazy" src="images/slider1.png" alt="" />
-                  <h5>2-DAY WORKSHOPS</h5>
-                  <h6>Palace of Paris-Est Congress</h6>
-                  <p>8:45am to 5:30pm</p>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a
-                href="#"
-                class="event-popup-link"
-                data-toggle="modal"
-                data-target="#event_popup"
-                data-pic1="images/bar1.jpeg"
-                data-pic2="images/bar2.png"
-                data-pic3="images/bar3.png"
-                data-date="13th"
-                data-description="A great occasion for people to meet, socialize and get to know each other before the conference. It will offer both alcoholic and non alcoholic drinks as well as food. The party will start at 18:45 Paris time just after our workshops. Location to be announced soon."
-                data-title="BAR NIGHT"
-                data-hours="6:45pm"
-              >
-                <div class="slider_box">
-                  <h3>13th</h3>
-                  <h4>MAY</h4>
-                  <img loading="lazy" src="images/slider2.png" alt="" />
-                  <h5>BAR NIGHT</h5>
-                  <h6 class="">More details coming soon</h6>
-                  <p>6:45pm</p>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a
-                href="#"
-                data-toggle="modal"
-                data-target="#event_popup"
-                data-pic1="images/Event_popup1.png"
-                data-pic2="images/conf2.jpg"
-                data-pic3="images/conf3.jpg"
-                class="event-popup-link"
-                data-date="14th-15th"
-                data-description="At this conference, you will learn how new projects such as ReasonML will bring web and mobile React Native apps to the next level and how projects such as React Native Web, React Primitive and Expo make it easy to write, deploy and share code on all platforms quickly. The conference aims to give talks that inspire and explore new futuristic ideas dealing with all the techs we enjoy from the React ecosystem such as React.js, React Native, GraphQL, Relay, Universal apps, ReasonML, Webpack, inline CSS and more."
-                data-title="2-DAY CONFERENCE"
-                data-hours="8:30am to 7:00pm"
-              >
-                <div class="slider_box">
-                  <h3>14th-15th</h3>
-                  <h4>MAY</h4>
-                  <img loading="lazy" src="images/slider3.png" alt="" />
-                  <h5>2-DAY CONFERENCE</h5>
-                  <h6>Palace of Paris-Est Congress</h6>
-                  <p> 8:30am to 7:00pm</p>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a
-                href="#"
-                data-toggle="modal"
-                data-target="#event_popup"
-                data-pic1="images/food1.jpg"
-                data-pic2="images/food2.png"
-                data-pic3="images/food3.jpg?x=41"
-                class="event-popup-link"
-                data-date="12th-15th"
-                data-description="During the whole week you will be enjoying quality buffets of delicious French food and more.
-                Our French breakfasts include croissants but also scrambled eggs with bacon, fruits, cheese, yogurt and more.
-                Our lunches include delicious French quiches, salades, smoked salmons, French cheese selection, charcuterie, sandwiches, mini-burgers with meat or veggies, sushi, belgium-style waffles, crepes, macarons, French pasteries and more. We also offer vegan and gluten free options! We also have a dinner on the 14th and a drinkup on the 15th.
-                Last but not least, water and coffee will be flowing all day long. French wine and beer will also be available."
-                data-title="Delicious food"
-                data-hours="all workshops and conf days"
-              >
-                <div class="slider_box">
-                  <h3>12th-15th</h3>
-                  <h4>MAY</h4>
-                  <img loading="lazy" src="images/food.png" alt="" />
-                  <h5>Delicious food buffets</h5>
-                  <h6>Palace of Paris-Est Congress</h6>
-                  <p> During conf &amp; workshop days</p>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a
-                href="#"
-                data-toggle="modal"
-                data-target="#event_popup"
-                data-pic1="images/Event_popup1.png"
-                data-pic2="images/conf2.jpg"
-                data-pic3="images/conf3.jpg"
-                class="event-popup-link"
-                data-date="14th-15th"
-                data-description="Lightning talks are a great occasion to discover new ideas or projects in a short amount of time. Many of our earlier lightning talks speakers turned into great member of the community including Sunil Pai now part of the React core team or Brandon Dail now on the FE at Facebook."
-                data-title="2-DAY CONFERENCE"
-                data-hours="8:30am to 7:00pm"
-              >
-                <div class="slider_box">
-                  <h3>14th-15th</h3>
-                  <h4>MAY</h4>
-                  <img loading="lazy" src="images/lightnings.png" alt="" />
-                  <h5>Lightning talks</h5>
-                  <h6>Palace of Paris-Est Congress</h6>
-                  <p> During conference days</p>
-                </div>
-              </a>
-            </div>
-            <div>
-              <div class="slider_box">
-                <h3>16th</h3>
-                <h4>MAY</h4>
-                <img loading="lazy" src="images/hackathon.png" alt="" />
-                <h5>Hackathon</h5>
-                <h6>More details coming soon</h6>
-                <p> 9:00am to 5:00pm</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal fade" id="hackathon_popup" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="event_popup_content">
-                      <h3>12th-13th</h3>
-                      <h4>MAY</h4>
-                      <h5>2-DAY CONFERENCE</h5>
-                      <h6>
-                        {' '}
-                        <span>8:30am to 7:00pm</span>
-                      </h6>
-                      <p>
-                        2 days to learn from the best ranging from topics such
-                        as React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more! 2
-                        days to learn from the best ranging from topics such as
-                        React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more!
-                      </p>
-
-                      <a href="#tickets">Get Your Ticket</a>
-                    </div>
-                  </div>
-                  <div class="col-md-7">
-                    <div class="event_popup_images">
-                      <ul>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup1.png"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup2.png"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup3.png"
-                            alt=""
-                          />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal fade" id="lightnings_popup" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="event_popup_content">
-                      <h3>12th-13th</h3>
-                      <h4>MAY</h4>
-                      <h5>2-DAY CONFERENCE</h5>
-                      <h6>
-                        {' '}
-                        <span>8:30am to 7:00pm</span>
-                      </h6>
-                      <p>
-                        2 days to learn from the best ranging from topics such
-                        as React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more! 2
-                        days to learn from the best ranging from topics such as
-                        React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more!
-                      </p>
-
-                      <a href="#tickets">Get Your Ticket</a>
-                    </div>
-                  </div>
-                  <div class="col-md-7">
-                    <div class="event_popup_images">
-                      <ul>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup1.png"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup2.png"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup3.png"
-                            alt=""
-                          />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal fade" id="food_popup" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="event_popup_content">
-                      <h3>12th-13th</h3>
-                      <h4>MAY</h4>
-                      <h5>2-DAY CONFERENCE HEREEE</h5>
-                      <h6>
-                        {' '}
-                        <span>8:30am to 7:00pm</span>
-                      </h6>
-                      <p>
-                        2 days to learn from the best ranging from topics such
-                        as React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more! 2
-                        days to learn from the best ranging from topics such as
-                        React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more!
-                      </p>
-
-                      <a href="#tickets">Get Your Ticket</a>
-                    </div>
-                  </div>
-                  <div class="col-md-7">
-                    <div class="event_popup_images">
-                      <ul>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup1.png"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup2.png"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup3.png"
-                            alt=""
-                          />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal fade" id="conf_popup" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="event_popup_content">
-                      <h3>12th-13th</h3>
-                      <h4>MAY</h4>
-                      <h5>2-DAY CONFERENCE</h5>
-                      <h6>
-                        {' '}
-                        <span>8:30am to 7:00pm</span>
-                      </h6>
-                      <p>
-                        2 days to learn from the best ranging from topics such
-                        as React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more! 2
-                        days to learn from the best ranging from topics such as
-                        React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more!
-                      </p>
-
-                      <a href="#tickets">Get Your Ticket</a>
-                    </div>
-                  </div>
-                  <div class="col-md-7">
-                    <div class="event_popup_images">
-                      <ul>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup1.png"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup2.png"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup3.png"
-                            alt=""
-                          />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal fade event_popup" id="bar_popup" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-md-5">
-                    <div class="event_popup_content">
-                      <h3>12th-13th</h3>
-                      <h4>MAY</h4>
-                      <h5>2-DAY WORKSHOPS</h5>
-                      <h6>
-                        {' '}
-                        <span>8:30am to 7:00pm</span>
-                      </h6>
-                      <p>
-                        2 days to learn from the best ranging from topics such
-                        as React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more! 2
-                        days to learn from the best ranging from topics such as
-                        React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more!
-                      </p>
-                      <p>
-                        2 days to learn from the best ranging from topics such
-                        as React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more! 2
-                        days to learn from the best ranging from topics such as
-                        React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more!
-                      </p>
-                      <p>
-                        2 days to learn from the best ranging from topics such
-                        as React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more! 2
-                        days to learn from the best ranging from topics such as
-                        React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more!
-                      </p>
-                      <p>
-                        2 days to learn from the best ranging from topics such
-                        as React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more! 2
-                        days to learn from the best ranging from topics such as
-                        React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more!
-                      </p>
-                      <p>
-                        2 days to learn from the best ranging from topics such
-                        as React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more! 2
-                        days to learn from the best ranging from topics such as
-                        React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more!
-                      </p>
-                      <p>
-                        2 days to learn from the best ranging from topics such
-                        as React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more! 2
-                        days to learn from the best ranging from topics such as
-                        React.js, SSR, hooks, suspense, graphql, TypeScript,
-                        React Native, Animations, next.js amplify and more!
-                      </p>
-
-                      <a href="#tickets">Get Your Ticket</a>
-                    </div>
-                  </div>
-                  <div class="col-md-7">
-                    <div class="event_popup_images">
-                      <ul>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup1.png"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup2.png"
-                            alt=""
-                          />
-                        </li>
-                        <li>
-                          <img
-                            loading="lazy"
-                            src="images/Event_popup3.png"
-                            alt=""
-                          />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Caroussel />
       </section>
       <a id="speakers"></a>
       <section class="speaker" id="speaker">
         <div class="container">
           <div class="headings">
-            <img loading="lazy" src="images/head-2.png" alt="" />
+            <Img fixed={data.head2.childImageSharp.fixed} />
             <h2>Our Speakers</h2>
             <p>
               Stay tuned for some awesome speakers announcements soon as well as
@@ -697,77 +207,73 @@ const BlogIndex = ({ data, location }) => {
           </div>
           <div class="speaker_profile">
             <div class="row">
-              {event.speakers.map(speaker => (
-                <div class="col-md-3 col-sm-4 col-xs-12">
-                  <div class="speaker_box left_box">
-                    <div class="profile_image">
-                      {/* {JSON.stringify(
-                        {
-                          name: speaker.name,
-                          image: speaker.localFile,
-                        },
-                        null,
-                        4
-                      )} */}
-                      <Img fluid={speaker.localFile.childImageSharp.fluid} />
-                    </div>
-                    <div class="profile_contnet">
-                      <h3 class="speaker-name">{speaker.name}</h3>
-                      <p class="speaker-bio" bio-full={speaker.bio}>
-                        {speaker.shortBio}
-                      </p>
-                      <ul>
-                        <li>
-                          <a
-                            href={'https://twitter.com/' + speaker.twitter}
-                            class="icon-social-button"
-                          >
-                            <i class="fa fa-twitter icon-twitter"></i>
-                            <span />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href={'https://github.com/' + speaker.github}
-                            class="icon-social-button"
-                          >
-                            <i class="fa fa-github icon-github"></i>
-                            <span />
-                          </a>
-                        </li>
-                        {speaker.url ? (
+              {event.speakers.map(speaker => {
+                return (
+                  <div class="col-md-3 col-sm-4 col-xs-12">
+                    <div class="speaker_box left_box">
+                      <div class="profile_image">
+                        <Img fluid={speaker.localFile.childImageSharp.fluid} />
+                      </div>
+                      <div class="profile_contnet">
+                        <h3 class="speaker-name">{speaker.name}</h3>
+                        <p class="speaker-bio" bio-full={speaker.bio}>
+                          {speaker.shortBio}
+                        </p>
+                        <ul>
                           <li>
                             <a
-                              href="https://ivesvh.com/"
+                              href={`https://twitter.com/${speaker.twitter}`}
                               class="icon-social-button"
                             >
-                              <i class="fa fa-link icon-link"></i>
+                              <i class="fa fa-twitter icon-twitter"></i>
+                              <span />
                             </a>
                           </li>
-                        ) : null}
-                      </ul>
+                          <li>
+                            <a
+                              href={`https://github.com/${speaker.github}`}
+                              class="icon-social-button"
+                            >
+                              <i class="fa fa-github icon-github"></i>
+                              <span />
+                            </a>
+                          </li>
+                          {speaker.url ? (
+                            <li>
+                              <a
+                                href="https://ivesvh.com/"
+                                class="icon-social-button"
+                              >
+                                <i class="fa fa-link icon-link"></i>
+                              </a>
+                            </li>
+                          ) : null}
+                        </ul>
+                      </div>
+                      <a
+                        href="#"
+                        class="add_icon show-speaker"
+                        data-toggle="modal"
+                        data-target="#speaker_popup"
+                        onClick={e => {
+                          e.preventDefault()
+                          setShow(true)
+                          setSpeakerProps(speaker)
+                        }}
+                      >
+                        +
+                      </a>
                     </div>
-                    <a
-                      href="#"
-                      class="add_icon show-speaker"
-                      data-toggle="modal"
-                      data-target="#speaker_popup"
-                      onClick={e => {
-                        e.preventDefault()
-                        setShow(true)
-                        setSpeakerProps(speaker)
-                      }}
-                    >
-                      +
-                    </a>
                   </div>
-                </div>
-              ))}
+                )
+              })}
 
               <div class="col-md-3 col-sm-4 col-xs-12">
                 <div class="speaker_box right_box">
                   <div class="profile_image">
-                    <img loading="lazy" src="images/you-round.png" alt="" />
+                    <Img
+                      fluid={data.speaker_placeholder.childImageSharp.fluid}
+                    />
                   </div>
                   <div class="profile_contnet">
                     <h3 class="speaker-name">You?</h3>
@@ -804,30 +310,27 @@ const BlogIndex = ({ data, location }) => {
                   <ul>
                     <li>
                       <a
-                        href={'https://twitter.com/' + speakerProps.twitter}
+                        href={`https://twitter.com/${speakerProps.twitter}`}
                         class="speaker-twitter-modal"
                       >
-                        <img loading="lazy" src="images/pt.png" alt="" />
+                        <Img fixed={data.pt.childImageSharp.fixed} />
                       </a>
                       <a
-                        href={'https://github.com/' + speakerProps.github}
+                        href={`https://github.com/${speakerProps.github}`}
                         class="speaker-github-modal"
                       >
-                        <img loading="lazy" src="images/pi.png" alt="" />
+                        <Img fixed={data.pi.childImageSharp.fixed} />
                       </a>
                       <a href={speakerProps.url} class="speaker-url-modal">
-                        <img loading="lazy" src="images/pl.png" alt="" />
+                        <Img fixed={data.pl.childImageSharp.fixed} />
                       </a>
                     </li>
                   </ul>
                 </div>
                 <div class="speaker_popup_profile">
-                  <img
-                    src={speakerProps.avatarUrl}
-                    alt=""
-                    class="speaker-avatar-modal"
-                    width="200px"
-                  />
+                  <div style={{ width: 200, margin: '0 auto' }}>
+                    <Img fluid={speakerProps.localFile.childImageSharp.fluid} />
+                  </div>
                   <div class="popup_profile_content">
                     <h3 class="speaker-name-modal">{speakerProps.name}</h3>
                     <h5 class="speaker-bio-modal">{speakerProps.shortBio}</h5>
@@ -2633,6 +2136,41 @@ export const pageQuery = graphql`
         }
       }
     }
+    head2: file(relativePath: { eq: "head-2.png" }) {
+      childImageSharp {
+        fixed(width: 90, height: 90) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    speaker_placeholder: file(relativePath: { eq: "you-round.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    pt: file(relativePath: { eq: "pt.png" }) {
+      childImageSharp {
+        fixed(width: 32, height: 32) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    pi: file(relativePath: { eq: "pi.png" }) {
+      childImageSharp {
+        fixed(width: 32, height: 32) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    pl: file(relativePath: { eq: "pl.png" }) {
+      childImageSharp {
+        fixed(width: 64, height: 64) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
     site {
       meta: siteMetadata {
         title
@@ -2641,31 +2179,6 @@ export const pageQuery = graphql`
         author
         twitter
         adsense
-      }
-    }
-    remark: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      posts: edges {
-        post: node {
-          html
-          frontmatter {
-            layout
-            title
-            path
-            category
-            tags
-            description
-            date(formatString: "YYYY/MM/DD")
-            image {
-              childImageSharp {
-                fluid(maxWidth: 500) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
