@@ -1,8 +1,6 @@
 name: Build on push
 on:
   push:
-    branches:
-      - develop
     paths-ignore:
       - ".github/**"
 jobs:
@@ -17,4 +15,4 @@ jobs:
         run: |
           yarn
           yarn build
-          npx netlify-cli deploy --dir=www/public --prod
+          npx netlify-cli deploy --dir=public --prod
