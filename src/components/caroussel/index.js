@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import { graphql, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image/withIEPolyfill'
-import ReactSimpleCarousel from 'react-spring-carousel'
+import './index.css'
 
 function Caroussel() {
   const data = useStaticQuery(query)
@@ -83,13 +83,12 @@ function Caroussel() {
         </div>
       </Modal>
       <div className="caroussel" style={{ height: '100%' }}>
-        <ReactSimpleCarousel slidesToShow={5}>
+        <div className="horizontal-carousel">
           <div
-            key={0}
             className="App-slide"
             style={{
-              marginBottom: '45px',
-              marginRight: '25px',
+              marginBottom: 45,
+              marginRight: 25,
             }}
             onClick={() => {
               handleShow({
@@ -265,7 +264,7 @@ function Caroussel() {
               <p> 9:00am to 5:00pm</p>
             </div>
           </div>
-        </ReactSimpleCarousel>
+        </div>
       </div>
     </div>
   )

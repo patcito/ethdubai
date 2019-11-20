@@ -1344,129 +1344,15 @@ const BlogIndex = ({ data, location }) => {
                 </div>
               </div>
             </div>
-            <div class="behind_people_slider d-none">
-              <div class="people_slick-carousel">
-                <div>
-                  <div class="speaker_box left_box">
-                    <div class="profile_image">
-                      <img loading="lazy" src="images/pb1.png" alt="" />
-                    </div>
-                    <div class="profile_contnet">
-                      <h3>Patrick Aljordi</h3>
-                      <ul>
-                        <li>
-                          <a
-                            href="https://twitter.com/patcito"
-                            class="icon-social-button-small"
-                          >
-                            <i class="fa fa-twitter icon-twitter"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="https://github.com/patcito"
-                            class="icon-social-button-small"
-                          >
-                            <i class="fa fa-github icon-github"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div class="speaker_box right_box">
-                    <div class="profile_image">
-                      <img loading="lazy" src="images/pb2.png" alt="" />
-                    </div>
-                    <div class="profile_contnet">
-                      <h3>Katiuska Gamero</h3>
-                      <ul>
-                        <li>
-                          <a
-                            href="https://twitter.com/katy_gca"
-                            class="icon-social-button-small"
-                          >
-                            <i class="fa fa-twitter icon-twitter"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="https://github.com/katcita"
-                            class="icon-social-button-small"
-                          >
-                            <i class="fa fa-github icon-github"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div class="speaker_box left_box">
-                    <div class="profile_image">
-                      <img loading="lazy" src="images/pb3.png" alt="" />
-                    </div>
-                    <div class="profile_contnet">
-                      <h3>React.js Paris</h3>
-                      <ul>
-                        <li>
-                          <a
-                            href="https://twitter.com/reactjsparis"
-                            class="icon-social-button-small"
-                          >
-                            <i class="fa fa-twitter icon-twitter"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="https://www.meetup.com/ReactJS-Paris/"
-                            class="icon-social-button-small"
-                          >
-                            <i class="fa fa-link icon-link"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div class="speaker_box right_box">
-                    <div class="profile_image">
-                      <img loading="lazy" src="images/pb4.png" alt="" />
-                    </div>
-                    <div class="profile_contnet">
-                      <h3>ReasonML Paris</h3>
-                      <ul>
-                        <li>
-                          <a
-                            href="https://twitter.com/reasonmlparis"
-                            class="icon-social-button-small"
-                          >
-                            <i class="fa fa-twitter icon-twitter"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="https://www.meetup.com/Reasonml-Paris/"
-                            class="icon-social-button-small"
-                          >
-                            <i class="fa fa-link icon-link"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
       <section class="peaople_said">
         <div class="container">
           <div class="headings">
-            <img loading="lazy" src="images/testimonial.png" alt="" />
+            <div style={{ width: 80, margin: '0 auto' }}>
+              <Img fixed={data.testimonial.childImageSharp.fixed} />
+            </div>
             <h2 style={{ textAlign: 'center' }}>What People Said</h2>
             <p>
               What our previous attendants had to say about ReactEurope 2019.
@@ -1474,107 +1360,6 @@ const BlogIndex = ({ data, location }) => {
           </div>
           <div class="testimonials-slider">
             <CarouselPeople />
-          </div>
-        </div>
-      </section>
-      <section class="our_article d-none">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="article_heading">
-                <h4>ReactEurope Articles</h4>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="article_btn">
-                <a href="#">View All Articles</a>
-              </div>
-            </div>
-          </div>
-          <div class="article_boxes">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="article_inner">
-                  <div class="article_image">
-                    <img loading="lazy" src="images/article1.png" alt="" />
-                  </div>
-                  <div class="article_full_contet">
-                    <div class="article_boxes_content">
-                      <div class="artcile_profile_image">
-                        <img loading="lazy" src="images/article_profile.png" />
-                      </div>
-                      <div class="article_profile_content">
-                        <h3>Leimonis Konstantinos</h3>
-                        <h4>May 23, 2018 · 3 min read</h4>
-                      </div>
-                    </div>
-                    <div class="article_content_bottom">
-                      <h5>React Europe 2018 - TLDR;</h5>
-                      <p>
-                        the organization of the conference was really good,
-                        shout out to @ReactEurope’s team! The schedule was
-                        followed with
-                      </p>
-                      <a href="#">Read more</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="article_inner">
-                  <div class="article_image">
-                    <img loading="lazy" src="images/article2.png" alt="" />
-                  </div>
-                  <div class="article_full_contet">
-                    <div class="article_boxes_content">
-                      <div class="artcile_profile_image">
-                        <img loading="lazy" src="images/article_profile.png" />
-                      </div>
-                      <div class="article_profile_content">
-                        <h3>Leimonis Konstantinos</h3>
-                        <h4>May 23, 2018 · 3 min read</h4>
-                      </div>
-                    </div>
-                    <div class="article_content_bottom">
-                      <h5>React Europe 2018 - TLDR;</h5>
-                      <p>
-                        the organization of the conference was really good,
-                        shout out to @ReactEurope’s team! The schedule was
-                        followed with
-                      </p>
-                      <a href="#">Read more</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="article_inner">
-                  <div class="article_image">
-                    <img loading="lazy" src="images/article3.png" alt="" />
-                  </div>
-                  <div class="article_full_contet">
-                    <div class="article_boxes_content">
-                      <div class="artcile_profile_image">
-                        <img loading="lazy" src="images/article_profile.png" />
-                      </div>
-                      <div class="article_profile_content">
-                        <h3>Leimonis Konstantinos</h3>
-                        <h4>May 23, 2018 · 3 min read</h4>
-                      </div>
-                    </div>
-                    <div class="article_content_bottom">
-                      <h5>React Europe 2018 - TLDR;</h5>
-                      <p>
-                        the organization of the conference was really good,
-                        shout out to @ReactEurope’s team! The schedule was
-                        followed with
-                      </p>
-                      <a href="#">Read more</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -1587,41 +1372,41 @@ const BlogIndex = ({ data, location }) => {
         <div class="events_images d-sm-none">
           <ul>
             <li>
-              <img loading="lazy" src="images/ourjourney-mobile.png" />
+              <Img fluid={data.our_journey_mobile.childImageSharp.fluid} />
             </li>
           </ul>
         </div>
         <div class="events_images d-none d-sm-block">
           <ul class="">
             <li>
-              <img loading="lazy" src="images/events1.png" alt="" />
+              <Img fluid={data.events1.childImageSharp.fluid} />
             </li>
             <li>
-              <img loading="lazy" src="images/events2.png" alt="" />
+              <Img fluid={data.events2.childImageSharp.fluid} />
             </li>
             <li>
-              <img loading="lazy" src="images/events3.png" alt="" />
+              <Img fluid={data.events3.childImageSharp.fluid} />
             </li>
             <li>
-              <img loading="lazy" src="images/events4.png" alt="" />
+              <Img fluid={data.events4.childImageSharp.fluid} />
             </li>
             <li>
-              <img loading="lazy" src="images/events5.png" alt="" />
-              <img loading="lazy" src="images/events5-2.png" alt="" />
+              <Img fluid={data.events5.childImageSharp.fluid} />
+              <Img fluid={data.events5_2.childImageSharp.fluid} />
             </li>
             <li>
-              <img loading="lazy" src="images/events6.png" alt="" />
+              <Img fluid={data.events6.childImageSharp.fluid} />
             </li>
             <li>
-              <img loading="lazy" src="images/events7.png" alt="" />
-              <img loading="lazy" src="images/events7-2.png" alt="" />
+              <Img fluid={data.events7.childImageSharp.fluid} />
+              <Img fluid={data.events7_2.childImageSharp.fluid} />
             </li>
             <li>
-              <img loading="lazy" src="images/events8.png" alt="" />
+              <Img fluid={data.events8.childImageSharp.fluid} />
             </li>
             <li>
-              <img loading="lazy" src="images/events9.png" alt="" />
-              <img loading="lazy" src="images/events9-2.png" alt="" />
+              <Img fluid={data.events9.childImageSharp.fluid} />
+              <Img fluid={data.events9_2.childImageSharp.fluid} />
             </li>
           </ul>
         </div>
@@ -1949,18 +1734,14 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   {
-    banner: file(relativePath: { eq: "banner-image.png" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    heading_logo: file(relativePath: { eq: "react-europe-plain-round.png" }) {
-      childImageSharp {
-        fixed(width: 300) {
-          ...GatsbyImageSharpFixed
-        }
+    site {
+      meta: siteMetadata {
+        title
+        description
+        url: siteUrl
+        author
+        twitter
+        adsense
       }
     }
     eventlama {
@@ -2149,9 +1930,23 @@ export const pageQuery = graphql`
         }
       }
     }
+    banner: file(relativePath: { eq: "banner-image.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    heading_logo: file(relativePath: { eq: "react-europe-plain-round.png" }) {
+      childImageSharp {
+        fixed(width: 300) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
     head2: file(relativePath: { eq: "head-2.png" }) {
       childImageSharp {
-        fixed(width: 90, height: 90) {
+        fixed(width: 80, height: 80) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
@@ -2179,19 +1974,107 @@ export const pageQuery = graphql`
     }
     pl: file(relativePath: { eq: "pl.png" }) {
       childImageSharp {
-        fixed(width: 64, height: 64) {
+        fixed(width: 32, height: 32) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
     }
-    site {
-      meta: siteMetadata {
-        title
-        description
-        url: siteUrl
-        author
-        twitter
-        adsense
+    testimonial: file(relativePath: { eq: "testimonial.png" }) {
+      childImageSharp {
+        fixed(width: 80) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    our_journey_mobile: file(relativePath: { eq: "ourjourney-mobile.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events1: file(relativePath: { eq: "events1.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events2: file(relativePath: { eq: "events2.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events3: file(relativePath: { eq: "events3.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events4: file(relativePath: { eq: "events4.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events5: file(relativePath: { eq: "events5.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events5_2: file(relativePath: { eq: "events5-2.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events6: file(relativePath: { eq: "events6.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events7: file(relativePath: { eq: "events7.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events7_2: file(relativePath: { eq: "events7-2.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events8: file(relativePath: { eq: "events8.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events9: file(relativePath: { eq: "events9.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    events9_2: file(relativePath: { eq: "events9-2.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
       }
     }
   }
