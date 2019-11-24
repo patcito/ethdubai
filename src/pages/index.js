@@ -548,38 +548,10 @@ export default function IndexPage({ data, location }) {
           </ul>
         </div>
         <div class="events_images d-none d-sm-block">
-          <ul class="">
-            <li>
-              <Img fluid={data.events1.childImageSharp.fluid} />
-            </li>
-            <li>
-              <Img fluid={data.events2.childImageSharp.fluid} />
-            </li>
-            <li>
-              <Img fluid={data.events3.childImageSharp.fluid} />
-            </li>
-            <li>
-              <Img fluid={data.events4.childImageSharp.fluid} />
-            </li>
-            <li>
-              <Img fluid={data.events5.childImageSharp.fluid} />
-              <Img fluid={data.events5_2.childImageSharp.fluid} />
-            </li>
-            <li>
-              <Img fluid={data.events6.childImageSharp.fluid} />
-            </li>
-            <li>
-              <Img fluid={data.events7.childImageSharp.fluid} />
-              <Img fluid={data.events7_2.childImageSharp.fluid} />
-            </li>
-            <li>
-              <Img fluid={data.events8.childImageSharp.fluid} />
-            </li>
-            <li>
-              <Img fluid={data.events9.childImageSharp.fluid} />
-              <Img fluid={data.events9_2.childImageSharp.fluid} />
-            </li>
-          </ul>
+          <Img
+            className="no-animation"
+            fluid={data.mosaic.childImageSharp.fluid}
+          />
         </div>
       </section>
       <section class="subscribe_bottom">
@@ -1120,91 +1092,14 @@ export const pageQuery = graphql`
         }
       }
     }
+    mosaic: file(relativePath: { eq: "mosaic.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 2000) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
     our_journey_mobile: file(relativePath: { eq: "ourjourney-mobile.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events1: file(relativePath: { eq: "events1.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events2: file(relativePath: { eq: "events2.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events3: file(relativePath: { eq: "events3.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events4: file(relativePath: { eq: "events4.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events5: file(relativePath: { eq: "events5.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events5_2: file(relativePath: { eq: "events5-2.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events6: file(relativePath: { eq: "events6.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events7: file(relativePath: { eq: "events7.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events7_2: file(relativePath: { eq: "events7-2.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events8: file(relativePath: { eq: "events8.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events9: file(relativePath: { eq: "events9.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    events9_2: file(relativePath: { eq: "events9-2.png" }) {
       childImageSharp {
         fluid(maxWidth: 300) {
           ...GatsbyImageSharpFluid_withWebp
