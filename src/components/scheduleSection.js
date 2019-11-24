@@ -167,61 +167,54 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                       </a>
                                     </h4>
                                     <ReactMarkdown source={slot.description} />
-                                    {slot.speakers.map((speaker, i) => {
-                                      console.log(
-                                        'TCL: speaker',
-                                        speaker.name,
-                                        speaker.localFile
-                                      )
-                                      return (
-                                        <div class="tab_profile_inner_box">
-                                          <div class="row no-gutters">
-                                            <div class="col-md-2">
-                                              <div class="tab_profile_inner_box_image">
-                                                <Img
-                                                  fluid={
-                                                    speaker.localFile
-                                                      .childImageSharp.fluid
-                                                  }
-                                                />
-                                              </div>
+                                    {slot.speakers.map((speaker, i) => (
+                                      <div class="tab_profile_inner_box">
+                                        <div class="row no-gutters">
+                                          <div class="col-md-2">
+                                            <div class="tab_profile_inner_box_image">
+                                              <Img
+                                                fluid={
+                                                  speaker.localFile
+                                                    .childImageSharp.fluid
+                                                }
+                                              />
                                             </div>
-                                            <div class="col-md-10">
-                                              <div class="tab_profile_inner_box_content">
-                                                <div class="name_icon">
-                                                  <div class="name">
-                                                    <h2>{speaker.name}</h2>
-                                                  </div>
-                                                  <div class="tab_icons">
-                                                    <ul>
-                                                      <li>
-                                                        <a
-                                                          href={`https://twitter.com/${speaker.twitter}`}
-                                                          class="icon-social-button-small"
-                                                        >
-                                                          <i class="fa fa-twitter icon-twitter"></i>
-                                                        </a>
-                                                      </li>
-                                                      <li>
-                                                        <a
-                                                          href={`https://github.com/${speaker.github}`}
-                                                          class="icon-social-button-small"
-                                                        >
-                                                          <i class="fa fa-github icon-github"></i>
-                                                        </a>
-                                                      </li>
-                                                    </ul>
-                                                  </div>
+                                          </div>
+                                          <div class="col-md-10">
+                                            <div class="tab_profile_inner_box_content">
+                                              <div class="name_icon">
+                                                <div class="name">
+                                                  <h2>{speaker.name}</h2>
                                                 </div>
-                                                <ReactMarkdown
-                                                  source={speaker.bio}
-                                                />
+                                                <div class="tab_icons">
+                                                  <ul>
+                                                    <li>
+                                                      <a
+                                                        href={`https://twitter.com/${speaker.twitter}`}
+                                                        class="icon-social-button-small"
+                                                      >
+                                                        <i class="fa fa-twitter icon-twitter"></i>
+                                                      </a>
+                                                    </li>
+                                                    <li>
+                                                      <a
+                                                        href={`https://github.com/${speaker.github}`}
+                                                        class="icon-social-button-small"
+                                                      >
+                                                        <i class="fa fa-github icon-github"></i>
+                                                      </a>
+                                                    </li>
+                                                  </ul>
+                                                </div>
                                               </div>
+                                              <ReactMarkdown
+                                                source={speaker.bio}
+                                              />
                                             </div>
                                           </div>
                                         </div>
-                                      )
-                                    })}
+                                      </div>
+                                    ))}
                                   </div>
                                 </div>
                               ) : null
