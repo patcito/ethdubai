@@ -5,7 +5,6 @@ import { Modal } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
 
 export default function SpeakersSection({ speakers }) {
-  console.log('TCL: SpeakersSection -> speakers', speakers)
   const [show, setShow] = React.useState(false)
   const [speakerProps, setSpeakerProps] = React.useState({
     name: '',
@@ -61,15 +60,12 @@ export default function SpeakersSection({ speakers }) {
       }
     }
   `)
-  console.log('TCL: SpeakersSection -> data', data)
 
   return (
     <section class="speaker" id="speakers">
       <div class="container">
         <div class="headings">
-          {data.head2.childImageSharp && (
-            <Img fixed={data.head2.childImageSharp.fixed} />
-          )}
+          <Img fixed={data.head2.childImageSharp.fixed} />
           <h2>Our Speakers</h2>
           <p>
             Stay tuned for some awesome speakers announcements soon as well as

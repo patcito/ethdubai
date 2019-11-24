@@ -1,0 +1,57 @@
+import React from 'react'
+import IframeResizer from 'iframe-resizer-react'
+
+export default function TicketsSection() {
+  const [isFrench, setIsFrench] = React.useState(false)
+
+  React.useEffect(() => {
+    fetch('https://api.eventlama.com/geoip')
+      .then(res => res.json())
+      .then(json => {
+        if (json.CountryCode === 'FR') {
+          setIsFrench(true)
+        }
+      })
+      .catch(err => {})
+  }, [])
+  return (
+    <>
+      <a id="tickets"></a>
+      <section class="book_ticket" id="book_ticket">
+        <div class="container">
+          <div class="container">
+            <div class="headings">
+              <img loading="lazy" src="images/ticket.png" alt="" />
+              <h2>Get Your Tickets</h2>
+              {isFrench ? (
+                <h4>
+                  <a
+                    href="https://www.oxiane.com/oxiane-partenaire-formation-reacteurope-2020-la-conference-europeenne-sur-reactjs-et-react-native/"
+                    target="_blank"
+                  >
+                    🇫🇷 Si vous êtes français et que vous souhaitez utiliser
+                    votre budget de formation professionnelle pour financer
+                    votre inscription, contactez notre partenaire Oxiane
+                  </a>
+                </h4>
+              ) : null}
+              <h3>
+                Tickets are now available for both conference and workshops.
+              </h3>
+              <h3 class="d-none">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
+                  Don't miss our tickets release by subscribing here.
+                </a>
+              </h3>
+              <IframeResizer
+                log
+                src="https://www.react-europe.org?iframe=true"
+                style={{ width: '1px', minWidth: '100%', border: '0px' }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}

@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { graphql } from 'gatsby'
-import IframeResizer from 'iframe-resizer-react'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
 import loadable from '@loadable/component'
-
-import { Modal, Tab } from 'react-bootstrap'
-import ZeitLogo from '../../static/images/zeit-black-full-logo.svg'
 
 const Caroussel = loadable(() => import('components/caroussel'))
 const CarouselPeople = loadable(() => import('components/carouselpeople'))
@@ -18,111 +14,134 @@ import Hero from 'components/hero'
 import { request } from 'graphql-request'
 import ScheduleSection from 'components/scheduleSection'
 import SpeakersSection from 'components/speakersSection'
+import TicketsSection from 'components/ticketsSection'
+import SponsorsSection from 'components/sponsorsSection'
 
-const BlogIndex = ({ data, location }) => {
+function ZeitLogo(props) {
+  return (
+    <svg width={140} viewBox="0 0 230 46" {...props}>
+      <linearGradient
+        id="prefix__a"
+        x1="114.721%"
+        x2="39.54%"
+        y1="181.283%"
+        y2="100%"
+      >
+        <stop offset={0} stopColor="#fff" />
+        <stop offset={1} />
+      </linearGradient>
+      <g fill="none">
+        <path d="M25.492 0l25.491 45.226H0z" fill="url(#prefix__a)" />
+        <path
+          d="M85.75 34h20.45v-3.55H90.85l15.1-21.55V5.8H86v3.55h14.85L85.75 30.9zm41.85 0h18.35v-3.55h-14.2V21.4h12.35v-3.55h-12.35v-8.5h14.2V5.8H127.6zm40.45 0h17.9v-3.55h-6.85V9.35h6.85V5.8h-17.9v3.55h6.9v21.1h-6.9zm47.35 0h4.15V9.35h9.6V5.8H205.9v3.55h9.5z"
+          fill="#333"
+        />
+      </g>
+    </svg>
+  )
+}
+
+export default function IndexPage({ data, location }) {
   //TODO: separate logic into components
   const [event, setEvent] = useState(data.eventlama.events[0])
-  const [isFrench, setIsFrench] = useState(false)
   const [faq, setFaq] = useState(null)
-  const [showSponsor, setShowSponsor] = useState(false)
 
   const [schedule, setSchedule] = useState(
     data.eventlama.events[0].groupedSchedule
   )
-  const [currentSponsor, setCurrentSponsor] = useState({
-    name: 'url',
-    url: '',
-    logoUrl: '',
-    jobUrl: '',
-    description: '',
-    level: '',
-  })
 
-  const clientQuery = `{
-        events(slug: "reacteurope-2020") {
-        id
-        description
-        websiteUrl
-        name
-        venueName
-        venueCountry
-        venueCity
-        cocUrl
-        twitterHandle
-        offset
-        startDate
-        endDate
-        timezoneId
-        slug
-        collaborators {
-          id
-          firstName
-          lastName
-          twitter
-          github
-          url
-          role
-          avatarUrl
-        }
-        speakers {
-          id
-          name
-          twitter
-          github
-          bio
-          shortBio
-          talks {
-            id
-            title
-            type
-            description
-            length
-            startDate
-          }
-        }
-        groupedSchedule {
-          title
-          date
-          slots {
-            id
-            title
-            likes
-            description
-            length
-            startDate
-            youtubeUrl
-            youtubeId
-            tags
-            type
-            room
-            talk
-            keynote
-            speakers {
-              id
-              name
-              twitter
-              github
-              avatarUrl
-              bio
-              shortBio
-            }
-          }
-        }
-      }
-    }
-`
+  //   const clientQuery = `{
+  //         events(slug: "reacteurope-2020") {
+  //         id
+  //         description
+  //         websiteUrl
+  //         name
+  //         venueName
+  //         venueCountry
+  //         venueCity
+  //         cocUrl
+  //         twitterHandle
+  //         offset
+  //         startDate
+  //         endDate
+  //         timezoneId
+  //         slug
+  //         collaborators {
+  //           id
+  //           firstName
+  //           lastName
+  //           twitter
+  //           github
+  //           url
+  //           role
+  //           avatarUrl
+  //         }
+  //         speakers {
+  //           id
+  //           name
+  //           twitter
+  //           github
+  //           bio
+  //           shortBio
+  //           talks {
+  //             id
+  //             title
+  //             type
+  //             description
+  //             length
+  //             startDate
+  //           }
+  //         }
+  //         groupedSchedule {
+  //           title
+  //           date
+  //           slots {
+  //             id
+  //             title
+  //             likes
+  //             description
+  //             length
+  //             startDate
+  //             youtubeUrl
+  //             youtubeId
+  //             tags
+  //             type
+  //             room
+  //             talk
+  //             keynote
+  //             speakers {
+  //               id
+  //               name
+  //               twitter
+  //               github
+  //               avatarUrl
+  //               bio
+  //               shortBio
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  // `
   //TODO: useEventSchedule
-  useEffect(() => {
-    request('https://api.eventlama.com/gql', clientQuery).then(data => {
-      // TODO: optimize this so the local images will not be erased from the query
-      setEvent({
-        ...event,
-        ...data.events[0],
-        speakers: event.speakers,
-      })
-      setSchedule(data.events[0].groupedSchedule)
-    })
-  }, [event.id])
+  // useEffect(() => {
+  //   request('https://api.eventlama.com/gql', clientQuery).then(data => {
+  //     // TODO: optimize this so the local images will not be erased from the query
+  //     setEvent({
+  //       ...event,
+  //       ...data.events[0],
+  //       speakers: event.speakers,
+  //     })
+  //     setSchedule({
+  //       ...schedule,
+  //       ...data.events[0].groupedSchedule,
+  //       slots: {
+  //         ...data.events[0].groupedSchedule.slots,
+  //         speakers: schedule.slots.speakers
+  //       },
+  //     })
+  //   })
+  // }, [event.id])
 
   // TODO: useScrollToSlot???
   // useEffect(() => {
@@ -136,18 +155,6 @@ const BlogIndex = ({ data, location }) => {
   //   }
   // })
 
-  // TODO: useIsFrench
-  useEffect(() => {
-    fetch('https://api.eventlama.com/geoip')
-      .then(res => res.json())
-      .then(json => {
-        if (json.CountryCode === 'FR') {
-          setIsFrench(true)
-        }
-      })
-      .catch(err => {})
-  }, [])
-
   //TODO: useCheckoutListener
   if (typeof window !== 'undefined') {
     window.addEventListener('message', message => {
@@ -155,14 +162,6 @@ const BlogIndex = ({ data, location }) => {
         window.location = message.data.checkoutUrl
       }
     })
-  }
-
-  //TODO: move to modal sponsor
-  const handleShowSponsor = (sponsor, e) => {
-    setShowSponsor(true)
-    setCurrentSponsor(sponsor)
-    e.preventDefault()
-    return false
   }
 
   return (
@@ -186,435 +185,8 @@ const BlogIndex = ({ data, location }) => {
         setSchedule={setSchedule}
         event={event}
       />
-      <a id="tickets"></a>
-      <div class="tickets-margin"></div>
-      <section class="book_ticket" id="book_ticket">
-        <div class="container">
-          <div class="container">
-            <div class="headings">
-              <img loading="lazy" src="images/ticket.png" alt="" />
-              <h2>Get Your Tickets</h2>
-              {isFrench ? (
-                <h4>
-                  <a
-                    href="https://www.oxiane.com/oxiane-partenaire-formation-reacteurope-2020-la-conference-europeenne-sur-reactjs-et-react-native/"
-                    target="_blank"
-                  >
-                    🇫🇷 Si vous êtes français et que vous souhaitez utiliser
-                    votre budget de formation professionnelle pour financer
-                    votre inscription, contactez notre partenaire Oxiane
-                  </a>
-                </h4>
-              ) : null}
-              <h3>
-                Tickets are now available for both conference and workshops.
-              </h3>
-              <h3 class="d-none">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
-                  Don't miss our tickets release by subscribing here.
-                </a>
-              </h3>
-              <IframeResizer
-                log
-                src="https://www.react-europe.org?iframe=true"
-                style={{ width: '1px', minWidth: '100%', border: '0px' }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <a id="sprs"></a>
-      <section class="sponser" id="sponser">
-        <div class="container">
-          <div class="headings">
-            <img loading="lazy" src="images/sponser.png" alt="" />
-            <h2>Our Sponsors</h2>
-            <p>
-              <a
-                href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
-                class="spr-link"
-                target="_blank"
-              >
-                <i class="fa fa-envelope"></i>&nbsp;Want to get involved and
-                help support ReactEurope? We'd love to hear from you.
-              </a>
-            </p>
-          </div>
-          <div class="platinium_box d-none">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="spnser_box">
-                  <div class="sponser_image">
-                    <img
-                      loading="lazy"
-                      class="normal_image"
-                      src="images/dazn.png"
-                      alt=""
-                    />
-                    <img
-                      class="hover_img"
-                      src="images/sponser-hover.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="work_withweb">
-                    <a href="#">Website</a>
-                    <a href="#">Work with us</a>
-                  </div>
-                  <a
-                    href="#"
-                    class="read_more"
-                    data-toggle="modal"
-                    data-target="#sponser_popup"
-                  >
-                    Read More
-                  </a>
-                  <div class="mobile_icons">
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#sponser_popup"
-                        >
-                          <i
-                            class="fa fa-long-arrow-right"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="spnser_box">
-                  <div class="sponser_image">
-                    <img
-                      loading="lazy"
-                      class="normal_image"
-                      src="images/ekino.png"
-                      alt=""
-                    />
-                    <img
-                      loading="lazy"
-                      class="hover_img"
-                      src="images/ekino.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="work_withweb">
-                    <a href="#">Website</a>
-                    <a href="#">Work with us</a>
-                  </div>
-                  <a href="#" class="read_more">
-                    Read More
-                  </a>
-                  <div class="mobile_icons">
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#sponser_popup"
-                        >
-                          <i
-                            class="fa fa-long-arrow-right"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="vertical_text">
-                <h3>PLATINUM</h3>
-              </div>
-            </div>
-          </div>
-          <div class="platinium_box gold_box">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="spnser_box">
-                  <div class="sponser_image">
-                    <img
-                      loading="lazy"
-                      class="normal_image"
-                      src="images/gold1.png"
-                      alt=""
-                    />
-                    <img
-                      loading="lazy"
-                      class="hover_img"
-                      src="images/gold1.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="work_withweb">
-                    <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                      Website
-                    </a>
-                    <a href="https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                      Work with us
-                    </a>
-                  </div>
-                  <a
-                    href="#"
-                    onClick={e => {
-                      handleShowSponsor(
-                        {
-                          name: 'AWS Amplify',
-                          description:
-                            'AWS Amplify makes it easy to create, configure, and implement scalable mobile applications powered by AWS. Amplify seamlessly provisions and manages your mobile backend and provides a simple framework to easily integrate your backend with your iOS, Android, Web, and React Native frontends. Amplify also automates the application release process of both your frontend and backend allowing you to deliver features faster.',
-                          url:
-                            'https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
-                          jobUrl:
-                            'https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
-                          level: 'gold',
-                          logoUrl: 'images/gold1.png',
-                        },
-                        e
-                      )
-                    }}
-                    class="read_more"
-                  >
-                    Read More
-                  </a>
-                  <div class="mobile_icons">
-                    <ul>
-                      <li>
-                        <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                          <i class="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                          <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#sponser_popup"
-                          onClick={e => {
-                            handleShowSponsor(
-                              {
-                                name: 'AWS Amplify',
-                                description:
-                                  'AWS Amplify makes it easy to create, configure, and implement scalable mobile applications powered by AWS. Amplify seamlessly provisions and manages your mobile backend and provides a simple framework to easily integrate your backend with your iOS, Android, Web, and React Native frontends. Amplify also automates the application release process of both your frontend and backend allowing you to deliver features faster.',
-                                url:
-                                  'https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
-                                jobUrl:
-                                  'https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
-                                level: 'gold',
-                                logoUrl: 'images/gold1.png',
-                              },
-                              e
-                            )
-                          }}
-                        >
-                          <i
-                            class="fa fa-long-arrow-right"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <p>
-                  <a
-                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
-                    class="spr-link"
-                    target="_blank"
-                  >
-                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
-                    sponsor us, we'd love to hear from you.
-                  </a>
-                </p>
-              </div>
-              <div class="vertical_text gold">
-                <h3>GOLD</h3>
-              </div>
-            </div>
-          </div>
-          <div class="platinium_box gold_box brunse_box d-none">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="spnser_box">
-                  <div class="sponser_image">
-                    <img
-                      loading="lazy"
-                      class="normal_image"
-                      src="images/brunse1.png"
-                      alt=""
-                    />
-                    <img
-                      loading="lazy"
-                      class="hover_img"
-                      src="images/brunse1.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="work_withweb">
-                    <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                      Website
-                    </a>
-                    <a href="https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                      Work with us
-                    </a>
-                  </div>
-                  <a href="#" class="read_more d-none">
-                    Read More
-                  </a>
-                  <div class="mobile_icons">
-                    <ul>
-                      <li>
-                        <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                          <i class="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                          <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li class="d-none">
-                        <a href="#">
-                          <i
-                            class="fa fa-long-arrow-right"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="spnser_box">
-                  <div class="sponser_image">
-                    <img
-                      loading="lazy"
-                      class="normal_image"
-                      src="images/brunse2.png"
-                      alt=""
-                    />
-                    <img
-                      loading="lazy"
-                      class="hover_img"
-                      src="images/brunse2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="work_withweb">
-                    <a href="#">Website</a>
-                    <a href="#">Work with us</a>
-                  </div>
-                  <a href="#" class="read_more">
-                    Read More
-                  </a>
-                  <div class="mobile_icons">
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i
-                            class="fa fa-long-arrow-right"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="vertical_text gold">
-                <h3>BRUNSE</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-        <Modal
-          show={showSponsor}
-          onHide={() => setShowSponsor(false)}
-          id="sponser_popup"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  onClick={() => setShowSponsor(false)}
-                >
-                  &times;
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="sponser_popup_left">
-                      <img
-                        loading="lazy"
-                        src={currentSponsor.logoUrl}
-                        alt=""
-                        width="100%"
-                      />
-                      <div class="sponser_popup_link">
-                        <a href={currentSponsor.url}>Website</a>
-                        <a href={currentSponsor.jobUrl}>Work with us</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-9">
-                    <div class="sponser_popup_right">
-                      <h3>{currentSponsor.name}</h3>
-                      <p>{currentSponsor.description}</p>
-                    </div>
-                  </div>
-                  <div class="vertical_text">
-                    <h3>{currentSponsor.level}</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Modal>
-      </section>
+      <TicketsSection />
+      <SponsorsSection sponsors={event.sponsors} />
       <section class="support" id="supporters">
         <div class="container">
           <div class="headings">
@@ -624,7 +196,7 @@ const BlogIndex = ({ data, location }) => {
             <ul>
               <li>
                 <a href="https://eventlama.com/" target="_blank">
-                  <img loading="lazy" src="images/support2.png" alt="" />
+                  <Img fixed={data.support2.childImageSharp.fixed} />
                 </a>
               </li>
               <li>
@@ -632,7 +204,7 @@ const BlogIndex = ({ data, location }) => {
                   href="https://zeit.co/?utm_source=react-europe.org&utm_medium=web"
                   target="_blank"
                 >
-                  <img loading="lazy" src={ZeitLogo} alt="zeit.co" />
+                  <ZeitLogo />
                 </a>
               </li>
               <li>
@@ -640,7 +212,7 @@ const BlogIndex = ({ data, location }) => {
                   href="https://expo.io/?utm_source=react-europe.org&utm_medium=web"
                   target="_blank"
                 >
-                  <img loading="lazy" src="images/support6.png" alt="" />
+                  <Img fixed={data.support6.childImageSharp.fixed} />
                 </a>
               </li>
             </ul>
@@ -653,7 +225,7 @@ const BlogIndex = ({ data, location }) => {
             <div class="col-md-6">
               <div class="location_content">
                 <div class="location_heading">
-                  <img loading="lazy" src="images/location.png" alt="" />
+                  <Img fixed={data.location.childImageSharp.fixed} />
                   <h2>Location</h2>
                 </div>
 
@@ -681,11 +253,11 @@ const BlogIndex = ({ data, location }) => {
             </div>
             <div class="col-md-6">
               <div class="map_location">
-                <img loading="lazy" src="images/map-montreuil.png" alt="" />
+                <Img fluid={data.location_map.childImageSharp.fluid} />
                 <a href="https://goo.gl/maps/3w2z8ZMszLtzGSD76">View on Map</a>
               </div>
               <div class="map_box">
-                <img loading="lazy" src="images/image003.jpg" alt="" />
+                <Img fluid={data.image003.childImageSharp.fluid} />
                 <h2>Palace of Paris-Est Congress</h2>
               </div>
             </div>
@@ -694,7 +266,7 @@ const BlogIndex = ({ data, location }) => {
         <div class="people-behind" id="people-behind">
           <div class="container">
             <div class="headings">
-              <img loading="lazy" src="images/people.png" alt="" />
+              <Img fixed={data.people.childImageSharp.fixed} />
               <h2>People Behind ReactEurope</h2>
               <p class="d-none">
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
@@ -706,7 +278,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-12">
                   <div class="speaker_box left_box">
                     <div class="profile_image">
-                      <img loading="lazy" src="images/pb1.png" alt="" />
+                      <Img fluid={data.pb1.childImageSharp.fluid} />
                     </div>
                     <div class="profile_contnet">
                       <h3 class="speaker-name">Patrick Aljord</h3>
@@ -737,7 +309,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-12">
                   <div class="speaker_box right_box">
                     <div class="profile_image">
-                      <img loading="lazy" src="images/pb2.png" alt="" />
+                      <Img fluid={data.pb2.childImageSharp.fluid} />
                     </div>
                     <div class="profile_contnet">
                       <h3 class="speaker-name">Katiuska Gamero</h3>
@@ -768,7 +340,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-12">
                   <div class="speaker_box left_box">
                     <div class="profile_image">
-                      <img loading="lazy" src="images/pb3.png" alt="" />
+                      <Img fluid={data.pb3.childImageSharp.fluid} />
                     </div>
                     <div class="profile_contnet">
                       <h3 class="speaker-name">React.js Paris</h3>
@@ -798,7 +370,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-12">
                   <div class="speaker_box right_box">
                     <div class="profile_image">
-                      <img loading="lazy" src="images/pb4.png" alt="" />
+                      <Img fluid={data.pb4.childImageSharp.fluid} />
                     </div>
                     <div class="profile_contnet">
                       <h3 class="speaker-name">ReasonML Paris</h3>
@@ -832,7 +404,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="speaker_box left_box">
                     <div class="profile_image">
-                      <img loading="lazy" src="images/pb1.png" alt="" />
+                      <Img fluid={data.pb1.childImageSharp.fluid} />
                     </div>
                     <div class="profile_contnet">
                       <h3>Patrick Aljord</h3>
@@ -860,7 +432,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="speaker_box right_box">
                     <div class="profile_image">
-                      <img loading="lazy" src="images/pb2.png" alt="" />
+                      <Img fluid={data.pb2.childImageSharp.fluid} />
                     </div>
                     <div class="profile_contnet">
                       <h3>Katiuska Gamero</h3>
@@ -888,7 +460,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="speaker_box left_box">
                     <div class="profile_image">
-                      <img loading="lazy" src="images/pb3.png" alt="" />
+                      <Img fluid={data.pb3.childImageSharp.fluid} />
                     </div>
                     <div class="profile_contnet">
                       <h3>React.js Paris</h3>
@@ -916,7 +488,7 @@ const BlogIndex = ({ data, location }) => {
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <div class="speaker_box right_box">
                     <div class="profile_image">
-                      <img loading="lazy" src="images/pb4.png" alt="" />
+                      <Img fluid={data.pb4.childImageSharp.fluid} />
                     </div>
                     <div class="profile_contnet">
                       <h3>ReasonML Paris</h3>
@@ -1015,7 +587,7 @@ const BlogIndex = ({ data, location }) => {
           <div class="row">
             <div class="col-md-4">
               <div class="subscribe_img">
-                <img loading="lazy" src="images/subscribe_img.png" />
+                <Img fluid={data.subscribe.childImageSharp.fluid} />
               </div>
             </div>
             <div class="col-md-8">
@@ -1047,12 +619,12 @@ const BlogIndex = ({ data, location }) => {
                     href="https://www.facebook.com/ReactEurope"
                     target="_blank"
                   >
-                    <img loading="lazy" src="images/facebook.png" alt="" />
+                    <Img fixed={data.facebook_icon.childImageSharp.fixed} />
                   </a>
                 </li>
                 <li>
                   <a href="https://twitter.com/ReactEurope" target="_blank">
-                    <img loading="lazy" src="images/twitter.png" alt="" />
+                    <Img fixed={data.twitter_icon.childImageSharp.fixed} />
                   </a>
                 </li>
                 <li>
@@ -1060,12 +632,12 @@ const BlogIndex = ({ data, location }) => {
                     href="https://www.youtube.com/c/ReacteuropeOrgConf"
                     target="_blank"
                   >
-                    <img loading="lazy" src="images/youtube.png" alt="" />
+                    <Img fixed={data.youtube_icon.childImageSharp.fixed} />
                   </a>
                 </li>
                 <li>
                   <a href="https://medium.com/@reacteurope" target="_blank">
-                    <img loading="lazy" src="images/m.png" alt="" />
+                    <Img fixed={data.medium_icon.childImageSharp.fixed} />
                   </a>
                 </li>
               </ul>
@@ -1328,8 +900,6 @@ const BlogIndex = ({ data, location }) => {
     </Layout>
   )
 }
-
-export default BlogIndex
 
 export const pageQuery = graphql`
   {
@@ -1638,6 +1208,111 @@ export const pageQuery = graphql`
       childImageSharp {
         fluid(maxWidth: 300) {
           ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    support2: file(relativePath: { eq: "support2.png" }) {
+      childImageSharp {
+        fixed(width: 120) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    support6: file(relativePath: { eq: "support6.png" }) {
+      childImageSharp {
+        fixed(width: 120) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    location: file(relativePath: { eq: "location.png" }) {
+      childImageSharp {
+        fixed(width: 80, height: 80) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    people: file(relativePath: { eq: "people.png" }) {
+      childImageSharp {
+        fixed(width: 80, height: 80) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    location_map: file(relativePath: { eq: "map-montreuil.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 500) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    image003: file(relativePath: { eq: "image003.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    pb1: file(relativePath: { eq: "pb1.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    pb2: file(relativePath: { eq: "pb2.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    pb3: file(relativePath: { eq: "pb3.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    pb4: file(relativePath: { eq: "pb4.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    subscribe: file(relativePath: { eq: "subscribe_img.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 500) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    facebook_icon: file(relativePath: { eq: "facebook.png" }) {
+      childImageSharp {
+        fixed(height: 32) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    twitter_icon: file(relativePath: { eq: "twitter.png" }) {
+      childImageSharp {
+        fixed(height: 32) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    youtube_icon: file(relativePath: { eq: "youtube.png" }) {
+      childImageSharp {
+        fixed(height: 32) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    medium_icon: file(relativePath: { eq: "m.png" }) {
+      childImageSharp {
+        fixed(height: 32) {
+          ...GatsbyImageSharpFixed_withWebp
         }
       }
     }
