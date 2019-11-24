@@ -1,9 +1,26 @@
 import React from 'react'
+import BackgroundImage from 'gatsby-background-image'
 import Img from 'gatsby-image'
+import { useStaticQuery, graphql } from 'gatsby'
 
 export default function Hero({ banner }) {
+  const data = useStaticQuery(graphql`
+    {
+      hero: file(relativePath: { eq: "background.png" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `)
   return (
-    <section class="react_section">
+    <BackgroundImage
+      Tag="section"
+      className="react_section"
+      fluid={data.hero.childImageSharp.fluid}
+    >
       <div class="container">
         <div class="row">
           <div class="col-md-6">
@@ -37,6 +54,6 @@ export default function Hero({ banner }) {
           </div>
         </div>
       </div>
-    </section>
+    </BackgroundImage>
   )
 }

@@ -95,15 +95,16 @@ a.book_now {
   background: #2972a5;
   margin-left: 15px;
 }
-section.react_section {
-  background: url(../../static/images/background.png);
+section.react_section,
+section.react_section:before {
   height: 760px;
   display: flex;
   align-items: center;
   background-repeat: no-repeat;
-  background-position: top right;
-  background-size: 60% 100%;
+  background-position: top right !important;
+  background-size: 60% 100% !important;
 }
+
 header {
   position: absolute;
   left: 0;
@@ -964,9 +965,10 @@ section.location {
   background-repeat: no-repeat;
   background-size: 100% 92%;
 }
-.map_location img {
-  width: 432px;
-  height: 423px;
+.map_location .gatsby-image-wrapper {
+  width: 432px !important;
+  height: 423px !important;
+  display: inline-block;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0px 0px 15px #00000026;
@@ -1929,7 +1931,7 @@ div#sponser_popup .modal-dialog .modal-content .col-md-3 {
   bottom: 0;
 }
 section.book_ticket {
-  margin-top: -120px;
+  // margin-top: -120px;
 }
 .mobile_icons ul {
   list-style: none;
@@ -2004,9 +2006,11 @@ div#event_popup .modal-dialog {
   }
 }
 @media (min-width: 1750px) {
-  section.react_section {
-    background-size: 54% 100%;
+  section.react_section,
+  section.react_section:before {
+    background-size: 54% 100% !important;
   }
+
   // .conference_slider {
   //   width: 1809px;
   //   margin-left: auto;
@@ -2076,8 +2080,9 @@ div#event_popup .modal-dialog {
     object-fit: cover;
     margin-left: -50px;
   }
-  section.react_section {
-    background-size: 64% 88%;
+  section.react_section,
+  section.react_section:before {
+    background-size: 64% 88% !important;
   }
   section.conference {
     background-size: 30% 58%;
@@ -2194,9 +2199,15 @@ div#event_popup .modal-dialog {
   .react_text_content {
     margin-top: 45px;
   }
-  section.react_section {
-    background-size: 68% 94%;
+  section.react_section,
+  section.react_section:before {
+    background-size: 68% 94% !important;
     height: 710px;
+  }
+
+  section.react_section,
+  section.react_section:before {
+    background-size: 68% 94% !important;
   }
   section.conference {
     padding-top: 30px;
@@ -2410,8 +2421,9 @@ div#event_popup .modal-dialog {
   .footer_nav ul a.nav-link {
     font-size: 15px;
   }
+  section.react_section:before,
   section.react_section {
-    background-size: 46% 28%;
+    background-size: 46% 28% !important;
     height: inherit;
     padding-top: 100px;
   }
@@ -2516,7 +2528,7 @@ div#event_popup .modal-dialog {
   .location_content {
     margin-bottom: 60px;
   }
-  .map_location img {
+  .map_location .gatsby-image-wrapper {
     width: 60%;
   }
   .map_location a {
@@ -2767,7 +2779,7 @@ div#event_popup .modal-dialog {
     width: 149px;
     margin-bottom: 25px;
   }
-  .map_location img {
+  .map_location .gatsby-image-wrapper {
     width: 60%;
     height: 293px;
   }
@@ -3277,7 +3289,7 @@ div#event_popup .modal-dialog {
     max-width: 100%;
     margin-top: 30px;
   }
-  .map_location img {
+  .map_location .gatsby-image-wrapper {
     width: 90%;
     height: 293px;
   }
@@ -3441,8 +3453,9 @@ div#event_popup .modal-dialog {
     border-bottom: 1px solid #5361fe;
     padding: 5px 0px;
   }
-  section.react_section {
-    background-size: 46% 28%;
+  section.react_section,
+  section.react_section:before {
+    background-size: 46% 28% !important;
     height: inherit;
     padding-top: 20px;
     background: no-repeat;
@@ -3726,8 +3739,6 @@ header.desktop_header {
   }
 }
 
-.headroom--unpinned header.desktop_header {
-}
 .headroom--unfixed #speaker-top-title {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
@@ -3740,4 +3751,10 @@ header.desktop_header {
   strong {
     text-decoration: underline;
   }
+}
+
+.tab_profile_inner_box_image .gatsby-image-wrapper {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 84px;
 }
