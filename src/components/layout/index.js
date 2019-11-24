@@ -24,7 +24,7 @@ export default function Layout({ children, ...rest }) {
 
   React.useEffect(() => {
     emergence.init()
-  })
+  }, [])
 
   return (
     <div>
