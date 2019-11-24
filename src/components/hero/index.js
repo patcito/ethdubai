@@ -9,7 +9,7 @@ export default function Hero({ banner }) {
       hero: file(relativePath: { eq: "background.png" }) {
         childImageSharp {
           fluid {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }

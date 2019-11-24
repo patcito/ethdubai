@@ -2,10 +2,7 @@ import React from 'react'
 import { Modal } from 'react-bootstrap'
 
 export default function SponsorsSection({ sponsors }) {
-  console.log('TCL: SponsorsSection -> sponsors', sponsors)
-
   const [showSponsor, setShowSponsor] = React.useState(false)
-
   const [currentSponsor, setCurrentSponsor] = React.useState({
     name: 'url',
     url: '',

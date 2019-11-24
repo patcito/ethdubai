@@ -940,7 +940,7 @@ export const pageQuery = graphql`
           localFile {
             childImageSharp {
               fluid {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
@@ -955,7 +955,7 @@ export const pageQuery = graphql`
           localFile {
             childImageSharp {
               fluid {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
@@ -995,7 +995,7 @@ export const pageQuery = graphql`
               localFile {
                 childImageSharp {
                   fluid {
-                    ...GatsbyImageSharpFluid
+                    ...GatsbyImageSharpFluid_withWebp
                   }
                 }
               }
@@ -1015,7 +1015,7 @@ export const pageQuery = graphql`
             localFile {
               childImageSharp {
                 fluid {
-                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
@@ -1030,7 +1030,7 @@ export const pageQuery = graphql`
             localFile {
               childImageSharp {
                 fluid {
-                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
@@ -1045,7 +1045,7 @@ export const pageQuery = graphql`
             localFile {
               childImageSharp {
                 fluid {
-                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
@@ -1060,7 +1060,7 @@ export const pageQuery = graphql`
             localFile {
               childImageSharp {
                 fluid {
-                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
@@ -1075,7 +1075,7 @@ export const pageQuery = graphql`
             localFile {
               childImageSharp {
                 fluid {
-                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
@@ -1090,7 +1090,7 @@ export const pageQuery = graphql`
             localFile {
               childImageSharp {
                 fluid {
-                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
@@ -1102,13 +1102,13 @@ export const pageQuery = graphql`
     banner: file(relativePath: { eq: "banner-image.png" }) {
       childImageSharp {
         fluid {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
     heading_logo: file(relativePath: { eq: "react-europe-plain-round.png" }) {
       childImageSharp {
-        fixed(width: 300) {
+        fixed(width: 200) {
           ...GatsbyImageSharpFixed
         }
       }
@@ -1213,7 +1213,7 @@ export const pageQuery = graphql`
     }
     support2: file(relativePath: { eq: "support2.png" }) {
       childImageSharp {
-        fixed(width: 120) {
+        fixed(width: 80) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
@@ -1290,28 +1290,28 @@ export const pageQuery = graphql`
     }
     facebook_icon: file(relativePath: { eq: "facebook.png" }) {
       childImageSharp {
-        fixed(height: 32) {
+        fixed(height: 24) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
     }
     twitter_icon: file(relativePath: { eq: "twitter.png" }) {
       childImageSharp {
-        fixed(height: 32) {
+        fixed(height: 24) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
     }
     youtube_icon: file(relativePath: { eq: "youtube.png" }) {
       childImageSharp {
-        fixed(height: 32) {
+        fixed(height: 24) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
     }
     medium_icon: file(relativePath: { eq: "m.png" }) {
       childImageSharp {
-        fixed(height: 32) {
+        fixed(height: 24) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }

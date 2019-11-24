@@ -6678,6 +6678,13 @@ gatsby-remark-images@3.1.20:
     unist-util-select "^1.5.0"
     unist-util-visit-parents "^2.1.2"
 
+gatsby-remark-lazy-load@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-lazy-load/-/gatsby-remark-lazy-load-1.0.2.tgz#967f8f9163e162c9a022e2516c802326fc8b347b"
+  integrity sha512-u9BuKr+oQ2UTcpRIqjLVe0C4rL0zdc1W3vmQFOAF4+0tnTjuUWkjTJSgAsYl8fQDlBmZ1iixEBc3JrWHOXfATg==
+  dependencies:
+    unist-util-visit-parents "^2.0.1"
+
 gatsby-remark-prismjs@3.3.12:
   version "3.3.12"
   resolved "https://registry.yarnpkg.com/gatsby-remark-prismjs/-/gatsby-remark-prismjs-3.3.12.tgz#4239bb48a5e2eb5fcff5adbbac1a6821012bd9bf"
@@ -9029,6 +9036,11 @@ lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
   integrity sha1-odePw6UEdMuAhF07O24dpJpEbo4=
+
+lazysizes@^5.2.0-beta1:
+  version "5.2.0-beta1"
+  resolved "https://registry.yarnpkg.com/lazysizes/-/lazysizes-5.2.0-beta1.tgz#c8841bc1fde1a00d24c8cf5416457a42b4e69f18"
+  integrity sha512-HH3gr5FhtO9PmVnwPWkBzR51ZMrFfVndUNNSyBcR6OMnO0vt6OaQXJmq/ZikHUTVqQg+w2+Bj8mLpHZ71HTftg==
 
 lcid@^1.0.0:
   version "1.0.0"
@@ -14921,7 +14933,7 @@ unist-util-visit-parents@1.1.2:
   resolved "https://registry.yarnpkg.com/unist-util-visit-parents/-/unist-util-visit-parents-1.1.2.tgz#f6e3afee8bdbf961c0e6f028ea3c0480028c3d06"
   integrity sha512-yvo+MMLjEwdc3RhhPYSximset7rwjMrdt9E41Smmvg25UQIenzrN83cRnF1JMzoMi9zZOQeYXHSDf7p+IQkW3Q==
 
-unist-util-visit-parents@^2.0.0, unist-util-visit-parents@^2.1.2:
+unist-util-visit-parents@^2.0.0, unist-util-visit-parents@^2.0.1, unist-util-visit-parents@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/unist-util-visit-parents/-/unist-util-visit-parents-2.1.2.tgz#25e43e55312166f3348cae6743588781d112c1e9"
   integrity sha512-DyN5vD4NE3aSeB+PXYNKxzGsfocxp6asDc2XXE3b0ekO2BaRUpBicbbUygfSvYfUz1IkmjFR1YF7dPklraMZ2g==
