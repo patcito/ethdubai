@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
+import Img from 'gatsby-image'
 import ReactSimpleCarousel from 'react-spring-carousel'
+import { useStaticQuery, graphql } from 'gatsby'
 
 export default function CarouselPeople() {
   const [show, setShow] = useState(false)
@@ -14,15 +16,22 @@ export default function CarouselPeople() {
   })
 
   const handleClose = () => setShow(false)
-  const handleShow = event => {
-    setShow(true)
-    setEventProps(event)
-  }
-  console.log('TCL: CarouselPeople -> eventProps', eventProps)
+
+  const imgs = useStaticQuery(graphql`
+    {
+      quote: file(relativePath: { eq: "test_qoute.png" }) {
+        childImageSharp {
+          fixed(width: 30) {
+            ...GatsbyImageSharpFixed_withWebp
+          }
+        }
+      }
+    }
+  `)
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} id="event_popup">
+      {/* <Modal show={show} onHide={handleClose} id="event_popup">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -80,12 +89,12 @@ export default function CarouselPeople() {
             </div>
           </div>
         </div>
-      </Modal>
+      </Modal> */}
       <div class="slick-carousel_testimonial">
         <ReactSimpleCarousel slidesToShow={5}>
           <div>
             <div class="testimonial_box">
-              <img loading="lazy" src="images/test_qoute.png" />
+              <Img fixed={imgs.quote.childImageSharp.fixed} />
               <p>
                 Thanks for the time @ReactEurope and for the knowledge during
                 the Hackathon today. Falling in love with #awsamplify and
@@ -96,7 +105,7 @@ export default function CarouselPeople() {
           </div>
           <div>
             <div class="testimonial_box">
-              <img loading="lazy" src="images/test_qoute.png" />
+              <Img fixed={imgs.quote.childImageSharp.fixed} />
               <p>
                 Heading back home from #ReactEurope in Paris. Thanks, folks, I
                 had a blast! Fantastic talks. Especially the ones by @leeb and
@@ -107,7 +116,7 @@ export default function CarouselPeople() {
           </div>
           <div>
             <div class="testimonial_box">
-              <img loading="lazy" src="images/test_qoute.png" />
+              <Img fixed={imgs.quote.childImageSharp.fixed} />
               <p>
                 Thanks for such a great time @ReactEurope! Learned a ton and met
                 so many great people. I hope everyone returns to the office
@@ -118,7 +127,7 @@ export default function CarouselPeople() {
           </div>
           <div>
             <div class="testimonial_box">
-              <img loading="lazy" src="images/test_qoute.png" />
+              <Img fixed={imgs.quote.childImageSharp.fixed} />
               <p>
                 Great conference @ReactEurope! Great organisation and awesome
                 crowd! 👏👏👏 See you next year! 😉
@@ -128,7 +137,7 @@ export default function CarouselPeople() {
           </div>
           <div>
             <div class="testimonial_box">
-              <img loading="lazy" src="images/test_qoute.png" />
+              <Img fixed={imgs.quote.childImageSharp.fixed} />
               <p>
                 This past few days, I spent at @ReactEurope. This was the first
                 tech conference I have attended, and I got incredible value out
@@ -140,7 +149,7 @@ export default function CarouselPeople() {
           </div>
           <div>
             <div class="testimonial_box">
-              <img loading="lazy" src="images/test_qoute.png" />
+              <Img fixed={imgs.quote.childImageSharp.fixed} />
               <p>
                 I've been to @reacteurope ⚛️🇪🇺 had an awesome time, here's a
                 break down with the things I loved the most 💕 A BIG SHOUTOUT TO
