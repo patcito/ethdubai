@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { Modal } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
 
-export default function SpeakersSection({ speakers }) {
+export default function SpeakersSection({ speakers = [] }) {
   const [show, setShow] = React.useState(false)
   const [speakerProps, setSpeakerProps] = React.useState({
     name: '',
@@ -74,67 +74,70 @@ export default function SpeakersSection({ speakers }) {
         </div>
         <div class="speaker_profile">
           <div class="row">
-            {speakers.length > 0 &&
-              speakers.map(speaker => {
-                return (
-                  <div class="col-md-3 col-sm-4 col-xs-12">
-                    <div class="speaker_box left_box">
-                      <div class="profile_image">
-                        <Img fluid={speaker.localFile.childImageSharp.fluid} />
-                      </div>
-                      <div class="profile_contnet">
-                        <h3 class="speaker-name">{speaker.name}</h3>
-                        <p class="speaker-bio" bio-full={speaker.bio}>
-                          {speaker.shortBio}
-                        </p>
-                        <ul>
-                          <li>
-                            <a
-                              href={`https://twitter.com/${speaker.twitter}`}
-                              class="icon-social-button"
-                            >
-                              <i class="fa fa-twitter icon-twitter"></i>
-                              <span />
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href={`https://github.com/${speaker.github}`}
-                              class="icon-social-button"
-                            >
-                              <i class="fa fa-github icon-github"></i>
-                              <span />
-                            </a>
-                          </li>
-                          {speaker.url ? (
-                            <li>
-                              <a
-                                href="https://ivesvh.com/"
-                                class="icon-social-button"
-                              >
-                                <i class="fa fa-link icon-link"></i>
-                              </a>
-                            </li>
-                          ) : null}
-                        </ul>
-                      </div>
-                      <a
-                        href="#"
-                        class="add_icon show-speaker"
-                        data-toggle="modal"
-                        data-target="#speaker_popup"
-                        onClick={e => {
-                          e.preventDefault()
-                          setShow(true)
-                          setSpeakerProps(speaker)
-                        }}
-                      >
-                        +
-                      </a>
+            {speakers.map((speaker, index) => {
+              return (
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                  <div
+                    class={`speaker_box ${
+                      index % 2 == 0 ? 'left_box' : 'right_box'
+                    }`}
+                  >
+                    <div class="profile_image">
+                      <Img fluid={speaker.localFile.childImageSharp.fluid} />
                     </div>
+                    <div class="profile_contnet">
+                      <h3 class="speaker-name">{speaker.name}</h3>
+                      <p class="speaker-bio" bio-full={speaker.bio}>
+                        {speaker.shortBio}
+                      </p>
+                      <ul>
+                        <li>
+                          <a
+                            href={`https://twitter.com/${speaker.twitter}`}
+                            class="icon-social-button"
+                          >
+                            <i class="fa fa-twitter icon-twitter"></i>
+                            <span />
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href={`https://github.com/${speaker.github}`}
+                            class="icon-social-button"
+                          >
+                            <i class="fa fa-github icon-github"></i>
+                            <span />
+                          </a>
+                        </li>
+                        {speaker.url ? (
+                          <li>
+                            <a
+                              href="https://ivesvh.com/"
+                              class="icon-social-button"
+                            >
+                              <i class="fa fa-link icon-link"></i>
+                            </a>
+                          </li>
+                        ) : null}
+                      </ul>
+                    </div>
+                    <a
+                      href="#"
+                      class="add_icon show-speaker"
+                      data-toggle="modal"
+                      data-target="#speaker_popup"
+                      onClick={e => {
+                        e.preventDefault()
+                        setShow(true)
+                        setSpeakerProps(speaker)
+                      }}
+                    >
+                      +
+                    </a>
                   </div>
-                )
-              })}
+                </div>
+              )
+            })}
 
             <div class="col-md-3 col-sm-4 col-xs-12">
               <div class="speaker_box right_box">
