@@ -1684,7 +1684,7 @@ footer.site_footer {
 }
 .footer_nav li {
   display: inline-block;
-  margin-right: 50px;
+  margin-right: 26px;
 }
 .footer_nav li:last-child {
   margin-right: 0;
@@ -3750,6 +3750,10 @@ header.desktop_header {
   a.nav-link {
     color: #2972a5;
   }
+}
+
+.headroom {
+  z-index: 1000 !important;
 }
 
 .headroom--unfixed header.desktop_header {

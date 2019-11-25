@@ -1,5 +1,7 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
+import { useStaticQuery, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 export default function SponsorsSection({ sponsors }) {
   const [showSponsor, setShowSponsor] = React.useState(false)
@@ -11,6 +13,25 @@ export default function SponsorsSection({ sponsors }) {
     description: '',
     level: '',
   })
+
+  const imgs = useStaticQuery(graphql`
+    {
+      sponser: file(relativePath: { eq: "sponser.png" }) {
+        childImageSharp {
+          fixed(width: 80, height: 80) {
+            ...GatsbyImageSharpFixed_withWebp
+          }
+        }
+      }
+      amplify: file(relativePath: { eq: "gold1.png" }) {
+        childImageSharp {
+          fixed(width: 200) {
+            ...GatsbyImageSharpFixed_withWebp
+          }
+        }
+      }
+    }
+  `)
 
   //TODO: move to modal sponsor
   function handleShowSponsor(sponsor, e) {
@@ -26,7 +47,7 @@ export default function SponsorsSection({ sponsors }) {
       <section class="sponser" id="sponser">
         <div class="container">
           <div class="headings">
-            <img loading="lazy" src="images/sponser.png" alt="" />
+            <Img fixed={imgs.sponser.childImageSharp.fixed} />
             <h2>Our Sponsors</h2>
             <p>
               <a
@@ -39,7 +60,7 @@ export default function SponsorsSection({ sponsors }) {
               </a>
             </p>
           </div>
-          <div class="platinium_box d-none">
+          {/* <div class="platinium_box d-none">
             <div class="row">
               <div class="col-md-6">
                 <div class="spnser_box">
@@ -151,23 +172,15 @@ export default function SponsorsSection({ sponsors }) {
                 <h3>PLATINUM</h3>
               </div>
             </div>
-          </div>
+          </div> */}
           <div class="platinium_box gold_box">
             <div class="row">
               <div class="col-md-4">
                 <div class="spnser_box">
                   <div class="sponser_image">
-                    <img
-                      loading="lazy"
-                      class="normal_image"
-                      src="images/gold1.png"
-                      alt=""
-                    />
-                    <img
-                      loading="lazy"
-                      class="hover_img"
-                      src="images/gold1.png"
-                      alt=""
+                    <Img
+                      className="no-animation"
+                      fixed={imgs.amplify.childImageSharp.fixed}
                     />
                   </div>
                   <div class="work_withweb">
@@ -259,7 +272,7 @@ export default function SponsorsSection({ sponsors }) {
               </div>
             </div>
           </div>
-          <div class="platinium_box gold_box brunse_box d-none">
+          {/* <div class="platinium_box gold_box brunse_box d-none">
             <div class="row">
               <div class="col-md-4">
                 <div class="spnser_box">
@@ -363,7 +376,7 @@ export default function SponsorsSection({ sponsors }) {
                 <h3>BRUNSE</h3>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <Modal
           show={showSponsor}
@@ -386,6 +399,7 @@ export default function SponsorsSection({ sponsors }) {
                 <div class="row">
                   <div class="col-md-3">
                     <div class="sponser_popup_left">
+                      {JSON.stringify(currentSponsor.logoUrl)}
                       <img
                         loading="lazy"
                         src={currentSponsor.logoUrl}
