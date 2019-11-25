@@ -25,6 +25,9 @@ export default function SponsorsSection({ sponsors }) {
       }
       amplify: file(relativePath: { eq: "gold1.png" }) {
         childImageSharp {
+          fluid(maxWidth: 170) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
           fixed(width: 200) {
             ...GatsbyImageSharpFixed_withWebp
           }
@@ -192,7 +195,6 @@ export default function SponsorsSection({ sponsors }) {
                     </a>
                   </div>
                   <a
-                    href="#"
                     onClick={e => {
                       handleShowSponsor(
                         {
@@ -204,7 +206,7 @@ export default function SponsorsSection({ sponsors }) {
                           jobUrl:
                             'https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
                           level: 'gold',
-                          logoUrl: 'images/gold1.png',
+                          logoUrl: imgs.amplify.childImageSharp.fluid,
                         },
                         e
                       )
@@ -227,7 +229,6 @@ export default function SponsorsSection({ sponsors }) {
                       </li>
                       <li>
                         <a
-                          href="#"
                           data-toggle="modal"
                           data-target="#sponser_popup"
                           onClick={e => {
@@ -241,7 +242,7 @@ export default function SponsorsSection({ sponsors }) {
                                 jobUrl:
                                   'https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
                                 level: 'gold',
-                                logoUrl: 'images/gold1.png',
+                                logoUrl: imgs.amplify.childImageSharp.fluid,
                               },
                               e
                             )
@@ -399,12 +400,9 @@ export default function SponsorsSection({ sponsors }) {
                 <div class="row">
                   <div class="col-md-3">
                     <div class="sponser_popup_left">
-                      {JSON.stringify(currentSponsor.logoUrl)}
-                      <img
-                        loading="lazy"
-                        src={currentSponsor.logoUrl}
-                        alt=""
-                        width="100%"
+                      <Img
+                        className="no-animation"
+                        fluid={currentSponsor.logoUrl}
                       />
                       <div class="sponser_popup_link">
                         <a href={currentSponsor.url}>Website</a>
