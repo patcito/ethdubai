@@ -280,7 +280,7 @@ export default function IndexPage({ data, location }) {
                     <div class="profile_image">
                       <Img fluid={data.pb1.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_contnet">
+                    <div class="profile_content">
                       <h3 class="speaker-name">Patrick Aljord</h3>
                       <p>Organizer</p>
                       <ul>
@@ -311,7 +311,7 @@ export default function IndexPage({ data, location }) {
                     <div class="profile_image">
                       <Img fluid={data.pb2.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_contnet">
+                    <div class="profile_content">
                       <h3 class="speaker-name">Katiuska Gamero</h3>
                       <p>co-organizer</p>
                       <ul>
@@ -342,7 +342,7 @@ export default function IndexPage({ data, location }) {
                     <div class="profile_image">
                       <Img fluid={data.pb3.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_contnet">
+                    <div class="profile_content">
                       <h3 class="speaker-name">React.js Paris</h3>
                       <ul>
                         <li>
@@ -372,7 +372,7 @@ export default function IndexPage({ data, location }) {
                     <div class="profile_image">
                       <Img fluid={data.pb4.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_contnet">
+                    <div class="profile_content">
                       <h3 class="speaker-name">ReasonML Paris</h3>
                       <ul>
                         <li>
@@ -406,7 +406,7 @@ export default function IndexPage({ data, location }) {
                     <div class="profile_image">
                       <Img fluid={data.pb1.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_contnet">
+                    <div class="profile_content">
                       <h3>Patrick Aljord</h3>
                       <ul>
                         <li>
@@ -434,7 +434,7 @@ export default function IndexPage({ data, location }) {
                     <div class="profile_image">
                       <Img fluid={data.pb2.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_contnet">
+                    <div class="profile_content">
                       <h3>Katiuska Gamero</h3>
                       <ul>
                         <li>
@@ -462,7 +462,7 @@ export default function IndexPage({ data, location }) {
                     <div class="profile_image">
                       <Img fluid={data.pb3.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_contnet">
+                    <div class="profile_content">
                       <h3>React.js Paris</h3>
                       <ul>
                         <li>
@@ -490,7 +490,7 @@ export default function IndexPage({ data, location }) {
                     <div class="profile_image">
                       <Img fluid={data.pb4.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_contnet">
+                    <div class="profile_content">
                       <h3>ReasonML Paris</h3>
                       <ul>
                         <li>

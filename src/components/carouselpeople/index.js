@@ -12,11 +12,14 @@ export default function CarouselPeople() {
     hours: '',
     pictures: [],
   })
+
   const handleClose = () => setShow(false)
   const handleShow = event => {
     setShow(true)
     setEventProps(event)
   }
+  console.log('TCL: CarouselPeople -> eventProps', eventProps)
+
   return (
     <>
       <Modal show={show} onHide={handleClose} id="event_popup">

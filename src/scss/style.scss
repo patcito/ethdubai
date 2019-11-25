@@ -328,13 +328,13 @@ body .conference_slider .slick-prev:before,
 img.hover_social {
   display: none;
 }
-.profile_contnet ul li a:hover img.normal_social {
+.profile_content ul li a:hover img.normal_social {
   display: none;
 }
-.profile_contnet ul li a:hover img.hover_social {
+.profile_content ul li a:hover img.hover_social {
   display: inherit;
 }
-.profile_contnet ul li img {
+.profile_content ul li img {
   width: 30px;
 }
 .conference_slider .slick-disabled {
@@ -370,13 +370,13 @@ section.speaker {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.profile_contnet ul {
+.profile_content ul {
   padding: 0;
   list-style: none;
   margin-bottom: 0;
   padding-top: 10px;
 }
-.profile_contnet ul li {
+.profile_content ul li {
   display: inline-block;
   margin-right: 5px;
 }
@@ -392,19 +392,21 @@ section.speaker {
   cursor: pointer;
   transition: 0.3s;
 }
-.profile_contnet {
+.profile_content {
   text-align: center;
   padding: 25px 0;
 }
-.profile_contnet h3 {
+.profile_content h3 {
   font-size: 20px;
   font-weight: 600;
   color: #203446;
   margin-bottom: 8px;
 }
-.profile_contnet p {
+.profile_content p {
   color: #58595b;
   font-size: 16px;
+  min-height: 74px;
+  padding: 0 16px;
 }
 .left_box:before {
   content: '';
@@ -419,7 +421,6 @@ section.speaker {
   margin: 0 auto;
 }
 .profile_image {
-  min-height: 281px;
   position: relative;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
@@ -450,7 +451,7 @@ section.speaker {
 }
 
 .right_box .profile_image:before {
-  background-image: url('../../static/images/top-curve.png');
+  background-image: url(../../static/images/top-curve.png);
 }
 
 .left_box .profile_image:before {
@@ -468,12 +469,17 @@ a.add_icon {
   height: 40px;
   text-decoration: none;
   position: absolute;
-  top: 50%;
+  bottom: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: 0.3s;
 }
+
+.left_box a.add_icon {
+  bottom: 0;
+}
+
 .speaker_box:hover a.add_icon {
   opacity: 1;
 }
@@ -615,9 +621,7 @@ section.schedule {
   font-weight: 600;
   margin-bottom: 50px;
 }
-.right_box a.add_icon {
-  top: 40%;
-}
+
 .tab_text h5 {
   font-size: 15px;
   margin-bottom: 15px;
@@ -2103,9 +2107,6 @@ div#event_popup .modal-dialog {
   section.speaker {
     padding-top: 50px;
   }
-  .profile_image {
-    min-height: 231px;
-  }
   .schedule_content .nav-tabs .nav-link {
     font-size: 14px;
     padding: 15px 0px 15px 24px;
@@ -3183,7 +3184,7 @@ div#event_popup .modal-dialog {
     max-width: 100%;
     font-size: 16px;
   }
-  .profile_contnet h3 {
+  .profile_content h3 {
     margin-bottom: 0px;
   }
   .get_your_ticket a {
@@ -3472,18 +3473,15 @@ div#event_popup .modal-dialog {
     flex: 0 0 50%;
     max-width: 50%;
   }
-  .profile_image {
-    min-height: 171px;
-  }
-  .profile_contnet h3 {
+  .profile_content h3 {
     font-size: 16px;
   }
-  .profile_contnet p {
+  .profile_content p {
     color: #58595b;
     font-size: 14px;
     margin-top: 4px;
   }
-  body .profile_contnet ul img {
+  body .profile_content ul img {
     width: 26px;
   }
   .people-behind-colums .col-md-3.col-sm-4.col-xs-12 {
