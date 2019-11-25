@@ -420,6 +420,9 @@ section.speaker {
 }
 .profile_image {
   min-height: 281px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
 }
 .right_box:before {
   content: '';
@@ -433,6 +436,27 @@ section.speaker {
   right: 0;
   margin: 0 auto;
 }
+
+.right_box .profile_image:before,
+.left_box .profile_image:before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  width: 100%;
+  height: 39px;
+}
+
+.right_box .profile_image:before {
+  background-image: url('../../static/images/top-curve.png');
+}
+
+.left_box .profile_image:before {
+  background-image: url(../../static/images/bottom-curve.png);
+}
+
 a.add_icon {
   background: #f4db4a;
   width: 40px;

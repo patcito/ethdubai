@@ -13,7 +13,7 @@
 
 @import 'node_modules/bootstrap/scss/bootstrap.scss';
 
-.gatsby-image-wrapper:hover:not(.no-animation) {
+.gatsby-image-wrapper:hover:not(.no-animation) img {
   animation: pulse 0.5s;
 }
 
