@@ -44,7 +44,8 @@
     "react-headroom": "^2.2.8",
     "react-markdown": "^4.2.2",
     "react-on-screen": "^2.1.1",
-    "react-spring-carousel": "^0.0.4"
+    "react-spring-carousel": "^0.0.4",
+    "smooth-scroll": "^16.1.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.22",

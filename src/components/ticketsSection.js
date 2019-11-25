@@ -1,8 +1,22 @@
 import React from 'react'
 import IframeResizer from 'iframe-resizer-react'
+import { useStaticQuery, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 export default function TicketsSection() {
   const [isFrench, setIsFrench] = React.useState(false)
+
+  const imgs = useStaticQuery(graphql`
+    {
+      ticket: file(relativePath: { eq: "ticket.png" }) {
+        childImageSharp {
+          fixed(width: 80, height: 80) {
+            ...GatsbyImageSharpFixed_withWebp
+          }
+        }
+      }
+    }
+  `)
 
   React.useEffect(() => {
     fetch('https://api.eventlama.com/geoip')
@@ -21,7 +35,7 @@ export default function TicketsSection() {
         <div class="container">
           <div class="container">
             <div class="headings">
-              <img loading="lazy" src="images/ticket.png" alt="" />
+              <Img fixed={imgs.ticket.childImageSharp.fixed} />
               <h2>Get Your Tickets</h2>
               {isFrench ? (
                 <h4>
