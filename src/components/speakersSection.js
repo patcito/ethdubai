@@ -84,8 +84,21 @@ export default function SpeakersSection({ speakers = [] }) {
                   >
                     <div class="profile_image">
                       <Img fluid={speaker.localFile.childImageSharp.fluid} />
+                      <a
+                        href="#"
+                        class="add_icon show-speaker"
+                        data-toggle="modal"
+                        data-target="#speaker_popup"
+                        onClick={e => {
+                          e.preventDefault()
+                          setShow(true)
+                          setSpeakerProps(speaker)
+                        }}
+                      >
+                        +
+                      </a>
                     </div>
-                    <div class="profile_contnet">
+                    <div class="profile_content">
                       <h3 class="speaker-name">{speaker.name}</h3>
                       <p class="speaker-bio" bio-full={speaker.bio}>
                         {speaker.shortBio}
@@ -121,19 +134,6 @@ export default function SpeakersSection({ speakers = [] }) {
                         ) : null}
                       </ul>
                     </div>
-                    <a
-                      href="#"
-                      class="add_icon show-speaker"
-                      data-toggle="modal"
-                      data-target="#speaker_popup"
-                      onClick={e => {
-                        e.preventDefault()
-                        setShow(true)
-                        setSpeakerProps(speaker)
-                      }}
-                    >
-                      +
-                    </a>
                   </div>
                 </div>
               )
@@ -144,7 +144,7 @@ export default function SpeakersSection({ speakers = [] }) {
                 <div class="profile_image">
                   <Img fluid={data.speaker_placeholder.childImageSharp.fluid} />
                 </div>
-                <div class="profile_contnet">
+                <div class="profile_content">
                   <h3 class="speaker-name">You?</h3>
                   <p class="speaker-bio">
                     Stay tuned for more awesome speakers and our CFP!{' '}
