@@ -1350,6 +1350,8 @@ section.peaople_said {
   padding: 50px 59px;
   margin: 20px auto;
   border-radius: 11px;
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 991px) {
   .testimonial_box {
@@ -3293,8 +3295,8 @@ div#event_popup .modal-dialog {
     margin-top: 30px;
   }
   .map_location .gatsby-image-wrapper {
-    width: 90%;
-    height: 293px;
+    width: 60%;
+    max-height: 293px;
   }
   .map_box {
     width: 220px;
@@ -3765,4 +3767,31 @@ header.desktop_header {
 
 .sponser_popup_left .gatsby-image-wrapper {
   width: 100% !important;
+}
+
+.horizontal-carousel {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+
+  padding-bottom: 1rem;
+
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1rem;
+
+  > * {
+    scroll-snap-align: start;
+  }
+}
+
+#header-lead .logo {
+  max-width: 80px;
+  margin: 0 auto;
+}
+
+@media (min-width: 767px) {
+  #header-lead .logo {
+    max-width: 180px;
+  }
 }

@@ -171,7 +171,10 @@ export default function IndexPage({ data, location }) {
       <section class="conference" id="conference">
         <div class="container">
           <div class="headings" id="header-lead">
-            <Img fixed={data.heading_logo.childImageSharp.fixed} />
+            <Img
+              className="logo"
+              fluid={data.heading_logo.childImageSharp.fluid}
+            />
             <h2>Conference Events</h2>
             <ReactMarkdown source={event.description} />
           </div>
@@ -254,7 +257,9 @@ export default function IndexPage({ data, location }) {
             <div class="col-md-6">
               <div class="map_location">
                 <Img fluid={data.location_map.childImageSharp.fluid} />
-                <a href="https://goo.gl/maps/3w2z8ZMszLtzGSD76">View on Map</a>
+                <a target="_blank" href="https://goo.gl/maps/3w2z8ZMszLtzGSD76">
+                  View on Map
+                </a>
               </div>
               <div class="map_box">
                 <Img fluid={data.image003.childImageSharp.fluid} />
@@ -1080,8 +1085,8 @@ export const pageQuery = graphql`
     }
     heading_logo: file(relativePath: { eq: "react-europe-plain-round.png" }) {
       childImageSharp {
-        fixed(width: 200) {
-          ...GatsbyImageSharpFixed
+        fluid(maxWidth: 200) {
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
