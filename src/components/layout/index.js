@@ -13,9 +13,12 @@ import '../../scss/style.scss'
 
 export default function Layout({ children, ...rest }) {
   if (typeof window !== 'undefined') {
-    console.log('is window!')
     // eslint-disable-next-line global-require
-    require('smooth-scroll')('a[href*="#"]')
+    require('smooth-scroll')('a[href*="#"]', {
+      ignore: 'a[data-scroll-ignore]',
+      headers: 'headroom',
+      topOnEmptyHash: false,
+    })
   }
 
   const data = useStaticQuery(graphql`
