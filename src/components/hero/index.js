@@ -1,29 +1,13 @@
 import React from 'react'
-import BackgroundImage from 'gatsby-background-image'
-import Img from 'gatsby-image'
-import { useStaticQuery, graphql } from 'gatsby'
+import './hero.css'
+import Video from './video'
 
 export default function Hero({ banner }) {
-  const data = useStaticQuery(graphql`
-    {
-      hero: file(relativePath: { eq: "background.png" }) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }
-  `)
   return (
-    <BackgroundImage
-      Tag="section"
-      className="react_section"
-      fluid={data.hero.childImageSharp.fluid}
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
+    <div className="hero__container">
+      <div className="container-fluid">
+        <div className="row d-sm-flex">
+          <div className="col-md-6 hero__content">
             <div class="react_text">
               <h2>The Original React Conference in Europe</h2>
               <h1>ReactEurope</h1>
@@ -46,14 +30,11 @@ export default function Hero({ banner }) {
               </a>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="react_image">
-              {/* 75%, 100%, 500px, 655px */}
-              <Img fluid={banner} />
-            </div>
+          <div className="col-md-6 hero__video-wrapper">
+            <Video />
           </div>
         </div>
       </div>
-    </BackgroundImage>
+    </div>
   )
 }

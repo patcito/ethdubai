@@ -23,7 +23,6 @@ ul.navbar-nav a {
 .react_text h2 {
   font-size: 25px;
   font-weight: 300;
-  color: #203446;
 }
 header.fixed-header {
   position: fixed;
@@ -40,7 +39,7 @@ header.fixed-header li.nav-item.active a.nav-link {
 .react_text h1 {
   font-size: 64px;
   font-weight: 600;
-  color: #203446;
+  // color: #203446;
   margin-bottom: 0;
 }
 .react_text_content {
@@ -52,14 +51,12 @@ header.fixed-header li.nav-item.active a.nav-link {
 .react_text_content h3 {
   font-size: 27px;
   font-weight: 600;
-  color: #203446;
 }
 .react_text_content h3 span {
   font-weight: 300;
 }
 .react_text_content h4 {
   font-size: 27px;
-  color: #203446;
   font-weight: 600;
   margin-bottom: 0;
   margin-top: 30px;
@@ -429,23 +426,23 @@ section.speaker {
   border-radius: 10px 10px 0 0;
 }
 .left_box .profile_image:before {
-      content: "";
-      background: url(/images/bottom-curve.png);
-      width: 100%;
-      position: absolute;
-      height: 27px;
-      background-repeat: no-repeat;
-      bottom: -2px;
-  }
-  .right_box .profile_image:before {
-      content: "";
-      background: url(/images/top-curve.png);
-      width: 100%;
-      position: absolute;
-      height: 39px;
-      background-repeat: no-repeat;
-      bottom: -4px;
-  }
+  content: '';
+  background: url(/images/bottom-curve.png);
+  width: 100%;
+  position: absolute;
+  height: 27px;
+  background-repeat: no-repeat;
+  bottom: -2px;
+}
+.right_box .profile_image:before {
+  content: '';
+  background: url(/images/top-curve.png);
+  width: 100%;
+  position: absolute;
+  height: 39px;
+  background-repeat: no-repeat;
+  bottom: -4px;
+}
 .right_box:before {
   content: '';
   background: #7f51bd;
@@ -993,8 +990,8 @@ section.location {
   background-size: 100% 92%;
 }
 .map_location .gatsby-image-wrapper {
-  width: 432px !important;
-  height: 423px !important;
+  max-width: 432px !important;
+  max-height: 423px !important;
   display: inline-block;
   object-fit: cover;
   border-radius: 8px;
@@ -2210,7 +2207,6 @@ div#event_popup .modal-dialog {
   .react_text h2 {
     font-size: 20px;
     font-weight: 300;
-    color: #203446;
     margin-bottom: 0;
   }
   .react_text {

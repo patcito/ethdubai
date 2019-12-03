@@ -1,0 +1,35 @@
+.hero__container {
+  width: 100%;
+  padding: 60px 24px;
+  display: flex;
+  justify-content: center;
+  background: black;
+  color: white;
+  position: relative;
+}
+
+.hero__container .container-fluid {
+  max-width: 1440px;
+}
+
+.hero__container .container-fluid,
+.hero__container .row,
+.hero__container [class='col-*'] {
+  height: 100%;
+}
+
+.hero__content,
+.hero__video-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.hero__content {
+  z-index: 10;
+}
+
+@media (min-width: 576px) {
+  .hero__container {
+    height: 100vh;
+  }
+}
