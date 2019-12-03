@@ -1,6 +1,8 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import { Link } from 'gatsby'
+import { navigate } from '@reach/router'
 import ReactMarkdown from 'react-markdown'
 
 export default function ScheduleSection({ schedule, setSchedule, event }) {
@@ -33,14 +35,15 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 {schedule.map((day, i) => (
                   <li class="nav-item">
-                    <a
+                    <Link
                       className={`nav-link ${
                         currentScheduleTab === i ? 'active' : null
                       }`}
                       data-toggle="tab"
-                      href="#"
+                      to={`/#day-${i + 1}`}
+                      data-scroll-ignore="true"
                       role="tab"
-                      aria-controls="home"
+                      aria-controls="schedule-wrapper"
                       onClick={e => {
                         setCurrentScheduleTab(i)
                         if (document) {
@@ -49,7 +52,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                           let scrolldiv = document.getElementById(
                             'schedule-scroll'
                           )
-                          scrolldiv.scrollTop = dayd - 80
+                          scrolldiv.scrollTop = dayd - 120
                         }
                         e.preventDefault()
                       }}
@@ -62,14 +65,18 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                         {new Date(day.date).getDate()}
                       </span>{' '}
                       - DAY {i + 1} {i < 2 ? 'WORKSHOPS' : 'CONFERENCE'}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
             <div class="col-md-8">
               <div class="tab-content">
-                <div class="tab-pane active" id="home" role="tabpanel">
+                <div
+                  class="tab-pane active"
+                  id="schedule-wrapper"
+                  role="tabpanel"
+                >
                   <div class="schedule_tab_box">
                     <div class="schedule_search">
                       <div class="search">
@@ -100,23 +107,23 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                 month: 'long',
                               })}
                             </h3>
-                            {day.slots.map((slot, i) =>
-                              scheduleQuery === '' ||
-                              slot.title
+                            {day.slots.map((slot, i) => {
+                              const slot_slug = `${slot.id}-${slot.title
+                                .toString()
                                 .toLowerCase()
-                                .indexOf(scheduleQuery.toLowerCase()) !== -1 ||
-                              slot.description
-                                .toLowerCase()
-                                .indexOf(scheduleQuery.toLowerCase()) !== -1 ? (
-                                <div
-                                  class="tab_text first-tab"
-                                  id={`${slot.id}-${slot.title
-                                    .toString()
-                                    .toLowerCase()
-                                    .trim()
-                                    .replace(/&/g, '-and-')
-                                    .replace(/[\s\W-]+/g, '-')}`}
-                                >
+                                .trim()
+                                .replace(/&/g, '-and-')
+                                .replace(/[\s\W-]+/g, '-')}`
+                              return scheduleQuery === '' ||
+                                slot.title
+                                  .toLowerCase()
+                                  .indexOf(scheduleQuery.toLowerCase()) !==
+                                  -1 ||
+                                slot.description
+                                  .toLowerCase()
+                                  .indexOf(scheduleQuery.toLowerCase()) !==
+                                  -1 ? (
+                                <div class="tab_text first-tab" id={slot_slug}>
                                   <div class="border_box_tab">
                                     <h5>
                                       {new Date(slot.startDate)
@@ -152,19 +159,17 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                           .split(':')[1]}{' '}
                                     </h5>
                                     <h4>
-                                      <a
-                                        href={`#slot-${slot.id}-${slot.title
-                                          .toString()
-                                          .toLowerCase()
-                                          .trim()
-                                          .replace(/&/g, '-and-')
-                                          .replace(/[\s\W-]+/g, '-')}`}
-                                        onClick={e => {
-                                          e.preventDefault()
-                                        }}
+                                      <Link
+                                        to={`#slot-${slot_slug}`}
+                                        replace
+                                        data-scroll-ignore
+                                        // onClick={e => {
+                                        //   e.preventDefault()
+                                        //   navigate(`#slot-${slot_slug}`)
+                                        // }}
                                       >
                                         {slot.title}
-                                      </a>
+                                      </Link>
                                     </h4>
                                     <ReactMarkdown source={slot.description} />
                                     {slot.speakers.map((speaker, i) => (
@@ -218,7 +223,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                   </div>
                                 </div>
                               ) : null
-                            )}
+                            })}
                           </>
                         ))}
                       </div>
