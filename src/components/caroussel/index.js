@@ -259,7 +259,7 @@ function Caroussel() {
                 objectPosition="50% 50%"
                 fixed={data.hackathon.childImageSharp.fixed}
               />
-              <h5>Hackathon</h5>
+              <h5>Hackathon &amp; Workshops</h5>
               <h6>More details coming soon. Stay tuned.</h6>
               <p> 9:00am to 5:00pm</p>
             </div>
