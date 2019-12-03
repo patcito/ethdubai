@@ -143,20 +143,6 @@ export default function IndexPage({ data, location }) {
   //   })
   // }, [event.id])
 
-  // TODO: useScrollToSlot???
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const hash = document.location.hash
-      const slot = hash.split('#slot-')
-      if (slot && slot[1]) {
-        let dayd = document.getElementById(slot[1]).offsetTop
-        let scrolldiv = document.getElementById('schedule-scroll')
-        scrolldiv.scrollIntoView()
-        scrolldiv.scrollTop = dayd - 200
-      }
-    }
-  }, [])
-
   //TODO: useCheckoutListener
   if (typeof window !== 'undefined') {
     window.addEventListener('message', message => {

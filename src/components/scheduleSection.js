@@ -21,6 +21,21 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
     }
   `)
 
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setTimeout(() => {
+        const hash = document.location.hash
+        const slot = hash.split('#slot-')
+        if (slot && slot[1]) {
+          let dayd = document.getElementById(slot[1]).offsetTop
+          let scrolldiv = document.getElementById('schedule-scroll')
+          scrolldiv.scrollIntoView()
+          scrolldiv.scrollTop = dayd - 200
+        }
+      }, 1000)
+    }
+  }, [])
+
   return (
     <section class="schedule" id="schedule">
       <div class="container">
