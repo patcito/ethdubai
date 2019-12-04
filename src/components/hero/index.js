@@ -38,14 +38,16 @@ export default function Hero({ banner }) {
   React.useEffect(() => {
     console.log('effect run!')
     const v = videoRef.current
-    v.addEventListener('timeupdate', updater)
-    v.play()
+    if (v) {
+      v.addEventListener('timeupdate', updater)
+      v.muted = true
+      v.play()
+    }
+
     return () => {
       v.removeEventListener('timeupdate', updater)
     }
   }, [videoRef])
-
-  console.log('TCL: Hero -> idx', idx)
 
   return (
     <div className="hero__container">
@@ -76,7 +78,7 @@ export default function Hero({ banner }) {
             </div>
           </div>
           <div className="col-md-6 hero__video-wrapper">
-            <video ref={videoRef} className="video" autoPlay loop>
+            <video ref={videoRef} className="video" autoplay muted loop>
               <source src={videoMP4} type="video/mp4" />
               <source src={videoWebm} type="video/webm" />
             </video>
