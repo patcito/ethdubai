@@ -36,10 +36,13 @@ header.fixed-header a.nav-link {
 header.fixed-header li.nav-item.active a.nav-link {
   color: #000;
 }
+
+.react-text {
+  color: #203446;
+}
 .react_text h1 {
   font-size: 64px;
   font-weight: 600;
-  // color: #203446;
   margin-bottom: 0;
 }
 .react_text_content {
@@ -3758,13 +3761,13 @@ header.desktop_header {
   background: transparent;
 
   a.nav-link {
-    color: white;
+    // color: white;
   }
 }
 
 .headroom--unfixed #speaker-top-title {
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+  // text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+  //   1px 1px 0 #000;
 }
 #header-lead p {
   width: 100;

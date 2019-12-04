@@ -3,8 +3,7 @@
   padding: 60px 24px;
   display: flex;
   justify-content: center;
-  background: black;
-  color: white;
+  background: white;
   position: relative;
 }
 
@@ -28,8 +27,22 @@
   z-index: 10;
 }
 
+.video {
+  width: 100%;
+  outline: none;
+  padding: 40px 16px 0;
+  transform: scale(1.2) translate(-5%, 0%);
+}
+
 @media (min-width: 576px) {
   .hero__container {
     height: 100vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .video {
+    padding: 40px;
+    transform: scale(1.8) translate(-10%, 0%);
   }
 }
