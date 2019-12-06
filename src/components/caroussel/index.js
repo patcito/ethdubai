@@ -99,7 +99,7 @@ function Caroussel() {
                 ],
                 date: '12th-13th',
                 description:
-                  '2 days to learn from the best ranging from topics such as React.js, SSR, hooks, suspense, graphql, TypeScript, React Native, Animations, next.js amplify and more! 2 days to learn from the best ranging from topics such as React.js, SSR, hooks, suspense, graphql, TypeScript, React Native, Animations, next.js amplify and more!',
+                  '2 days to learn from the best ranging from topics such as React.js, SSR, hooks, suspense, graphql, TypeScript, React Native, Animations, next.js amplify and more!',
                 title: '2-DAY WORKSHOPS',
                 hours: '8:45am to 5:30pm',
               })
@@ -250,6 +250,20 @@ function Caroussel() {
             key={5}
             className="App-slide"
             style={{ marginBottom: '45px', marginRight: '25px' }}
+            onClick={() => {
+              handleShow({
+                pictures: [
+                  data.workshop1.childImageSharp.fluid,
+                  data.event_popup_2.childImageSharp.fluid,
+                  data.event_popup_3.childImageSharp.fluid,
+                ],
+                date: '16th',
+                description:
+                  '1 day of hackathon fun and workshops to learn from the best ranging from topics such as Relay with concurent mode, porting your React app to TypeScript and more!',
+                title: 'Hackathon and Workshops',
+                hours: 'on Saturday 16th',
+              })
+            }}
           >
             <div class="slider_box">
               <h3>16th</h3>
