@@ -79,7 +79,12 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                         })}{' '}
                         {new Date(day.date).getDate()}
                       </span>{' '}
-                      - DAY {i + 1} {i < 2 ? 'WORKSHOPS' : 'CONFERENCE'}
+                      - DAY {i + 1}{' '}
+                      {i < 2
+                        ? 'WORKSHOPS'
+                        : i > 3
+                        ? 'HACKATHON and WORKSHOPS'
+                        : 'CONFERENCE'}
                     </Link>
                   </li>
                 ))}
