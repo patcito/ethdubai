@@ -12,6 +12,8 @@ const titles = [
   'Bar night',
 ]
 
+const bgs = ['#2675abff', '#f08323', '#86d0f5', '#3b692b', '#76a031', '#b7191c']
+
 export default function Hero({ banner }) {
   const videoRef = React.useRef(null)
   const [idx, setIdx] = React.useState(0)
@@ -19,16 +21,17 @@ export default function Hero({ banner }) {
   function updater(event) {
     let activeTitle = idx
     const time = event.target.currentTime
+    console.log('TCL: updater -> time', time)
 
-    if (time > 2 && time < 5) {
+    if (time > 2.15 && time < 5.16667) {
       activeTitle = 1
-    } else if (time > 5 && time < 8) {
+    } else if (time > 5.16667 && time < 8.133333) {
       activeTitle = 2
-    } else if (time > 8 && time < 10) {
+    } else if (time > 8.133333 && time < 11.1) {
       activeTitle = 3
-    } else if (time > 10 && time < 13) {
+    } else if (time > 11.1 && time < 14.116666) {
       activeTitle = 4
-    } else if (time > 13 && time < 16) {
+    } else if (time > 14.116666 && time < 17.1) {
       activeTitle = 5
     }
 
@@ -36,7 +39,6 @@ export default function Hero({ banner }) {
   }
 
   React.useEffect(() => {
-    console.log('effect run!')
     const v = videoRef.current
     if (v) {
       v.addEventListener('timeupdate', updater)
@@ -50,7 +52,7 @@ export default function Hero({ banner }) {
   }, [videoRef])
 
   return (
-    <div className="hero__container">
+    <div className="hero__container" style={{ backgroundColor: bgs[idx] }}>
       <div className="container-fluid">
         <div className="row d-sm-flex">
           <div className="col-md-6 hero__content">
