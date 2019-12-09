@@ -3761,14 +3761,12 @@ header.desktop_header {
   background: transparent;
 
   a.nav-link {
-    // color: white;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
   }
 }
 
-.headroom--unfixed #speaker-top-title {
-  // text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-  //   1px 1px 0 #000;
-}
 #header-lead p {
   width: 100;
   margin: 0;

@@ -30,7 +30,7 @@
 .video {
   width: 100%;
   outline: none;
-  padding: 40px 16px 0;
+  padding: 80px 16px 40px 16px;
   transform: scale(1.2) translate(-5%, 0%);
 }
 
