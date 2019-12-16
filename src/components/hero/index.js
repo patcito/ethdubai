@@ -45,30 +45,53 @@ export default function Hero({ banner }) {
   }
 
   React.useEffect(() => {
+    function fixAutoplay() {
+      const v = videoRef.current
+      if (v.paused) {
+        v.play()
+      }
+
+      document.removeEventListener('touchstart', fixAutoplay)
+      document.removeEventListener('touchend', fixAutoplay)
+      document.removeEventListener('scroll', fixAutoplay)
+    }
+
+    document.addEventListener('touchstart', fixAutoplay)
+    document.addEventListener('touchend', fixAutoplay)
+    document.addEventListener('scroll', fixAutoplay)
+
+    return () => {
+      document.removeEventListener('touchstart', fixAutoplay)
+      document.removeEventListener('touchend', fixAutoplay)
+      document.removeEventListener('scroll', fixAutoplay)
+    }
+  }, [])
+
+  React.useEffect(() => {
     const v = videoRef.current
     if (v) {
       v.muted = true
       v.play()
+      setVideoBgColor()
+      drawingLoop()
       v.addEventListener('loadedmetadata', () => {
+        console.log('loaded meta data')
         drawingLoop()
       })
-      v.addEventListener('loadeddata', onVideoDataLoaded)
+      v.addEventListener('loadeddata', setVideoBgColor)
       v.addEventListener('timeupdate', updater)
     }
 
     return () => {
       v.removeEventListener('timeupdate', onMetadata)
-      v.removeEventListener('loadeddata', onVideoDataLoaded)
+      v.removeEventListener('loadeddata', setVideoBgColor)
     }
   }, [videoRef])
 
   // === BG changer
 
-  function onVideoDataLoaded() {
-    setVideoBgColor()
-  }
-
   function setVideoBgColor() {
+    console.log('setVideoBGColor => loadedData')
     var canvas = document.createElement('canvas')
     canvas.width = 8
     canvas.height = 8
@@ -90,7 +113,7 @@ export default function Hero({ banner }) {
         0,
         0,
         v.videoWidth,
-        v.videoHeight, // source rectangle
+        v.videoHeight,
         0,
         0,
         cv.width,
@@ -100,7 +123,6 @@ export default function Hero({ banner }) {
   }
 
   const video = videoRef.current || { offsetHeight: 0, offsetWidth: 0 }
-  console.log('TCL: Hero -> video', video)
   const { offsetHeight = 0, offsetWidth = 0 } = video
 
   return (
