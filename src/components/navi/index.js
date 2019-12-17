@@ -30,10 +30,10 @@ export default function Navi() {
   `)
   return (
     <>
-      <header class="desktop_header">
-        <div class="container">
-          <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="#">
+      <header className="desktop_header">
+        <div className="container">
+          <nav className="navbar navbar-expand-lg">
+            <a className="navbar-brand" href="#">
               <Img
                 className="no-animation"
                 style={{ verticalAlign: 'middle' }}
@@ -41,7 +41,7 @@ export default function Navi() {
               />
             </a>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarNav"
@@ -49,57 +49,61 @@ export default function Navi() {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="nav_icon"></span>
-              <span class="nav_icon"></span>
-              <span class="nav_icon"></span>
+              <span className="nav_icon"></span>
+              <span className="nav_icon"></span>
+              <span className="nav_icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#speakers" id="speaker-top-title">
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    href="#speakers"
+                    id="speaker-top-title"
+                  >
                     Speakers
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#schedule">
+                <li className="nav-item">
+                  <a className="nav-link" href="#schedule">
                     Schedule
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#tickets">
+                <li className="nav-item">
+                  <a className="nav-link" href="#tickets">
                     Tickets
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#sprs">
+                <li className="nav-item">
+                  <a className="nav-link" href="#sprs">
                     Sponsors
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#location">
+                <li className="nav-item">
+                  <a className="nav-link" href="#location">
                     Location
                   </a>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                   <a
-                    class="nav-link"
+                    className="nav-link"
                     href="https://jobs.react-europe.org"
                     target="_blank"
                   >
                     Jobs
                   </a>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                   <a
-                    class="nav-link"
+                    className="nav-link"
                     href="https://learn.react-europe.org"
                     target="_blank"
                   >
                     Learn
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://2019.react-europe.org">
+                <li className="nav-item">
+                  <a className="nav-link" href="https://2019.react-europe.org">
                     '19
                   </a>
                 </li>
@@ -108,11 +112,11 @@ export default function Navi() {
           </nav>
         </div>
       </header>
-      <header class="Mobile_header">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3 col-sm-2">
-              <div class="logo">
+      <header className="Mobile_header">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-3 col-sm-2">
+              <div className="logo">
                 <a href="#">
                   <Img
                     className="no-animation"
@@ -122,8 +126,8 @@ export default function Navi() {
                 </a>
               </div>
             </div>
-            <div class="col-md-9 col-sm-10">
-              <div class="navigation">
+            <div className="col-md-9 col-sm-10">
+              <div className="navigation">
                 <ul>
                   <li>
                     <a href="#speaker">speakers</a>

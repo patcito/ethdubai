@@ -82,7 +82,7 @@ export default function SpeakersSection({ speakers = [] }) {
           <div class="row">
             {speakers.map((speaker, index) => {
               return (
-                <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="col-md-3 col-sm-4 col-xs-12" key={index}>
                   <div
                     class={`speaker_box ${
                       index % 2 == 0 ? 'left_box' : 'right_box'

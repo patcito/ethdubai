@@ -11,6 +11,8 @@ import Meta from 'components/meta'
 import Layout from 'components/layout'
 import ReactMarkdown from 'react-markdown'
 import Hero from 'components/hero'
+import TrackVisibility from 'react-on-screen'
+
 import ScheduleSection from 'components/scheduleSection'
 import SpeakersSection from 'components/speakersSection'
 import TicketsSection from 'components/ticketsSection'
@@ -44,7 +46,6 @@ export default function IndexPage({ data, location }) {
   //TODO: separate logic into components
   const [event, setEvent] = useState(data.eventlama.events[0])
   const [faq, setFaq] = useState(null)
-
   const [schedule, setSchedule] = useState(
     data.eventlama.events[0].groupedSchedule
   )
@@ -61,10 +62,12 @@ export default function IndexPage({ data, location }) {
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
-      <Hero banner={data.banner.childImageSharp.fluid} />
-      <section class="conference" id="conference">
-        <div class="container">
-          <div class="headings" id="header-lead">
+      <TrackVisibility>
+        <Hero banner={data.banner.childImageSharp.fluid} />
+      </TrackVisibility>
+      <section className="conference" id="conference">
+        <div className="container">
+          <div className="headings" id="header-lead">
             <Img
               className="logo"
               fluid={data.heading_logo.childImageSharp.fluid}
@@ -84,12 +87,12 @@ export default function IndexPage({ data, location }) {
       />
       <TicketsSection />
       <SponsorsSection sponsors={event.sponsors} />
-      <section class="support" id="supporters">
-        <div class="container">
-          <div class="headings">
+      <section className="support" id="supporters">
+        <div className="container">
+          <div className="headings">
             <h2>Supporters</h2>
           </div>
-          <div class="supporters_logo">
+          <div className="supporters_logo">
             <ul>
               <li>
                 <a href="https://eventlama.com/" target="_blank">
@@ -116,17 +119,17 @@ export default function IndexPage({ data, location }) {
           </div>
         </div>
       </section>
-      <section class="location" id="location">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="location_content">
-                <div class="location_heading">
+      <section className="location" id="location">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="location_content">
+                <div className="location_heading">
                   <Img fixed={data.location.childImageSharp.fixed} />
                   <h2>Location</h2>
                 </div>
 
-                <div class="office_address">
+                <div className="office_address">
                   <h3>Palace of Paris-Est Congress</h3>
                   <h5>128 Rue de Paris</h5>
                   <h6>Montreuil, France</h6>
@@ -135,69 +138,69 @@ export default function IndexPage({ data, location }) {
                   Both workshops and conference will take place at the same
                   venue.
                 </p>
-                <div class="airport">
+                <div className="airport">
                   <h5>
                     The venue is close to both the
                     <b>CDG & ORY airports</b>
                   </h5>
                 </div>
-                <div class="airport train">
+                <div className="airport train">
                   <h5>
                     Is accessible by <b>subway, bus & ring road</b>
                   </h5>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="map_location">
+            <div className="col-md-6">
+              <div className="map_location">
                 <Img fluid={data.location_map.childImageSharp.fluid} />
                 <a target="_blank" href="https://goo.gl/maps/3w2z8ZMszLtzGSD76">
                   View on Map
                 </a>
               </div>
-              <div class="map_box">
+              <div className="map_box">
                 <Img fluid={data.image003.childImageSharp.fluid} />
                 <h2>Palace of Paris-Est Congress</h2>
               </div>
             </div>
           </div>
         </div>
-        <div class="people-behind" id="people-behind">
-          <div class="container">
-            <div class="headings">
+        <div className="people-behind" id="people-behind">
+          <div className="container">
+            <div className="headings">
               <Img fixed={data.people.childImageSharp.fixed} />
               <h2>People Behind ReactEurope</h2>
-              <p class="d-none">
+              <p className="d-none">
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
                 diam nonummy nibh euismod tincidunt ut laoreet{' '}
               </p>
             </div>
-            <div class="speaker_profile" id="mobile-organizers">
-              <div class="row">
-                <div class="col-md-3 col-sm-4 col-xs-12">
-                  <div class="speaker_box left_box">
-                    <div class="profile_image">
+            <div className="speaker_profile" id="mobile-organizers">
+              <div className="row">
+                <div className="col-md-3 col-sm-4 col-xs-12">
+                  <div className="speaker_box left_box">
+                    <div className="profile_image">
                       <Img fluid={data.pb1.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_content">
-                      <h3 class="speaker-name">Patrick Aljord</h3>
+                    <div className="profile_content">
+                      <h3 className="speaker-name">Patrick Aljord</h3>
                       <p>Organizer</p>
                       <ul>
                         <li>
                           <a
                             href="https://twitter.com/patcito"
-                            class="icon-social-button"
+                            className="icon-social-button"
                           >
-                            <i class="fa fa-twitter icon-twitter"></i>
+                            <i className="fa fa-twitter icon-twitter"></i>
                             <span />
                           </a>
                         </li>
                         <li>
                           <a
                             href="https://github.com/patcito"
-                            class="icon-social-button"
+                            className="icon-social-button"
                           >
-                            <i class="fa fa-github icon-github"></i>
+                            <i className="fa fa-github icon-github"></i>
                             <span />
                           </a>
                         </li>
@@ -205,30 +208,30 @@ export default function IndexPage({ data, location }) {
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-12">
-                  <div class="speaker_box right_box">
-                    <div class="profile_image">
+                <div className="col-md-3 col-sm-4 col-xs-12">
+                  <div className="speaker_box right_box">
+                    <div className="profile_image">
                       <Img fluid={data.pb2.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_content">
-                      <h3 class="speaker-name">Katiuska Gamero</h3>
+                    <div className="profile_content">
+                      <h3 className="speaker-name">Katiuska Gamero</h3>
                       <p>co-organizer</p>
                       <ul>
                         <li>
                           <a
-                            class="icon-social-button"
+                            className="icon-social-button"
                             href="https://twitter.com/katy_gca"
                           >
-                            <i class="fa fa-twitter icon-twitter"></i>
+                            <i className="fa fa-twitter icon-twitter"></i>
                             <span />
                           </a>
                         </li>
                         <li>
                           <a
-                            class="icon-social-button"
+                            className="icon-social-button"
                             href="https://github.com/katcita"
                           >
-                            <i class="fa fa-github icon-github"></i>
+                            <i className="fa fa-github icon-github"></i>
                             <span />
                           </a>
                         </li>
@@ -236,29 +239,29 @@ export default function IndexPage({ data, location }) {
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-12">
-                  <div class="speaker_box left_box">
-                    <div class="profile_image">
+                <div className="col-md-3 col-sm-4 col-xs-12">
+                  <div className="speaker_box left_box">
+                    <div className="profile_image">
                       <Img fluid={data.pb3.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_content">
-                      <h3 class="speaker-name">React.js Paris</h3>
+                    <div className="profile_content">
+                      <h3 className="speaker-name">React.js Paris</h3>
                       <ul>
                         <li>
                           <a
                             href="https://twitter.com/reactjsparis"
-                            class="icon-social-button"
+                            className="icon-social-button"
                           >
-                            <i class="fa fa-twitter icon-twitter"></i>
+                            <i className="fa fa-twitter icon-twitter"></i>
                             <span />
                           </a>
                         </li>
                         <li>
                           <a
                             href="https://meetup.com/reactjs-paris"
-                            class="icon-social-button"
+                            className="icon-social-button"
                           >
-                            <i class="fa fa-link icon-link"></i>
+                            <i className="fa fa-link icon-link"></i>
                             <span />
                           </a>
                         </li>
@@ -266,29 +269,29 @@ export default function IndexPage({ data, location }) {
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-12">
-                  <div class="speaker_box right_box">
-                    <div class="profile_image">
+                <div className="col-md-3 col-sm-4 col-xs-12">
+                  <div className="speaker_box right_box">
+                    <div className="profile_image">
                       <Img fluid={data.pb4.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_content">
-                      <h3 class="speaker-name">ReasonML Paris</h3>
+                    <div className="profile_content">
+                      <h3 className="speaker-name">ReasonML Paris</h3>
                       <ul>
                         <li>
                           <a
-                            class="icon-social-button"
+                            className="icon-social-button"
                             href="https://twitter.com/reasonmlparis"
                           >
-                            <i class="fa fa-twitter icon-twitter"></i>
+                            <i className="fa fa-twitter icon-twitter"></i>
                             <span />
                           </a>
                         </li>
                         <li>
                           <a
                             href="https://meetup.com/reasonml-paris"
-                            class="icon-social-button"
+                            className="icon-social-button"
                           >
-                            <i class="fa fa-link icon-link"></i>
+                            <i className="fa fa-link icon-link"></i>
                             <span />
                           </a>
                         </li>
@@ -298,114 +301,114 @@ export default function IndexPage({ data, location }) {
                 </div>
               </div>
             </div>
-            <div class="people-behind-colums">
-              <div class="row">
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="speaker_box left_box">
-                    <div class="profile_image">
+            <div className="people-behind-colums">
+              <div className="row">
+                <div className="col-md-3 col-sm-4 col-xs-6">
+                  <div className="speaker_box left_box">
+                    <div className="profile_image">
                       <Img fluid={data.pb1.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_content">
+                    <div className="profile_content">
                       <h3>Patrick Aljord</h3>
                       <ul>
                         <li>
                           <a
                             href="https://twitter.com/patcito"
-                            class="icon-social-button-small"
+                            className="icon-social-button-small"
                           >
-                            <i class="fa fa-twitter icon-twitter"></i>
+                            <i className="fa fa-twitter icon-twitter"></i>
                           </a>
                         </li>
                         <li>
                           <a
                             href="https://github.com/patcito"
-                            class="icon-social-button-small"
+                            className="icon-social-button-small"
                           >
-                            <i class="fa fa-github icon-github"></i>
+                            <i className="fa fa-github icon-github"></i>
                           </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="speaker_box right_box">
-                    <div class="profile_image">
+                <div className="col-md-3 col-sm-4 col-xs-6">
+                  <div className="speaker_box right_box">
+                    <div className="profile_image">
                       <Img fluid={data.pb2.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_content">
+                    <div className="profile_content">
                       <h3>Katiuska Gamero</h3>
                       <ul>
                         <li>
                           <a
                             href="https://twitter.com/katy_gca"
-                            class="icon-social-button-small"
+                            className="icon-social-button-small"
                           >
-                            <i class="fa fa-twitter icon-twitter"></i>
+                            <i className="fa fa-twitter icon-twitter"></i>
                           </a>
                         </li>
                         <li>
                           <a
                             href="https://github.com/katcita"
-                            class="icon-social-button-small"
+                            className="icon-social-button-small"
                           >
-                            <i class="fa fa-github icon-github"></i>
+                            <i className="fa fa-github icon-github"></i>
                           </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="speaker_box left_box">
-                    <div class="profile_image">
+                <div className="col-md-3 col-sm-4 col-xs-6">
+                  <div className="speaker_box left_box">
+                    <div className="profile_image">
                       <Img fluid={data.pb3.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_content">
+                    <div className="profile_content">
                       <h3>React.js Paris</h3>
                       <ul>
                         <li>
                           <a
                             href="https://twitter.com/reactjsparis"
-                            class="icon-social-button-small"
+                            className="icon-social-button-small"
                           >
-                            <i class="fa fa-twitter icon-twitter"></i>
+                            <i className="fa fa-twitter icon-twitter"></i>
                           </a>
                         </li>
                         <li>
                           <a
                             href="https://www.meetup.com/ReactJS-Paris/"
-                            class="icon-social-button-small"
+                            className="icon-social-button-small"
                           >
-                            <i class="fa fa-link icon-link"></i>
+                            <i className="fa fa-link icon-link"></i>
                           </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                  <div class="speaker_box right_box">
-                    <div class="profile_image">
+                <div className="col-md-3 col-sm-4 col-xs-6">
+                  <div className="speaker_box right_box">
+                    <div className="profile_image">
                       <Img fluid={data.pb4.childImageSharp.fluid} />
                     </div>
-                    <div class="profile_content">
+                    <div className="profile_content">
                       <h3>ReasonML Paris</h3>
                       <ul>
                         <li>
                           <a
                             href="https://twitter.com/reasonmlparis"
-                            class="icon-social-button-small"
+                            className="icon-social-button-small"
                           >
-                            <i class="fa fa-twitter icon-twitter"></i>
+                            <i className="fa fa-twitter icon-twitter"></i>
                           </a>
                         </li>
                         <li>
                           <a
                             href="https://www.meetup.com/Reasonml-Paris/"
-                            class="icon-social-button-small"
+                            className="icon-social-button-small"
                           >
-                            <i class="fa fa-link icon-link"></i>
+                            <i className="fa fa-link icon-link"></i>
                           </a>
                         </li>
                       </ul>
@@ -417,9 +420,9 @@ export default function IndexPage({ data, location }) {
           </div>
         </div>
       </section>
-      <section class="peaople_said">
-        <div class="container">
-          <div class="headings">
+      <section className="peaople_said">
+        <div className="container">
+          <div className="headings">
             <div style={{ width: 80, margin: '0 auto' }}>
               <Img fixed={data.testimonial.childImageSharp.fixed} />
             </div>
@@ -428,42 +431,42 @@ export default function IndexPage({ data, location }) {
               What our previous attendants had to say about ReactEurope 2019.
             </p>
           </div>
-          <div class="testimonials-slider">
+          <div className="testimonials-slider">
             <CarouselPeople />
           </div>
         </div>
       </section>
-      <section class="event_moments">
-        <div class="container">
-          <div class="headings">
+      <section className="event_moments">
+        <div className="container">
+          <div className="headings">
             <h2>Event Moments</h2>
           </div>
         </div>
-        <div class="events_images d-sm-none">
+        <div className="events_images d-sm-none">
           <ul>
             <li>
               <Img fluid={data.our_journey_mobile.childImageSharp.fluid} />
             </li>
           </ul>
         </div>
-        <div class="events_images d-none d-sm-block">
+        <div className="events_images d-none d-sm-block">
           <Img
             className="no-animation"
             fluid={data.mosaic.childImageSharp.fluid}
           />
         </div>
       </section>
-      <section class="subscribe_bottom">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="subscribe_img">
+      <section className="subscribe_bottom">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4">
+              <div className="subscribe_img">
                 <Img fluid={data.subscribe.childImageSharp.fluid} />
               </div>
             </div>
-            <div class="col-md-8">
-              <div class="subscribe_right" id="subscribe">
-                <div class="headings">
+            <div className="col-md-8">
+              <div className="subscribe_right" id="subscribe">
+                <div className="headings">
                   <h2>Subscribe</h2>
                   <p>
                     Subscribe to our{' '}
@@ -472,7 +475,7 @@ export default function IndexPage({ data, location }) {
                     </a>
                   </p>
                 </div>
-                <div class="subscibe_form d-none">
+                <div className="subscibe_form d-none">
                   <button href="">Subscribe</button>
                 </div>
               </div>
@@ -480,10 +483,10 @@ export default function IndexPage({ data, location }) {
           </div>
         </div>
       </section>
-      <footer class="site_footer">
-        <div class="container">
-          <div class="footer_top">
-            <div class="footer_social">
+      <footer className="site_footer">
+        <div className="container">
+          <div className="footer_top">
+            <div className="footer_social">
               <ul>
                 <li>
                   <a
@@ -513,41 +516,41 @@ export default function IndexPage({ data, location }) {
                 </li>
               </ul>
             </div>
-            <div class="footer_nav">
+            <div className="footer_nav">
               <ul>
                 <li>
-                  <a class="nav-link" href="#conference">
+                  <a className="nav-link" href="#conference">
                     Events
                   </a>
                 </li>
                 <li>
-                  <a class="nav-link" href="#speakers">
+                  <a className="nav-link" href="#speakers">
                     Speakers
                   </a>
                 </li>
                 <li>
-                  <a class="nav-link" href="#schedule">
+                  <a className="nav-link" href="#schedule">
                     Schedule
                   </a>
                 </li>
                 <li>
-                  <a class="nav-link" href="#sprs">
+                  <a className="nav-link" href="#sprs">
                     Sponsors
                   </a>
                 </li>
                 <li>
-                  <a class="nav-link" href="#location">
+                  <a className="nav-link" href="#location">
                     Location
                   </a>
                 </li>
                 <li>
-                  <a class="nav-link" href="#people-behind">
+                  <a className="nav-link" href="#people-behind">
                     Organizers
                   </a>
                 </li>
                 <li>
                   <a
-                    class="nav-link"
+                    className="nav-link"
                     href="https://medium.com/@reacteurope"
                     target="_blank"
                   >
@@ -555,22 +558,25 @@ export default function IndexPage({ data, location }) {
                   </a>
                 </li>
                 <li>
-                  <a class="nav-link" href="mailto:reacteurope@eventlama.com">
+                  <a
+                    className="nav-link"
+                    href="mailto:reacteurope@eventlama.com"
+                  >
                     Contact
                   </a>
                 </li>
-                <li class="d-none d-sm-block">
+                <li className="d-none d-sm-block">
                   <a
-                    class="nav-link"
+                    className="nav-link"
                     href="https://jobs.react-europe.org"
                     target="_blank"
                   >
                     Jobs
                   </a>
                 </li>
-                <li class="d-none d-sm-block">
+                <li className="d-none d-sm-block">
                   <a
-                    class="nav-link"
+                    className="nav-link"
                     href="https://learn.react-europe.org"
                     target="_blank"
                   >
@@ -581,16 +587,16 @@ export default function IndexPage({ data, location }) {
             </div>
           </div>
         </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-8">
               <h4>FAQ</h4>
-              <div class="accordion" id="accordionExample">
-                <div class="card">
-                  <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
+              <div className="accordion" id="accordionExample">
+                <div className="card">
+                  <div className="card-header" id="headingOne">
+                    <h2 className="mb-0">
                       <button
-                        class="btn btn-link"
+                        className="btn btn-link"
                         type="button"
                         data-toggle="collapse"
                         data-target="#collapseOne"
@@ -609,16 +615,16 @@ export default function IndexPage({ data, location }) {
                     aria-labelledby="headingOne"
                     data-parent="#accordionExample"
                   >
-                    <div class="card-body">
-                      <div class="panel-body-faq">
-                        <h3 class="panel-body-title">The Sessions</h3>
+                    <div className="card-body">
+                      <div className="panel-body-faq">
+                        <h3 className="panel-body-title">The Sessions</h3>
                         <ul>
                           <li>Inspiring Keynotes</li>
                           <li>Expert Panel Discussions</li>
                           <li>New Announcements</li>
                           <li>Hands-On Workshops</li>
                         </ul>
-                        <h3 class="panel-body-title">The People</h3>
+                        <h3 className="panel-body-title">The People</h3>
                         <ul>
                           <li>
                             <b>Exchange</b> best practices with peers.
@@ -633,7 +639,7 @@ export default function IndexPage({ data, location }) {
                             <b>Engage</b> experts in their respective fields.
                           </li>
                         </ul>
-                        <h3 class="panel-body-title">The Topics</h3>
+                        <h3 className="panel-body-title">The Topics</h3>
                         <ul>
                           <li>
                             Authoring Mobile React Native Apps That Also Compile
@@ -655,11 +661,11 @@ export default function IndexPage({ data, location }) {
                     </div>
                   </div>
                 </div>
-                <div class="card">
-                  <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
+                <div className="card">
+                  <div className="card-header" id="headingTwo">
+                    <h2 className="mb-0">
                       <button
-                        class="btn btn-link collapsed"
+                        className="btn btn-link collapsed"
                         type="button"
                         data-toggle="collapse"
                         data-target="#collapseTwo"
@@ -677,14 +683,14 @@ export default function IndexPage({ data, location }) {
                     aria-labelledby="headingTwo"
                     data-parent="#accordionExample"
                   >
-                    <div class="card-body">
-                      <h3 class="panel-body-title">Ticket Refund</h3>
+                    <div className="card-body">
+                      <h3 className="panel-body-title">Ticket Refund</h3>
                       <p>
                         We do refund tickets with a 5% fee until December 15,
                         2019. However, it is possible to transfer your ticket at
                         all time.
                       </p>
-                      <h3 class="panel-body-title">Ticket Transfer</h3>
+                      <h3 className="panel-body-title">Ticket Transfer</h3>
                       <p>
                         It is possible to transfer your ticket to a peer. Just
                         open the email you received when you bought your ticket
@@ -693,11 +699,11 @@ export default function IndexPage({ data, location }) {
                     </div>
                   </div>
                 </div>
-                <div class="card">
-                  <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
+                <div className="card">
+                  <div className="card-header" id="headingThree">
+                    <h2 className="mb-0">
                       <button
-                        class="btn btn-link collapsed"
+                        className="btn btn-link collapsed"
                         type="button"
                         data-toggle="collapse"
                         data-target="#collapseThree"
@@ -715,7 +721,7 @@ export default function IndexPage({ data, location }) {
                     data-parent="#accordionExample"
                     className={faq === 2 ? 'collapse show' : 'collapse'}
                   >
-                    <div class="card-body">
+                    <div className="card-body">
                       All tickets called "Round X Conference" (such as Round 1
                       Conference and Round 2 Conference) give access to the
                       two-day conference, this includes typical French
@@ -732,8 +738,8 @@ export default function IndexPage({ data, location }) {
                 </div>
               </div>
             </div>
-            <div class="col-sm-4 coc-diversity">
-              <h4 class="footer-title">Code of Conduct</h4>
+            <div className="col-sm-4 coc-diversity">
+              <h4 className="footer-title">Code of Conduct</h4>
               <p>
                 Yes, we want everyone to have a safe, productive, enjoyable time
                 at the conference.{' '}
@@ -742,7 +748,7 @@ export default function IndexPage({ data, location }) {
                 </a>
                 .
               </p>
-              <h4 class="footer-title">Scholarship program</h4>
+              <h4 className="footer-title">Scholarship program</h4>
               <p>
                 You can apply for a diversity scholarship that will give you
                 free access to the conference, learn more about how to apply{' '}
@@ -757,8 +763,8 @@ export default function IndexPage({ data, location }) {
             </div>
           </div>
         </div>
-        <div class="footer_bottom">
-          <div class="container">
+        <div className="footer_bottom">
+          <div className="container">
             <p>
               Copyrights © 2019 - Design by{' '}
               <a href="https://eventlama.com" target="_blank">

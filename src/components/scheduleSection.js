@@ -49,7 +49,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
             <div class="col-md-4">
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 {schedule.map((day, i) => (
-                  <li class="nav-item">
+                  <li class="nav-item" key={i}>
                     <Link
                       className={`nav-link ${
                         currentScheduleTab === i ? 'active' : null
@@ -143,7 +143,11 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                   .toLowerCase()
                                   .indexOf(scheduleQuery.toLowerCase()) !==
                                   -1 ? (
-                                <div class="tab_text first-tab" id={slot_slug}>
+                                <div
+                                  class="tab_text first-tab"
+                                  id={slot_slug}
+                                  key={i}
+                                >
                                   <div class="border_box_tab">
                                     <h5>
                                       {new Date(slot.startDate)
@@ -193,7 +197,10 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                     </h4>
                                     <ReactMarkdown source={slot.description} />
                                     {slot.speakers.map((speaker, i) => (
-                                      <div class="tab_profile_inner_box">
+                                      <div
+                                        class="tab_profile_inner_box"
+                                        key={i}
+                                      >
                                         <div class="row no-gutters">
                                           <div class="col-md-2">
                                             <div class="tab_profile_inner_box_image">

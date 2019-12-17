@@ -12,15 +12,6 @@ import 'font-awesome/css/font-awesome.css'
 import '../../scss/style.scss'
 
 export default function Layout({ children, ...rest }) {
-  if (typeof window !== 'undefined') {
-    // eslint-disable-next-line global-require
-    require('smooth-scroll')('a[href*="#"]', {
-      ignore: 'a[data-scroll-ignore]',
-      headers: 'headroom',
-      topOnEmptyHash: false,
-    })
-  }
-
   const data = useStaticQuery(graphql`
     query HeaderQuery {
       site {

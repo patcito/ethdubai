@@ -402,7 +402,7 @@ export default function SponsorsSection({ sponsors }) {
                     <div class="sponser_popup_left">
                       <Img
                         className="no-animation"
-                        fluid={currentSponsor.logoUrl}
+                        fluid={currentSponsor.logoUrl.fluid}
                       />
                       <div class="sponser_popup_link">
                         <a href={currentSponsor.url}>Website</a>
