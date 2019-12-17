@@ -7,9 +7,9 @@ import './hero.css'
 const titles = [
   '+18 talks, 12 lightning talks and 1500 attendees',
   'in the Beautiful city of Paris',
-  'with delicious French food',
-  'more than 8 Workshops!',
-  '1 Hackathon post-conference',
+  'With delicious French food',
+  'More than 8 Workshops!',
+  'Hackathons to discover new tech and people ',
   'Bar night to socialize pre-conference',
 ]
 
@@ -145,7 +145,9 @@ export default function Hero({ banner }) {
             <div className="react_text">
               <h2>The Original React Conference in Europe</h2>
               <h1>ReactEurope</h1>
-              <h3 className="titles titles-md">{titles[idx]}</h3>
+              <h3 className="titles-md" id="md-titles">
+                {titles[idx]}
+              </h3>
               <div className="react_text_content">
                 <h3>
                   May 14-15th, 2020 <span>(conference)</span>
@@ -166,7 +168,7 @@ export default function Hero({ banner }) {
             </div>
           </div>
           <div className="col-md-6 hero__video-wrapper">
-            <h3 className="titles titles-xs" id="xs-titles">
+            <h3 className="titles-xs" id="xs-titles">
               {titles[idx]}
             </h3>
             <canvas
