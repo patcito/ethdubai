@@ -3,6 +3,7 @@ import Img from 'gatsby-image'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Modal } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
+import videoMP4 from './video/paul.mp4'
 
 export default function SpeakersSection({ speakers = [] }) {
   const [show, setShow] = React.useState(false)
@@ -205,16 +206,30 @@ export default function SpeakersSection({ speakers = [] }) {
                     >
                       <Img fixed={data.pi.childImageSharp.fixed} />
                     </a>
-                    <a href={speakerProps.url} class="speaker-url-modal">
-                      <Img fixed={data.pl.childImageSharp.fixed} />
-                    </a>
+                    {speakerProps.url ? (
+                      <a href={speakerProps.url} class="speaker-url-modal">
+                        <Img fixed={data.pl.childImageSharp.fixed} />
+                      </a>
+                    ) : null}
                   </li>
                 </ul>
               </div>
               <div class="speaker_popup_profile">
-                <div style={{ width: 200, margin: '0 auto' }}>
-                  <Img fluid={speakerProps.localFile.childImageSharp.fluid} />
-                </div>
+                {speakerProps.id === 2083 ? (
+                  <div>
+                    <video
+                      src={videoMP4}
+                      style={{ width: 300 }}
+                      autoplay="true"
+                      muted="true"
+                      loop="true"
+                    ></video>
+                  </div>
+                ) : (
+                  <div style={{ width: 200, margin: '0 auto' }}>
+                    <Img fluid={speakerProps.localFile.childImageSharp.fluid} />
+                  </div>
+                )}
                 <div class="popup_profile_content">
                   <h3 class="speaker-name-modal">{speakerProps.name}</h3>
                   <h5 class="speaker-bio-modal">{speakerProps.shortBio}</h5>
