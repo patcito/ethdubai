@@ -983,7 +983,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    heading_logo: file(relativePath: { eq: "react-europe-plain-round.png" }) {
+    heading_logo: file(relativePath: { eq: "re-black.png" }) {
       childImageSharp {
         fluid(maxWidth: 200) {
           ...GatsbyImageSharpFluid_withWebp
