@@ -1,15 +1,16 @@
 import React from 'react'
 import videoMP4 from './videos/video.mp4'
 import videoWebm from './videos/video.webm'
+import { useStaticQuery, graphql } from 'gatsby'
 import './hero.css'
 
 const titles = [
-  '+18 talks and 12 lightning talks',
-  'Beautiful Paris',
-  'French buffet',
-  '6 Workshops',
-  '1 Hackathon',
-  'Bar night',
+  '+18 talks, 12 lightning talks and 1500 attendees',
+  'in the Beautiful city of Paris',
+  'with delicious French food',
+  'more than 8 Workshops!',
+  '1 Hackathon post-conference',
+  'Bar night to socialize pre-conference',
 ]
 
 const bgs = ['#2675abff', '#f08323', '#86d0f5', '#3b692b', '#76a031', '#b7191c']
@@ -22,6 +23,17 @@ export default function Hero({ banner }) {
   const requestId = React.useRef(null)
 
   const [idx, setIdx] = React.useState(0)
+  const data = useStaticQuery(graphql`
+    {
+      videoPoster: file(relativePath: { eq: "video-poster.png" }) {
+        childImageSharp {
+          fixed(width: 600) {
+            ...GatsbyImageSharpFixed_withWebp
+          }
+        }
+      }
+    }
+  `)
 
   // === active title change
 
@@ -124,36 +136,39 @@ export default function Hero({ banner }) {
 
   const video = videoRef.current || { offsetHeight: 0, offsetWidth: 0 }
   const { offsetHeight = 0, offsetWidth = 0 } = video
-
+  console.log('DATA', data)
   return (
     <div className="hero__container" style={{ backgroundColor: bgs[idx] }}>
       <div className="container-fluid">
         <div className="row d-sm-flex">
           <div className="col-md-6 hero__content">
-            <div class="react_text">
+            <div className="react_text">
               <h2>The Original React Conference in Europe</h2>
               <h1>ReactEurope</h1>
-              <h3 className="titles">{titles[idx]}</h3>
-              <div class="react_text_content">
+              <h3 className="titles titles-md">{titles[idx]}</h3>
+              <div className="react_text_content">
                 <h3>
                   May 14-15th, 2020 <span>(conference)</span>
                 </h3>
                 <h3>
-                  May 12-13th, 2020 <span>(workshops)</span>
+                  May 12-13th-16th, 2020 <span>(workshops)</span>
                 </h3>
                 <h4>Paris, France</h4>
               </div>
             </div>
-            <div class="react_btns">
-              <a href="#conference" class="learn_more">
+            <div className="react_btns">
+              <a href="#conference" className="learn_more">
                 Learn More
               </a>
-              <a href="#tickets" class="book_now">
+              <a href="#tickets" className="book_now">
                 Tickets
               </a>
             </div>
           </div>
           <div className="col-md-6 hero__video-wrapper">
+            <h3 className="titles titles-xs" id="xs-titles">
+              {titles[idx]}
+            </h3>
             <canvas
               className="media"
               width={`${offsetWidth}px`}
@@ -164,7 +179,14 @@ export default function Hero({ banner }) {
               }}
               ref={canvasRef}
             />
-            <video ref={videoRef} className="media video" autoplay muted loop>
+            <video
+              ref={videoRef}
+              className="media video"
+              autoplay
+              muted
+              loop
+              poster={data.videoPoster.childImageSharp.fixed.base64}
+            >
               <source src={videoMP4} type="video/mp4" />
               <source src={videoWebm} type="video/webm" />
             </video>

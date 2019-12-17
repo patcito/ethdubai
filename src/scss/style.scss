@@ -46,11 +46,6 @@ header.fixed-header li.nav-item.active a.nav-link {
   margin-bottom: 0;
 }
 
-.react_text .titles {
-  font-size: 40px;
-  font-weight: 600;
-  margin-bottom: 0;
-}
 .react_text_content {
   position: relative;
   padding-left: 20px;
@@ -3830,5 +3825,27 @@ header.desktop_header {
 @media (min-width: 767px) {
   #header-lead .logo {
     max-width: 180px;
+  }
+}
+
+.react_text .titles {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .react_text  .titles-xs {
+    display: none !important;
+  }
+} 
+@media (max-width: 768px) {
+  .react_text  .titles-md {
+    display: none !important;
+  }
+   #xs-titles {
+  font-size: 20px;
+    margin-top: 20px !important;
+    margin-bottom: -40px !important;
   }
 }

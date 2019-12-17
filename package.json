@@ -45,6 +45,7 @@
     "react-markdown": "^4.2.2",
     "react-on-screen": "^2.1.1",
     "react-spring-carousel": "^0.0.4",
+    "react-visibility-sensor": "^5.1.1",
     "smooth-scroll": "^16.1.0"
   },
   "devDependencies": {
