@@ -1,4 +1,5 @@
 import React from 'react'
+import { Modal } from 'react-bootstrap'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Sponsor from 'components/sponsor'
@@ -11,8 +12,16 @@ export default function SponsorsSection({ sponsors }) {
     jobUrl: '',
     description: '',
     level: '',
+    localFile: { childImageSharp: { fluid: {} } },
   })
 
+  //TODO: move to modal sponsor
+  const handleShowSponsor = (s, e) => {
+    setShowSponsor(true)
+    setCurrentSponsor(s)
+    e.preventDefault()
+    return false
+  }
   console.log(sponsors)
   const imgs = useStaticQuery(graphql`
     {
@@ -54,6 +63,51 @@ export default function SponsorsSection({ sponsors }) {
               </a>
             </p>
           </div>
+          <Modal
+            show={showSponsor}
+            onHide={() => setShowSponsor(false)}
+            id="sponser_popup"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    onClick={() => setShowSponsor(false)}
+                  >
+                    &times;
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="sponser_popup_left">
+                        <Img
+                          className="no-animation"
+                          fluid={currentSponsor.localFile.childImageSharp.fluid}
+                        />
+                        <div class="sponser_popup_link">
+                          <a href={currentSponsor.url}>Website</a>
+                          <a href={currentSponsor.jobUrl}>Work with us</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-9">
+                      <div class="sponser_popup_right">
+                        <h3>{currentSponsor.name}</h3>
+                        <p>{currentSponsor.description}</p>
+                      </div>
+                    </div>
+                    <div class="vertical_text">
+                      <h3>{currentSponsor.level}</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Modal>
           {/* <div class="platinium_box d-none">
             <div class="row">
               <div class="col-md-6">
@@ -172,7 +226,11 @@ export default function SponsorsSection({ sponsors }) {
               <div class="col-md-4">
                 {sponsors.gold.map(sponsor =>
                   sponsor.name !== '' ? (
-                    <Sponsor imgs={imgs} sponsor={sponsor} />
+                    <Sponsor
+                      imgs={imgs}
+                      sponsor={sponsor}
+                      handleShowSponsor={handleShowSponsor}
+                    />
                   ) : null
                 )}
                 <p>
