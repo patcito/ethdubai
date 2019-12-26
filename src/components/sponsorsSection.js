@@ -1,8 +1,7 @@
 import React from 'react'
-import { Modal } from 'react-bootstrap'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
-
+import Sponsor from 'components/sponsor'
 export default function SponsorsSection({ sponsors }) {
   const [showSponsor, setShowSponsor] = React.useState(false)
   const [currentSponsor, setCurrentSponsor] = React.useState({
@@ -14,6 +13,7 @@ export default function SponsorsSection({ sponsors }) {
     level: '',
   })
 
+  console.log(sponsors)
   const imgs = useStaticQuery(graphql`
     {
       sponser: file(relativePath: { eq: "sponser.png" }) {
@@ -35,15 +35,6 @@ export default function SponsorsSection({ sponsors }) {
       }
     }
   `)
-
-  //TODO: move to modal sponsor
-  function handleShowSponsor(sponsor, e) {
-    setShowSponsor(true)
-    setCurrentSponsor(sponsor)
-    e.preventDefault()
-    return false
-  }
-
   return (
     <>
       <span id="sprs"></span>
@@ -179,84 +170,11 @@ export default function SponsorsSection({ sponsors }) {
           <div class="platinium_box gold_box">
             <div class="row">
               <div class="col-md-4">
-                <div class="spnser_box">
-                  <div class="sponser_image">
-                    <Img
-                      className="no-animation"
-                      fixed={imgs.amplify.childImageSharp.fixed}
-                    />
-                  </div>
-                  <div class="work_withweb">
-                    <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                      Website
-                    </a>
-                    <a href="https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                      Work with us
-                    </a>
-                  </div>
-                  <a
-                    onClick={e => {
-                      handleShowSponsor(
-                        {
-                          name: 'AWS Amplify',
-                          description:
-                            'AWS Amplify makes it easy to create, configure, and implement scalable mobile applications powered by AWS. Amplify seamlessly provisions and manages your mobile backend and provides a simple framework to easily integrate your backend with your iOS, Android, Web, and React Native frontends. Amplify also automates the application release process of both your frontend and backend allowing you to deliver features faster.',
-                          url:
-                            'https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
-                          jobUrl:
-                            'https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
-                          level: 'gold',
-                          logoUrl: imgs.amplify.childImageSharp.fluid,
-                        },
-                        e
-                      )
-                    }}
-                    class="read_more"
-                  >
-                    Read More
-                  </a>
-                  <div class="mobile_icons">
-                    <ul>
-                      <li>
-                        <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                          <i class="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                          <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          data-toggle="modal"
-                          data-target="#sponser_popup"
-                          onClick={e => {
-                            handleShowSponsor(
-                              {
-                                name: 'AWS Amplify',
-                                description:
-                                  'AWS Amplify makes it easy to create, configure, and implement scalable mobile applications powered by AWS. Amplify seamlessly provisions and manages your mobile backend and provides a simple framework to easily integrate your backend with your iOS, Android, Web, and React Native frontends. Amplify also automates the application release process of both your frontend and backend allowing you to deliver features faster.',
-                                url:
-                                  'https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
-                                jobUrl:
-                                  'https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner',
-                                level: 'gold',
-                                logoUrl: imgs.amplify.childImageSharp.fluid,
-                              },
-                              e
-                            )
-                          }}
-                        >
-                          <i
-                            class="fa fa-long-arrow-right"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+                {sponsors.gold.map(sponsor =>
+                  sponsor.name !== '' ? (
+                    <Sponsor imgs={imgs} sponsor={sponsor} />
+                  ) : null
+                )}
                 <p>
                   <a
                     href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
@@ -273,6 +191,30 @@ export default function SponsorsSection({ sponsors }) {
               </div>
             </div>
           </div>
+          <div class="platinium_box gold_box brunse_box">
+            <div class="row">
+              <div class="col-md-4">
+                {sponsors.silver.map(sponsor =>
+                  sponsor.name !== '' ? (
+                    <Sponsor imgs={imgs} sponsor={sponsor} />
+                  ) : null
+                )}
+                <p>
+                  <a
+                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
+                    class="spr-link"
+                    target="_blank"
+                  >
+                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
+                    sponsor us, we'd love to hear from you.
+                  </a>
+                </p>
+              </div>
+              <div class="vertical_text gold">
+                <h3>SILVER</h3>
+              </div>
+            </div>
+          </div>{' '}
           {/* <div class="platinium_box gold_box brunse_box d-none">
             <div class="row">
               <div class="col-md-4">
@@ -379,51 +321,6 @@ export default function SponsorsSection({ sponsors }) {
             </div>
           </div> */}
         </div>
-        <Modal
-          show={showSponsor}
-          onHide={() => setShowSponsor(false)}
-          id="sponser_popup"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  onClick={() => setShowSponsor(false)}
-                >
-                  &times;
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="sponser_popup_left">
-                      <Img
-                        className="no-animation"
-                        fluid={currentSponsor.logoUrl.fluid}
-                      />
-                      <div class="sponser_popup_link">
-                        <a href={currentSponsor.url}>Website</a>
-                        <a href={currentSponsor.jobUrl}>Work with us</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-9">
-                    <div class="sponser_popup_right">
-                      <h3>{currentSponsor.name}</h3>
-                      <p>{currentSponsor.description}</p>
-                    </div>
-                  </div>
-                  <div class="vertical_text">
-                    <h3>{currentSponsor.level}</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Modal>
       </section>
     </>
   )

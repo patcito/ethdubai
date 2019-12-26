@@ -95,7 +95,9 @@ export default function Hero({ banner }) {
     }
 
     return () => {
-      v.removeEventListener('timeupdate', onMetadata)
+      if (onMetadata) {
+        v.removeEventListener('timeupdate', onMetadata)
+      }
       v.removeEventListener('loadeddata', setVideoBgColor)
     }
   }, [videoRef])

@@ -65,6 +65,7 @@ export default function IndexPage({ data, location }) {
       <TrackVisibility>
         <Hero banner={data.banner.childImageSharp.fluid} />
       </TrackVisibility>
+
       <section className="conference" id="conference">
         <div className="container">
           <div className="headings" id="header-lead">
@@ -924,6 +925,9 @@ export const pageQuery = graphql`
                 fluid {
                   ...GatsbyImageSharpFluid_withWebp
                 }
+                fixed(height: 40) {
+                  ...GatsbyImageSharpFixed_withWebp
+                }
               }
             }
             jobUrl
@@ -938,6 +942,9 @@ export const pageQuery = graphql`
               childImageSharp {
                 fluid {
                   ...GatsbyImageSharpFluid_withWebp
+                }
+                fixed(height: 80) {
+                  ...GatsbyImageSharpFixed_withWebp
                 }
               }
             }
