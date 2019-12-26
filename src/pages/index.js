@@ -62,6 +62,9 @@ export default function IndexPage({ data, location }) {
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
+      <TrackVisibility>
+        <Hero banner={data.banner.childImageSharp.fluid} />
+      </TrackVisibility>
       <section className="conference" id="conference">
         <div className="container">
           <div className="headings" id="header-lead">
