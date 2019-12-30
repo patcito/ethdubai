@@ -87,6 +87,7 @@ export default function SponsorsSection({ sponsors }) {
                         <Img
                           className="no-animation"
                           fluid={currentSponsor.localFile.childImageSharp.fluid}
+                          key={currentSponsor.id}
                         />
                         <div class="sponser_popup_link">
                           <a href={currentSponsor.url}>Website</a>
@@ -230,6 +231,7 @@ export default function SponsorsSection({ sponsors }) {
                       imgs={imgs}
                       sponsor={sponsor}
                       handleShowSponsor={handleShowSponsor}
+                      key={sponsor.id}
                     />
                   ) : null
                 )}
@@ -254,7 +256,12 @@ export default function SponsorsSection({ sponsors }) {
               <div class="col-md-4">
                 {sponsors.silver.map(sponsor =>
                   sponsor.name !== '' ? (
-                    <Sponsor imgs={imgs} sponsor={sponsor} />
+                    <Sponsor
+                      key={sponsor.id}
+                      imgs={imgs}
+                      sponsor={sponsor}
+                      handleShowSponsor={handleShowSponsor}
+                    />
                   ) : null
                 )}
                 <p>
@@ -268,7 +275,7 @@ export default function SponsorsSection({ sponsors }) {
                   </a>
                 </p>
               </div>
-              <div class="vertical_text gold">
+              <div class="vertical_text brunse">
                 <h3>SILVER</h3>
               </div>
             </div>

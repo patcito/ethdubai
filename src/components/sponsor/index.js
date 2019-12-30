@@ -42,7 +42,7 @@ export default function Sponsor({ handleShowSponsor, sponsor }) {
                 data-toggle="modal"
                 data-target="#sponser_popup"
                 onClick={e => {
-                  //      handleShowSponsor(sponsor, e)
+                  handleShowSponsor(sponsor, e)
                 }}
               >
                 <i class="fa fa-long-arrow-right" aria-hidden="true"></i>

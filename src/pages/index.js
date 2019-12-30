@@ -65,6 +65,7 @@ export default function IndexPage({ data, location }) {
       <TrackVisibility>
         <Hero banner={data.banner.childImageSharp.fluid} />
       </TrackVisibility>
+
       <section className="conference" id="conference">
         <div className="container">
           <div className="headings" id="header-lead">
@@ -565,7 +566,16 @@ export default function IndexPage({ data, location }) {
                     Contact
                   </a>
                 </li>
-                <li className="d-none d-sm-block">
+                <li className="">
+                  <a
+                    className="nav-link"
+                    href="https://2019.react-europe.org"
+                    target="_blank"
+                  >
+                    2019
+                  </a>
+                </li>{' '}
+                <li className="">
                   <a
                     className="nav-link"
                     href="https://jobs.react-europe.org"
@@ -574,7 +584,7 @@ export default function IndexPage({ data, location }) {
                     Jobs
                   </a>
                 </li>
-                <li className="d-none d-sm-block">
+                <li className="">
                   <a
                     className="nav-link"
                     href="https://learn.react-europe.org"

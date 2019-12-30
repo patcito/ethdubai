@@ -73,7 +73,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                       }}
                     >
                       {' '}
-                      <span>
+                      <span key={i}>
                         {new Date(day.date).toLocaleString('default', {
                           month: 'long',
                         })}{' '}
@@ -118,7 +118,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                       <div id="schedule-scroll" class="tab_scroller">
                         {event.groupedSchedule.map((day, i) => (
                           <>
-                            <h3 id={'day-' + i}>
+                            <h3 id={'day-' + i} key={i}>
                               {new Date(day.date).toLocaleString('default', {
                                 weekday: 'long',
                               })}

@@ -186,7 +186,7 @@ export default function Hero({ banner }) {
             <video
               ref={videoRef}
               className="media video"
-              autoplay
+              autoPlay
               muted
               loop
               poster={data.videoPoster.childImageSharp.fixed.base64}
