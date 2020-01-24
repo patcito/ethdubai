@@ -62,9 +62,7 @@ export default function IndexPage({ data, location }) {
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
-      <TrackVisibility>
-        <Hero banner={data.banner.childImageSharp.fluid} />
-      </TrackVisibility>
+      <TrackVisibility></TrackVisibility>
 
       <section className="conference" id="conference">
         <div className="container">
@@ -934,7 +932,7 @@ export const pageQuery = graphql`
                 fluid {
                   ...GatsbyImageSharpFluid_withWebp
                 }
-                fixed(height: 30) {
+                fixed(width: 193) {
                   ...GatsbyImageSharpFixed_withWebp
                 }
               }
