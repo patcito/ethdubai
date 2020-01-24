@@ -224,28 +224,28 @@ export default function SponsorsSection({ sponsors }) {
           </div> */}
           <div class="platinium_box gold_box">
             <div class="row">
-              <div class="col-md-4">
-                {sponsors.gold.map(sponsor =>
-                  sponsor.name !== '' ? (
+              {sponsors.gold.map(sponsor =>
+                sponsor.name !== '' ? (
+                  <div class="col-md-4">
                     <Sponsor
                       imgs={imgs}
                       sponsor={sponsor}
                       handleShowSponsor={handleShowSponsor}
                       key={sponsor.id}
                     />
-                  ) : null
-                )}
-                <p>
-                  <a
-                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
-                    class="spr-link"
-                    target="_blank"
-                  >
-                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
-                    sponsor us, we'd love to hear from you.
-                  </a>
-                </p>
-              </div>
+                  </div>
+                ) : null
+              )}
+              <p className="d-none">
+                <a
+                  href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
+                  class="spr-link"
+                  target="_blank"
+                >
+                  <i class="fa fa-envelope"></i>&nbsp; If you would like to
+                  sponsor us, we'd love to hear from you.
+                </a>
+              </p>
               <div class="vertical_text gold">
                 <h3>GOLD</h3>
               </div>
@@ -264,7 +264,7 @@ export default function SponsorsSection({ sponsors }) {
                     />
                   ) : null
                 )}
-                <p>
+                <p className="d-none">
                   <a
                     href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
                     class="spr-link"
