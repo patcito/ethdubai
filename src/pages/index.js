@@ -931,10 +931,10 @@ export const pageQuery = graphql`
             logoUrl
             localFile {
               childImageSharp {
-                fluid {
+                fluid(maxHeight: 100) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
-                fixed(height: 193) {
+                fixed(height: 35) {
                   ...GatsbyImageSharpFixed_withWebp
                 }
               }
@@ -949,7 +949,7 @@ export const pageQuery = graphql`
             logoUrl
             localFile {
               childImageSharp {
-                fluid {
+                fluid(maxHeight: 100) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
                 fixed(height: 80) {

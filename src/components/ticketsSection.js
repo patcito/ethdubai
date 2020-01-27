@@ -5,6 +5,7 @@ import Img from 'gatsby-image'
 
 export default function TicketsSection() {
   const [isFrench, setIsFrench] = React.useState(false)
+  const [isPL, setIsPL] = React.useState(false)
 
   const imgs = useStaticQuery(graphql`
     {
@@ -24,6 +25,9 @@ export default function TicketsSection() {
       .then(json => {
         if (json.CountryCode === 'FR') {
           setIsFrench(true)
+        }
+        if (json.CountryCode === 'PL') {
+          setIsPL(true)
         }
       })
       .catch(err => {})
@@ -52,6 +56,13 @@ export default function TicketsSection() {
               <h3>
                 Tickets are now available for both conference and workshops.
               </h3>
+              {!isFrench && !isPL && false ? (
+                <h4>
+                  Limited offer: Are you a team of 4 or more people going to the
+                  conference? Use this 10% discount on all your Round 1
+                  conference tickets: <strong>10pc-4-teams</strong>{' '}
+                </h4>
+              ) : null}{' '}
               <h3 class="d-none">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                   Don't miss our tickets release by subscribing here.
