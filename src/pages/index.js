@@ -142,13 +142,12 @@ export default function IndexPage({ data, location }) {
                 </p>
                 <div className="airport">
                   <h5>
-                    The venue is close to both the
-                    <b>CDG & ORY airports</b>
+                    The venue is close to both the <b>CDG &amp; ORY airports</b>
                   </h5>
                 </div>
                 <div className="airport train">
                   <h5>
-                    Is accessible by <b>subway, bus & ring road</b>
+                    Is accessible by <b>subway, bus &amp; ring road</b>
                   </h5>
                 </div>
               </div>
