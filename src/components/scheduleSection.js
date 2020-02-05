@@ -62,7 +62,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                       onClick={e => {
                         setCurrentScheduleTab(i)
                         if (document) {
-                          let dayd = document.getElementById('day-' + i)
+                          let dayd = document.getElementById('day-' + (i + 1))
                             .offsetTop
                           let scrolldiv = document.getElementById(
                             'schedule-scroll'
@@ -118,7 +118,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                       <div id="schedule-scroll" class="tab_scroller">
                         {event.groupedSchedule.map((day, i) => (
                           <>
-                            <h3 id={'day-' + i} key={i}>
+                            <h3 id={'day-' + (i + 1)} key={i}>
                               {new Date(day.date).toLocaleString('default', {
                                 weekday: 'long',
                               })}
@@ -128,6 +128,23 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                               })}
                             </h3>
                             {day.slots.map((slot, i) => {
+                              let slots = day.slots
+                              if (
+                                slots[i + 1] &&
+                                slots[i + 1].startDate === slots[i].startDate &&
+                                slot.title.indexOf('[Discovery Track]') !== -1
+                              ) {
+                                slot = slots[i + 1]
+                              }
+                              if (
+                                slots[i - 1] &&
+                                slots[i - 1].startDate === slots[i].startDate &&
+                                slots[i - 1].title.indexOf(
+                                  '[Discovery Track]'
+                                ) !== -1
+                              ) {
+                                slot = slots[i - 1]
+                              }
                               const slot_slug = `${slot.id}-${slot.title
                                 .toString()
                                 .toLowerCase()
@@ -176,13 +193,28 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                         })
                                         .split(':')[0] +
                                         ':' +
-                                        new Date(slot.startDate)
+                                        new Date(
+                                          new Date(slot.startDate).setMinutes(
+                                            new Date(
+                                              slot.startDate
+                                            ).getMinutes() + slot.length
+                                          )
+                                        )
                                           .toLocaleTimeString('default', {
                                             hour12: false,
                                           })
                                           .split(':')[1]}{' '}
                                     </h5>
-                                    <h4>
+                                    <h4
+                                      style={{
+                                        backgroundColor:
+                                          slot.title.indexOf(
+                                            '[Discovery Track]'
+                                          ) !== -1
+                                            ? '#f5f3f3'
+                                            : null,
+                                      }}
+                                    >
                                       <Link
                                         to={`#slot-${slot_slug}`}
                                         replace
@@ -220,14 +252,16 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                                 </div>
                                                 <div class="tab_icons">
                                                   <ul>
-                                                    <li>
-                                                      <a
-                                                        href={`https://twitter.com/${speaker.twitter}`}
-                                                        class="icon-social-button-small"
-                                                      >
-                                                        <i class="fa fa-twitter icon-twitter"></i>
-                                                      </a>
-                                                    </li>
+                                                    {speaker.twitter !== '' ? (
+                                                      <li>
+                                                        <a
+                                                          href={`https://twitter.com/${speaker.twitter}`}
+                                                          class="icon-social-button-small"
+                                                        >
+                                                          <i class="fa fa-twitter icon-twitter"></i>
+                                                        </a>
+                                                      </li>
+                                                    ) : null}
                                                     <li>
                                                       <a
                                                         href={`https://github.com/${speaker.github}`}

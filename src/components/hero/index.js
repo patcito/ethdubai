@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import './hero.css'
 
 const titles = [
-  '+18 talks, 12 lightning talks and 1500 attendees',
+  '+30 talks, 12 lightning talks, a 2nd discovery track on day 2 and 1500 attendees',
   'in the Beautiful city of Paris',
   'With delicious French food',
   'More than 8 Workshops!',

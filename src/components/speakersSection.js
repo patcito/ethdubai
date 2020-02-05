@@ -99,18 +99,20 @@ export default function SpeakersSection({ speakers = [] }) {
                     <div class="profile_content">
                       <h3 class="speaker-name">{speaker.name}</h3>
                       <p class="speaker-bio" bio-full={speaker.bio}>
-                        {speaker.shortBio}
+                        <ReactMarkdown source={speaker.shortBio} />
                       </p>
                       <ul>
-                        <li>
-                          <a
-                            href={`https://twitter.com/${speaker.twitter}`}
-                            class="icon-social-button"
-                          >
-                            <i class="fa fa-twitter icon-twitter"></i>
-                            <span />
-                          </a>
-                        </li>
+                        {speaker.twitter !== '' ? (
+                          <li>
+                            <a
+                              href={`https://twitter.com/${speaker.twitter}`}
+                              class="icon-social-button"
+                            >
+                              <i class="fa fa-twitter icon-twitter"></i>
+                              <span />
+                            </a>
+                          </li>
+                        ) : null}
                         <li>
                           <a
                             href={`https://github.com/${speaker.github}`}
@@ -214,7 +216,9 @@ export default function SpeakersSection({ speakers = [] }) {
                 )}
                 <div class="popup_profile_content">
                   <h3 class="speaker-name-modal">{speakerProps.name}</h3>
-                  <h5 class="speaker-bio-modal">{speakerProps.shortBio}</h5>
+                  <h5 class="speaker-bio-modal">
+                    <ReactMarkdown source={speakerProps.shortBio} />
+                  </h5>
                   <div class="speaker-bio-full-modal">
                     <ReactMarkdown source={speakerProps.bio} />
                   </div>

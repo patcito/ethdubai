@@ -275,7 +275,7 @@ function Caroussel() {
               />
               <h5>Hackathon &amp; Workshops</h5>
               <h6>More details coming soon. Stay tuned.</h6>
-              <p> 9:00am to 5:00pm</p>
+              <p> 8:45am to 5:30pm</p>
             </div>
           </div>
         </div>

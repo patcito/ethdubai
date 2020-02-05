@@ -102,11 +102,6 @@ export default function Navi() {
                     Learn
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="https://2019.react-europe.org">
-                    '19
-                  </a>
-                </li>
               </ul>
             </div>
           </nav>

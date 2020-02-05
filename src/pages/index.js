@@ -176,7 +176,7 @@ export default function IndexPage({ data, location }) {
             </div>
             <h2 style={{ textAlign: 'center' }}>What People Said</h2>
             <p>
-              What our previous attendants had to say about ReactEurope 2019.
+              What our previous attendees had to say about ReactEurope 2019.
             </p>
           </div>
           <div className="testimonials-slider">
@@ -260,6 +260,14 @@ export default function IndexPage({ data, location }) {
                 <li>
                   <a href="https://medium.com/@reacteurope" target="_blank">
                     <Img fixed={data.medium_icon.childImageSharp.fixed} />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/company/14810131/"
+                    target="_blank"
+                  >
+                    <Img fixed={data.linkedin_icon.childImageSharp.fixed} />
                   </a>
                 </li>
               </ul>
@@ -873,6 +881,13 @@ export const pageQuery = graphql`
       }
     }
     medium_icon: file(relativePath: { eq: "m.png" }) {
+      childImageSharp {
+        fixed(height: 24) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    linkedin_icon: file(relativePath: { eq: "linkedin.png" }) {
       childImageSharp {
         fixed(height: 24) {
           ...GatsbyImageSharpFixed_withWebp
