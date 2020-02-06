@@ -1854,6 +1854,9 @@ div#speaker_popup .icon_box {
 }
 div#speaker_popup .modal-dialog {
   width: 597px;
+  @media (min-width: 768px) {
+    width: 800px;
+  }
   max-width: 100%;
   position: absolute;
   left: 50%;
@@ -1892,9 +1895,9 @@ div#speaker_popup .modal-content {
     max-height: 375px;
     overflow-y: scroll;
   }
-.popup_profile_content h4 {
-  font-size: 1rem;
-}
+  .popup_profile_content h4 {
+    font-size: 1rem;
+  }
 }
 .popup_profile_content h5 {
   font-size: 15px;
