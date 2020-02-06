@@ -63,7 +63,9 @@ export default function IndexPage({ data, location }) {
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
-      <TrackVisibility></TrackVisibility>
+      <TrackVisibility>
+        <Hero banner={data.banner.childImageSharp.fluid} />
+      </TrackVisibility>
 
       <section className="conference" id="conference">
         <div className="container">
@@ -145,7 +147,7 @@ export default function IndexPage({ data, location }) {
                 </div>
                 <div className="airport train">
                   <h5>
-                    Is accessible by <b>subway, bus &amp; ring road</b>
+                    Is accessible by <b>subway, bus &amp; ring road.</b>
                   </h5>
                 </div>
               </div>

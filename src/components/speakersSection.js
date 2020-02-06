@@ -8,20 +8,24 @@ import videoMP4 from './video/paul.mp4'
 export default function SpeakersSection({ speakers = [] }) {
   const [show, setShow] = React.useState(false)
   const [showDescription, setShowDescription] = React.useState(false)
-  useEffect(() => {
-    window.addEventListener('backbutton', handleBackButton)
-
-    return () => {
-      window.removeEventListener('backbutton', handleBackButton)
-    }
-  }, [handleBackButton])
   const handleBackButton = useCallback(event => {
+    event.preventDefault()
+    setShow(false)
+    setShowDescription(false)
     if (show) {
+      if (window) history.pushState(null, null, '#speakers')
       setShow(false)
       setShowDescription(false)
-      event.preventDefault()
     }
   }, [])
+  useEffect(() => {
+    if (window) window.addEventListener('hashchange', handleBackButton)
+
+    return () => {
+      if (window) window.removeEventListener('hashchange', handleBackButton)
+    }
+  }, [handleBackButton])
+
   const [speakerProps, setSpeakerProps] = React.useState({
     name: '',
     twitter: '',
@@ -108,6 +112,10 @@ export default function SpeakersSection({ speakers = [] }) {
                       className="profile_image"
                       onClick={e => {
                         e.preventDefault()
+                        if (window) {
+                          history.pushState(null, null, '#p' + speaker.id)
+                          history.pushState(null, null, '#' + speaker.id)
+                        }
                         setShow(true)
                         setSpeakerProps(speaker)
                       }}
@@ -185,13 +193,23 @@ export default function SpeakersSection({ speakers = [] }) {
           </div>
         </div>
       </div>
-      <Modal show={show} onHide={() => setShow(false)} id="speaker_popup">
+      <Modal
+        show={show}
+        onHide={() => {
+          setShow(false)
+          if (window) history.pushState(null, null, null)
+        }}
+        id="speaker_popup"
+      >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
               <button
                 type="button"
-                onClick={() => setShow(false)}
+                onClick={() => {
+                  setShow(false)
+                  if (window) history.pushState(null, null, '/')
+                }}
                 className="close"
                 data-dismiss="modal"
               >
@@ -259,6 +277,14 @@ export default function SpeakersSection({ speakers = [] }) {
                             >
                               <h3 className="speaker-name-modal">Talk</h3>
                               <h4>{talk.title}</h4>
+                              <div
+                                style={{ textAlign: 'initial' }}
+                                className={
+                                  showDescription ? null : 'talkDescription'
+                                }
+                              >
+                                <ReactMarkdown source={talk.description} />
+                              </div>
                               <a
                                 href=""
                                 onClick={e => {
@@ -273,7 +299,7 @@ export default function SpeakersSection({ speakers = [] }) {
                               >
                                 Show talk description
                               </a>
-                              <a
+                              {/*<a
                                 href=""
                                 onClick={e => {
                                   e.preventDefault()
@@ -286,19 +312,12 @@ export default function SpeakersSection({ speakers = [] }) {
                                 }
                               >
                                 Hide talk description
-                              </a>{' '}
-                              <div
-                                style={{ textAlign: 'initial' }}
-                                className={
-                                  showDescription ? null : 'talkDescription'
-                                }
-                              >
-                                <ReactMarkdown source={talk.description} />
-                              </div>
+                              </a>*/}
                               <a
                                 href=""
                                 onClick={e => {
                                   e.preventDefault()
+                                  if (window) history.pushState(null, null, '/')
                                   setShow(false)
                                   setShowDescription(false)
                                 }}

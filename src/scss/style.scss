@@ -492,11 +492,14 @@ a.add_icon {
   height: 40px;
   text-decoration: none;
   position: absolute;
-  bottom: 10%;
+  bottom: 7%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0;
   transition: 0.3s;
+  opacity: 0.5;
+  @media (max-width: 768px) {
+    opacity: 0.8;
+  }
 }
 
 .left_box a.add_icon {
@@ -1876,12 +1879,22 @@ div#speaker_popup .modal-content {
 .speaker_popup_profile video {
   border-radius: 14px;
 }
+
 .popup_profile_content h3 {
   font-size: 20px;
   font-weight: 600;
   color: #58595b;
   margin-top: 30px;
   margin-bottom: 3px;
+}
+@media (max-width: 768px) {
+  .popup_profile_content {
+    max-height: 375px;
+    overflow-y: scroll;
+  }
+.popup_profile_content h4 {
+  font-size: 1rem;
+}
 }
 .popup_profile_content h5 {
   font-size: 15px;

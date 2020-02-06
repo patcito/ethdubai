@@ -219,10 +219,10 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                         to={`#slot-${slot_slug}`}
                                         replace
                                         data-scroll-ignore
-                                        // onClick={e => {
-                                        //   e.preventDefault()
-                                        //   navigate(`#slot-${slot_slug}`)
-                                        // }}
+                                        onClick={e => {
+                                          e.preventDefault()
+                                          //   navigate(`#slot-${slot_slug}`)
+                                        }}
                                       >
                                         {slot.title}
                                       </Link>
