@@ -6,7 +6,7 @@
   "dependencies": {
     "@loadable/component": "^5.10.2",
     "@svgr/webpack": "^4.3.2",
-    "gatsby": "2.15.9",
+    "gatsby": "2.19.5",
     "gatsby-background-image": "^0.9.7",
     "gatsby-image": "2.2.17",
     "gatsby-link": "2.2.12",
