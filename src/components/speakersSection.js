@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useCallback } from 'react'
 import Img from 'gatsby-image'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Modal } from 'react-bootstrap'
@@ -7,6 +7,21 @@ import videoMP4 from './video/paul.mp4'
 
 export default function SpeakersSection({ speakers = [] }) {
   const [show, setShow] = React.useState(false)
+  const [showDescription, setShowDescription] = React.useState(false)
+  useEffect(() => {
+    window.addEventListener('backbutton', handleBackButton)
+
+    return () => {
+      window.removeEventListener('backbutton', handleBackButton)
+    }
+  }, [handleBackButton])
+  const handleBackButton = useCallback(event => {
+    if (show) {
+      setShow(false)
+      setShowDescription(false)
+      event.preventDefault()
+    }
+  }, [])
   const [speakerProps, setSpeakerProps] = React.useState({
     name: '',
     twitter: '',
@@ -21,7 +36,16 @@ export default function SpeakersSection({ speakers = [] }) {
       },
     },
   })
-
+  let i = 0
+  let s = {}
+  speakers.map((speaker, index) => {
+    if (speaker.id === 2198) {
+      i = index
+      s = speaker
+    }
+  })
+  speakers.splice(i, 1)
+  speakers.splice(2, 0, s)
   const data = useStaticQuery(graphql`
     {
       head2: file(relativePath: { eq: "head-2.png" }) {
@@ -63,42 +87,42 @@ export default function SpeakersSection({ speakers = [] }) {
   `)
 
   return (
-    <section class="speaker" id="speakers">
-      <div class="container">
-        <div class="headings">
+    <section className="speaker" id="speakers">
+      <div className="container">
+        <div className="headings">
           <Img fixed={data.head2.childImageSharp.fixed} />
           <h2>Our Speakers</h2>
           <p>Stay tuned for some awesome speakers announcements soon.</p>
         </div>
-        <div class="speaker_profile">
-          <div class="row">
+        <div className="speaker_profile">
+          <div className="row">
             {speakers.map((speaker, index) => {
               return (
-                <div class="col-md-3 col-sm-4 col-xs-12" key={index}>
+                <div className="col-md-3 col-sm-4 col-xs-12" key={index}>
                   <div
-                    class={`speaker_box ${
+                    className={`speaker_box ${
                       index % 2 == 0 ? 'left_box' : 'right_box'
                     }`}
                   >
-                    <div class="profile_image">
+                    <div
+                      className="profile_image"
+                      onClick={e => {
+                        e.preventDefault()
+                        setShow(true)
+                        setSpeakerProps(speaker)
+                      }}
+                    >
                       <Img fluid={speaker.localFile.childImageSharp.fluid} />
                       <a
-                        href="#"
-                        class="add_icon show-speaker"
-                        data-toggle="modal"
-                        data-target="#speaker_popup"
-                        onClick={e => {
-                          e.preventDefault()
-                          setShow(true)
-                          setSpeakerProps(speaker)
-                        }}
+                        onClick={e => e.preventDefault()}
+                        className="add_icon show-speaker"
                       >
                         +
                       </a>
                     </div>
-                    <div class="profile_content">
-                      <h3 class="speaker-name">{speaker.name}</h3>
-                      <p class="speaker-bio" bio-full={speaker.bio}>
+                    <div className="profile_content">
+                      <h3 className="speaker-name">{speaker.name}</h3>
+                      <p className="speaker-bio" bio-full={speaker.bio}>
                         <ReactMarkdown source={speaker.shortBio} />
                       </p>
                       <ul>
@@ -106,9 +130,9 @@ export default function SpeakersSection({ speakers = [] }) {
                           <li>
                             <a
                               href={`https://twitter.com/${speaker.twitter}`}
-                              class="icon-social-button"
+                              className="icon-social-button"
                             >
-                              <i class="fa fa-twitter icon-twitter"></i>
+                              <i className="fa fa-twitter icon-twitter"></i>
                               <span />
                             </a>
                           </li>
@@ -116,9 +140,9 @@ export default function SpeakersSection({ speakers = [] }) {
                         <li>
                           <a
                             href={`https://github.com/${speaker.github}`}
-                            class="icon-social-button"
+                            className="icon-social-button"
                           >
-                            <i class="fa fa-github icon-github"></i>
+                            <i className="fa fa-github icon-github"></i>
                             <span />
                           </a>
                         </li>
@@ -126,9 +150,9 @@ export default function SpeakersSection({ speakers = [] }) {
                           <li>
                             <a
                               href="https://ivesvh.com/"
-                              class="icon-social-button"
+                              className="icon-social-button"
                             >
-                              <i class="fa fa-link icon-link"></i>
+                              <i className="fa fa-link icon-link"></i>
                             </a>
                           </li>
                         ) : null}
@@ -139,14 +163,14 @@ export default function SpeakersSection({ speakers = [] }) {
               )
             })}
 
-            <div class="col-md-3 col-sm-4 col-xs-12">
-              <div class="speaker_box right_box">
-                <div class="profile_image">
+            <div className="col-md-3 col-sm-4 col-xs-12">
+              <div className="speaker_box right_box">
+                <div className="profile_image">
                   <Img fluid={data.speaker_placeholder.childImageSharp.fluid} />
                 </div>
-                <div class="profile_content">
-                  <h3 class="speaker-name">More</h3>
-                  <p class="speaker-bio">
+                <div className="profile_content">
+                  <h3 className="speaker-name">More</h3>
+                  <p className="speaker-bio">
                     Stay tuned for more awesome speakers to be announced soon!{' '}
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                       Subscribe here to not miss new announcements.
@@ -156,49 +180,49 @@ export default function SpeakersSection({ speakers = [] }) {
               </div>
             </div>
           </div>
-          <div class="get_your_ticket">
+          <div className="get_your_ticket">
             <a href="#tickets">Get Your Ticket</a>
           </div>
         </div>
       </div>
       <Modal show={show} onHide={() => setShow(false)} id="speaker_popup">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
               <button
                 type="button"
-                class="close"
-                data-dismiss="modal"
                 onClick={() => setShow(false)}
+                className="close"
+                data-dismiss="modal"
               >
                 &times;
               </button>
             </div>
-            <div class="modal-body">
-              <div class="icon_box">
+            <div className="modal-body">
+              <div className="icon_box">
                 <ul>
                   <li>
                     <a
                       href={`https://twitter.com/${speakerProps.twitter}`}
-                      class="speaker-twitter-modal"
+                      className="speaker-twitter-modal"
                     >
                       <Img fixed={data.pt.childImageSharp.fixed} />
                     </a>
                     <a
                       href={`https://github.com/${speakerProps.github}`}
-                      class="speaker-github-modal"
+                      className="speaker-github-modal"
                     >
                       <Img fixed={data.pi.childImageSharp.fixed} />
                     </a>
                     {speakerProps.url ? (
-                      <a href={speakerProps.url} class="speaker-url-modal">
+                      <a href={speakerProps.url} className="speaker-url-modal">
                         <Img fixed={data.pl.childImageSharp.fixed} />
                       </a>
                     ) : null}
                   </li>
                 </ul>
               </div>
-              <div class="speaker_popup_profile">
+              <div className="speaker_popup_profile">
                 {speakerProps.id === 2083 ? (
                   <div>
                     <video
@@ -214,14 +238,84 @@ export default function SpeakersSection({ speakers = [] }) {
                     <Img fluid={speakerProps.localFile.childImageSharp.fluid} />
                   </div>
                 )}
-                <div class="popup_profile_content">
-                  <h3 class="speaker-name-modal">{speakerProps.name}</h3>
-                  <h5 class="speaker-bio-modal">
+                <div className="popup_profile_content">
+                  <h3 className="speaker-name-modal">{speakerProps.name}</h3>
+                  <h5 className="speaker-bio-modal">
                     <ReactMarkdown source={speakerProps.shortBio} />
                   </h5>
-                  <div class="speaker-bio-full-modal">
+                  <div className="speaker-bio-full-modal">
                     <ReactMarkdown source={speakerProps.bio} />
                   </div>
+                  {speakerProps.talks &&
+                  speakerProps.talks[0] &&
+                  speakerProps.talks[0].title ? (
+                    <>
+                      {speakerProps.talks.map(talk => (
+                        <div key={talk.id}>
+                          {talk.type === 0 ? (
+                            <div
+                              className="speaker-bio-full-modal"
+                              key={talk.id}
+                            >
+                              <h3 className="speaker-name-modal">Talk</h3>
+                              <h4>{talk.title}</h4>
+                              <a
+                                href=""
+                                onClick={e => {
+                                  e.preventDefault()
+                                  setShowDescription(true)
+                                }}
+                                className={
+                                  showDescription
+                                    ? 'talkDescriptionLinkMobile'
+                                    : 'talkDescriptionLink'
+                                }
+                              >
+                                Show talk description
+                              </a>
+                              <a
+                                href=""
+                                onClick={e => {
+                                  e.preventDefault()
+                                  setShowDescription(false)
+                                }}
+                                className={
+                                  showDescription
+                                    ? 'talkDescriptionLink'
+                                    : 'talkDescriptionLinkMobile'
+                                }
+                              >
+                                Hide talk description
+                              </a>{' '}
+                              <div
+                                style={{ textAlign: 'initial' }}
+                                className={
+                                  showDescription ? null : 'talkDescription'
+                                }
+                              >
+                                <ReactMarkdown source={talk.description} />
+                              </div>
+                              <a
+                                href=""
+                                onClick={e => {
+                                  e.preventDefault()
+                                  setShow(false)
+                                  setShowDescription(false)
+                                }}
+                                className={
+                                  showDescription
+                                    ? 'talkDescriptionLink'
+                                    : 'talkDescription'
+                                }
+                              >
+                                Close speaker box
+                              </a>{' '}
+                            </div>
+                          ) : null}
+                        </div>
+                      ))}
+                    </>
+                  ) : null}
                 </div>
               </div>
             </div>

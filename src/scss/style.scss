@@ -1872,7 +1872,8 @@ div#speaker_popup .modal-content {
   padding: 0 90px 40px;
   margin-top: -75px;
 }
-.speaker_popup_profile img,.speaker_popup_profile video {
+.speaker_popup_profile img,
+.speaker_popup_profile video {
   border-radius: 14px;
 }
 .popup_profile_content h3 {
@@ -3828,49 +3829,65 @@ header.desktop_header {
   }
 }
 
-
 @keyframes glow {
   to {
-    text-shadow: 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #665ed4, 0 0 16px #665ed4, 0 0 20px #665ed4, 0 0 24px #665ed4, 0 0 28px #665ed4;
+    text-shadow: 0 0 4px #fff, 0 0 8px #fff, 0 0 12px #665ed4, 0 0 16px #665ed4,
+      0 0 20px #665ed4, 0 0 24px #665ed4, 0 0 28px #665ed4;
   }
 }
-#xs-titles, #md-titles{
-  text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 6px #292736, 0 0 8px #292736, 0 0 10px #292736, 0 0 12px #292736, 0 0 14px #292736;
-    color: #fff;
-    display: inline-block;
-    font-size: 2.1rem;
-    padding: 0;
-    font-family: 'Pacifico', cursive;
-    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 6px #292736, 0 0 8px #292736, 0 0 10px #292736, 0 0 12px #292736, 0 0 14px #292736;
-    animation: glow 1s infinite alternate;
+#xs-titles,
+#md-titles {
+  text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 6px #292736, 0 0 8px #292736,
+    0 0 10px #292736, 0 0 12px #292736, 0 0 14px #292736;
+  color: #fff;
+  display: inline-block;
+  font-size: 2.1rem;
+  padding: 0;
+  font-family: 'Pacifico', cursive;
+  text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 6px #292736, 0 0 8px #292736,
+    0 0 10px #292736, 0 0 12px #292736, 0 0 14px #292736;
+  animation: glow 1s infinite alternate;
   font-size: 40px;
   font-weight: 600;
-  margin-bottom: 0;}
+  margin-bottom: 0;
+}
 
 @media (min-width: 768px) {
-  .react_text  .titles-xs {
+  .react_text .titles-xs {
     display: none !important;
   }
-   #xs-titles {
-     display: none !important;
-   }
+  #xs-titles {
+    display: none !important;
   }
+}
 @media (min-width: 768px) {
-  .react_text  .titles-xs {
+  .react_text .titles-xs {
     display: none !important;
   }
-   #xs-titles {
-     display: none !important;
-   }
-} 
+  #xs-titles {
+    display: none !important;
+  }
+  .talkDescriptionLink {
+    display: none;
+  }
+  .talkDescriptionLinkMobile {
+    display: none;
+  }
+}
 @media (max-width: 768px) {
-  .react_text  .titles-md {
+  .react_text .titles-md {
     display: none !important;
   }
-   #xs-titles {
-  font-size: 20px;
+  #xs-titles {
+    font-size: 20px;
     margin-top: 20px !important;
     margin-bottom: -40px !important;
+  }
+  .talkDescription {
+    display: none;
+  }
+  .talkDescriptionLinkMobile {
+    display: none;
   }
 }
 
