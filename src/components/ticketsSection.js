@@ -71,7 +71,12 @@ export default function TicketsSection() {
               <IframeResizer
                 log
                 src="https://www.react-europe.org?iframe=true"
-                style={{ width: '1px', minWidth: '100%', border: '0px' }}
+                style={{
+                  height: '1300px',
+                  width: '1px',
+                  minWidth: '100%',
+                  border: '0px',
+                }}
               />
             </div>
           </div>
