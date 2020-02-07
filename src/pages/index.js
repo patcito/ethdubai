@@ -111,6 +111,22 @@ export default function IndexPage({ data, location }) {
               </li>
               <li>
                 <a
+                  href="https://final-form.org/react?utm_source=react-europe.org&utm_medium=web"
+                  target="_blank"
+                >
+                  <Img fixed={data.finalForm.childImageSharp.fixed} />
+                </a>
+              </li>{' '}
+              <li>
+                <a
+                  href="https://www.facebook.com/careers?utm_source=react-europe.org&utm_medium=web"
+                  target="_blank"
+                >
+                  <Img fixed={data.facebook.childImageSharp.fixed} />
+                </a>
+              </li>{' '}
+              <li>
+                <a
                   href="https://expo.io/?utm_source=react-europe.org&utm_medium=web"
                   target="_blank"
                 >
@@ -796,6 +812,21 @@ export const pageQuery = graphql`
         }
       }
     }
+    finalForm: file(relativePath: { eq: "final-form.png" }) {
+      childImageSharp {
+        fixed(width: 140) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    facebook: file(relativePath: { eq: "fb.png" }) {
+      childImageSharp {
+        fixed(height: 50) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+
     location: file(relativePath: { eq: "location.png" }) {
       childImageSharp {
         fixed(width: 80, height: 80) {
