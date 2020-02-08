@@ -72,7 +72,6 @@ export default function TicketsSection() {
                 log
                 src="https://www.react-europe.org?iframe=true"
                 style={{
-                  height: '1300px',
                   width: '1px',
                   minWidth: '100%',
                   border: '0px',
