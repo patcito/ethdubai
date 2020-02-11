@@ -251,30 +251,30 @@ export default function SponsorsSection({ sponsors }) {
               </div>
             </div>
           </div>
-          <div class="platinium_box gold_box brunse_box">
+          <div class="platinium_box gold_box">
             <div class="row">
-              <div class="col-md-4">
-                {sponsors.silver.map(sponsor =>
-                  sponsor.name !== '' ? (
+              {sponsors.silver.map(sponsor =>
+                sponsor.name !== '' ? (
+                  <div class="col-md-4">
                     <Sponsor
                       key={sponsor.id}
                       imgs={imgs}
                       sponsor={sponsor}
                       handleShowSponsor={handleShowSponsor}
                     />
-                  ) : null
-                )}
-                <p className="d-none">
-                  <a
-                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
-                    class="spr-link"
-                    target="_blank"
-                  >
-                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
-                    sponsor us, we'd love to hear from you.
-                  </a>
-                </p>
-              </div>
+                  </div>
+                ) : null
+              )}
+              <p className="d-none">
+                <a
+                  href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
+                  class="spr-link"
+                  target="_blank"
+                >
+                  <i class="fa fa-envelope"></i>&nbsp; If you would like to
+                  sponsor us, we'd love to hear from you.
+                </a>
+              </p>
               <div class="vertical_text brunse">
                 <h3>SILVER</h3>
               </div>
