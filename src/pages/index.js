@@ -954,14 +954,14 @@ export const pageQuery = graphql`
         }
       }
     }
-    support2: file(relativePath: { eq: "support2.png" }) {
+    support2: file(relativePath: { eq: "eventlama.png" }) {
       childImageSharp {
         fixed(width: 80) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
     }
-    support6: file(relativePath: { eq: "support6.png" }) {
+    support6: file(relativePath: { eq: "expo.png" }) {
       childImageSharp {
         fixed(width: 120) {
           ...GatsbyImageSharpFixed_withWebp
