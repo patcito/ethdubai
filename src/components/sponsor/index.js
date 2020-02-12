@@ -8,8 +8,15 @@ export default function Sponsor({ handleShowSponsor, sponsor }) {
         <div class="sponser_image">
           {sponsor && sponsor.localFile ? (
             <Img
-              className="no-animation"
               fixed={sponsor.localFile.childImageSharp.fixed}
+              style={
+                sponsor.name === 'DAZN'
+                  ? {
+                      width: 80,
+                      height: 80,
+                    }
+                  : {}
+              }
             />
           ) : null}
         </div>
