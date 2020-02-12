@@ -703,7 +703,7 @@ export default function IndexPage({ data, location }) {
         <div className="footer_bottom">
           <div className="container">
             <p>
-              Copyrights © 2019 - Design by{' '}
+              Copyrights © 2020 - Design by{' '}
               <a href="https://eventlama.com" target="_blank">
                 EventLama
               </a>
