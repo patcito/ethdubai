@@ -10,7 +10,7 @@ export default function Sponsor({ handleShowSponsor, sponsor }) {
             <Img
               fixed={sponsor.localFile.childImageSharp.fixed}
               style={
-                sponsor.name === 'DAZN'
+                sponsor.name === 'DAZN' || sponsor.name === 'Hiway'
                   ? {
                       width: 80,
                       height: 80,

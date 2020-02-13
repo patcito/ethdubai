@@ -1121,13 +1121,13 @@ section.location {
   border: none;
   outline: none;
 }
-.regular_tecket {
+.regular_ticket {
   width: 100%;
 }
 .ticket_secound-row .row {
   margin: 0;
 }
-.regular_tecket {
+.regular_ticket {
   width: 100%;
   padding-top: 40px;
   border-bottom: 1px solid #e9ebf0 !important;
@@ -1280,7 +1280,7 @@ h6.right-text span {
   margin-top: -3px;
   margin-right: 2px;
 }
-.regular_ticket_input input[type='text'] {
+.regular_ticket_input .ticket-description {
   width: 100%;
   background: #f8f9fc;
   border: none;
@@ -2599,7 +2599,7 @@ div#event_popup .modal-dialog {
   .early_bird h3 {
     font-size: 20px;
   }
-  .regular_tecket_heading h3 {
+  .regular_ticket_heading h3 {
     font-size: 24px;
     margin-bottom: 0;
   }
@@ -2884,7 +2884,7 @@ div#event_popup .modal-dialog {
     flex: 50%;
     max-width: 50%;
   }
-  .regular_tecket {
+  .regular_ticket {
     padding-top: 21px;
   }
   .regular_right {
@@ -2922,7 +2922,7 @@ div#event_popup .modal-dialog {
     padding: 12px 22px;
     margin-top: 14px;
   }
-  .regular_tecket {
+  .regular_ticket {
     padding-top: 21px;
     padding-bottom: 30px;
   }
@@ -3394,7 +3394,7 @@ div#event_popup .modal-dialog {
     color: #5361fe;
     text-align: left;
   }
-  .regular_tecket_heading h3 {
+  .regular_ticket_heading h3 {
     font-size: 22px;
     margin-bottom: 0;
     text-align: left;
