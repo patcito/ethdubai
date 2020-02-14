@@ -6,7 +6,7 @@ import Img from 'gatsby-image'
 export default function InlineTicketsSection({ event }) {
   const [isFrench, setIsFrench] = React.useState(false)
   const [isPL, setIsPL] = React.useState(false)
-
+  const [tickets, setTickets] = React.useState(event.tickets)
   const imgs = useStaticQuery(graphql`
     {
       ticket: file(relativePath: { eq: "ticket.png" }) {
@@ -87,159 +87,147 @@ export default function InlineTicketsSection({ event }) {
                   </div>
                   <div>
                     <div class="row ticket_secound-row">
-                      {event.tickets.map((ticket, index) => (
-                        <>
-                          <div class="col-md-6">
-                            <div class="early_bird">
-                              <h3>{ticket.name}</h3>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="sold_out">
-                              <a href="#">SOLD OUT</a>
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="description_input">
-                              <label>Description</label>
-                              <input type="text" name="Description" />
-                            </div>
-                          </div>
-                        </>
-                      ))}
-                      {event.tickets.map((ticket, index) => (
-                        <div class="regular_ticket">
-                          <div class="row no-gutters">
-                            <div class="col-md-4">
-                              <div class="regular_ticket_heading">
-                                <h3>{ticket.name}</h3>
-                              </div>
-                            </div>
-                            <div class="col-md-8">
-                              <div class="regular_right">
-                                <h6 class="right-text">
-                                  €475.00 <span>(€73.00 VAT)</span>
-                                  <a
-                                    href="#"
-                                    class="close"
-                                    data-dismiss="right-text"
-                                  >
-                                    ✖
-                                  </a>
-                                </h6>
-                                <div class="quantity">
-                                  <input
-                                    type="number"
-                                    min="1"
-                                    max="9"
-                                    step="1"
-                                    value="1"
-                                  />
-                                  <div class="quantity-nav">
-                                    <div class="quantity-button quantity-up">
-                                      +
-                                    </div>
-                                    <div class="quantity-button quantity-down">
-                                      -
-                                    </div>
+                      <div>
+                        {' '}
+                        {tickets.map((ticket, index) =>
+                          ticket.soldOut ? (
+                            <div class="regular_ticket">
+                              <div class="row no-gutters">
+                                <div class="col-md-6">
+                                  <div class="early_bird">
+                                    <h3>{ticket.name}</h3>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="sold_out">
+                                    <a href="#">SOLD OUT</a>
+                                  </div>
+                                </div>
+                                <div class="col-md-12">
+                                  <div className="description_input">
+                                    <label>Description</label>
+                                    <input type="text" name="Description" />
                                   </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-12">
-                              <div class="regular_ticket_content">
-                                <div class="regular_ticket_links">
-                                  <ul>
-                                    <li>
-                                      <a href="#">Description</a>
-                                    </li>
-                                    <li>
-                                      <img src="images/time1.png" alt="" /> 16
-                                      days left
-                                    </li>
-                                    <li>
-                                      <img src="images/tciket.png" alt="" /> 20
-                                      tickets left
-                                    </li>
-                                  </ul>
+                          ) : (
+                            <div class="regular_ticket">
+                              <div class="row no-gutters">
+                                <div class="col-md-4">
+                                  <div class="regular_ticket_heading">
+                                    <h3
+                                      className="ticket_name"
+                                      style={{ fontSize: '18px' }}
+                                    >
+                                      {ticket.name}
+                                    </h3>
+                                  </div>
                                 </div>
-                                <div class="regular_ticket_input">
-                                  <div className="ticket-description">
-                                    <ReactMarkdown
-                                      source={ticket.description}
-                                    />
+                                <div class="col-md-8">
+                                  <div class="regular_right">
+                                    <h6 class="right-text">
+                                      €
+                                      {(ticket.priceWithoutVat / 10000).toFixed(
+                                        2
+                                      )}{' '}
+                                      <span>
+                                        (€
+                                        {(
+                                          (ticket.priceWithVat -
+                                            ticket.priceWithoutVat) /
+                                          10000
+                                        ).toFixed(2)}{' '}
+                                        VAT)
+                                      </span>
+                                      ✖
+                                    </h6>
+                                    <div class="quantity">
+                                      <input
+                                        type="number"
+                                        min="1"
+                                        max="9"
+                                        step="1"
+                                        value="1"
+                                      />
+                                      <div class="quantity-nav">
+                                        <div class="quantity-button quantity-up">
+                                          +
+                                        </div>
+                                        <div class="quantity-button quantity-down">
+                                          -
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-12">
+                                  <div class="regular_ticket_content">
+                                    <div class="regular_ticket_links">
+                                      <ul style={{ textAlign: 'left' }}>
+                                        <li>
+                                          <a
+                                            href=""
+                                            onClick={e => {
+                                              ticket.showDescription = !ticket.showDescription
+                                              let newTickets = [...tickets]
+                                              newTickets[index] = ticket
+                                              setTickets(newTickets)
+                                              console.log(newTickets)
+                                              e.preventDefault()
+                                            }}
+                                          >
+                                            Description
+                                          </a>
+                                        </li>
+                                        <li style={{ display: 'none' }}>
+                                          <img src="images/time1.png" alt="" />{' '}
+                                          16 days left
+                                        </li>
+                                        <li style={{ display: 'none' }}>
+                                          <img src="images/tciket.png" alt="" />{' '}
+                                          20 tickets left
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    {ticket.showDescription ? (
+                                      <div
+                                        className="regular_ticket_input"
+                                        iii={ticket.showDescription}
+                                      >
+                                        <div className="ticket-description">
+                                          <ReactMarkdown
+                                            source={ticket.description}
+                                          />
+                                        </div>
+                                      </div>
+                                    ) : null}
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div class="regular_tecket">
-                      <div class="row no-gutters">
-                        <div class="col-md-4">
-                          <div class="regular_tecket_heading">
-                            <h3>Late bird</h3>
-                          </div>
-                        </div>
-                        <div class="col-md-8">
-                          <div class="regular_right">
-                            <h6 class="right-text">
-                              €700.00 <span>(€89.80 VAT)</span>
-                              <a
-                                href="#"
-                                class="close"
-                                data-dismiss="right-text"
-                              >
-                                ✖
-                              </a>
-                            </h6>
-                            <div class="sold_out soon">
-                              <a href="#">SOON</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="regular_ticket_content">
-                            <div class="regular_ticket_links">
-                              <ul>
-                                <li>
-                                  <a href="#">Description</a>
-                                </li>
-                                <li>
-                                  <img src="images/time1.png" alt="" /> 51 days
-                                  left
-                                </li>
-                                <li>
-                                  <img src="images/tciket.png" alt="" /> 15
-                                  tickets left
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
+                          )
+                        )}
                       </div>
-                    </div>
-                    <div class="checkout">
-                      <div class="row no-gutters">
-                        <div class="col-md-6">
-                          <div class="discound_heading">
-                            <h3>If you have a discount code</h3>
+                      <div class="checkout">
+                        <div class="row no-gutters">
+                          <div class="col-md-6">
+                            <div class="discound_heading">
+                              <h3>If you have a discount code</h3>
+                            </div>
+                            <div class="discount_code">
+                              <input
+                                type="text"
+                                name="discount"
+                                placeholder="Discount Code"
+                              />
+                              <button>Apply</button>
+                            </div>
                           </div>
-                          <div class="discount_code">
-                            <input
-                              type="text"
-                              name="discount"
-                              placeholder="Discount Code"
-                            />
-                            <button>Apply</button>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="checkout_btn">
-                            <a href="#">Checkout</a>
+                          <div class="col-md-6">
+                            <div class="checkout_btn">
+                              <a href="#">Checkout</a>
+                            </div>
                           </div>
                         </div>
                       </div>

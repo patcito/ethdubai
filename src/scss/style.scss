@@ -1129,9 +1129,11 @@ section.location {
 }
 .regular_ticket {
   width: 100%;
-  padding-top: 40px;
-  border-bottom: 1px solid #e9ebf0 !important;
-  padding-bottom: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.regular_ticket:last-child {
+  border-bottom: none !important;
 }
 h6.right-text {
   text-align: right;
@@ -1153,7 +1155,6 @@ h6.right-text span {
 }
 .quantity {
   position: relative;
-  margin-left: 40px;
 }
 
 .quantity input[type='number']::-webkit-inner-spin-button,
@@ -1247,6 +1248,9 @@ h6.right-text span {
   position: absolute;
   bottom: 7px;
 }
+#book_ticket {
+  text-align: left;
+}
 .book_ticket_box {
   background: #fff;
   box-shadow: 0px 0px 20px #0000000d;
@@ -1266,8 +1270,9 @@ h6.right-text span {
 .regular_ticket_links ul li {
   display: inline-block;
   color: #58595b;
-  margin-right: 10px;
-  border-right: 1px solid #cccccd;
+  /*TODO only apply to second and third on border left*/
+  /* margin-right: 10px;
+  border-right: 1px solid #cccccd;*/
   padding-right: 10px;
 }
 .regular_ticket_links a {
@@ -2599,8 +2604,8 @@ div#event_popup .modal-dialog {
   .early_bird h3 {
     font-size: 20px;
   }
-  .regular_ticket_heading h3 {
-    font-size: 24px;
+  .ticket_name {
+    font-size: 18px;
     margin-bottom: 0;
   }
   h6.right-text {
@@ -2870,6 +2875,7 @@ div#event_popup .modal-dialog {
   }
   section.book_ticket {
     margin-top: 0;
+    text-align: left;
   }
   section.location {
     padding-top: 60px;
@@ -2908,7 +2914,6 @@ div#event_popup .modal-dialog {
   }
   .quantity {
     position: relative;
-    margin-left: 40px;
     margin-bottom: 9px;
   }
   .sold_out a {
@@ -3394,11 +3399,7 @@ div#event_popup .modal-dialog {
     color: #5361fe;
     text-align: left;
   }
-  .regular_ticket_heading h3 {
-    font-size: 22px;
-    margin-bottom: 0;
-    text-align: left;
-  }
+
   h6.right-text {
     font-size: 15px;
     justify-content: flex-start;
@@ -3909,4 +3910,10 @@ header.desktop_header {
 
 body {
   overflow-x: hidden;
+}
+.regular_ticket:last-child {
+  border-bottom: none !important;
+}
+.regular_ticket:not(:last-child) {
+  border-bottom: 1px solid #e9ebf0 !important;
 }
