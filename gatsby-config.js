@@ -122,6 +122,14 @@ module.exports = {
           'header.fixed-header',
           'header.fixed-header a.nav-link',
           'header.fixed-header li.nav-item.active a.nav-link',
+          'alert-info',
+          'alert-warning',
+          'allert-success',
+          'alert-danger',
+          '.alert-info',
+          '.alert-warning',
+          '.allert-success',
+          '.alert-danger',
         ], // Don't remove this selector
         ignore: ['style.scss'], // Ignore files/folders
         // purgeOnly : ['components/', '/main.css', 'bootstrap/'], // Purge only these files/folders

@@ -7,6 +7,10 @@ export default function InlineTicketsSection({ event }) {
   const [isFrench, setIsFrench] = React.useState(false)
   const [isPL, setIsPL] = React.useState(false)
   const [tickets, setTickets] = React.useState(event.tickets)
+  const [discountCode, setDiscountCode] = React.useState('')
+  const [discountMessage, setDiscountMessage] = React.useState('')
+  const [discountCodeApplied, setDiscountCodeApplied] = React.useState(false)
+  const [message, setMessage] = React.useState({ message: '', status: 'error' })
   const imgs = useStaticQuery(graphql`
     {
       ticket: file(relativePath: { eq: "ticket.png" }) {
@@ -18,7 +22,109 @@ export default function InlineTicketsSection({ event }) {
       }
     }
   `)
+  function checkDiscount(e) {
+    //{"event_id":250,"tickets":[{"ticket_max_per_order":10,"ticket_children_ids":"","ticket_id":769,"quantity":1},{"ticket_max_per_order":10,"ticket_children_ids":"","ticket_id":727,"quantity":2}],"referer":""}
+    let order = { event_id: event.id, tickets: [] }
+    tickets.map(ticket => {
+      if (ticket.orderedQuantity > 0) {
+        order.tickets.push({
+          ticket_max_per_order: ticket.maxPerOrder,
+          ticket_children_ids: ticket.childrenIds,
+          ticket_id: ticket.id,
+          quantity: ticket.orderedQuantity,
+        })
+      }
+    })
+    console.log(order)
+    let newTickets = [...tickets]
+    newTickets.map((ticket, index) => {
+      ticket.hasDiscount = false
+      delete ticket.discount_id
+      newTickets[index] = ticket
+      setMessage({ message: '', status: '' })
+    })
+    setTickets(newTickets)
 
+    if (window && window.fetch) {
+      fetch(
+        'https://www.react-europe.org/search/discounts?code=' +
+          discountCode +
+          '&event_id=279',
+        {
+          method: 'get',
+        }
+      )
+        .then(function(response) {
+          return response.json()
+        })
+        .then(function(data) {
+          setDiscountCodeApplied(false)
+          let newTickets = [...tickets]
+          newTickets.map((ticket, index) => {
+            if (data.length === 0) {
+              setMessage({
+                message: `Sorry, no discount code ${discountCode} found.`,
+                status: 'info',
+              })
+            }
+            data.map(discount => {
+              if (discount.ticketIds.indexOf(ticket.id) !== -1) {
+                ticket.hasDiscount = true
+                ticket.discount_id = discount.id
+                setMessage({
+                  message: `Discount code ${discountCode} has been applied`,
+                  status: 'success',
+                })
+                setDiscountCodeApplied(true)
+              } else {
+                ticket.hasDiscount = false
+              }
+              newTickets[index] = ticket
+            })
+          })
+          setTickets(newTickets)
+        })
+    }
+    e.preventDefault()
+  }
+  function checkout(e) {
+    //{"event_id":250,"tickets":[{"ticket_max_per_order":10,"ticket_children_ids":"","ticket_id":769,"quantity":1},{"ticket_max_per_order":10,"ticket_children_ids":"","ticket_id":727,"quantity":2}],"referer":""}
+    let order = { event_id: event.id, tickets: [] }
+    tickets.map(ticket => {
+      if (ticket.orderedQuantity > 0) {
+        order.tickets.push({
+          ticket_max_per_order: ticket.maxPerOrder,
+          ticket_children_ids: ticket.childrenIds,
+          ticket_id: ticket.id,
+          quantity: ticket.orderedQuantity,
+        })
+      }
+    })
+    console.log(order)
+    if (window && window.fetch) {
+      fetch('https://www.react-europe.org/checkout', {
+        method: 'post',
+        body: JSON.stringify(order),
+      })
+        .then(function(response) {
+          console.log(response)
+          return response.json()
+        })
+        .then(function(data) {
+          if (data.order && data.order.id & data.order.uuid)
+            document.location =
+              'https://checkout.eventlama.com/#/events/reacteurope-2020/orders/' +
+              data.order.id +
+              '/edit/' +
+              data.order.uuid
+        })
+        .catch(response => {
+          console.log(response)
+          setMessage({ message: response.message, status: 'danger' })
+        })
+    }
+    e.preventDefault()
+  }
   React.useEffect(() => {
     fetch('https://api.eventlama.com/geoip')
       .then(res => res.json())
@@ -88,7 +194,14 @@ export default function InlineTicketsSection({ event }) {
                   <div>
                     <div class="row ticket_secound-row">
                       <div>
-                        {' '}
+                        {message.message ? (
+                          <div
+                            class={`alert alert-${message.status}`}
+                            role="alert"
+                          >
+                            {message.message}
+                          </div>
+                        ) : null}
                         {tickets.map((ticket, index) =>
                           ticket.soldOut ? (
                             <div class="regular_ticket">
@@ -114,17 +227,20 @@ export default function InlineTicketsSection({ event }) {
                           ) : (
                             <div class="regular_ticket">
                               <div class="row no-gutters">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                   <div class="regular_ticket_heading">
                                     <h3
                                       className="ticket_name"
                                       style={{ fontSize: '18px' }}
                                     >
                                       {ticket.name}
+                                      {ticket.hasDiscount
+                                        ? 'Discount Applied'
+                                        : null}
                                     </h3>
                                   </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                   <div class="regular_right">
                                     <h6 class="right-text">
                                       €
@@ -146,18 +262,18 @@ export default function InlineTicketsSection({ event }) {
                                       <input
                                         type="number"
                                         min="1"
-                                        max="9"
+                                        max={ticket.maxPerOrder}
+                                        placeholder="0"
                                         step="1"
-                                        value="1"
+                                        onChange={e => {
+                                          ticket.orderedQuantity = e.value
+                                          let newTickets = [...tickets]
+                                          newTickets[index] = ticket
+                                          setTickets(newTickets)
+                                          console.log(newTickets)
+                                        }}
+                                        value={ticket.OrderedQuantity}
                                       />
-                                      <div class="quantity-nav">
-                                        <div class="quantity-button quantity-up">
-                                          +
-                                        </div>
-                                        <div class="quantity-button quantity-down">
-                                          -
-                                        </div>
-                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -213,20 +329,33 @@ export default function InlineTicketsSection({ event }) {
                         <div class="row no-gutters">
                           <div class="col-md-6">
                             <div class="discound_heading">
-                              <h3>If you have a discount code</h3>
+                              <h3>
+                                If you have a discount code{' '}
+                                {discountCodeApplied
+                                  ? '(' + discountCode + ' applied!)'
+                                  : null}
+                              </h3>
                             </div>
                             <div class="discount_code">
                               <input
                                 type="text"
                                 name="discount"
+                                value={discountCode}
+                                onChange={e => {
+                                  setDiscountCode(e.target.value)
+                                }}
                                 placeholder="Discount Code"
                               />
-                              <button>Apply</button>
+                              <button onClick={e => checkDiscount(e)}>
+                                Apply
+                              </button>
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="checkout_btn">
-                              <a href="#">Checkout</a>
+                              <a href="" onClick={checkout}>
+                                Checkout
+                              </a>
                             </div>
                           </div>
                         </div>
