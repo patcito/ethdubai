@@ -24,18 +24,6 @@ export default function InlineTicketsSection({ event }) {
   `)
   function checkDiscount(e) {
     //{"event_id":250,"tickets":[{"ticket_max_per_order":10,"ticket_children_ids":"","ticket_id":769,"quantity":1},{"ticket_max_per_order":10,"ticket_children_ids":"","ticket_id":727,"quantity":2}],"referer":""}
-    let order = { event_id: event.id, tickets: [] }
-    tickets.map(ticket => {
-      if (ticket.orderedQuantity > 0) {
-        order.tickets.push({
-          ticket_max_per_order: ticket.maxPerOrder,
-          ticket_children_ids: ticket.childrenIds,
-          ticket_id: ticket.id,
-          quantity: ticket.orderedQuantity,
-        })
-      }
-    })
-    console.log(order)
     let newTickets = [...tickets]
     newTickets.map((ticket, index) => {
       ticket.hasDiscount = false
@@ -88,38 +76,53 @@ export default function InlineTicketsSection({ event }) {
     e.preventDefault()
   }
   function checkout(e) {
-    //{"event_id":250,"tickets":[{"ticket_max_per_order":10,"ticket_children_ids":"","ticket_id":769,"quantity":1},{"ticket_max_per_order":10,"ticket_children_ids":"","ticket_id":727,"quantity":2}],"referer":""}
     let order = { event_id: event.id, tickets: [] }
+    console.log(tickets)
     tickets.map(ticket => {
       if (ticket.orderedQuantity > 0) {
         order.tickets.push({
           ticket_max_per_order: ticket.maxPerOrder,
           ticket_children_ids: ticket.childrenIds,
           ticket_id: ticket.id,
+          discount_id: ticket.discount_id,
           quantity: ticket.orderedQuantity,
         })
       }
     })
     console.log(order)
-    if (window && window.fetch) {
+    if (window && window.fetch && order.tickets.length > 0) {
       fetch('https://www.react-europe.org/checkout', {
         method: 'post',
         body: JSON.stringify(order),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
       })
         .then(function(response) {
           console.log(response)
           return response.json()
         })
         .then(function(data) {
-          if (data.order && data.order.id & data.order.uuid)
+          console.log(data)
+          if (data.order && data.order.id && data.order.uuid) {
             document.location =
               'https://checkout.eventlama.com/#/events/reacteurope-2020/orders/' +
               data.order.id +
               '/edit/' +
               data.order.uuid
+            console.log(
+              'https://checkout.eventlama.com/#/events/reacteurope-2020/orders/' +
+                data.order.id +
+                '/edit/' +
+                data.order.uuid
+            )
+          } else if (data && data.message) {
+            setMessage({ message: data.message, status: 'info' })
+          }
         })
         .catch(response => {
-          console.log(response)
+          alert('failed')
           setMessage({ message: response.message, status: 'danger' })
         })
     }
@@ -233,10 +236,12 @@ export default function InlineTicketsSection({ event }) {
                                       className="ticket_name"
                                       style={{ fontSize: '18px' }}
                                     >
-                                      {ticket.name}
-                                      {ticket.hasDiscount
-                                        ? 'Discount Applied'
-                                        : null}
+                                      {ticket.name}{' '}
+                                      {ticket.hasDiscount ? (
+                                        <span class="badge badge-pill badge-success">
+                                          Discount Applied
+                                        </span>
+                                      ) : null}
                                     </h3>
                                   </div>
                                 </div>
@@ -266,7 +271,9 @@ export default function InlineTicketsSection({ event }) {
                                         placeholder="0"
                                         step="1"
                                         onChange={e => {
-                                          ticket.orderedQuantity = e.value
+                                          ticket.orderedQuantity = parseInt(
+                                            e.target.value
+                                          )
                                           let newTickets = [...tickets]
                                           newTickets[index] = ticket
                                           setTickets(newTickets)
