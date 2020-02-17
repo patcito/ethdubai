@@ -87,10 +87,12 @@ export default function IndexPage({ data, location }) {
         setSchedule={setSchedule}
         event={event}
       />
-      <TicketsSection />
+      {/*
       <div style={{ display: 'none' }}>
-        <InlineTicketsSection event={event} />
+        <TicketsSection />
       </div>
+      */}
+      <InlineTicketsSection event={event} />
 
       <SponsorsSection sponsors={event.sponsors} />
       <section className="support" id="supporters">
