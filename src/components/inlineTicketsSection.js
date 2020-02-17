@@ -77,6 +77,9 @@ export default function InlineTicketsSection({ event }) {
   }
   function checkout(e) {
     let order = { event_id: event.id, tickets: [] }
+    if (document && document.referrer) {
+      order.referer = document.referrer
+    }
     console.log(tickets)
     tickets.map(ticket => {
       if (ticket.orderedQuantity > 0) {
@@ -122,7 +125,6 @@ export default function InlineTicketsSection({ event }) {
           }
         })
         .catch(response => {
-          alert('failed')
           setMessage({ message: response.message, status: 'danger' })
         })
     }
