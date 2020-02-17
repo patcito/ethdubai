@@ -64,10 +64,10 @@ export default function IndexPage({ data, location }) {
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
-      {/** <TrackVisibility>
+      <TrackVisibility>
         <Hero banner={data.banner.childImageSharp.fluid} />
       </TrackVisibility>
- */}
+
       <section className="conference" id="conference">
         <div className="container">
           <div className="headings" id="header-lead">
@@ -88,7 +88,7 @@ export default function IndexPage({ data, location }) {
         event={event}
       />
       <TicketsSection />
-      <div style={{ idisplay: 'none' }}>
+      <div style={{ display: 'none' }}>
         <InlineTicketsSection event={event} />
       </div>
 

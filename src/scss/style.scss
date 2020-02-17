@@ -3917,3 +3917,8 @@ body {
 .regular_ticket:not(:last-child) {
   border-bottom: 1px solid #e9ebf0 !important;
 }
+
+.input_quantity::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  opacity: 0.4;
+}

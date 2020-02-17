@@ -207,7 +207,7 @@ export default function InlineTicketsSection({ event }) {
                         ) : null}
                         {tickets.map((ticket, index) =>
                           ticket.soldOut ? (
-                            <div class="regular_ticket">
+                            <div class="regular_ticket" key={index}>
                               <div class="row no-gutters">
                                 <div class="col-md-6">
                                   <div class="early_bird">
@@ -228,7 +228,7 @@ export default function InlineTicketsSection({ event }) {
                               </div>
                             </div>
                           ) : (
-                            <div class="regular_ticket">
+                            <div class="regular_ticket" key={index}>
                               <div class="row no-gutters">
                                 <div class="col-md-6">
                                   <div class="regular_ticket_heading">
@@ -267,9 +267,16 @@ export default function InlineTicketsSection({ event }) {
                                       <input
                                         type="number"
                                         min="1"
+                                        className="input_quantity"
                                         max={ticket.maxPerOrder}
                                         placeholder="0"
                                         step="1"
+                                        onFocus={e =>
+                                          (e.target.placeholder = '')
+                                        }
+                                        onBlur={e =>
+                                          (e.target.placeholder = '0')
+                                        }
                                         onChange={e => {
                                           ticket.orderedQuantity = parseInt(
                                             e.target.value
