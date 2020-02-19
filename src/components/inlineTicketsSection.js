@@ -191,7 +191,10 @@ export default function InlineTicketsSection({ event }) {
                     <div class="col-md-6">
                       <div class="powerd_text">
                         <p>
-                          Powered by <a href="#">EventLama</a>
+                          Powered by{' '}
+                          <a href="https://eventlama.com" target="_blank">
+                            EventLama
+                          </a>
                         </p>
                       </div>
                     </div>
@@ -218,12 +221,16 @@ export default function InlineTicketsSection({ event }) {
                                 </div>
                                 <div class="col-md-6">
                                   <div class="sold_out">
-                                    <a href="#">SOLD OUT</a>
+                                    <a
+                                      href="#"
+                                      onClick={e => e.preventDefault()}
+                                    >
+                                      SOLD OUT
+                                    </a>
                                   </div>
                                 </div>
                                 <div class="col-md-12">
                                   <div className="description_input">
-                                    <label>Description</label>
                                     <input type="text" name="Description" />
                                   </div>
                                 </div>

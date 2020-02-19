@@ -226,7 +226,7 @@ export default function SponsorsSection({ sponsors }) {
             <div class="row">
               {sponsors.gold.map(sponsor =>
                 sponsor.name !== '' ? (
-                  <div class="col-md-4">
+                  <div class="col-md-4" key={sponsor.id}>
                     <Sponsor
                       imgs={imgs}
                       sponsor={sponsor}
@@ -255,7 +255,7 @@ export default function SponsorsSection({ sponsors }) {
             <div class="row">
               {sponsors.silver.map(sponsor =>
                 sponsor.name !== '' ? (
-                  <div class="col-md-4">
+                  <div class="col-md-4" key={sponsor.id}>
                     <Sponsor
                       key={sponsor.id}
                       imgs={imgs}
