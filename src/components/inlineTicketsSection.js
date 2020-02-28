@@ -164,15 +164,14 @@ export default function InlineTicketsSection({ event }) {
                   </a>
                 </h4>
               ) : null}
-              {false ? (
+              {!isFrench ? (
                 <h4 style={{ fontSize: '13px' }}>
                   Excited to see you all at the confernce for this 6th's edition
                   we are working hard to make it the best edition ever! If you
                   buy your ticket starting February 28th, 2020, we will offer a
                   full refund until March 20th, 2020 upon request if you cannot
-                  make it to the conference, no questions asked. We are closely
-                  monitoring the development of the covid-19 situation and
-                  following government recommendations.
+                  make it to the conference, no questions asked. Round 2 tickets
+                  will go on sale on March 20th.
                 </h4>
               ) : null}
               {!isFrench && !isPL && false ? (
