@@ -482,8 +482,9 @@ export default function IndexPage({ data, location }) {
                       <h3 className="panel-body-title">Ticket Refund</h3>
                       <p>
                         We do refund tickets with a 5% fee until December 15,
-                        2019. However, it is possible to transfer your ticket at
-                        all time.
+                        2019 for people who bought their tickets before February
+                        28, 2020. However, it is possible to transfer your
+                        ticket at all time.
                       </p>
                       <h3 className="panel-body-title">Ticket Transfer</h3>
                       <p>

@@ -164,9 +164,17 @@ export default function InlineTicketsSection({ event }) {
                   </a>
                 </h4>
               ) : null}
-              <h3>
-                Tickets are now available for both conference and workshops.
-              </h3>
+              {false ? (
+                <h4 style={{ fontSize: '13px' }}>
+                  Excited to see you all at the confernce for this 6th's edition
+                  we are working hard to make it the best edition ever! If you
+                  buy your ticket starting February 28th, 2020, we will offer a
+                  full refund until March 20th, 2020 upon request if you cannot
+                  make it to the conference, no questions asked. We are closely
+                  monitoring the development of the covid-19 situation and
+                  following government recommendations.
+                </h4>
+              ) : null}
               {!isFrench && !isPL && false ? (
                 <h4>
                   Limited offer: Are you a team of 4 or more people going to the
