@@ -166,12 +166,20 @@ export default function InlineTicketsSection({ event }) {
               ) : null}
               {!isFrench ? (
                 <h4 style={{ fontSize: '13px' }}>
-                  Excited to see you all at the confernce for this 6th's edition
-                  we are working hard to make it the best edition ever! If you
-                  buy your ticket starting February 28th, 2020, we will offer a
-                  full refund until March 20th, 2020 upon request if you cannot
-                  make it to the conference, no questions asked. Round 2 tickets
-                  will go on sale on March 20th.
+                  Excited to see you all at the conference for this 6th's
+                  edition, we are working hard to make it the best edition ever!
+                  If you buy your ticket starting February 28th, 2020, we will
+                  offer a full refund until March 20th, 2020 upon request if you
+                  cannot make it to the conference, no questions asked. Late
+                  birds tickets will go on sale on March 20th. If you need to
+                  pay by invoice and wire payment,{' '}
+                  <a
+                    href="mailto:reacteurope@eventlama.com?subject=react-europe 2020 ticket invoice request"
+                    class="spr-link"
+                    target="_blank"
+                  >
+                    <i class="fa fa-envelope"></i>&nbsp;contact us here.
+                  </a>
                 </h4>
               ) : null}
               {!isFrench && !isPL && false ? (
@@ -223,7 +231,9 @@ export default function InlineTicketsSection({ event }) {
                               <div class="row no-gutters">
                                 <div class="col-md-6">
                                   <div class="early_bird">
-                                    <h3>{ticket.name}</h3>
+                                    <h3 style={{ fontSize: '15px' }}>
+                                      {ticket.name}
+                                    </h3>
                                   </div>
                                 </div>
                                 <div class="col-md-6">
