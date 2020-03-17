@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import './hero.css'
 
 const titles = [
-  '+30 talks, 12 lightning talks, a 2nd discovery track on day 2 and 1500 attendees',
+  '+30 talks, 12 lightning talks, a 2nd discovery track on day 2',
   'in the Beautiful city of Paris',
   'With delicious French food',
   'More than 8 Workshops!',
@@ -105,7 +105,6 @@ export default function Hero({ banner }) {
   // === BG changer
 
   function setVideoBgColor() {
-    console.log('setVideoBGColor => loadedData')
     var canvas = document.createElement('canvas')
     canvas.width = 8
     canvas.height = 8
@@ -138,7 +137,6 @@ export default function Hero({ banner }) {
 
   const video = videoRef.current || { offsetHeight: 0, offsetWidth: 0 }
   const { offsetHeight = 0, offsetWidth = 0 } = video
-  console.log('DATA', data)
   return (
     <div className="hero__container" style={{ backgroundColor: bgs[idx] }}>
       <div className="container-fluid">

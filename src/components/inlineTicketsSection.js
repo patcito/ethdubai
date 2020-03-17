@@ -164,22 +164,18 @@ export default function InlineTicketsSection({ event }) {
                   </a>
                 </h4>
               ) : null}
-              {!isFrench ? (
+              {true ? (
                 <h4 style={{ fontSize: '13px' }}>
                   Excited to see you all at the conference for this 6th's
-                  edition, we are working hard to make it the best edition ever!
-                  If you buy your ticket starting February 28th, 2020, we will
-                  offer a full refund until March 20th, 2020 upon request if you
-                  cannot make it to the conference, no questions asked. Late
-                  birds tickets will go on sale on March 20th. If you need to
-                  pay by invoice and wire payment,{' '}
+                  edition. Late birds tickets will go on sale on March 20th. If
+                  you need to pay by invoice and wire payment,{' '}
                   <a
                     href="mailto:reacteurope@eventlama.com?subject=react-europe 2020 ticket invoice request"
                     class="spr-link"
                     target="_blank"
                   >
                     <i class="fa fa-envelope"></i>&nbsp;contact us here.
-                  </a>
+                  </a>{' '}
                 </h4>
               ) : null}
               {!isFrench && !isPL && false ? (

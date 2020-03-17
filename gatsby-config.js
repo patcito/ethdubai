@@ -7,7 +7,6 @@ module.exports = {
     siteUrl: 'https://www.react-europe.org',
     author: 'ReactEurope',
     twitter: 'ReactEurope',
-    adsense: '',
     'og:title':
       'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
     'og:type': 'website',

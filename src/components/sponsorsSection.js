@@ -22,7 +22,6 @@ export default function SponsorsSection({ sponsors }) {
     e.preventDefault()
     return false
   }
-  console.log(sponsors)
   const imgs = useStaticQuery(graphql`
     {
       sponser: file(relativePath: { eq: "sponser.png" }) {
