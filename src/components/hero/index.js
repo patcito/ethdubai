@@ -56,7 +56,7 @@ export default function Hero({ banner }) {
     setIdx(activeTitle)
   }
 
-  React.useEffect(() => {
+  /* React.useEffect(() => {
     function fixAutoplay() {
       const v = videoRef.current
       if (v.paused) {
@@ -79,7 +79,7 @@ export default function Hero({ banner }) {
     }
   }, [])
 
-  React.useEffect(() => {
+ React.useEffect(() => {
     const v = videoRef.current
     if (v) {
       v.muted = true
@@ -93,7 +93,6 @@ export default function Hero({ banner }) {
       v.addEventListener('loadeddata', setVideoBgColor)
       v.addEventListener('timeupdate', updater)
     }
-
     return () => {
       if (onMetadata) {
         v.removeEventListener('timeupdate', onMetadata)
@@ -101,6 +100,7 @@ export default function Hero({ banner }) {
       v.removeEventListener('loadeddata', setVideoBgColor)
     }
   }, [videoRef])
+*/
 
   // === BG changer
 
@@ -141,19 +141,40 @@ export default function Hero({ banner }) {
     <div className="hero__container" style={{ backgroundColor: bgs[idx] }}>
       <div className="container-fluid">
         <div className="row d-sm-flex">
-          <div className="col-md-6 hero__content">
+          <div className="col-md-12 hero__content">
             <div className="react_text">
               <h2>The Original React Conference in Europe</h2>
               <h1>ReactEurope</h1>
-              <h3 className="titles-md" id="md-titles">
-                {titles[idx]}
-              </h3>
               <div className="react_text_content">
                 <h3>
-                  May 14-15th, 2020 <span>(conference)</span>
+                  We are sad to announce that the conference will not be
+                  happening this year because of the covid-19 pandemic. We will
+                  contact all conference ticket holders soon about our
+                  transferring and refund options. Please be patient and bear
+                  with us as we work on the details with everyone involved.
+                  <br />
+                  <br />
+                  We still plan to run all our workshops online. As for the
+                  conference, we will be running it online with access to
+                  speakers who have gracefully accepted to be part of the
+                  stream, make sure{' '}
+                  <a href="https://youtu.be/41Ia291KIvI" target="_blank">
+                    to subscribe here to the stream open to all
+                  </a>
+                  .
+                  <br />
+                  <br />
+                  We’ve thought a lot about options including rescheduling to
+                  the end of summer but the situation is still too uncertain and
+                  it wouldn’t be right to gamble with our attendees health and
+                  help the spread of a second wave of the virus. May you all
+                  stay safe in these difficult times.
                 </h3>
                 <h3>
-                  May 12-13th-16th, 2020 <span>(workshops)</span>
+                  May 14-15th, 2020 <span>(online conference)</span>
+                </h3>
+                <h3>
+                  May 12-13th-16th, 2020 <span>(online workshops)</span>
                 </h3>
                 <h4>Paris, France</h4>
               </div>
@@ -171,27 +192,6 @@ export default function Hero({ banner }) {
             <h3 className="titles-xs" id="xs-titles">
               {titles[idx]}
             </h3>
-            <canvas
-              className="media"
-              width={`${offsetWidth}px`}
-              height={`${offsetHeight}px`}
-              style={{
-                width: offsetWidth,
-                height: offsetHeight,
-              }}
-              ref={canvasRef}
-            />
-            <video
-              ref={videoRef}
-              className="media video"
-              autoPlay
-              muted
-              loop
-              poster={data.videoPoster.childImageSharp.fixed.base64}
-            >
-              <source src={videoMP4} type="video/mp4" />
-              <source src={videoWebm} type="video/webm" />
-            </video>
           </div>
         </div>
       </div>

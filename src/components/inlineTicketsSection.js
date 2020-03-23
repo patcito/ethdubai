@@ -152,7 +152,7 @@ export default function InlineTicketsSection({ event }) {
             <div class="headings">
               <Img fixed={imgs.ticket.childImageSharp.fixed} />
               <h2>Get Your Tickets</h2>
-              {isFrench ? (
+              {isFrench && false ? (
                 <h4>
                   <a
                     href="https://www.oxiane.com/oxiane-partenaire-formation-reacteurope-2020-la-conference-europeenne-sur-reactjs-et-react-native/"
@@ -166,16 +166,28 @@ export default function InlineTicketsSection({ event }) {
               ) : null}
               {true ? (
                 <h4 style={{ fontSize: '13px' }}>
-                  Excited to see you all at the conference for this 6th's
-                  edition. Late birds tickets will go on sale on March 20th. If
-                  you need to pay by invoice and wire payment,{' '}
-                  <a
-                    href="mailto:reacteurope@eventlama.com?subject=react-europe 2020 ticket invoice request"
-                    class="spr-link"
-                    target="_blank"
-                  >
-                    <i class="fa fa-envelope"></i>&nbsp;contact us here.
-                  </a>{' '}
+                  We are sad to announce that the conference will not be
+                  happening this year because of the covid-19 pandemic. We will
+                  contact all conference ticket holders soon about our
+                  transferring and refund options. Please be patient and bear
+                  with us as we work on the details with everyone involved.
+                  <br />
+                  <br />
+                  We still plan to run all our workshops online. As for the
+                  conference, we will be running it online with access to
+                  speakers who have gracefully accepted to be part of the
+                  stream, make sure{' '}
+                  <a href="https://youtu.be/41Ia291KIvI" target="_blank">
+                    to subscribe here to the stream
+                  </a>
+                  .
+                  <br />
+                  <br />
+                  We’ve thought a lot about options including rescheduling to
+                  the end of summer but the situation is still too uncertain and
+                  it wouldn’t be right to gamble with our attendees health and
+                  help the spread of a second wave of the virus. May you all
+                  stay safe in these difficult times.
                 </h4>
               ) : null}
               {!isFrench && !isPL && false ? (
@@ -191,7 +203,7 @@ export default function InlineTicketsSection({ event }) {
                 </a>
               </h3>
               <section class="book_ticket" id="book_ticket">
-                <div class="container"></div>
+                {/*           <div class="container"></div>
                 <div class="book_ticket_box">
                   <div class="row ticket_first-row">
                     <div class="col-md-6">
@@ -399,6 +411,7 @@ export default function InlineTicketsSection({ event }) {
                     </div>
                   </div>
                 </div>
+                              */}
               </section>
             </div>
           </div>
