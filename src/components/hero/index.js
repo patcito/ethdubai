@@ -158,8 +158,12 @@ export default function Hero({ banner }) {
                   conference, we will be running it online with access to
                   speakers who have gracefully accepted to be part of the
                   stream, make sure{' '}
-                  <a href="https://youtu.be/41Ia291KIvI" target="_blank">
-                    to subscribe here to the stream open to all
+                  <a
+                    href="https://youtu.be/41Ia291KIvI"
+                    target="_blank"
+                    style={{ color: '#FFF', textDecoration: 'underline' }}
+                  >
+                    to subscribe here to the stream open to all 🌎 🎥
                   </a>
                   .
                   <br />
