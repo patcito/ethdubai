@@ -145,7 +145,7 @@ export default function Hero({ banner }) {
             <div className="react_text">
               <h2>The Original React Conference in Europe</h2>
               <h1>ReactEurope</h1>
-              <div className="react_text_content">
+              <div className="react_text_content" style={{ color: '#FFF' }}>
                 <h3>
                   We are sad to announce that the conference will not be
                   happening this year because of the covid-19 pandemic. We will
