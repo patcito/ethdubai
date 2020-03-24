@@ -188,7 +188,7 @@ export default function InlineTicketsSection({ event }) {
                   <br />
                   <br />
                   Next year edition of the conference will take place on May
-                  20-21st
+                  20-21st in Paris.
                   <br />
                   <br />
                   We’ve thought a lot about options including rescheduling to
