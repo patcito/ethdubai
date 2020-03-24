@@ -165,7 +165,7 @@ export default function InlineTicketsSection({ event }) {
                 </h4>
               ) : null}
               {true ? (
-                <h4 style={{ fontSize: '13px' }}>
+                <h4>
                   We are sad to announce that the conference will not be
                   happening this year because of the covid-19 pandemic. We will
                   contact all conference ticket holders soon about our
@@ -177,11 +177,14 @@ export default function InlineTicketsSection({ event }) {
                   conference, we will be running it online with access to
                   speakers who have gracefully accepted to be part of the
                   stream, make sure{' '}
-                  <a href="https://youtu.be/41Ia291KIvI" target="_blank">
-                    to subscribe here to the stream
+                  <a
+                    href="https://youtu.be/41Ia291KIvI"
+                    target="_blank"
+                    style={{ textDecoration: 'underline' }}
+                  >
+                    to subscribe here to the stream open to all 🌎 🎥
                   </a>
-                  .
-                  <br />
+                  . <br />
                   <br />
                   We’ve thought a lot about options including rescheduling to
                   the end of summer but the situation is still too uncertain and
@@ -203,7 +206,7 @@ export default function InlineTicketsSection({ event }) {
                 </a>
               </h3>
               <section class="book_ticket" id="book_ticket">
-                {/*           <div class="container"></div>
+                <div class="container"></div>
                 <div class="book_ticket_box">
                   <div class="row ticket_first-row">
                     <div class="col-md-6">
@@ -411,7 +414,6 @@ export default function InlineTicketsSection({ event }) {
                     </div>
                   </div>
                 </div>
-                              */}
               </section>
             </div>
           </div>

@@ -141,7 +141,7 @@ export default function Hero({ banner }) {
     <div className="hero__container" style={{ backgroundColor: bgs[idx] }}>
       <div className="container-fluid">
         <div className="row d-sm-flex">
-          <div className="col-md-12 hero__content">
+          <div className="col-md-10 hero__content">
             <div className="react_text">
               <h2>The Original React Conference in Europe</h2>
               <h1>ReactEurope</h1>
@@ -187,15 +187,18 @@ export default function Hero({ banner }) {
               <a href="#conference" className="learn_more">
                 Learn More
               </a>
+              <a
+                href="https://learn.react-europe.org/"
+                target="_blank"
+                className="learn_more"
+                style={{ width: '700px', marginLeft: '25px' }}
+              >
+                Learn from our previous workshops
+              </a>
               <a href="#tickets" className="book_now">
                 Tickets
               </a>
             </div>
-          </div>
-          <div className="col-md-6 hero__video-wrapper">
-            <h3 className="titles-xs" id="xs-titles">
-              {titles[idx]}
-            </h3>
           </div>
         </div>
       </div>
