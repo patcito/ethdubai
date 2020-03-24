@@ -186,6 +186,11 @@ export default function InlineTicketsSection({ event }) {
                   </a>
                   . <br />
                   <br />
+                  <br />
+                  Next year edition of the conference will take place on May
+                  20-21st
+                  <br />
+                  <br />
                   We’ve thought a lot about options including rescheduling to
                   the end of summer but the situation is still too uncertain and
                   it wouldn’t be right to gamble with our attendees health and
