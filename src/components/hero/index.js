@@ -181,7 +181,8 @@ export default function Hero({ banner }) {
                   May 12-13th-16th, 2020 <span>(online workshops)</span>
                 </h3>
                 <h3>
-                  May 20-21st, 2021 <span>in Paris</span>
+                  May 20-21st, 2021{' '}
+                  <span>(next year's conference edition)</span>
                 </h3>
                 <h4>Paris, France</h4>
               </div>
