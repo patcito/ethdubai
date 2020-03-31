@@ -168,10 +168,6 @@ export default function Hero({ banner }) {
                   .
                   <br />
                   <br />
-                  Next year edition of the conference will take place on May
-                  20-21st in Paris.
-                  <br />
-                  <br />
                   We’ve thought a lot about options including rescheduling to
                   the end of summer but the situation is still too uncertain and
                   it wouldn’t be right to gamble with our attendees health and
@@ -183,6 +179,10 @@ export default function Hero({ banner }) {
                 </h3>
                 <h3>
                   May 12-13th-16th, 2020 <span>(online workshops)</span>
+                </h3>
+                <h3>
+                  Next year edition of the conference will take place on May
+                  20-21st in Paris.
                 </h3>
                 <h4>Paris, France</h4>
               </div>
