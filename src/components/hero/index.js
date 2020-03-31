@@ -181,8 +181,7 @@ export default function Hero({ banner }) {
                   May 12-13th-16th, 2020 <span>(online workshops)</span>
                 </h3>
                 <h3>
-                  Next year edition of the conference will take place on May
-                  20-21st in Paris.
+                  May 20-21st, 2021 <span>in Paris</span>
                 </h3>
                 <h4>Paris, France</h4>
               </div>
