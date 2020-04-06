@@ -3922,3 +3922,8 @@ body {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   opacity: 0.4;
 }
+@media (min-width: 768px) {
+  .ytiframe {
+    height: 800px;
+  }
+}

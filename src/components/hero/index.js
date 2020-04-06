@@ -147,25 +147,18 @@ export default function Hero({ banner }) {
               <h1>ReactEurope</h1>
               <div className="react_text_content" style={{ color: '#FFF' }}>
                 <iframe
-                  width="560"
-                  height="315"
+                  width="100%"
+                  class="ytiframe"
                   src="https://www.youtube.com/embed/41Ia291KIvI"
                   frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
                 ></iframe>
                 <h3>
-                  We are sad to announce that the conference will not be
-                  happening this year because of the covid-19 pandemic. We will
-                  contact all conference ticket holders soon about our
-                  transferring and refund options. Please be patient and bear
-                  with us as we work on the details with everyone involved.
-                  <br />
-                  <br />
-                  We still plan to run all our workshops online. As for the
-                  conference, we will be running it online with access to
-                  speakers who have gracefully accepted to be part of the
-                  stream, make sure{' '}
+                  We are happy to announce that we still plan to run all our
+                  workshops online. As for the conference, we will be running it
+                  online with access to speakers who have gracefully accepted to
+                  be part of the stream, make sure{' '}
                   <a
                     href="https://youtu.be/41Ia291KIvI"
                     target="_blank"
