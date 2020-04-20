@@ -42,9 +42,12 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
         <div class="headings">
           <Img fixed={data.scedual.childImageSharp.fixed} />
           <h2>Schedule</h2>
-          <p>Stay tuned for more update to our schedule.</p>
+          <p>
+            We'll be posting the full online schedule of our events in the
+            coming days. Stay tuned.
+          </p>
         </div>
-        <div class="schedule_content">
+        <div class="schedule_content" style={{ display: 'none' }}>
           <div class="row">
             <div class="col-md-4">
               <ul class="nav nav-tabs" id="myTab" role="tablist">
