@@ -47,7 +47,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
             coming days. Stay tuned.
           </p>
         </div>
-        <div class="schedule_content" style={{ display: 'none' }}>
+        <div class="schedule_content" style={{ display: 'inone' }}>
           <div class="row">
             <div class="col-md-4">
               <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -83,9 +83,9 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                         {new Date(day.date).getDate()}
                       </span>{' '}
                       - DAY {i + 1}{' '}
-                      {i < 2
+                      {i < 3
                         ? 'WORKSHOPS'
-                        : i > 3
+                        : i > 4
                         ? 'HACKATHON and WORKSHOPS'
                         : 'CONFERENCE'}
                     </Link>

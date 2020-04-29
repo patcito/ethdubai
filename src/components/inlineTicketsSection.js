@@ -279,7 +279,9 @@ export default function InlineTicketsSection({ event }) {
                                       style={{ fontSize: '18px' }}
                                     >
                                       {ticket.name}{' '}
-                                      {ticket.hasDiscount ? (
+                                      {ticket.hasDiscount &&
+                                      (ticket.orderedQuantity > 0 ||
+                                        ticket.OrderedQuantity > 0) ? (
                                         <span class="badge badge-pill badge-success">
                                           Discount Applied
                                         </span>
@@ -320,13 +322,39 @@ export default function InlineTicketsSection({ event }) {
                                           (e.target.placeholder = '0')
                                         }
                                         onChange={e => {
+                                          console.log(
+                                            'OrderedTicket: ',
+                                            ticket.OrderedQuantity
+                                          )
+                                          let newTickets = [...tickets]
+                                          let tix = newTickets.map((t, i) => {
+                                            console.log(
+                                              t.OrderedQuantity,
+                                              `i: ${i}`
+                                            )
+                                            if (
+                                              i !== index &&
+                                              t.OrderedQuantity &&
+                                              parseInt(t.OrderedQuantity) > 0
+                                            ) {
+                                              t.OrderedQuantity = 0
+                                              t.orderedQuantity = 0
+                                              console.log('yes', i)
+                                            } else {
+                                              console.log('no', i)
+                                            }
+                                            return t
+                                          })
                                           ticket.orderedQuantity = parseInt(
                                             e.target.value
                                           )
-                                          let newTickets = [...tickets]
-                                          newTickets[index] = ticket
-                                          setTickets(newTickets)
-                                          console.log(newTickets)
+                                          ticket.OrderedQuantity = parseInt(
+                                            e.target.value
+                                          )
+                                          tix[index] = ticket
+                                          console.log(tix)
+
+                                          setTickets(tix)
                                         }}
                                         value={ticket.OrderedQuantity}
                                       />
