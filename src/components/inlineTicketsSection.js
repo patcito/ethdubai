@@ -412,27 +412,29 @@ export default function InlineTicketsSection({ event }) {
                       <div class="checkout">
                         <div class="row no-gutters">
                           <div class="col-md-6">
-                            <div class="discound_heading">
-                              <h3>
-                                If you have a discount code{' '}
-                                {discountCodeApplied
-                                  ? '(' + discountCode + ' applied!)'
-                                  : null}
-                              </h3>
-                            </div>
-                            <div class="discount_code">
-                              <input
-                                type="text"
-                                name="discount"
-                                value={discountCode}
-                                onChange={e => {
-                                  setDiscountCode(e.target.value)
-                                }}
-                                placeholder="Discount Code"
-                              />
-                              <button onClick={e => checkDiscount(e)}>
-                                Apply
-                              </button>
+                            <div style={{ display: 'nonde' }}>
+                              <div class="discound_heading">
+                                <h3>
+                                  If you have a discount code{' '}
+                                  {discountCodeApplied
+                                    ? '(' + discountCode + ' applied!)'
+                                    : null}
+                                </h3>
+                              </div>
+                              <div class="discount_code">
+                                <input
+                                  type="text"
+                                  name="discount"
+                                  value={discountCode}
+                                  onChange={e => {
+                                    setDiscountCode(e.target.value)
+                                  }}
+                                  placeholder="Discount Code"
+                                />
+                                <button onClick={e => checkDiscount(e)}>
+                                  Apply
+                                </button>
+                              </div>
                             </div>
                           </div>
                           <div class="col-md-6">
