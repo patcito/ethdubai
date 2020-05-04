@@ -166,13 +166,6 @@ export default function InlineTicketsSection({ event }) {
               ) : null}
               {true ? (
                 <h4>
-                  We are sad to announce that the conference will not be
-                  happening this year because of the covid-19 pandemic. We will
-                  contact all conference ticket holders soon about our
-                  transferring and refund options. Please be patient and bear
-                  with us as we work on the details with everyone involved.
-                  <br />
-                  <br />
                   We still plan to run all our workshops online. As for the
                   conference, we will be running it online with access to
                   speakers who have gracefully accepted to be part of the
@@ -184,18 +177,6 @@ export default function InlineTicketsSection({ event }) {
                   >
                     to subscribe here to the stream open to all 🌎 🎥
                   </a>
-                  . <br />
-                  <br />
-                  <br />
-                  Next year edition of the conference will take place on May
-                  20-21st in Paris.
-                  <br />
-                  <br />
-                  We’ve thought a lot about options including rescheduling to
-                  the end of summer but the situation is still too uncertain and
-                  it wouldn’t be right to gamble with our attendees health and
-                  help the spread of a second wave of the virus. May you all
-                  stay safe in these difficult times.
                 </h4>
               ) : null}
               {!isFrench && !isPL && false ? (

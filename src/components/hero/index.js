@@ -155,12 +155,6 @@ export default function Hero({ banner }) {
                   allowfullscreen
                 ></iframe>
                 <h3>
-                  We are sad to announce that the conference will not be
-                  happening this year because of the covid-19 pandemic. We will
-                  contact all conference ticket holders soon about our
-                  transferring and refund options. Please be patient and bear
-                  with us as we work on the details with everyone involved.
-                  <br />
                   <br />
                   We still plan to run all our workshops online. As for the
                   conference, we will be running it online with access to
@@ -173,14 +167,6 @@ export default function Hero({ banner }) {
                   >
                     to subscribe here to the stream open to all 🌎 🎥
                   </a>
-                  .
-                  <br />
-                  <br />
-                  We’ve thought a lot about options including rescheduling to
-                  the end of summer but the situation is still too uncertain and
-                  it wouldn’t be right to gamble with our attendees health and
-                  help the spread of a second wave of the virus. May you all
-                  stay safe in these difficult times.
                 </h3>
                 <h3>
                   May 14-15th, 2020 <span>(online conference)</span>
@@ -189,8 +175,7 @@ export default function Hero({ banner }) {
                   May 12-13th-16th, 2020 <span>(online workshops)</span>
                 </h3>
                 <h3>
-                  May 20-21st, 2021{' '}
-                  <span>(next year's conference edition)</span>
+                  2021 <span>(next year's conference edition)</span>
                 </h3>
                 <h4>Paris, France</h4>
               </div>
