@@ -1,8 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Modal } from 'react-bootstrap'
 import Img from 'gatsby-image'
-import ReactSimpleCarousel from 'react-spring-carousel'
 import { useStaticQuery, graphql } from 'gatsby'
 
 export default function CarouselPeople() {

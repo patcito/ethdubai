@@ -11,11 +11,9 @@ import Meta from 'components/meta'
 import Layout from 'components/layout'
 import ReactMarkdown from 'react-markdown'
 import Hero from 'components/hero'
-import TrackVisibility from 'react-on-screen'
 
 import ScheduleSection from 'components/scheduleSection'
 import SpeakersSection from 'components/speakersSection'
-import TicketsSection from 'components/ticketsSection'
 import InlineTicketsSection from 'components/inlineTicketsSection'
 import CollaboratorsSection from 'components/collaboratorsSection'
 import SponsorsSection from 'components/sponsorsSection'
@@ -64,9 +62,7 @@ export default function IndexPage({ data, location }) {
   return (
     <Layout location={location}>
       <Meta site={get(data, 'site.meta')} />
-      <TrackVisibility>
-        <Hero banner={data.banner.childImageSharp.fluid} />
-      </TrackVisibility>
+      <Hero banner={data.banner.childImageSharp.fluid} />
 
       <section className="conference" id="conference">
         <div className="container">
