@@ -166,12 +166,9 @@ export default function InlineTicketsSection({ event }) {
               ) : null}
               {true ? (
                 <h4>
-                  We still plan to run all our workshops online. As for the
-                  conference, we will be running it online with access to
-                  speakers who have gracefully accepted to be part of the
-                  stream, make sure{' '}
+                  Watch the 2020 edition online and make sure
                   <a
-                    href="https://youtu.be/41Ia291KIvI"
+                    href="https://youtu.be/vULQgfiQvrw"
                     target="_blank"
                     style={{ textDecoration: 'underline' }}
                   >
@@ -186,12 +183,26 @@ export default function InlineTicketsSection({ event }) {
                   conference tickets: <strong>10pc-4-teams</strong>{' '}
                 </h4>
               ) : null}{' '}
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdzO30xezfb4VUdbZGvLx7faXkoc9H7fcLXw1U9pIUnOKJkOQ/viewform?embedded=true"
+                width="640"
+                height="545"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+              >
+                Loading…
+              </iframe>
               <h3 class="d-none">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                   Don't miss our tickets release by subscribing here.
                 </a>
               </h3>
-              <section class="book_ticket" id="book_ticket">
+              <section
+                style={{ display: 'none' }}
+                class="book_ticket"
+                id="book_ticket"
+              >
                 <div class="container"></div>
                 <div class="book_ticket_box">
                   <div class="row ticket_first-row">

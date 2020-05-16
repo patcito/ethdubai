@@ -149,7 +149,7 @@ export default function Hero({ banner }) {
                 <iframe
                   width="100%"
                   class="ytiframe"
-                  src="https://www.youtube.com/embed/41Ia291KIvI"
+                  src="https://www.youtube.com/embed/videoseries?list=PLCC436JpVnK0Q4WHoB85ZYBwcCyTaMgAl&index=1"
                   frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
@@ -161,7 +161,7 @@ export default function Hero({ banner }) {
                   speakers who have gracefully accepted to be part of the
                   stream, make sure{' '}
                   <a
-                    href="https://youtu.be/41Ia291KIvI"
+                    href="https://youtu.be/vULQgfiQvrw"
                     target="_blank"
                     style={{ color: '#FFF', textDecoration: 'underline' }}
                   >

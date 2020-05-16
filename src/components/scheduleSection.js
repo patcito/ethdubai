@@ -42,10 +42,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
         <div class="headings">
           <Img fixed={data.scedual.childImageSharp.fixed} />
           <h2>Schedule</h2>
-          <p>
-            We'll be posting the full online schedule of our events in the
-            coming days. Stay tuned.
-          </p>
+          <p>The schedule is in UTC+2.</p>
         </div>
         <div class="schedule_content" style={{ display: 'inone' }}>
           <div class="row">
@@ -83,10 +80,10 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                         {new Date(day.date).getDate()}
                       </span>{' '}
                       - DAY {i + 1}{' '}
-                      {i < 3
+                      {i < 3 || i === 6
                         ? 'WORKSHOPS'
-                        : i > 4
-                        ? 'HACKATHON and WORKSHOPS'
+                        : i == 5
+                        ? 'WORKSHOPS'
                         : 'CONFERENCE'}
                     </Link>
                   </li>
@@ -207,6 +204,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                             hour12: false,
                                           })
                                           .split(':')[1]}{' '}
+                                      (Paris time, UTC+2)
                                     </h5>
                                     <h4
                                       style={{
