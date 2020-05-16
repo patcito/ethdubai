@@ -149,7 +149,7 @@ export default function Hero({ banner }) {
                 <iframe
                   width="100%"
                   class="ytiframe"
-                  src="https://www.youtube.com/embed/videoseries?list=PLCC436JpVnK0Q4WHoB85ZYBwcCyTaMgAl&index=1"
+                  src="https://www.youtube.com/embed/videoseries?list=PLCC436JpVnK0Q4WHoB85ZYBwcCyTaMgAl&index=0"
                   frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
