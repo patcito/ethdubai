@@ -157,7 +157,7 @@ export default function Hero({ banner }) {
                 <h3>
                   <br />
                   Watch the 2020 ReactEurope edition for free on our YouTube
-                  channel
+                  channel{' '}
                   <a
                     href="https://youtu.be/vULQgfiQvrw"
                     target="_blank"
