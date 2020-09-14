@@ -97,7 +97,7 @@ export default function IndexPage({ data, location }) {
       <section className="support" id="supporters">
         <div className="container">
           <div className="headings">
-            <h2>Supporters</h2>
+            <h2>Supporters of the 2020 edition</h2>
           </div>
           <div className="supporters_logo">
             <ul>

@@ -1,14 +1,14 @@
 module.exports = {
   siteMetadata: {
     title:
-      'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
+      'ReactEurope - The original European React.js &amp; Native conference on September/October 2021 in Paris, France',
     description:
-      'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
+      'ReactEurope - The original European React.js &amp; Native conference on September/October 2021 in Paris, France',
     siteUrl: 'https://www.react-europe.org',
     author: 'ReactEurope',
     twitter: 'ReactEurope',
     'og:title':
-      'ReactEurope - The original European React.js &amp; Native conference on May 14-15th, 2020 in Paris, France',
+      'ReactEurope - The original European React.js &amp; Native conference on September/October 2021 in Paris, France',
     'og:type': 'website',
     'og:image': 'https://www.react-europe.org/images/reacteurope.png',
   },
@@ -79,7 +79,7 @@ module.exports = {
         name: 'ReactEurope',
         short_name: 'ReactEurope',
         description:
-          'The original European React.js & Native conference on May 14-15th, 2020 in Paris, France',
+          'The original European React.js & Native conference on September/October, 2021 in Paris, France',
         homepage_url: 'https://www.react-europe.org',
         start_url: '/',
         background_color: '#fff',
