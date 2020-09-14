@@ -72,10 +72,13 @@ export default function IndexPage({ data, location }) {
               fluid={data.heading_logo.childImageSharp.fluid}
             />
             <h2>Conference Events</h2>
-            <ReactMarkdown source={event.description} />
+            <ReactMarkdown
+              source={
+                'ReactEurope will be back in September/October 2021 in Paris. Stay tuned for more news.'
+              }
+            />
           </div>
         </div>
-        <Caroussel />
       </section>
       <SpeakersSection speakers={event.speakers} />
       <ScheduleSection
@@ -158,7 +161,10 @@ export default function IndexPage({ data, location }) {
                 </div>
 
                 <div className="office_address">
-                  <h3>Paris (to be confirmed)</h3>
+                  <h3>
+                    Paris (to be confirmed, will not be taking place in
+                    Montreuil)
+                  </h3>
                 </div>
                 <div className="airport"></div>
                 <div className="airport train"></div>
@@ -327,10 +333,10 @@ export default function IndexPage({ data, location }) {
                 <li className="">
                   <a
                     className="nav-link"
-                    href="https://2019.react-europe.org"
+                    href="https://2020.react-europe.org"
                     target="_blank"
                   >
-                    2019
+                    2020
                   </a>
                 </li>{' '}
                 <li className="">
