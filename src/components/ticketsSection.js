@@ -41,28 +41,11 @@ export default function TicketsSection() {
             <div class="headings">
               <Img fixed={imgs.ticket.childImageSharp.fixed} />
               <h2>Get Your Tickets</h2>
-              {isFrench ? (
-                <h4>
-                  <a
-                    href="https://www.oxiane.com/oxiane-partenaire-formation-reacteurope-2020-la-conference-europeenne-sur-reactjs-et-react-native/"
-                    target="_blank"
-                  >
-                    🇫🇷 Si vous êtes français et que vous souhaitez utiliser
-                    votre budget de formation professionnelle pour financer
-                    votre inscription, contactez notre partenaire Oxiane
-                  </a>
-                </h4>
-              ) : null}
               <h3>
-                Tickets are now available for both conference and workshops.
+                An announcement will be made soon about the tickets and when
+                they will be available. Make sure to subscribe to our mailing
+                list below.
               </h3>
-              {!isFrench && !isPL && false ? (
-                <h4>
-                  Limited offer: Are you a team of 4 or more people going to the
-                  conference? Use this 10% discount on all your Round 1
-                  conference tickets: <strong>10pc-4-teams</strong>{' '}
-                </h4>
-              ) : null}{' '}
               <h3 class="d-none">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                   Don't miss our tickets release by subscribing here.

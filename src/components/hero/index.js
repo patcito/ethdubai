@@ -156,26 +156,21 @@ export default function Hero({ banner }) {
                 ></iframe>
                 <h3>
                   <br />
-                  We still plan to run all our workshops online. As for the
-                  conference, we will be running it online with access to
-                  speakers who have gracefully accepted to be part of the
-                  stream, make sure{' '}
+                  Watch the 2020 ReactEurope edition for free on our YouTube
+                  channel
                   <a
                     href="https://youtu.be/vULQgfiQvrw"
                     target="_blank"
                     style={{ color: '#FFF', textDecoration: 'underline' }}
                   >
-                    to subscribe here to the stream open to all 🌎 🎥
+                    here
                   </a>
                 </h3>
                 <h3>
-                  May 14-15th, 2020 <span>(online conference)</span>
-                </h3>
-                <h3>
-                  May 12-13th-16th, 2020 <span>(online workshops)</span>
-                </h3>
-                <h3>
-                  2021 <span>(next year's conference edition)</span>
+                  September-October 2021{' '}
+                  <span>
+                    (next year's conference edition date to be confirmed)
+                  </span>
                 </h3>
                 <h4>Paris, France</h4>
               </div>

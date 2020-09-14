@@ -152,21 +152,14 @@ export default function InlineTicketsSection({ event }) {
             <div class="headings">
               <Img fixed={imgs.ticket.childImageSharp.fixed} />
               <h2>Get Your Tickets</h2>
-              {isFrench && false ? (
-                <h4>
-                  <a
-                    href="https://www.oxiane.com/oxiane-partenaire-formation-reacteurope-2020-la-conference-europeenne-sur-reactjs-et-react-native/"
-                    target="_blank"
-                  >
-                    🇫🇷 Si vous êtes français et que vous souhaitez utiliser
-                    votre budget de formation professionnelle pour financer
-                    votre inscription, contactez notre partenaire Oxiane
-                  </a>
-                </h4>
-              ) : null}
+              <h3>
+                An announcement will be made soon about the tickets and when
+                they will be available. Make sure to subscribe to our mailing
+                list below.
+              </h3>
               {true ? (
                 <h4>
-                  Watch the 2020 edition online and make sure
+                  Watch the 2020 edition online and make sure{' '}
                   <a
                     href="https://youtu.be/vULQgfiQvrw"
                     target="_blank"

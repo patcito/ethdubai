@@ -42,9 +42,9 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
         <div class="headings">
           <Img fixed={data.scedual.childImageSharp.fixed} />
           <h2>Schedule</h2>
-          <p>The schedule is in UTC+2.</p>
+          <p>Stay tuned for our new schedule soon.</p>
         </div>
-        <div class="schedule_content" style={{ display: 'inone' }}>
+        <div class="schedule_content" style={{ display: 'none' }}>
           <div class="row">
             <div class="col-md-4">
               <ul class="nav nav-tabs" id="myTab" role="tablist">

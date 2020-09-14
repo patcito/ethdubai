@@ -158,37 +158,14 @@ export default function IndexPage({ data, location }) {
                 </div>
 
                 <div className="office_address">
-                  <h3>Palace of Paris-Est Congress</h3>
-                  <h5>128 Rue de Paris</h5>
-                  <h6>Montreuil, France</h6>
+                  <h3>Paris (to be confirmed)</h3>
                 </div>
-                <p>
-                  Both workshops and conference will take place at the same
-                  venue.
-                </p>
-                <div className="airport">
-                  <h5>
-                    The venue is close to both the <b>CDG &amp; ORY airports</b>
-                  </h5>
-                </div>
-                <div className="airport train">
-                  <h5>
-                    Is accessible by <b>subway, bus &amp; ring road.</b>
-                  </h5>
-                </div>
+                <div className="airport"></div>
+                <div className="airport train"></div>
               </div>
             </div>
             <div className="col-md-6">
-              <div className="map_location">
-                <Img fluid={data.location_map.childImageSharp.fluid} />
-                <a target="_blank" href="https://goo.gl/maps/3w2z8ZMszLtzGSD76">
-                  View on Map
-                </a>
-              </div>
-              <div className="map_box">
-                <Img fluid={data.image003.childImageSharp.fluid} />
-                <h2>Palace of Paris-Est Congress</h2>
-              </div>
+              <div className="map_location"></div>
             </div>
           </div>
         </div>

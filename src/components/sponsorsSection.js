@@ -50,7 +50,7 @@ export default function SponsorsSection({ sponsors }) {
         <div class="container">
           <div class="headings">
             <Img fixed={imgs.sponser.childImageSharp.fixed} />
-            <h2>Our Sponsors</h2>
+            <h2>Our 2020 Sponsors</h2>
             <p>
               <a
                 href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
