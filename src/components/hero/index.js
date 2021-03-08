@@ -167,12 +167,9 @@ export default function Hero({ banner }) {
                   </a>
                 </h3>
                 <h3>
-                  September-October 2021{' '}
-                  <span>
-                    (next year's conference edition date to be confirmed)
-                  </span>
+                  2021 <span>(date to be confirmed)</span>
                 </h3>
-                <h4>Paris, France</h4>
+                <h4>Virtual (will be back to in-person in 2022)</h4>
               </div>
             </div>
             <div className="react_btns">

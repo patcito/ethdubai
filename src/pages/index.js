@@ -74,7 +74,7 @@ export default function IndexPage({ data, location }) {
             <h2>Conference Events</h2>
             <ReactMarkdown
               source={
-                'ReactEurope will be back in September/October 2021 in Paris. Stay tuned for more news.'
+                "ReactEurope will be back in 2021 in a virtual edition. We'll go back to in-person in 2022. Stay tuned for more news."
               }
             />
           </div>
@@ -162,8 +162,8 @@ export default function IndexPage({ data, location }) {
 
                 <div className="office_address">
                   <h3>
-                    Paris (to be confirmed, will not be taking place in
-                    Montreuil)
+                    2021 edition will be virtual, we'll go back to in-person in
+                    2022
                   </h3>
                 </div>
                 <div className="airport"></div>
