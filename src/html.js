@@ -13,7 +13,7 @@ export default class HTML extends React.Component {
           />
           <meta
             property="og:title"
-            content="ReactEurope - The original European React.js &amp; Native conference on May 2020 in Paris, France"
+            content="ReactEurope - The original European React.js &amp; Native conference on December 3rd, online"
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://www.react-europe.org" />
@@ -23,7 +23,7 @@ export default class HTML extends React.Component {
           />
           <meta
             property="og:description"
-            content="ReactEurope is back on May 2020 to bring you the best and most passionate people from the very core teams to the coolest people from the community we love. The conference aims to give talks that inspire and explore new futuristic ideas dealing with all the techs we enjoy from the React ecosystem such as React.js, React Native, GraphQL, Relay, Universal apps, ReasonML,  Webpack, inline CSS and more."
+            content="ReactEurope is back online on December 3rd to bring you the best and most passionate people from the very core teams to the coolest people from the community we love. The conference aims to give talks that inspire and explore new futuristic ideas dealing with all the techs we enjoy from the React ecosystem such as React.js, React Native, GraphQL, Relay, Universal apps, ReasonML,  Webpack, inline CSS and more."
           />
           {this.props.headComponents}
           <link

@@ -50,10 +50,10 @@ export default function SponsorsSection({ sponsors }) {
         <div class="container">
           <div class="headings">
             <Img fixed={imgs.sponser.childImageSharp.fixed} />
-            <h2>Our 2020 Sponsors</h2>
+            <h2>Our Sponsors</h2>
             <p>
               <a
-                href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
+                href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
                 class="spr-link"
                 target="_blank"
               >
@@ -108,177 +108,138 @@ export default function SponsorsSection({ sponsors }) {
               </div>
             </div>
           </Modal>
-          {/* <div class="platinium_box d-none">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="spnser_box">
-                  <div class="sponser_image">
-                    <img
-                      loading="lazy"
-                      class="normal_image"
-                      src="images/dazn.png"
-                      alt=""
-                    />
-                    <img
-                      class="hover_img"
-                      src="images/sponser-hover.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="work_withweb">
-                    <a href="#">Website</a>
-                    <a href="#">Work with us</a>
-                  </div>
+          {sponsors.diamond?.length > 0 ? (
+            <div class="platinium_box gold_box">
+              <div class="row">
+                {sponsors.diamond.map(sponsor =>
+                  sponsor.name !== '' ? (
+                    <div class="col-md-4" key={sponsor.id}>
+                      <Sponsor
+                        imgs={imgs}
+                        sponsor={sponsor}
+                        handleShowSponsor={handleShowSponsor}
+                        key={sponsor.id}
+                      />
+                    </div>
+                  ) : null
+                )}
+                <p className="d-none">
                   <a
-                    href="#"
-                    class="read_more"
-                    data-toggle="modal"
-                    data-target="#sponser_popup"
+                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
+                    class="spr-link"
+                    target="_blank"
                   >
-                    Read More
+                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
+                    sponsor us, we'd love to hear from you.
                   </a>
-                  <div class="mobile_icons">
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#sponser_popup"
-                        >
-                          <i
-                            class="fa fa-long-arrow-right"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                </p>
+                <div class="vertical_text diamond">
+                  <h3>DIAMOND</h3>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="spnser_box">
-                  <div class="sponser_image">
-                    <img
-                      loading="lazy"
-                      class="normal_image"
-                      src="images/ekino.png"
-                      alt=""
-                    />
-                    <img
-                      loading="lazy"
-                      class="hover_img"
-                      src="images/ekino.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="work_withweb">
-                    <a href="#">Website</a>
-                    <a href="#">Work with us</a>
-                  </div>
-                  <a href="#" class="read_more">
-                    Read More
+            </div>
+          ) : (
+            <></>
+          )}
+
+          {sponsors.platinum?.length > 0 ? (
+            <div class="platinium_box gold_box">
+              <div class="row">
+                {sponsors.platinum.map(sponsor =>
+                  sponsor.name !== '' ? (
+                    <div class="col-md-4" key={sponsor.id}>
+                      <Sponsor
+                        imgs={imgs}
+                        sponsor={sponsor}
+                        handleShowSponsor={handleShowSponsor}
+                        key={sponsor.id}
+                      />
+                    </div>
+                  ) : null
+                )}
+                <p className="d-none">
+                  <a
+                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
+                    class="spr-link"
+                    target="_blank"
+                  >
+                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
+                    sponsor us, we'd love to hear from you.
                   </a>
-                  <div class="mobile_icons">
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-link" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#sponser_popup"
-                        >
-                          <i
-                            class="fa fa-long-arrow-right"
-                            aria-hidden="true"
-                          ></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                </p>
+                <div class="vertical_text platinum">
+                  <h3>PLATINUM</h3>
                 </div>
               </div>
-              <div class="vertical_text">
-                <h3>PLATINUM</h3>
+            </div>
+          ) : (
+            <></>
+          )}
+
+          {sponsors.gold?.length > 0 ? (
+            <div class="platinium_box gold_box">
+              <div class="row">
+                {sponsors.gold.map(sponsor =>
+                  sponsor.name !== '' ? (
+                    <div class="col-md-4" key={sponsor.id}>
+                      <Sponsor
+                        imgs={imgs}
+                        sponsor={sponsor}
+                        handleShowSponsor={handleShowSponsor}
+                        key={sponsor.id}
+                      />
+                    </div>
+                  ) : null
+                )}
+                <p className="d-none">
+                  <a
+                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
+                    class="spr-link"
+                    target="_blank"
+                  >
+                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
+                    sponsor us, we'd love to hear from you.
+                  </a>
+                </p>
+                <div class="vertical_text gold">
+                  <h3>GOLD</h3>
+                </div>
               </div>
             </div>
-          </div> */}
-          <div class="platinium_box gold_box">
-            <div class="row">
-              {sponsors.gold.map(sponsor =>
-                sponsor.name !== '' ? (
-                  <div class="col-md-4" key={sponsor.id}>
-                    <Sponsor
-                      imgs={imgs}
-                      sponsor={sponsor}
-                      handleShowSponsor={handleShowSponsor}
-                      key={sponsor.id}
-                    />
-                  </div>
-                ) : null
-              )}
-              <p className="d-none">
-                <a
-                  href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
-                  class="spr-link"
-                  target="_blank"
-                >
-                  <i class="fa fa-envelope"></i>&nbsp; If you would like to
-                  sponsor us, we'd love to hear from you.
-                </a>
-              </p>
-              <div class="vertical_text gold">
-                <h3>GOLD</h3>
+          ) : (
+            <></>
+          )}
+          {sponsors.silver?.length > 0 ? (
+            <div class="platinium_box gold_box">
+              <div class="row">
+                {sponsors.silver.map(sponsor =>
+                  sponsor.name !== '' ? (
+                    <div class="col-md-4" key={sponsor.id}>
+                      <Sponsor
+                        key={sponsor.id}
+                        imgs={imgs}
+                        sponsor={sponsor}
+                        handleShowSponsor={handleShowSponsor}
+                      />
+                    </div>
+                  ) : null
+                )}
+                <p className="d-none">
+                  <a
+                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
+                    class="spr-link"
+                    target="_blank"
+                  >
+                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
+                    sponsor us, we'd love to hear from you.
+                  </a>
+                </p>
+                <div class="vertical_text brunse">
+                  <h3>SILVER</h3>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="platinium_box gold_box">
-            <div class="row">
-              {sponsors.silver.map(sponsor =>
-                sponsor.name !== '' ? (
-                  <div class="col-md-4" key={sponsor.id}>
-                    <Sponsor
-                      key={sponsor.id}
-                      imgs={imgs}
-                      sponsor={sponsor}
-                      handleShowSponsor={handleShowSponsor}
-                    />
-                  </div>
-                ) : null
-              )}
-              <p className="d-none">
-                <a
-                  href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2020"
-                  class="spr-link"
-                  target="_blank"
-                >
-                  <i class="fa fa-envelope"></i>&nbsp; If you would like to
-                  sponsor us, we'd love to hear from you.
-                </a>
-              </p>
-              <div class="vertical_text brunse">
-                <h3>SILVER</h3>
-              </div>
-            </div>
-          </div>{' '}
+          ) : null}
           {/* <div class="platinium_box gold_box brunse_box d-none">
             <div class="row">
               <div class="col-md-4">

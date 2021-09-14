@@ -74,7 +74,10 @@ export default function IndexPage({ data, location }) {
             <h2>Conference Events</h2>
             <ReactMarkdown
               source={
-                "ReactEurope will be back in 2021 in a virtual edition. We'll go back to in-person in 2022. Stay tuned for more news."
+                'ReactEurope will be back in 2021 on December 3rd for talks and December 2nd for workshops in a virtual edition. **Both our' +
+                ' workshops and talks will be live streamed for free on our [YouTube channel](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A)** ' +
+                'so make sure to subscribe to get notified when we go up.' +
+                " We'll go back to in-person in 2022. Stay tuned for more news."
               }
             />
           </div>
@@ -97,53 +100,13 @@ export default function IndexPage({ data, location }) {
       <section className="support" id="supporters">
         <div className="container">
           <div className="headings">
-            <h2>Supporters of the 2020 edition</h2>
+            <h2>Supporters</h2>
           </div>
           <div className="supporters_logo">
             <ul>
               <li>
                 <a href="https://eventlama.com/" target="_blank">
                   <Img fixed={data.support2.childImageSharp.fixed} />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://zeit.co/?utm_source=react-europe.org&utm_medium=web"
-                  target="_blank"
-                >
-                  <ZeitLogo />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://final-form.org/react?utm_source=react-europe.org&utm_medium=web"
-                  target="_blank"
-                >
-                  <Img fixed={data.finalForm.childImageSharp.fixed} />
-                </a>
-              </li>{' '}
-              <li>
-                <a
-                  href="https://mobx.js.org/?utm_source=react-europe.org&utm_medium=web"
-                  target="_blank"
-                >
-                  <Img fixed={data.mobx.childImageSharp.fixed} />
-                </a>
-              </li>{' '}
-              <li>
-                <a
-                  href="https://www.facebook.com/careers?utm_source=react-europe.org&utm_medium=web"
-                  target="_blank"
-                >
-                  <Img fixed={data.facebook.childImageSharp.fixed} />
-                </a>
-              </li>{' '}
-              <li>
-                <a
-                  href="https://expo.io/?utm_source=react-europe.org&utm_medium=web"
-                  target="_blank"
-                >
-                  <Img fixed={data.support6.childImageSharp.fixed} />
                 </a>
               </li>
             </ul>
@@ -564,7 +527,7 @@ export const pageQuery = graphql`
       }
     }
     eventlama {
-      events(slug: "reacteurope-2020") {
+      events(slug: "reacteurope-2021") {
         id
         description
         websiteUrl
@@ -712,8 +675,11 @@ export const pageQuery = graphql`
             logoUrl
             localFile {
               childImageSharp {
-                fluid {
+                fluid(maxHeight: 100) {
                   ...GatsbyImageSharpFluid_withWebp
+                }
+                fixed(width: 236) {
+                  ...GatsbyImageSharpFixed_withWebp
                 }
               }
             }
@@ -727,8 +693,11 @@ export const pageQuery = graphql`
             logoUrl
             localFile {
               childImageSharp {
-                fluid {
+                fluid(maxHeight: 100) {
                   ...GatsbyImageSharpFluid_withWebp
+                }
+                fixed(width: 236) {
+                  ...GatsbyImageSharpFixed_withWebp
                 }
               }
             }
