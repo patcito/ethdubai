@@ -154,10 +154,8 @@ export default function Hero({ banner }) {
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
                 ></iframe>
-                <h3>
-                  <br />
-                  Watch the 2020 ReactEurope edition for free on our YouTube
-                  channel{' '}
+                <h2>
+                  Subscribe to the event on our YouTube channel{' '}
                   <a
                     href="https://youtu.be/vULQgfiQvrw"
                     target="_blank"
@@ -165,9 +163,13 @@ export default function Hero({ banner }) {
                   >
                     here
                   </a>
+                </h2>
+                <br />
+                <h3>
+                  December 3rd, 2021 <span>(online conference)</span>
                 </h3>
                 <h3>
-                  2021 <span>(date to be confirmed)</span>
+                  December 2nd, 2021 <span>(online workshops)</span>
                 </h3>
                 <h4>Virtual (will be back to in-person in 2022)</h4>
               </div>
