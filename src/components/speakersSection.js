@@ -8,7 +8,7 @@ import videoMP4 from './video/paul.mp4'
 export default function SpeakersSection({ speakers = [] }) {
   const [show, setShow] = React.useState(false)
   const [showDescription, setShowDescription] = React.useState(false)
-  const handleBackButton = useCallback(event => {
+  const handleBackButton = useCallback((event) => {
     event.preventDefault()
     setShow(false)
     setShowDescription(false)
@@ -40,16 +40,7 @@ export default function SpeakersSection({ speakers = [] }) {
       },
     },
   })
-  let i = 0
-  let s = {}
-  speakers.map((speaker, index) => {
-    if (speaker.id === 2198) {
-      i = index
-      s = speaker
-    }
-  })
-  speakers.splice(i, 1)
-  speakers.splice(2, 0, s)
+
   const data = useStaticQuery(graphql`
     {
       head2: file(relativePath: { eq: "head-2.png" }) {
@@ -97,7 +88,6 @@ export default function SpeakersSection({ speakers = [] }) {
           <Img fixed={data.head2.childImageSharp.fixed} />
           <h2>Our Speakers</h2>
           <p>Stay tuned for our call for paper soon.</p>
-          {JSON.stringify(speakers)}
         </div>
         <div className="speaker_profile">
           <div className="row">
@@ -111,7 +101,7 @@ export default function SpeakersSection({ speakers = [] }) {
                   >
                     <div
                       className="profile_image"
-                      onClick={e => {
+                      onClick={(e) => {
                         e.preventDefault()
                         if (window) {
                           history.pushState(null, null, '#p' + speaker.id)
@@ -125,7 +115,7 @@ export default function SpeakersSection({ speakers = [] }) {
                         <Img fluid={speaker.localFile.childImageSharp.fluid} />
                       ) : null}
                       <a
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         className="add_icon show-speaker"
                       >
                         +
@@ -272,7 +262,7 @@ export default function SpeakersSection({ speakers = [] }) {
                   speakerProps.talks[0] &&
                   speakerProps.talks[0].title ? (
                     <>
-                      {speakerProps.talks.map(talk => (
+                      {speakerProps.talks.map((talk) => (
                         <div key={talk.id}>
                           {talk.type === 0 ? (
                             <div
@@ -291,7 +281,7 @@ export default function SpeakersSection({ speakers = [] }) {
                               </div>
                               <a
                                 href=""
-                                onClick={e => {
+                                onClick={(e) => {
                                   e.preventDefault()
                                   setShowDescription(true)
                                 }}
@@ -319,7 +309,7 @@ export default function SpeakersSection({ speakers = [] }) {
                               </a>*/}
                               <a
                                 href=""
-                                onClick={e => {
+                                onClick={(e) => {
                                   e.preventDefault()
                                   if (window) history.pushState(null, null, '/')
                                   setShow(false)
