@@ -46,18 +46,18 @@ export default function SponsorsSection({ sponsors }) {
   return (
     <>
       <span id="sprs"></span>
-      <section class="sponser" id="sponser">
-        <div class="container">
-          <div class="headings">
+      <section className="sponser" id="sponser">
+        <div className="container">
+          <div className="headings">
             <Img fixed={imgs.sponser.childImageSharp.fixed} />
             <h2>Our Sponsors</h2>
             <p>
               <a
                 href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
-                class="spr-link"
+                className="spr-link"
                 target="_blank"
               >
-                <i class="fa fa-envelope"></i>&nbsp;Want to get involved and
+                <i className="fa fa-envelope"></i>&nbsp;Want to get involved and
                 help support ReactEurope? We'd love to hear from you.
               </a>
             </p>
@@ -67,40 +67,40 @@ export default function SponsorsSection({ sponsors }) {
             onHide={() => setShowSponsor(false)}
             id="sponser_popup"
           >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
                   <button
                     type="button"
-                    class="close"
+                    className="close"
                     data-dismiss="modal"
                     onClick={() => setShowSponsor(false)}
                   >
                     &times;
                   </button>
                 </div>
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <div class="sponser_popup_left">
+                <div className="modal-body">
+                  <div className="row">
+                    <div className="col-md-3">
+                      <div className="sponser_popup_left">
                         <Img
                           className="no-animation"
                           fluid={currentSponsor.localFile.childImageSharp.fluid}
                           key={currentSponsor.id}
                         />
-                        <div class="sponser_popup_link">
+                        <div className="sponser_popup_link">
                           <a href={currentSponsor.url}>Website</a>
                           <a href={currentSponsor.jobUrl}>Work with us</a>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-9">
-                      <div class="sponser_popup_right">
+                    <div className="col-md-9">
+                      <div className="sponser_popup_right">
                         <h3>{currentSponsor.name}</h3>
                         <p>{currentSponsor.description}</p>
                       </div>
                     </div>
-                    <div class="vertical_text">
+                    <div className="vertical_text">
                       <h3>{currentSponsor.level}</h3>
                     </div>
                   </div>
@@ -109,11 +109,11 @@ export default function SponsorsSection({ sponsors }) {
             </div>
           </Modal>
           {sponsors.diamond?.length > 0 ? (
-            <div class="platinium_box gold_box">
-              <div class="row">
+            <div className="platinium_box gold_box">
+              <div className="row">
                 {sponsors.diamond.map(sponsor =>
                   sponsor.name !== '' ? (
-                    <div class="col-md-4" key={sponsor.id}>
+                    <div className="col-md-4" key={sponsor.id}>
                       <Sponsor
                         imgs={imgs}
                         sponsor={sponsor}
@@ -126,14 +126,14 @@ export default function SponsorsSection({ sponsors }) {
                 <p className="d-none">
                   <a
                     href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
-                    class="spr-link"
+                    className="spr-link"
                     target="_blank"
                   >
-                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
-                    sponsor us, we'd love to hear from you.
+                    <i className="fa fa-envelope"></i>&nbsp; If you would like
+                    to sponsor us, we'd love to hear from you.
                   </a>
                 </p>
-                <div class="vertical_text diamond">
+                <div className="vertical_text diamond">
                   <h3>DIAMOND</h3>
                 </div>
               </div>
@@ -143,11 +143,11 @@ export default function SponsorsSection({ sponsors }) {
           )}
 
           {sponsors.platinum?.length > 0 ? (
-            <div class="platinium_box gold_box">
-              <div class="row">
+            <div className="platinium_box gold_box">
+              <div className="row">
                 {sponsors.platinum.map(sponsor =>
                   sponsor.name !== '' ? (
-                    <div class="col-md-4" key={sponsor.id}>
+                    <div className="col-md-4" key={sponsor.id}>
                       <Sponsor
                         imgs={imgs}
                         sponsor={sponsor}
@@ -160,14 +160,14 @@ export default function SponsorsSection({ sponsors }) {
                 <p className="d-none">
                   <a
                     href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
-                    class="spr-link"
+                    className="spr-link"
                     target="_blank"
                   >
-                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
-                    sponsor us, we'd love to hear from you.
+                    <i className="fa fa-envelope"></i>&nbsp; If you would like
+                    to sponsor us, we'd love to hear from you.
                   </a>
                 </p>
-                <div class="vertical_text platinum">
+                <div className="vertical_text platinum">
                   <h3>PLATINUM</h3>
                 </div>
               </div>
@@ -177,11 +177,11 @@ export default function SponsorsSection({ sponsors }) {
           )}
 
           {sponsors.gold?.length > 0 ? (
-            <div class="platinium_box gold_box">
-              <div class="row">
+            <div className="platinium_box gold_box">
+              <div className="row">
                 {sponsors.gold.map(sponsor =>
                   sponsor.name !== '' ? (
-                    <div class="col-md-4" key={sponsor.id}>
+                    <div className="col-md-4" key={sponsor.id}>
                       <Sponsor
                         imgs={imgs}
                         sponsor={sponsor}
@@ -194,14 +194,14 @@ export default function SponsorsSection({ sponsors }) {
                 <p className="d-none">
                   <a
                     href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
-                    class="spr-link"
+                    className="spr-link"
                     target="_blank"
                   >
-                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
-                    sponsor us, we'd love to hear from you.
+                    <i className="fa fa-envelope"></i>&nbsp; If you would like
+                    to sponsor us, we'd love to hear from you.
                   </a>
                 </p>
-                <div class="vertical_text gold">
+                <div className="vertical_text gold">
                   <h3>GOLD</h3>
                 </div>
               </div>
@@ -210,11 +210,11 @@ export default function SponsorsSection({ sponsors }) {
             <></>
           )}
           {sponsors.silver?.length > 0 ? (
-            <div class="platinium_box gold_box">
-              <div class="row">
+            <div className="platinium_box gold_box">
+              <div className="row">
                 {sponsors.silver.map(sponsor =>
                   sponsor.name !== '' ? (
-                    <div class="col-md-4" key={sponsor.id}>
+                    <div className="col-md-4" key={sponsor.id}>
                       <Sponsor
                         key={sponsor.id}
                         imgs={imgs}
@@ -227,38 +227,38 @@ export default function SponsorsSection({ sponsors }) {
                 <p className="d-none">
                   <a
                     href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
-                    class="spr-link"
+                    className="spr-link"
                     target="_blank"
                   >
-                    <i class="fa fa-envelope"></i>&nbsp; If you would like to
-                    sponsor us, we'd love to hear from you.
+                    <i className="fa fa-envelope"></i>&nbsp; If you would like
+                    to sponsor us, we'd love to hear from you.
                   </a>
                 </p>
-                <div class="vertical_text brunse">
+                <div className="vertical_text brunse">
                   <h3>SILVER</h3>
                 </div>
               </div>
             </div>
           ) : null}
-          {/* <div class="platinium_box gold_box brunse_box d-none">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="spnser_box">
-                  <div class="sponser_image">
+          {/* <div className="platinium_box gold_box brunse_box d-none">
+            <div className="row">
+              <div className="col-md-4">
+                <div className="spnser_box">
+                  <div className="sponser_image">
                     <img
                       loading="lazy"
-                      class="normal_image"
+                      className="normal_image"
                       src="images/brunse1.png"
                       alt=""
                     />
                     <img
                       loading="lazy"
-                      class="hover_img"
+                      className="hover_img"
                       src="images/brunse1.png"
                       alt=""
                     />
                   </div>
-                  <div class="work_withweb">
+                  <div className="work_withweb">
                     <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
                       Website
                     </a>
@@ -266,25 +266,25 @@ export default function SponsorsSection({ sponsors }) {
                       Work with us
                     </a>
                   </div>
-                  <a href="#" class="read_more d-none">
+                  <a href="#" className="read_more d-none">
                     Read More
                   </a>
-                  <div class="mobile_icons">
+                  <div className="mobile_icons">
                     <ul>
                       <li>
                         <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                          <i class="fa fa-link" aria-hidden="true"></i>
+                          <i className="fa fa-link" aria-hidden="true"></i>
                         </a>
                       </li>
                       <li>
                         <a href="https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
-                          <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                          <i className="fa fa-handshake-o" aria-hidden="true"></i>
                         </a>
                       </li>
-                      <li class="d-none">
+                      <li className="d-none">
                         <a href="#">
                           <i
-                            class="fa fa-long-arrow-right"
+                            className="fa fa-long-arrow-right"
                             aria-hidden="true"
                           ></i>
                         </a>
@@ -293,45 +293,45 @@ export default function SponsorsSection({ sponsors }) {
                   </div>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="spnser_box">
-                  <div class="sponser_image">
+              <div className="col-md-4">
+                <div className="spnser_box">
+                  <div className="sponser_image">
                     <img
                       loading="lazy"
-                      class="normal_image"
+                      className="normal_image"
                       src="images/brunse2.png"
                       alt=""
                     />
                     <img
                       loading="lazy"
-                      class="hover_img"
+                      className="hover_img"
                       src="images/brunse2.png"
                       alt=""
                     />
                   </div>
-                  <div class="work_withweb">
+                  <div className="work_withweb">
                     <a href="#">Website</a>
                     <a href="#">Work with us</a>
                   </div>
-                  <a href="#" class="read_more">
+                  <a href="#" className="read_more">
                     Read More
                   </a>
-                  <div class="mobile_icons">
+                  <div className="mobile_icons">
                     <ul>
                       <li>
                         <a href="#">
-                          <i class="fa fa-link" aria-hidden="true"></i>
+                          <i className="fa fa-link" aria-hidden="true"></i>
                         </a>
                       </li>
                       <li>
                         <a href="#">
-                          <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                          <i className="fa fa-handshake-o" aria-hidden="true"></i>
                         </a>
                       </li>
                       <li>
                         <a href="#">
                           <i
-                            class="fa fa-long-arrow-right"
+                            className="fa fa-long-arrow-right"
                             aria-hidden="true"
                           ></i>
                         </a>
@@ -340,7 +340,7 @@ export default function SponsorsSection({ sponsors }) {
                   </div>
                 </div>
               </div>
-              <div class="vertical_text gold">
+              <div className="vertical_text gold">
                 <h3>BRUNSE</h3>
               </div>
             </div>

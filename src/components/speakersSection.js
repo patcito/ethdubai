@@ -97,80 +97,82 @@ export default function SpeakersSection({ speakers = [] }) {
           <Img fixed={data.head2.childImageSharp.fixed} />
           <h2>Our Speakers</h2>
           <p>Stay tuned for our call for paper soon.</p>
+          {JSON.stringify(speakers)}
         </div>
         <div className="speaker_profile">
           <div className="row">
-            {false &&
-              speakers.map((speaker, index) => {
-                return (
-                  <div className="col-md-3 col-sm-4 col-xs-12" key={index}>
+            {speakers.map((speaker, index) => {
+              return (
+                <div className="col-md-3 col-sm-4 col-xs-12" key={index}>
+                  <div
+                    className={`speaker_box ${
+                      index % 2 == 0 ? 'left_box' : 'right_box'
+                    }`}
+                  >
                     <div
-                      className={`speaker_box ${
-                        index % 2 == 0 ? 'left_box' : 'right_box'
-                      }`}
+                      className="profile_image"
+                      onClick={e => {
+                        e.preventDefault()
+                        if (window) {
+                          history.pushState(null, null, '#p' + speaker.id)
+                          history.pushState(null, null, '#' + speaker.id)
+                        }
+                        setShow(true)
+                        setSpeakerProps(speaker)
+                      }}
                     >
-                      <div
-                        className="profile_image"
-                        onClick={e => {
-                          e.preventDefault()
-                          if (window) {
-                            history.pushState(null, null, '#p' + speaker.id)
-                            history.pushState(null, null, '#' + speaker.id)
-                          }
-                          setShow(true)
-                          setSpeakerProps(speaker)
-                        }}
-                      >
+                      {speaker?.localFile?.childImageSharp?.fluid ? (
                         <Img fluid={speaker.localFile.childImageSharp.fluid} />
-                        <a
-                          onClick={e => e.preventDefault()}
-                          className="add_icon show-speaker"
-                        >
-                          +
-                        </a>
-                      </div>
-                      <div className="profile_content">
-                        <h3 className="speaker-name">{speaker.name}</h3>
-                        <p className="speaker-bio" bio-full={speaker.bio}>
-                          <ReactMarkdown source={speaker.shortBio} />
-                        </p>
-                        <ul>
-                          {speaker.twitter !== '' ? (
-                            <li>
-                              <a
-                                href={`https://twitter.com/${speaker.twitter}`}
-                                className="icon-social-button"
-                              >
-                                <i className="fa fa-twitter icon-twitter"></i>
-                                <span />
-                              </a>
-                            </li>
-                          ) : null}
+                      ) : null}
+                      <a
+                        onClick={e => e.preventDefault()}
+                        className="add_icon show-speaker"
+                      >
+                        +
+                      </a>
+                    </div>
+                    <div className="profile_content">
+                      <h3 className="speaker-name">{speaker.name}</h3>
+                      <p className="speaker-bio" bio-full={speaker.bio}>
+                        <ReactMarkdown children={speaker.shortBio} />
+                      </p>
+                      <ul>
+                        {speaker.twitter !== '' ? (
                           <li>
                             <a
-                              href={`https://github.com/${speaker.github}`}
+                              href={`https://twitter.com/${speaker.twitter}`}
                               className="icon-social-button"
                             >
-                              <i className="fa fa-github icon-github"></i>
+                              <i className="fa fa-twitter icon-twitter"></i>
                               <span />
                             </a>
                           </li>
-                          {speaker.url ? (
-                            <li>
-                              <a
-                                href="https://ivesvh.com/"
-                                className="icon-social-button"
-                              >
-                                <i className="fa fa-link icon-link"></i>
-                              </a>
-                            </li>
-                          ) : null}
-                        </ul>
-                      </div>
+                        ) : null}
+                        <li>
+                          <a
+                            href={`https://github.com/${speaker.github}`}
+                            className="icon-social-button"
+                          >
+                            <i className="fa fa-github icon-github"></i>
+                            <span />
+                          </a>
+                        </li>
+                        {speaker.url ? (
+                          <li>
+                            <a
+                              href="https://ivesvh.com/"
+                              className="icon-social-button"
+                            >
+                              <i className="fa fa-link icon-link"></i>
+                            </a>
+                          </li>
+                        ) : null}
+                      </ul>
                     </div>
                   </div>
-                )
-              })}
+                </div>
+              )
+            })}
 
             <div className="col-md-3 col-sm-4 col-xs-12">
               <div className="speaker_box right_box">
@@ -261,10 +263,10 @@ export default function SpeakersSection({ speakers = [] }) {
                 <div className="popup_profile_content">
                   <h3 className="speaker-name-modal">{speakerProps.name}</h3>
                   <h5 className="speaker-bio-modal">
-                    <ReactMarkdown source={speakerProps.shortBio} />
+                    <ReactMarkdown children={speakerProps.shortBio} />
                   </h5>
                   <div className="speaker-bio-full-modal">
-                    <ReactMarkdown source={speakerProps.bio} />
+                    <ReactMarkdown children={speakerProps.bio} />
                   </div>
                   {speakerProps.talks &&
                   speakerProps.talks[0] &&
@@ -285,7 +287,7 @@ export default function SpeakersSection({ speakers = [] }) {
                                   showDescription ? null : 'talkDescription'
                                 }
                               >
-                                <ReactMarkdown source={talk.description} />
+                                <ReactMarkdown children={talk.description} />
                               </div>
                               <a
                                 href=""

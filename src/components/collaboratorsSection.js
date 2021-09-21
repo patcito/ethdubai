@@ -71,32 +71,32 @@ export default function CollaboratorsSection({ collaborators = [] }) {
   `)
 
   return (
-    <section class="people-behind" id="people-behind">
-      <div class="container">
-        <div class="headings">
+    <section className="people-behind" id="people-behind">
+      <div className="container">
+        <div className="headings">
           <Img fixed={data.people.childImageSharp.fixed} />
           <h2>People Behind ReactEurope</h2>
         </div>
-        <div class="speaker_profile">
-          <div class="row">
+        <div className="speaker_profile">
+          <div className="row">
             {collaborators.map((collaborator, index) => {
               return (
-                <div class="col-md-3 col-sm-4 col-xs-12" key={index}>
+                <div className="col-md-3 col-sm-4 col-xs-12" key={index}>
                   <div
                     class={`speaker_box ${
                       index % 2 == 0 ? 'left_box' : 'right_box'
                     }`}
                   >
-                    <div class="profile_image">
+                    <div className="profile_image">
                       <Img
                         fluid={collaborator.localFile.childImageSharp.fluid}
                       />
                     </div>
                     <div
-                      class="profile_content"
+                      className="profile_content"
                       style={{ background: 'white' }}
                     >
-                      <h3 class="speaker-name">
+                      <h3 className="speaker-name">
                         {collaborator.firstName} {collaborator.lastName}
                       </h3>
                       <span>{collaborator.role}</span>
@@ -104,18 +104,18 @@ export default function CollaboratorsSection({ collaborators = [] }) {
                         <li>
                           <a
                             href={`https://twitter.com/${collaborator.twitter}`}
-                            class="icon-social-button"
+                            className="icon-social-button"
                           >
-                            <i class="fa fa-twitter icon-twitter"></i>
+                            <i className="fa fa-twitter icon-twitter"></i>
                             <span />
                           </a>
                         </li>
                         <li>
                           <a
                             href={`https://github.com/${collaborator.github}`}
-                            class="icon-social-button"
+                            className="icon-social-button"
                           >
-                            <i class="fa fa-github icon-github"></i>
+                            <i className="fa fa-github icon-github"></i>
                             <span />
                           </a>
                         </li>
@@ -123,9 +123,9 @@ export default function CollaboratorsSection({ collaborators = [] }) {
                           <li>
                             <a
                               href={collaborator.url}
-                              class="icon-social-button"
+                              className="icon-social-button"
                             >
-                              <i class="fa fa-link icon-link"></i>
+                              <i className="fa fa-link icon-link"></i>
                             </a>
                           </li>
                         ) : null}
@@ -136,7 +136,7 @@ export default function CollaboratorsSection({ collaborators = [] }) {
               )
             })}
           </div>
-          <div class="get_your_ticket">
+          <div className="get_your_ticket">
             <a href="#tickets">Get Your Ticket</a>
           </div>
         </div>
