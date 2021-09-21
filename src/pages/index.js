@@ -49,10 +49,10 @@ export default function IndexPage({ data, location }) {
   const [schedule, setSchedule] = useState(
     data.eventlama.events[0].groupedSchedule
   )
-
+  console.log('data', data)
   //TODO: useCheckoutListener
   if (typeof window !== 'undefined') {
-    window.addEventListener('message', message => {
+    window.addEventListener('message', (message) => {
       if (message.data && message.data.checkoutUrl) {
         window.location = message.data.checkoutUrl
       }
