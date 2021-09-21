@@ -37,19 +37,19 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
   }, [])
 
   return (
-    <section className="schedule" id="schedule">
-      <div className="container">
-        <div className="headings">
+    <section class="schedule" id="schedule">
+      <div class="container">
+        <div class="headings">
           <Img fixed={data.scedual.childImageSharp.fixed} />
           <h2>Schedule</h2>
           <p>Stay tuned for our new schedule soon.</p>
         </div>
-        <div className="schedule_content" style={{ display: 'none' }}>
-          <div className="row">
-            <div className="col-md-4">
-              <ul className="nav nav-tabs" id="myTab" role="tablist">
+        <div class="schedule_content" style={{ display: 'none' }}>
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
                 {schedule.map((day, i) => (
-                  <li className="nav-item" key={i}>
+                  <li class="nav-item" key={i}>
                     <Link
                       className={`nav-link ${
                         currentScheduleTab === i ? 'active' : null
@@ -90,16 +90,16 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                 ))}
               </ul>
             </div>
-            <div className="col-md-8">
-              <div className="tab-content">
+            <div class="col-md-8">
+              <div class="tab-content">
                 <div
-                  className="tab-pane active"
+                  class="tab-pane active"
                   id="schedule-wrapper"
                   role="tabpanel"
                 >
-                  <div className="schedule_tab_box">
-                    <div className="schedule_search">
-                      <div className="search">
+                  <div class="schedule_tab_box">
+                    <div class="schedule_search">
+                      <div class="search">
                         <input
                           type="text"
                           name="search"
@@ -110,12 +110,12 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                           }}
                         />
                         <button>
-                          <i className="fa fa-search" aria-hidden="true"></i>
+                          <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                       </div>
                     </div>
-                    <div className="tab_content_inner">
-                      <div id="schedule-scroll" className="tab_scroller">
+                    <div class="tab_content_inner">
+                      <div id="schedule-scroll" class="tab_scroller">
                         {event.groupedSchedule.map((day, i) => (
                           <>
                             <h3 id={'day-' + (i + 1)} key={i}>
@@ -161,11 +161,11 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                   .indexOf(scheduleQuery.toLowerCase()) !==
                                   -1 ? (
                                 <div
-                                  className="tab_text first-tab"
+                                  class="tab_text first-tab"
                                   id={slot_slug}
                                   key={i}
                                 >
-                                  <div className="border_box_tab">
+                                  <div class="border_box_tab">
                                     <h5>
                                       {new Date(slot.startDate)
                                         .toLocaleTimeString('default', {
@@ -231,12 +231,12 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                     <ReactMarkdown source={slot.description} />
                                     {slot.speakers.map((speaker, i) => (
                                       <div
-                                        className="tab_profile_inner_box"
+                                        class="tab_profile_inner_box"
                                         key={i}
                                       >
-                                        <div className="row no-gutters">
-                                          <div className="col-md-2">
-                                            <div className="tab_profile_inner_box_image">
+                                        <div class="row no-gutters">
+                                          <div class="col-md-2">
+                                            <div class="tab_profile_inner_box_image">
                                               <Img
                                                 fluid={
                                                   speaker.localFile
@@ -245,30 +245,30 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                               />
                                             </div>
                                           </div>
-                                          <div className="col-md-10">
-                                            <div className="tab_profile_inner_box_content">
-                                              <div className="name_icon">
-                                                <div className="name">
+                                          <div class="col-md-10">
+                                            <div class="tab_profile_inner_box_content">
+                                              <div class="name_icon">
+                                                <div class="name">
                                                   <h2>{speaker.name}</h2>
                                                 </div>
-                                                <div className="tab_icons">
+                                                <div class="tab_icons">
                                                   <ul>
                                                     {speaker.twitter !== '' ? (
                                                       <li>
                                                         <a
                                                           href={`https://twitter.com/${speaker.twitter}`}
-                                                          className="icon-social-button-small"
+                                                          class="icon-social-button-small"
                                                         >
-                                                          <i className="fa fa-twitter icon-twitter"></i>
+                                                          <i class="fa fa-twitter icon-twitter"></i>
                                                         </a>
                                                       </li>
                                                     ) : null}
                                                     <li>
                                                       <a
                                                         href={`https://github.com/${speaker.github}`}
-                                                        className="icon-social-button-small"
+                                                        class="icon-social-button-small"
                                                       >
-                                                        <i className="fa fa-github icon-github"></i>
+                                                        <i class="fa fa-github icon-github"></i>
                                                       </a>
                                                     </li>
                                                   </ul>

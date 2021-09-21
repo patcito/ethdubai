@@ -146,10 +146,10 @@ export default function InlineTicketsSection({ event }) {
   return (
     <>
       <a id="tickets"></a>
-      <section className="book_ticket" id="book_ticket">
-        <div className="container">
-          <div className="container">
-            <div className="headings">
+      <section class="book_ticket" id="book_ticket">
+        <div class="container">
+          <div class="container">
+            <div class="headings">
               <Img fixed={imgs.ticket.childImageSharp.fixed} />
               <h2>Get Your Tickets</h2>
               <h3>
@@ -186,26 +186,26 @@ export default function InlineTicketsSection({ event }) {
               >
                 Loading…
               </iframe>
-              <h3 className="d-none">
+              <h3 class="d-none">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                   Don't miss our tickets release by subscribing here.
                 </a>
               </h3>
               <section
                 style={{ display: 'none' }}
-                className="book_ticket"
+                class="book_ticket"
                 id="book_ticket"
               >
-                <div className="container"></div>
-                <div className="book_ticket_box">
-                  <div className="row ticket_first-row">
-                    <div className="col-md-6">
-                      <div className="ticket_heading">
+                <div class="container"></div>
+                <div class="book_ticket_box">
+                  <div class="row ticket_first-row">
+                    <div class="col-md-6">
+                      <div class="ticket_heading">
                         <h4>Tickets Information</h4>
                       </div>
                     </div>
-                    <div className="col-md-6">
-                      <div className="powerd_text">
+                    <div class="col-md-6">
+                      <div class="powerd_text">
                         <p>
                           Powered by{' '}
                           <a href="https://eventlama.com" target="_blank">
@@ -216,7 +216,7 @@ export default function InlineTicketsSection({ event }) {
                     </div>
                   </div>
                   <div>
-                    <div className="row ticket_secound-row">
+                    <div class="row ticket_secound-row">
                       <div>
                         {message.message ? (
                           <div
@@ -228,17 +228,17 @@ export default function InlineTicketsSection({ event }) {
                         ) : null}
                         {tickets.map((ticket, index) =>
                           ticket.soldOut ? (
-                            <div className="regular_ticket" key={index}>
-                              <div className="row no-gutters">
-                                <div className="col-md-6">
-                                  <div className="early_bird">
+                            <div class="regular_ticket" key={index}>
+                              <div class="row no-gutters">
+                                <div class="col-md-6">
+                                  <div class="early_bird">
                                     <h3 style={{ fontSize: '15px' }}>
                                       {ticket.name}
                                     </h3>
                                   </div>
                                 </div>
-                                <div className="col-md-6">
-                                  <div className="sold_out">
+                                <div class="col-md-6">
+                                  <div class="sold_out">
                                     <a
                                       href="#"
                                       onClick={e => e.preventDefault()}
@@ -247,7 +247,7 @@ export default function InlineTicketsSection({ event }) {
                                     </a>
                                   </div>
                                 </div>
-                                <div className="col-md-12">
+                                <div class="col-md-12">
                                   <div className="description_input">
                                     <input type="text" name="Description" />
                                   </div>
@@ -255,10 +255,10 @@ export default function InlineTicketsSection({ event }) {
                               </div>
                             </div>
                           ) : (
-                            <div className="regular_ticket" key={index}>
-                              <div className="row no-gutters">
-                                <div className="col-md-6">
-                                  <div className="regular_ticket_heading">
+                            <div class="regular_ticket" key={index}>
+                              <div class="row no-gutters">
+                                <div class="col-md-6">
+                                  <div class="regular_ticket_heading">
                                     <h3
                                       className="ticket_name"
                                       style={{ fontSize: '18px' }}
@@ -267,16 +267,16 @@ export default function InlineTicketsSection({ event }) {
                                       {ticket.hasDiscount &&
                                       (ticket.orderedQuantity > 0 ||
                                         ticket.OrderedQuantity > 0) ? (
-                                        <span className="badge badge-pill badge-success">
+                                        <span class="badge badge-pill badge-success">
                                           Discount Applied
                                         </span>
                                       ) : null}
                                     </h3>
                                   </div>
                                 </div>
-                                <div className="col-md-6">
-                                  <div className="regular_right">
-                                    <h6 className="right-text">
+                                <div class="col-md-6">
+                                  <div class="regular_right">
+                                    <h6 class="right-text">
                                       €
                                       {(ticket.priceWithoutVat / 10000).toFixed(
                                         2
@@ -292,7 +292,7 @@ export default function InlineTicketsSection({ event }) {
                                       </span>
                                       ✖
                                     </h6>
-                                    <div className="quantity">
+                                    <div class="quantity">
                                       <input
                                         type="number"
                                         min="1"
@@ -346,9 +346,9 @@ export default function InlineTicketsSection({ event }) {
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-md-12">
-                                  <div className="regular_ticket_content">
-                                    <div className="regular_ticket_links">
+                                <div class="col-md-12">
+                                  <div class="regular_ticket_content">
+                                    <div class="regular_ticket_links">
                                       <ul style={{ textAlign: 'left' }}>
                                         <li>
                                           <a
@@ -394,11 +394,11 @@ export default function InlineTicketsSection({ event }) {
                           )
                         )}
                       </div>
-                      <div className="checkout">
-                        <div className="row no-gutters">
-                          <div className="col-md-6">
+                      <div class="checkout">
+                        <div class="row no-gutters">
+                          <div class="col-md-6">
                             <div style={{ display: 'none' }}>
-                              <div className="discound_heading">
+                              <div class="discound_heading">
                                 <h3>
                                   If you have a discount code{' '}
                                   {discountCodeApplied
@@ -406,7 +406,7 @@ export default function InlineTicketsSection({ event }) {
                                     : null}
                                 </h3>
                               </div>
-                              <div className="discount_code">
+                              <div class="discount_code">
                                 <input
                                   type="text"
                                   name="discount"
@@ -422,8 +422,8 @@ export default function InlineTicketsSection({ event }) {
                               </div>
                             </div>
                           </div>
-                          <div className="col-md-6">
-                            <div className="checkout_btn">
+                          <div class="col-md-6">
+                            <div class="checkout_btn">
                               <a href="" onClick={checkout}>
                                 Checkout
                               </a>

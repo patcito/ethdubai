@@ -30,22 +30,22 @@ export default function CarouselPeople() {
   return (
     <>
       {/* <Modal show={show} onHide={handleClose} id="event_popup">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
               <button
                 onClick={handleClose}
                 type="button"
-                className="close"
+                class="close"
                 data-dismiss="modal"
               >
                 &times;
               </button>
             </div>
-            <div className="modal-body">
-              <div className="row">
-                <div className="col-md-5">
-                  <div className="event_popup_content">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="event_popup_content">
                     <h3 id="event-date-popup">{eventProps.date}</h3>
                     <h4>MAY</h4>
                     <h5 id="event-title-popup">{eventProps.title}</h5>
@@ -56,8 +56,8 @@ export default function CarouselPeople() {
                     <p id="event-description-popup">{eventProps.description}</p>
                   </div>
                 </div>
-                <div className="col-md-7">
-                  <div className="event_popup_images">
+                <div class="col-md-7">
+                  <div class="event_popup_images">
                     <ul>
                       <li>
                         <img
@@ -90,7 +90,7 @@ export default function CarouselPeople() {
       </Modal> */}
       <div className="horizontal-carousel">
         <div>
-          <div className="testimonial_box">
+          <div class="testimonial_box">
             <Img fixed={imgs.quote.childImageSharp.fixed} />
             <p>
               Thanks for the time @ReactEurope and for the knowledge during the
@@ -101,7 +101,7 @@ export default function CarouselPeople() {
           </div>
         </div>
         <div>
-          <div className="testimonial_box">
+          <div class="testimonial_box">
             <Img fixed={imgs.quote.childImageSharp.fixed} />
             <p>
               Heading back home from #ReactEurope in Paris. Thanks, folks, I had
@@ -112,7 +112,7 @@ export default function CarouselPeople() {
           </div>
         </div>
         <div>
-          <div className="testimonial_box">
+          <div class="testimonial_box">
             <Img fixed={imgs.quote.childImageSharp.fixed} />
             <p>
               Thanks for such a great time @ReactEurope! Learned a ton and met
@@ -123,7 +123,7 @@ export default function CarouselPeople() {
           </div>
         </div>
         <div>
-          <div className="testimonial_box">
+          <div class="testimonial_box">
             <Img fixed={imgs.quote.childImageSharp.fixed} />
             <p>
               Great conference @ReactEurope! Great organisation and awesome
@@ -133,7 +133,7 @@ export default function CarouselPeople() {
           </div>
         </div>
         <div>
-          <div className="testimonial_box">
+          <div class="testimonial_box">
             <Img fixed={imgs.quote.childImageSharp.fixed} />
             <p>
               This past few days, I spent at @ReactEurope. This was the first
@@ -145,7 +145,7 @@ export default function CarouselPeople() {
           </div>
         </div>
         <div>
-          <div className="testimonial_box">
+          <div class="testimonial_box">
             <Img fixed={imgs.quote.childImageSharp.fixed} />
             <p>
               I've been to @reacteurope ⚛️🇪🇺 had an awesome time, here's a break

@@ -35,10 +35,10 @@ export default function TicketsSection() {
   return (
     <>
       <a id="tickets"></a>
-      <section className="book_ticket" id="book_ticket">
-        <div className="container">
-          <div className="container">
-            <div className="headings">
+      <section class="book_ticket" id="book_ticket">
+        <div class="container">
+          <div class="container">
+            <div class="headings">
               <Img fixed={imgs.ticket.childImageSharp.fixed} />
               <h2>Get Your Tickets</h2>
               <h3>
@@ -46,7 +46,7 @@ export default function TicketsSection() {
                 they will be available. Make sure to subscribe to our mailing
                 list below.
               </h3>
-              <h3 className="d-none">
+              <h3 class="d-none">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                   Don't miss our tickets release by subscribing here.
                 </a>

@@ -148,7 +148,7 @@ export default function Hero({ banner }) {
               <div className="react_text_content" style={{ color: '#FFF' }}>
                 <iframe
                   width="100%"
-                  className="ytiframe"
+                  class="ytiframe"
                   src="https://www.youtube.com/embed/videoseries?list=PLCC436JpVnK0Q4WHoB85ZYBwcCyTaMgAl&index=0"
                   frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

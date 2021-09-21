@@ -4,8 +4,8 @@ import Img from 'gatsby-image'
 export default function Sponsor({ handleShowSponsor, sponsor }) {
   return (
     <>
-      <div className="spnser_box">
-        <div className="sponser_image">
+      <div class="spnser_box">
+        <div class="sponser_image">
           {sponsor && sponsor.localFile ? (
             <Img
               fixed={sponsor.localFile.childImageSharp.fixed}
@@ -20,7 +20,7 @@ export default function Sponsor({ handleShowSponsor, sponsor }) {
             />
           ) : null}
         </div>
-        <div className="work_withweb">
+        <div class="work_withweb">
           <a href={sponsor.url}>Website</a>
           <a href={sponsor.jobUrl}>Work with us</a>
         </div>
@@ -28,20 +28,20 @@ export default function Sponsor({ handleShowSponsor, sponsor }) {
           onClick={e => {
             handleShowSponsor(sponsor, e)
           }}
-          className="read_more"
+          class="read_more"
         >
           Read More
         </a>
-        <div className="mobile_icons">
+        <div class="mobile_icons">
           <ul>
             <li>
               <a href={sponsor.url}>
-                <i className="fa fa-link" aria-hidden="true"></i>
+                <i class="fa fa-link" aria-hidden="true"></i>
               </a>
             </li>
             <li>
               <a href={sponsor.jobUrl}>
-                <i className="fa fa-handshake-o" aria-hidden="true"></i>
+                <i class="fa fa-handshake-o" aria-hidden="true"></i>
               </a>
             </li>
             <li>
@@ -52,7 +52,7 @@ export default function Sponsor({ handleShowSponsor, sponsor }) {
                   handleShowSponsor(sponsor, e)
                 }}
               >
-                <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
               </a>
             </li>
           </ul>

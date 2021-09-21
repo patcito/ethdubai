@@ -22,24 +22,24 @@ function Caroussel() {
     setEventProps(event)
   }
   return (
-    <div className="conference_slider">
+    <div class="conference_slider">
       <Modal show={show} onHide={handleClose} id="event_popup">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
               <button
                 onClick={handleClose}
                 type="button"
-                className="close"
+                class="close"
                 data-dismiss="modal"
               >
                 &times;
               </button>
             </div>
-            <div className="modal-body">
-              <div className="row">
-                <div className="col-md-5">
-                  <div className="event_popup_content">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="event_popup_content">
                     <h3 id="event-date-popup">{eventProps.date}</h3>
                     <h4>MAY</h4>
                     <h5 id="event-title-popup">{eventProps.title}</h5>
@@ -50,8 +50,8 @@ function Caroussel() {
                     <p id="event-description-popup">{eventProps.description}</p>
                   </div>
                 </div>
-                <div className="col-md-7">
-                  <div className="event_popup_images">
+                <div class="col-md-7">
+                  <div class="event_popup_images">
                     <ul>
                       <li>
                         <Img
@@ -105,7 +105,7 @@ function Caroussel() {
               })
             }}
           >
-            <div className="slider_box">
+            <div class="slider_box">
               <h3>12th-13th</h3>
               <h4>MAY</h4>
               <Img
@@ -137,7 +137,7 @@ function Caroussel() {
               })
             }}
           >
-            <div className="slider_box">
+            <div class="slider_box">
               <h3>13th</h3>
               <h4>MAY</h4>
               <Img
@@ -146,7 +146,7 @@ function Caroussel() {
                 fixed={data.slide2.childImageSharp.fixed}
               />
               <h5>BAR NIGHT</h5>
-              <h6 className="">More details coming soon. Stay tuned.</h6>
+              <h6 class="">More details coming soon. Stay tuned.</h6>
               <p>6:45pm</p>
             </div>
           </div>
@@ -169,7 +169,7 @@ function Caroussel() {
               })
             }}
           >
-            <div className="slider_box">
+            <div class="slider_box">
               <h3>14th-15th</h3>
               <h4>MAY</h4>
               <Img
@@ -201,7 +201,7 @@ function Caroussel() {
               })
             }}
           >
-            <div className="slider_box">
+            <div class="slider_box">
               <h3>12th-15th</h3>
               <h4>MAY</h4>
               <Img
@@ -233,7 +233,7 @@ function Caroussel() {
               })
             }}
           >
-            <div className="slider_box">
+            <div class="slider_box">
               <h3>14th-15th</h3>
               <h4>MAY</h4>
               <Img
@@ -265,7 +265,7 @@ function Caroussel() {
               })
             }}
           >
-            <div className="slider_box">
+            <div class="slider_box">
               <h3>16th</h3>
               <h4>MAY</h4>
               <Img
