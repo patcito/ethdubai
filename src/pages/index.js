@@ -74,7 +74,7 @@ export default function IndexPage({ data, location }) {
             <h2>Conference Events</h2>
             <ReactMarkdown
               source={
-                'ReactEurope will be back in 2021 on December 3rd for talks and December 2nd for workshops in a virtual edition. **Both our' +
+                'ReactEurope will be back in 2021 on December 10th for talks and December 9th for workshops in a virtual edition. **Both our' +
                 ' workshops and talks will be live streamed for free on our [YouTube channel](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A)** ' +
                 'so make sure to subscribe to get notified when we go up.' +
                 " We'll go back to in-person in 2022. Stay tuned for more news."
@@ -422,16 +422,11 @@ export default function IndexPage({ data, location }) {
                   >
                     <div className="card-body">
                       <h3 className="panel-body-title">Ticket Refund</h3>
-                      <p>
-                        We do refund tickets with a 5% fee until December 15,
-                        2019. However, it is possible to transfer your ticket at
-                        all time.
-                      </p>
+                      <p>Tickets are free for the 2021 editions.</p>
                       <h3 className="panel-body-title">Ticket Transfer</h3>
                       <p>
-                        It is possible to transfer your ticket to a peer. Just
-                        open the email you received when you bought your ticket
-                        and follow the link to edit your ticket details.
+                        No need to transfer your ticket as they are free and
+                        illimited.
                       </p>
                     </div>
                   </div>
@@ -459,17 +454,7 @@ export default function IndexPage({ data, location }) {
                     className={faq === 2 ? 'collapse show' : 'collapse'}
                   >
                     <div className="card-body">
-                      All tickets called "Round X Conference" (such as Round 1
-                      Conference and Round 2 Conference) give access to the
-                      two-day conference, this includes typical French
-                      breakfasts, tasty lunches and refreshments through the day
-                      (both alcoholic and not). We also have swag such as
-                      t-shirts, prizes and more, not to forget - the Pre-Party
-                      on May 13th. Entrance to social events around the
-                      conference to be announced later. Workshops are sold
-                      separately and do not include access to the conference,
-                      these are the tickets that start with "One-day" or
-                      "Two-day workshop".
+                      Full access to the online conference and workshops.
                     </div>
                   </div>
                 </div>
@@ -503,7 +488,7 @@ export default function IndexPage({ data, location }) {
         <div className="footer_bottom">
           <div className="container">
             <p>
-              Copyrights © 2020 - Design by{' '}
+              Copyrights © 2021 - Design by{' '}
               <a href="https://eventlama.com" target="_blank">
                 EventLama
               </a>

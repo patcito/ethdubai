@@ -1,14 +1,14 @@
 module.exports = {
   siteMetadata: {
     title:
-      'ReactEurope - The original European React.js &amp; Native conference on December 3rd, online',
+      'ReactEurope - The original European React.js &amp; Native conference on December 10th, online',
     description:
-      'ReactEurope - The original European React.js &amp; Native conference on December 3rd, online',
+      'ReactEurope - The original European React.js &amp; Native conference on December 10th, online',
     siteUrl: 'https://www.react-europe.org',
     author: 'ReactEurope',
     twitter: 'ReactEurope',
     'og:title':
-      'ReactEurope - The original European React.js &amp; Native conference on December 3rd, online',
+      'ReactEurope - The original European React.js &amp; Native conference on December 10th, online',
     'og:type': 'website',
     'og:image': 'https://www.react-europe.org/images/reacteurope.png',
   },
@@ -79,7 +79,7 @@ module.exports = {
         name: 'ReactEurope',
         short_name: 'ReactEurope',
         description:
-          'The original European React.js & Native conference on December 3rd, online',
+          'The original European React.js & Native conference on December 10th, online',
         homepage_url: 'https://www.react-europe.org',
         start_url: '/',
         background_color: '#fff',

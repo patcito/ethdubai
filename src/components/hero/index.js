@@ -166,10 +166,10 @@ export default function Hero({ banner }) {
                 </h2>
                 <br />
                 <h3>
-                  December 3rd, 2021 <span>(online conference)</span>
+                  December 10th, 2021 <span>(online conference)</span>
                 </h3>
                 <h3>
-                  December 2nd, 2021 <span>(online workshops)</span>
+                  December 9th, 2021 <span>(online workshops)</span>
                 </h3>
                 <h4>Virtual (will be back to in-person in 2022)</h4>
               </div>
