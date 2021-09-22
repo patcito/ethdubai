@@ -87,7 +87,15 @@ export default function SpeakersSection({ speakers = [] }) {
         <div className="headings">
           <Img fixed={data.head2.childImageSharp.fixed} />
           <h2>Our Speakers</h2>
-          <p>Stay tuned for our call for paper soon.</p>
+          <p>
+            You can submit a talk to our{' '}
+            <a
+              href="https://checkout.eventlama.com/#/events/reacteurope-2021/cfp"
+              target="_blank"
+            >
+              call for paper here!
+            </a>
+          </p>
         </div>
         <div className="speaker_profile">
           <div className="row">
@@ -172,8 +180,14 @@ export default function SpeakersSection({ speakers = [] }) {
                 <div className="profile_content">
                   <h3 className="speaker-name">More</h3>
                   <p className="speaker-bio">
-                    Stay tuned for our call for paper and awesome speakers to be
-                    announced soon!{' '}
+                    You can submit a talk to our{' '}
+                    <a
+                      href="https://checkout.eventlama.com/#/events/reacteurope-2021/cfp"
+                      target="_blank"
+                    >
+                      call for paper here
+                    </a>
+                    {' and '}
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                       Subscribe here to not miss new announcements.
                     </a>
