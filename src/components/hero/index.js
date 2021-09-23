@@ -155,9 +155,9 @@ export default function Hero({ banner }) {
                   allowfullscreen
                 ></iframe>
                 <h2>
-                  Subscribe to the event on our YouTube channel{' '}
+                  Register to the conference on our YouTube channel{' '}
                   <a
-                    href="https://youtu.be/vULQgfiQvrw"
+                    href="https://youtu.be/CUPzvJibdTQ"
                     target="_blank"
                     style={{ color: '#FFF', textDecoration: 'underline' }}
                   >

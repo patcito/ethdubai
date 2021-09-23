@@ -42,10 +42,10 @@ export default function InlineTicketsSection({ event }) {
           method: 'get',
         }
       )
-        .then(function(response) {
+        .then(function (response) {
           return response.json()
         })
-        .then(function(data) {
+        .then(function (data) {
           setDiscountCodeApplied(false)
           let newTickets = [...tickets]
           newTickets.map((ticket, index) => {
@@ -55,7 +55,7 @@ export default function InlineTicketsSection({ event }) {
                 status: 'info',
               })
             }
-            data.map(discount => {
+            data.map((discount) => {
               if (discount.ticketIds.indexOf(ticket.id) !== -1) {
                 ticket.hasDiscount = true
                 ticket.discount_id = discount.id
@@ -81,7 +81,7 @@ export default function InlineTicketsSection({ event }) {
       order.referer = document.referrer
     }
     console.log(tickets)
-    tickets.map(ticket => {
+    tickets.map((ticket) => {
       if (ticket.orderedQuantity > 0) {
         order.tickets.push({
           ticket_max_per_order: ticket.maxPerOrder,
@@ -102,11 +102,11 @@ export default function InlineTicketsSection({ event }) {
           'Content-Type': 'application/json',
         },
       })
-        .then(function(response) {
+        .then(function (response) {
           console.log(response)
           return response.json()
         })
-        .then(function(data) {
+        .then(function (data) {
           console.log(data)
           if (data.order && data.order.id && data.order.uuid) {
             document.location =
@@ -124,7 +124,7 @@ export default function InlineTicketsSection({ event }) {
             setMessage({ message: data.message, status: 'info' })
           }
         })
-        .catch(response => {
+        .catch((response) => {
           setMessage({ message: response.message, status: 'danger' })
         })
     }
@@ -132,8 +132,8 @@ export default function InlineTicketsSection({ event }) {
   }
   React.useEffect(() => {
     fetch('https://api.eventlama.com/geoip')
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         if (json.CountryCode === 'FR') {
           setIsFrench(true)
         }
@@ -141,7 +141,7 @@ export default function InlineTicketsSection({ event }) {
           setIsPL(true)
         }
       })
-      .catch(err => {})
+      .catch((err) => {})
   }, [])
   return (
     <>
@@ -159,23 +159,26 @@ export default function InlineTicketsSection({ event }) {
               </h3>
               {true ? (
                 <h4>
-                  Watch the 2020 edition online and make sure{' '}
+                  Watch the 2021 edition online for free, you just need{' '}
                   <a
-                    href="https://youtu.be/vULQgfiQvrw"
+                    href="https://youtu.be/CUPzvJibdTQ"
                     target="_blank"
                     style={{ textDecoration: 'underline' }}
                   >
-                    to subscribe here to the stream open to all 🌎 🎥
+                    to register here to the stream open to all and click the
+                    bell icon to get notified when we go live 🌎 🎥
                   </a>
                 </h4>
               ) : null}
-              {!isFrench && !isPL && false ? (
-                <h4>
-                  Limited offer: Are you a team of 4 or more people going to the
-                  conference? Use this 10% discount on all your Round 1
-                  conference tickets: <strong>10pc-4-teams</strong>{' '}
-                </h4>
-              ) : null}{' '}
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/CUPzvJibdTQ"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
               <iframe
                 src="https://docs.google.com/forms/d/e/1FAIpQLSdzO30xezfb4VUdbZGvLx7faXkoc9H7fcLXw1U9pIUnOKJkOQ/viewform?embedded=true"
                 width="640"
@@ -241,7 +244,7 @@ export default function InlineTicketsSection({ event }) {
                                   <div className="sold_out">
                                     <a
                                       href="#"
-                                      onClick={e => e.preventDefault()}
+                                      onClick={(e) => e.preventDefault()}
                                     >
                                       SOLD OUT
                                     </a>
@@ -300,13 +303,13 @@ export default function InlineTicketsSection({ event }) {
                                         max={ticket.maxPerOrder}
                                         placeholder="0"
                                         step="1"
-                                        onFocus={e =>
+                                        onFocus={(e) =>
                                           (e.target.placeholder = '')
                                         }
-                                        onBlur={e =>
+                                        onBlur={(e) =>
                                           (e.target.placeholder = '0')
                                         }
-                                        onChange={e => {
+                                        onChange={(e) => {
                                           console.log(
                                             'OrderedTicket: ',
                                             ticket.OrderedQuantity
@@ -353,8 +356,9 @@ export default function InlineTicketsSection({ event }) {
                                         <li>
                                           <a
                                             href=""
-                                            onClick={e => {
-                                              ticket.showDescription = !ticket.showDescription
+                                            onClick={(e) => {
+                                              ticket.showDescription =
+                                                !ticket.showDescription
                                               let newTickets = [...tickets]
                                               newTickets[index] = ticket
                                               setTickets(newTickets)
@@ -411,12 +415,12 @@ export default function InlineTicketsSection({ event }) {
                                   type="text"
                                   name="discount"
                                   value={discountCode}
-                                  onChange={e => {
+                                  onChange={(e) => {
                                     setDiscountCode(e.target.value)
                                   }}
                                   placeholder="Discount Code"
                                 />
-                                <button onClick={e => checkDiscount(e)}>
+                                <button onClick={(e) => checkDiscount(e)}>
                                   Apply
                                 </button>
                               </div>
