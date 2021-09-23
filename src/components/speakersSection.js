@@ -188,7 +188,7 @@ export default function SpeakersSection({ speakers = [] }) {
                       call for paper here
                     </a>
                     {' and '}
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzO30xezfb4VUdbZGvLx7faXkoc9H7fcLXw1U9pIUnOKJkOQ/viewform">
                       Subscribe here to not miss new announcements.
                     </a>
                   </p>
