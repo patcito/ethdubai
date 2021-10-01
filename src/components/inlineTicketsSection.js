@@ -170,32 +170,23 @@ export default function InlineTicketsSection({ event }) {
                   </a>
                 </h4>
               ) : null}
-              <iframe
+              {/*<iframe
                 width="560"
                 height="315"
+                
                 src="https://www.youtube.com/embed/CUPzvJibdTQ"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
-              ></iframe>
-              <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSdzO30xezfb4VUdbZGvLx7faXkoc9H7fcLXw1U9pIUnOKJkOQ/viewform?embedded=true"
-                width="640"
-                height="545"
-                frameborder="0"
-                marginheight="0"
-                marginwidth="0"
-              >
-                Loading…
-              </iframe>
+              ></iframe>*/}
               <h3 className="d-none">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                   Don't miss our tickets release by subscribing here.
                 </a>
               </h3>
               <section
-                style={{ display: 'none' }}
+                style={{ display: 'inone' }}
                 className="book_ticket"
                 id="book_ticket"
               >
@@ -382,11 +373,11 @@ export default function InlineTicketsSection({ event }) {
                                     {ticket.showDescription ? (
                                       <div
                                         className="regular_ticket_input"
-                                        iii={ticket.showDescription}
+                                        children={ticket.showDescription}
                                       >
                                         <div className="ticket-description">
                                           <ReactMarkdown
-                                            source={ticket.description}
+                                            children={ticket.description}
                                           />
                                         </div>
                                       </div>
@@ -439,6 +430,17 @@ export default function InlineTicketsSection({ event }) {
                   </div>
                 </div>
               </section>
+
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdzO30xezfb4VUdbZGvLx7faXkoc9H7fcLXw1U9pIUnOKJkOQ/viewform?embedded=true"
+                width="640"
+                height="545"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+              >
+                Loading…
+              </iframe>
             </div>
           </div>
         </div>
