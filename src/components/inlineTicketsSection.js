@@ -433,7 +433,7 @@ export default function InlineTicketsSection({ event }) {
 
               <iframe
                 src="https://docs.google.com/forms/d/e/1FAIpQLSdzO30xezfb4VUdbZGvLx7faXkoc9H7fcLXw1U9pIUnOKJkOQ/viewform?embedded=true"
-                width="640"
+                width="100%"
                 height="545"
                 frameborder="0"
                 marginheight="0"

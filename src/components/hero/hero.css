@@ -56,6 +56,6 @@
 }
 @media (max-width: 991px) {
   .hero__content {
-    margin-top: 50px;
+    margin-top: -25px;
   }
 }

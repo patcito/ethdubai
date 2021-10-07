@@ -73,11 +73,12 @@ export default function IndexPage({ data, location }) {
             />
             <h2>Conference Events</h2>
             <ReactMarkdown
-              source={
-                'ETHDubai will be back in 2021 on December 10th for talks and December 9th for workshops in a virtual edition. **Both our' +
-                ' workshops and talks will be live streamed for free on our [YouTube channel](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A)** ' +
-                'so make sure to subscribe to get notified when we go up.' +
-                " We'll go back to in-person in 2022. Stay tuned for more news."
+              children={
+                'ETHDubai is the conference by passionate devs and for passionate devs' +
+                ' and contributors to everything **Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more!**.' +
+                'Expect **great speakers, talks, workshops and tons of great social events** you will not forget.' +
+                'Dubai is one of the easiest place on Earth to get to without a visa wherever you are from, with' +
+                'beautiful clear sand beaches, great weather and endless entertainment for all.'
               }
             />
           </div>
@@ -759,7 +760,7 @@ export const pageQuery = graphql`
     }
     heading_logo: file(relativePath: { eq: "ethdubailogo.png" }) {
       childImageSharp {
-        fluid(maxWidth: 600) {
+        fluid(maxWidth: 200) {
           ...GatsbyImageSharpFluid_withWebp
         }
       }

@@ -148,16 +148,6 @@ export default function Hero({ banner }) {
               </h2>
               <h1>ETHDubai</h1>
               <div className="react_text_content" style={{ color: '#FFF' }}>
-                <h2>
-                  Register to the conference on our YouTube channel{' '}
-                  <a
-                    href="https://youtu.be/CUPzvJibdTQ"
-                    target="_blank"
-                    style={{ color: '#FFF', textDecoration: 'underline' }}
-                  >
-                    here
-                  </a>
-                </h2>
                 <br />
                 <h3>
                   March 30th, 2022 <span>(online conference)</span>
