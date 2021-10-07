@@ -59,14 +59,14 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                       data-scroll-ignore="true"
                       role="tab"
                       aria-controls="schedule-wrapper"
-                      onClick={e => {
+                      onClick={(e) => {
                         setCurrentScheduleTab(i)
                         if (document) {
-                          let dayd = document.getElementById('day-' + (i + 1))
-                            .offsetTop
-                          let scrolldiv = document.getElementById(
-                            'schedule-scroll'
-                          )
+                          let dayd = document.getElementById(
+                            'day-' + (i + 1)
+                          ).offsetTop
+                          let scrolldiv =
+                            document.getElementById('schedule-scroll')
                           scrolldiv.scrollTop = dayd - 120
                         }
                         e.preventDefault()
@@ -105,7 +105,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                           name="search"
                           placeholder="Search schedule"
                           value={scheduleQuery}
-                          onChange={e => {
+                          onChange={(e) => {
                             setScheduleQuery(e.target.value)
                           }}
                         />
@@ -220,7 +220,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                         to={`#slot-${slot_slug}`}
                                         replace
                                         data-scroll-ignore
-                                        onClick={e => {
+                                        onClick={(e) => {
                                           e.preventDefault()
                                           //   navigate(`#slot-${slot_slug}`)
                                         }}
@@ -228,7 +228,9 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                         {slot.title}
                                       </Link>
                                     </h4>
-                                    <ReactMarkdown source={slot.description} />
+                                    <ReactMarkdown
+                                      children={slot.description}
+                                    />
                                     {slot.speakers.map((speaker, i) => (
                                       <div
                                         className="tab_profile_inner_box"
@@ -275,7 +277,7 @@ export default function ScheduleSection({ schedule, setSchedule, event }) {
                                                 </div>
                                               </div>
                                               <ReactMarkdown
-                                                source={speaker.bio}
+                                                children={speaker.bio}
                                               />
                                             </div>
                                           </div>

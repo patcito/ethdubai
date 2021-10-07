@@ -53,7 +53,7 @@ export default function SponsorsSection({ sponsors }) {
             <h2>Our Sponsors</h2>
             <p>
               <a
-                href="mailto:ETHDubai@eventlama.com?subject=sponsoring react-europe 2021"
+                href="mailto:ETHDubai@eventlama.com?subject=sponsoring ETHDubai 2022"
                 className="spr-link"
                 target="_blank"
               >
@@ -125,7 +125,7 @@ export default function SponsorsSection({ sponsors }) {
                 )}
                 <p className="d-none">
                   <a
-                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring react-europe 2021"
+                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring ETHDubai 2022"
                     className="spr-link"
                     target="_blank"
                   >
@@ -159,7 +159,7 @@ export default function SponsorsSection({ sponsors }) {
                 )}
                 <p className="d-none">
                   <a
-                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring react-europe 2021"
+                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring ETHDubai 2022"
                     className="spr-link"
                     target="_blank"
                   >
@@ -193,7 +193,7 @@ export default function SponsorsSection({ sponsors }) {
                 )}
                 <p className="d-none">
                   <a
-                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring react-europe 2021"
+                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring ETHDubai 2022"
                     className="spr-link"
                     target="_blank"
                   >
@@ -226,7 +226,7 @@ export default function SponsorsSection({ sponsors }) {
                 )}
                 <p className="d-none">
                   <a
-                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring react-europe 2021"
+                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring ETHDubai 2022"
                     className="spr-link"
                     target="_blank"
                   >

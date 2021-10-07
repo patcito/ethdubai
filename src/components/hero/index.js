@@ -144,7 +144,7 @@ export default function Hero({ banner }) {
           <div className="col-md-10 hero__content">
             <div className="react_text">
               <h2>
-                The Dev Conference for everything DeFi, Web3, EVM and more
+                The Dev Conference for everything DeFi, Web3, EVM and more!
               </h2>
               <h1 className="title-header-mobile">ETHDubai</h1>
               <div className="react_text_content" style={{ color: '#FFF' }}>
@@ -157,8 +157,7 @@ export default function Hero({ banner }) {
                 </h3>
                 <h3>
                   March 28th, 2022 <span>(social events)</span>
-                </h3>{' '}
-                <h4>Virtual (will be back to in-person in 2022)</h4>
+                </h3>
               </div>
             </div>
             <div className="react_btns">

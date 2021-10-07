@@ -80,7 +80,7 @@ module.exports = {
         short_name: 'ETHDubai',
         description:
           'The Dev Conference for everything DeFi, Web3, EVM and more!',
-        homepage_url: 'https://www.react-europe.org',
+        homepage_url: 'https://www.ethdubai.xyz',
         start_url: '/',
         background_color: '#fff',
         theme_color: '#fff',

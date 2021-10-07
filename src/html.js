@@ -13,17 +13,17 @@ export default class HTML extends React.Component {
           />
           <meta
             property="og:title"
-            content="ETHDubai - The original European React.js &amp; Native conference on December 10th, online"
+            content="ETHDubai - The Dev Conference for everything DeFi, Web3, EVM and more"
           />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://www.react-europe.org" />
+          <meta property="og:url" content="https://www.ethdubai.xyz" />
           <meta
             property="og:image"
-            content="https://www.react-europe.org/images/ETHDubai.png"
+            content="https://www.ethdubai.xyz/images/ethdubailogo.png"
           />
           <meta
             property="og:description"
-            content="ETHDubai is back online on December 10th to bring you the best and most passionate people from the very core teams to the coolest people from the community we love. The conference aims to give talks that inspire and explore new futuristic ideas dealing with all the techs we enjoy from the React ecosystem such as React.js, React Native, GraphQL, Relay, Universal apps, ReasonML,  Webpack, inline CSS and more."
+            content="ETHDubai is the conference by passionate devs and for passionate devs and contributors to everything Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more!. Expect great speakers, talks, workshops and tons of great social events you will not forget. Dubai is one of the easiest place on Earth to get to without a visa wherever you are from, with beautiful prestine sand beaches, great weather, affordable accomodation and endless entertainment for all."
           />
           {this.props.headComponents}
           <link

@@ -125,10 +125,7 @@ export default function IndexPage({ data, location }) {
                 </div>
 
                 <div className="office_address">
-                  <h3>
-                    2021 edition will be virtual, we'll go back to in-person in
-                    2022
-                  </h3>
+                  <h3>Dubai (more details coming soon)</h3>
                 </div>
                 <div className="airport"></div>
                 <div className="airport train"></div>
@@ -141,24 +138,26 @@ export default function IndexPage({ data, location }) {
         </div>
       </section>
       <CollaboratorsSection collaborators={event.collaborators} />
-      <section className="peaople_said">
-        <div className="container">
-          <div className="headings">
-            <div style={{ width: 80, margin: '0 auto' }}>
-              <Img fixed={data.testimonial.childImageSharp.fixed} />
+      {/*
+        <section className="peaople_said">
+          <div className="container">
+            <div className="headings">
+              <div style={{ width: 80, margin: '0 auto' }}>
+                <Img fixed={data.testimonial.childImageSharp.fixed} />
+              </div>
+              <h2 style={{ textAlign: 'center' }}>What People Said</h2>
+              <p>What our previous attendees had to say about ETHDubai 2019.</p>
             </div>
-            <h2 style={{ textAlign: 'center' }}>What People Said</h2>
-            <p>What our previous attendees had to say about ETHDubai 2019.</p>
+            <div className="testimonials-slider">
+              <CarouselPeople />
+            </div>
           </div>
-          <div className="testimonials-slider">
-            <CarouselPeople />
-          </div>
-        </div>
-      </section>
+        </section>
+      */}
       <section className="event_moments">
         <div className="container">
           <div className="headings">
-            <h2>Event Moments</h2>
+            <h2>A preview of Dubai</h2>
           </div>
         </div>
         <div className="events_images d-sm-none">
@@ -286,33 +285,6 @@ export default function IndexPage({ data, location }) {
                     Contact
                   </a>
                 </li>
-                <li className="">
-                  <a
-                    className="nav-link"
-                    href="https://2020.react-europe.org"
-                    target="_blank"
-                  >
-                    2020
-                  </a>
-                </li>{' '}
-                <li className="">
-                  <a
-                    className="nav-link"
-                    href="https://jobs.react-europe.org"
-                    target="_blank"
-                  >
-                    Jobs
-                  </a>
-                </li>
-                <li className="">
-                  <a
-                    className="nav-link"
-                    href="https://learn.react-europe.org"
-                    target="_blank"
-                  >
-                    Learn
-                  </a>
-                </li>{' '}
               </ul>
             </div>
           </div>
@@ -772,14 +744,14 @@ export const pageQuery = graphql`
         }
       }
     }
-    mosaic: file(relativePath: { eq: "mosaic.jpg" }) {
+    mosaic: file(relativePath: { eq: "mosaic.png" }) {
       childImageSharp {
         fluid(maxWidth: 2000) {
           ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
-    our_journey_mobile: file(relativePath: { eq: "ourjourney-mobile.png" }) {
+    our_journey_mobile: file(relativePath: { eq: "mosaic.png" }) {
       childImageSharp {
         fluid(maxWidth: 300) {
           ...GatsbyImageSharpFluid_withWebp

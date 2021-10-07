@@ -35,9 +35,9 @@ export default function InlineTicketsSection({ event }) {
 
     if (window && window.fetch) {
       fetch(
-        'https://www.react-europe.org/search/discounts?code=' +
+        'https://www.ethdubai.xyz/search/discounts?code=' +
           discountCode +
-          '&event_id=279',
+          '&event_id=377',
         {
           method: 'get',
         }
@@ -94,7 +94,7 @@ export default function InlineTicketsSection({ event }) {
     })
     console.log(order)
     if (window && window.fetch && order.tickets.length > 0) {
-      fetch('https://www.react-europe.org/checkout', {
+      fetch('https://www.ethdubai.xyz/checkout', {
         method: 'post',
         body: JSON.stringify(order),
         headers: {
@@ -157,19 +157,7 @@ export default function InlineTicketsSection({ event }) {
                 they will be available. Make sure to subscribe to our mailing
                 list below.
               </h3>
-              {true ? (
-                <h4>
-                  Watch the 2021 edition online for free, you just need{' '}
-                  <a
-                    href="https://youtu.be/CUPzvJibdTQ"
-                    target="_blank"
-                    style={{ textDecoration: 'underline' }}
-                  >
-                    to register here to the stream open to all and click the
-                    bell icon to get notified when we go live 🌎 🎥
-                  </a>
-                </h4>
-              ) : null}
+
               {/*<iframe
                 width="560"
                 height="315"
@@ -186,7 +174,7 @@ export default function InlineTicketsSection({ event }) {
                 </a>
               </h3>
               <section
-                style={{ display: 'inone' }}
+                style={{ display: 'none' }}
                 className="book_ticket"
                 id="book_ticket"
               >
@@ -432,7 +420,7 @@ export default function InlineTicketsSection({ event }) {
               </section>
 
               <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSdzO30xezfb4VUdbZGvLx7faXkoc9H7fcLXw1U9pIUnOKJkOQ/viewform?embedded=true"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform?embedded=true"
                 width="100%"
                 height="545"
                 frameborder="0"

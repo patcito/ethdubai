@@ -84,24 +84,6 @@ export default function Navi() {
                     Location
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    href="https://jobs.react-europe.org"
-                    target="_blank"
-                  >
-                    Jobs
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    href="https://learn.react-europe.org"
-                    target="_blank"
-                  >
-                    Learn
-                  </a>
-                </li>
               </ul>
             </div>
           </nav>
@@ -143,16 +125,6 @@ export default function Navi() {
                   </li>
                   <li>
                     <a href="#subscribe">contact</a>
-                  </li>
-                  <li>
-                    <a href="https://jobs.react-europe.org" target="_blank">
-                      jobs
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://learn.react-europe.org" target="_blank">
-                      learn
-                    </a>
                   </li>
                 </ul>
               </div>

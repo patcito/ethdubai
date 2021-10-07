@@ -90,7 +90,7 @@ export default function SpeakersSection({ speakers = [] }) {
           <p>
             You can submit a talk to our{' '}
             <a
-              href="https://checkout.eventlama.com/#/events/ETHDubai-2021/cfp"
+              href="https://checkout.eventlama.com/#/events/ethdubai/cfp"
               target="_blank"
             >
               call for paper here!
@@ -182,13 +182,13 @@ export default function SpeakersSection({ speakers = [] }) {
                   <p className="speaker-bio">
                     You can submit a talk to our{' '}
                     <a
-                      href="https://checkout.eventlama.com/#/events/ETHDubai-2021/cfp"
+                      href="https://checkout.eventlama.com/#/events/ethdubai/cfp"
                       target="_blank"
                     >
                       call for paper here
                     </a>
                     {' and '}
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzO30xezfb4VUdbZGvLx7faXkoc9H7fcLXw1U9pIUnOKJkOQ/viewform">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform">
                       Subscribe here to not miss new announcements.
                     </a>
                   </p>

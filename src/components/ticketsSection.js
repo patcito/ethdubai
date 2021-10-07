@@ -21,8 +21,8 @@ export default function TicketsSection() {
 
   React.useEffect(() => {
     fetch('https://api.eventlama.com/geoip')
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         if (json.CountryCode === 'FR') {
           setIsFrench(true)
         }
@@ -30,7 +30,7 @@ export default function TicketsSection() {
           setIsPL(true)
         }
       })
-      .catch(err => {})
+      .catch((err) => {})
   }, [])
   return (
     <>
@@ -47,13 +47,13 @@ export default function TicketsSection() {
                 list below.
               </h3>
               <h3 className="d-none">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform?embedded=true">
                   Don't miss our tickets release by subscribing here.
                 </a>
               </h3>
               <IframeResizer
                 log
-                src="https://www.react-europe.org?iframe=true"
+                src="https://www.ethdubai.xyz?iframe=true"
                 style={{
                   width: '1px',
                   minWidth: '100%',
