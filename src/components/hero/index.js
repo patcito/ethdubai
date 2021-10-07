@@ -150,10 +150,10 @@ export default function Hero({ banner }) {
               <div className="react_text_content" style={{ color: '#FFF' }}>
                 <br />
                 <h3>
-                  March 30th, 2022 <span>(online conference)</span>
+                  March 30th, 2022 <span>(conference)</span>
                 </h3>
                 <h3>
-                  March 29th, 2022 <span>(online workshops)</span>
+                  March 29th, 2022 <span>(workshops)</span>
                 </h3>
                 <h3>
                   March 28th, 2022 <span>(social events)</span>
