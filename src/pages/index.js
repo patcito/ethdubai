@@ -343,18 +343,16 @@ export default function IndexPage({ data, location }) {
                         </ul>
                         <h3 className="panel-body-title">The Topics</h3>
                         <ul>
+                          <li>Authoring Web3 dApps</li>
+                          <li>Cutting-edge smart contracts apps techniques</li>
                           <li>
-                            Authoring Mobile React Native Apps That Also Compile
-                            to Web
+                            Improving security and decentralization in your apps
                           </li>
-                          <li>Cutting-edge Universal apps techniques</li>
+                          <li>Querying your data theGraph and other systems</li>
                           <li>
-                            Improving Performance and animation in your apps
-                          </li>
-                          <li>Querying your data with Apollo and GraphQL</li>
-                          <li>
-                            Learn about how ReasonML brings powerful typing,
-                            functional programming and easy JavaScript interop.
+                            Learn about how NFTs, Defi, Web3 and smart contract
+                            in general on Ethereum, layer 2 and EVM compatible
+                            chains.
                           </li>
                           <li>Understanding design methods</li>
                           <li>Smart tools for creation</li>
@@ -387,12 +385,17 @@ export default function IndexPage({ data, location }) {
                   >
                     <div className="card-body">
                       <h3 className="panel-body-title">Ticket Refund</h3>
-                      <p>Tickets are free for the 2021 editions.</p>
-                      <h3 className="panel-body-title">Ticket Transfer</h3>
                       <p>
-                        No need to transfer your ticket as they are free and
-                        illimited.
+                        We do full refund upon request until December, 15th
+                        2022, then we will charge a 15% fee
                       </p>
+                      <p>
+                        In case of a lockdown or travel ban related to covid-19,
+                        we will do a full refund regardless of the date or a
+                        ticket transfer to next year's edition.
+                      </p>
+                      <h3 className="panel-body-title">Ticket Transfer</h3>
+                      <p>It is possible to transfer your ticket at anytime.</p>
                     </div>
                   </div>
                 </div>
@@ -419,7 +422,50 @@ export default function IndexPage({ data, location }) {
                     className={faq === 2 ? 'collapse show' : 'collapse'}
                   >
                     <div className="card-body">
-                      Full access to the online conference and workshops.
+                      Full access to the talks on the 30th for regular
+                      conference ticket and both workshops and talks for Full
+                      Access tickets on March 29-30th.
+                    </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-header" id="headingThree">
+                    <h2 className="mb-0">
+                      <button
+                        className="btn btn-link collapsed"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseThree"
+                        aria-expanded="false"
+                        aria-controls="collapseThree"
+                        onClick={() => setFaq(faq === 3 ? null : 3)}
+                      >
+                        What are your covid policies?
+                      </button>
+                    </h2>
+                  </div>
+                  <div
+                    id="collapseThree"
+                    aria-labelledby="headingThree"
+                    data-parent="#accordionExample"
+                    className={faq === 3 ? 'collapse show' : 'collapse'}
+                  >
+                    <div className="card-body">
+                      <p>
+                        As of today, you will need a negative PCR test to enter
+                        the country and you will be required by law to wear a
+                        mask inside the venue. We will notify you by mail and
+                        update the website if the the situation changes. In case
+                        of event cancelation or travel ban, you will get a full
+                        refund or the possibility to transfer your ticket to
+                        next year's edition.
+                      </p>
+                      <p>
+                        During the conference, we will take all necessary
+                        measures to keep the venue clean and sanitized as per
+                        local requirements. We will also be providing sanitizer
+                        dispenser stations inside the venue.
+                      </p>
                     </div>
                   </div>
                 </div>

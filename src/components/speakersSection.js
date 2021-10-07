@@ -86,9 +86,10 @@ export default function SpeakersSection({ speakers = [] }) {
       <div className="container">
         <div className="headings">
           <Img fixed={data.head2.childImageSharp.fixed} />
-          <h2>Our Speakers</h2>
+          <h2>Our Speakers so far</h2>
           <p>
-            You can submit a talk to our{' '}
+            Stay tuned for more announcements soon and you can also submit a
+            talk to our{' '}
             <a
               href="https://checkout.eventlama.com/#/events/ethdubai/cfp"
               target="_blank"
