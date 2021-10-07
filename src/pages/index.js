@@ -75,9 +75,9 @@ export default function IndexPage({ data, location }) {
             <ReactMarkdown
               children={
                 'ETHDubai is the conference by passionate devs and for passionate devs' +
-                ' and contributors to everything **Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more!**.' +
-                'Expect **great speakers, talks, workshops and tons of great social events** you will not forget.' +
-                'Dubai is one of the easiest place on Earth to get to without a visa wherever you are from, with' +
+                ' and contributors to everything **Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more!**. ' +
+                'Expect **great speakers, talks, workshops and tons of great social events** you will not forget. ' +
+                'Dubai is one of the easiest place on Earth to get to **without a visa** wherever you are from, with' +
                 'beautiful clear sand beaches, great weather and endless entertainment for all.'
               }
             />
