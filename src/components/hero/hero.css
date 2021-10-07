@@ -54,6 +54,12 @@
     transform: scale(1.6) translate(-10%, 0%);
   }
 }
+
+@media (min-width: 991px) {
+  .title-header-mobile {
+    display: none;
+  }
+}
 @media (max-width: 991px) {
   .hero__content {
     margin-top: -25px;

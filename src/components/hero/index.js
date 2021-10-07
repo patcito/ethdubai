@@ -146,7 +146,7 @@ export default function Hero({ banner }) {
               <h2>
                 The Dev Conference for everything DeFi, Web3, EVM and more
               </h2>
-              <h1>ETHDubai</h1>
+              <h1 className="title-header-mobile">ETHDubai</h1>
               <div className="react_text_content" style={{ color: '#FFF' }}>
                 <br />
                 <h3>
