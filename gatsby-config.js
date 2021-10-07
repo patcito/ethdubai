@@ -1,16 +1,16 @@
 module.exports = {
   siteMetadata: {
     title:
-      'ReactEurope - The original European React.js &amp; Native conference on December 10th, online',
+      'ETHDubai - The Dev Conference for everything DeFi, Web3, EVM and more!',
     description:
-      'ReactEurope - The original European React.js &amp; Native conference on December 10th, online',
-    siteUrl: 'https://www.react-europe.org',
-    author: 'ReactEurope',
-    twitter: 'ReactEurope',
+      'ETHDubai - The Dev Conference for everything DeFi, Web3, EVM and more!',
+    siteUrl: 'https://www.ethdubai.xyz',
+    author: 'ETHDubai',
+    twitter: 'ETHDubai',
     'og:title':
-      'ReactEurope - The original European React.js &amp; Native conference on December 10th, online',
+      'ETHDubai - The Dev Conference for everything DeFi, Web3, EVM and more!',
     'og:type': 'website',
-    'og:image': 'https://www.react-europe.org/images/reacteurope.png',
+    'og:image': 'https://www.ethdubai.xyz/images/ethdubai.png',
   },
   pathPrefix: '/',
   plugins: [
@@ -76,10 +76,10 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'ReactEurope',
-        short_name: 'ReactEurope',
+        name: 'ETHDubai',
+        short_name: 'ETHDubai',
         description:
-          'The original European React.js & Native conference on December 10th, online',
+          'The Dev Conference for everything DeFi, Web3, EVM and more!',
         homepage_url: 'https://www.react-europe.org',
         start_url: '/',
         background_color: '#fff',

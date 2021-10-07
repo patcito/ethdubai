@@ -5,16 +5,16 @@ import Img from 'gatsby-image'
 export default function Navi() {
   const imgs = useStaticQuery(graphql`
     {
-      logo: file(relativePath: { eq: "Logo.png" }) {
+      logo: file(relativePath: { eq: "ethdubailogo-white.png" }) {
         childImageSharp {
-          fixed(height: 60) {
+          fixed(height: 90) {
             ...GatsbyImageSharpFixed_withWebp
           }
         }
       }
-      logo_icon: file(relativePath: { eq: "logo_icon.png" }) {
+      logo_icon: file(relativePath: { eq: "ethdubailogo.png" }) {
         childImageSharp {
-          fixed(width: 46, height: 46) {
+          fixed(width: 70, height: 70) {
             ...GatsbyImageSharpFixed_withWebp
           }
         }

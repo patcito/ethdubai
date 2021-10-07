@@ -53,12 +53,12 @@ export default function SponsorsSection({ sponsors }) {
             <h2>Our Sponsors</h2>
             <p>
               <a
-                href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
+                href="mailto:ETHDubai@eventlama.com?subject=sponsoring react-europe 2021"
                 className="spr-link"
                 target="_blank"
               >
                 <i className="fa fa-envelope"></i>&nbsp;Want to get involved and
-                help support ReactEurope? We'd love to hear from you.
+                help support ETHDubai? We'd love to hear from you.
               </a>
             </p>
           </div>
@@ -111,7 +111,7 @@ export default function SponsorsSection({ sponsors }) {
           {sponsors.diamond?.length > 0 ? (
             <div className="platinium_box gold_box">
               <div className="row">
-                {sponsors.diamond.map(sponsor =>
+                {sponsors.diamond.map((sponsor) =>
                   sponsor.name !== '' ? (
                     <div className="col-md-4" key={sponsor.id}>
                       <Sponsor
@@ -125,7 +125,7 @@ export default function SponsorsSection({ sponsors }) {
                 )}
                 <p className="d-none">
                   <a
-                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
+                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring react-europe 2021"
                     className="spr-link"
                     target="_blank"
                   >
@@ -145,7 +145,7 @@ export default function SponsorsSection({ sponsors }) {
           {sponsors.platinum?.length > 0 ? (
             <div className="platinium_box gold_box">
               <div className="row">
-                {sponsors.platinum.map(sponsor =>
+                {sponsors.platinum.map((sponsor) =>
                   sponsor.name !== '' ? (
                     <div className="col-md-4" key={sponsor.id}>
                       <Sponsor
@@ -159,7 +159,7 @@ export default function SponsorsSection({ sponsors }) {
                 )}
                 <p className="d-none">
                   <a
-                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
+                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring react-europe 2021"
                     className="spr-link"
                     target="_blank"
                   >
@@ -179,7 +179,7 @@ export default function SponsorsSection({ sponsors }) {
           {sponsors.gold?.length > 0 ? (
             <div className="platinium_box gold_box">
               <div className="row">
-                {sponsors.gold.map(sponsor =>
+                {sponsors.gold.map((sponsor) =>
                   sponsor.name !== '' ? (
                     <div className="col-md-4" key={sponsor.id}>
                       <Sponsor
@@ -193,7 +193,7 @@ export default function SponsorsSection({ sponsors }) {
                 )}
                 <p className="d-none">
                   <a
-                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
+                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring react-europe 2021"
                     className="spr-link"
                     target="_blank"
                   >
@@ -212,7 +212,7 @@ export default function SponsorsSection({ sponsors }) {
           {sponsors.silver?.length > 0 ? (
             <div className="platinium_box gold_box">
               <div className="row">
-                {sponsors.silver.map(sponsor =>
+                {sponsors.silver.map((sponsor) =>
                   sponsor.name !== '' ? (
                     <div className="col-md-4" key={sponsor.id}>
                       <Sponsor
@@ -226,7 +226,7 @@ export default function SponsorsSection({ sponsors }) {
                 )}
                 <p className="d-none">
                   <a
-                    href="mailto:reacteurope@eventlama.com?subject=sponsoring react-europe 2021"
+                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring react-europe 2021"
                     className="spr-link"
                     target="_blank"
                   >
@@ -259,10 +259,10 @@ export default function SponsorsSection({ sponsors }) {
                     />
                   </div>
                   <div className="work_withweb">
-                    <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
+                    <a href="https://aws-amplify.github.io/?utm_source=ETHDubai&utm_medium=banner&utm_campaign=ETHDubai-sponsor-banner">
                       Website
                     </a>
-                    <a href="https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
+                    <a href="https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=ETHDubai&utm_medium=banner&utm_campaign=ETHDubai-sponsor-banner">
                       Work with us
                     </a>
                   </div>
@@ -272,12 +272,12 @@ export default function SponsorsSection({ sponsors }) {
                   <div className="mobile_icons">
                     <ul>
                       <li>
-                        <a href="https://aws-amplify.github.io/?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
+                        <a href="https://aws-amplify.github.io/?utm_source=ETHDubai&utm_medium=banner&utm_campaign=ETHDubai-sponsor-banner">
                           <i className="fa fa-link" aria-hidden="true"></i>
                         </a>
                       </li>
                       <li>
-                        <a href="https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=reacteurope&utm_medium=banner&utm_campaign=reacteurope-sponsor-banner">
+                        <a href="https://www.amazon.jobs/en/business_categories/amazon-web-services?utm_source=ETHDubai&utm_medium=banner&utm_campaign=ETHDubai-sponsor-banner">
                           <i className="fa fa-handshake-o" aria-hidden="true"></i>
                         </a>
                       </li>

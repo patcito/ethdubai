@@ -110,12 +110,12 @@ export default function InlineTicketsSection({ event }) {
           console.log(data)
           if (data.order && data.order.id && data.order.uuid) {
             document.location =
-              'https://checkout.eventlama.com/#/events/reacteurope-2021/orders/' +
+              'https://checkout.eventlama.com/#/events/ETHDubai-2021/orders/' +
               data.order.id +
               '/edit/' +
               data.order.uuid
             console.log(
-              'https://checkout.eventlama.com/#/events/reacteurope-2021/orders/' +
+              'https://checkout.eventlama.com/#/events/ETHDubai-2021/orders/' +
                 data.order.id +
                 '/edit/' +
                 data.order.uuid

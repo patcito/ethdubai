@@ -4,8 +4,9 @@
   display: flex;
   box-sizing: border-box;
   justify-content: center;
-  background: white;
+  background: black;
   position: relative;
+  color: white;
 }
 
 .hero__container .container-fluid {
@@ -51,5 +52,10 @@
   .media {
     padding: 40px;
     transform: scale(1.6) translate(-10%, 0%);
+  }
+}
+@media (max-width: 991px) {
+  .hero__content {
+    margin-top: 50px;
   }
 }

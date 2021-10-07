@@ -13,17 +13,17 @@ export default class HTML extends React.Component {
           />
           <meta
             property="og:title"
-            content="ReactEurope - The original European React.js &amp; Native conference on December 10th, online"
+            content="ETHDubai - The original European React.js &amp; Native conference on December 10th, online"
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://www.react-europe.org" />
           <meta
             property="og:image"
-            content="https://www.react-europe.org/images/reacteurope.png"
+            content="https://www.react-europe.org/images/ETHDubai.png"
           />
           <meta
             property="og:description"
-            content="ReactEurope is back online on December 10th to bring you the best and most passionate people from the very core teams to the coolest people from the community we love. The conference aims to give talks that inspire and explore new futuristic ideas dealing with all the techs we enjoy from the React ecosystem such as React.js, React Native, GraphQL, Relay, Universal apps, ReasonML,  Webpack, inline CSS and more."
+            content="ETHDubai is back online on December 10th to bring you the best and most passionate people from the very core teams to the coolest people from the community we love. The conference aims to give talks that inspire and explore new futuristic ideas dealing with all the techs we enjoy from the React ecosystem such as React.js, React Native, GraphQL, Relay, Universal apps, ReasonML,  Webpack, inline CSS and more."
           />
           {this.props.headComponents}
           <link

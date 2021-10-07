@@ -138,22 +138,16 @@ export default function Hero({ banner }) {
   const video = videoRef.current || { offsetHeight: 0, offsetWidth: 0 }
   const { offsetHeight = 0, offsetWidth = 0 } = video
   return (
-    <div className="hero__container" style={{ backgroundColor: bgs[idx] }}>
+    <div className="hero__container">
       <div className="container-fluid">
         <div className="row d-sm-flex">
           <div className="col-md-10 hero__content">
             <div className="react_text">
-              <h2>The Original React Conference in Europe</h2>
-              <h1>ReactEurope</h1>
+              <h2>
+                The Dev Conference for everything DeFi, Web3, EVM and more
+              </h2>
+              <h1>ETHDubai</h1>
               <div className="react_text_content" style={{ color: '#FFF' }}>
-                <iframe
-                  width="100%"
-                  className="ytiframe"
-                  src="https://www.youtube.com/embed/videoseries?list=PLCC436JpVnK0Q4WHoB85ZYBwcCyTaMgAl&index=0"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
                 <h2>
                   Register to the conference on our YouTube channel{' '}
                   <a
@@ -166,11 +160,14 @@ export default function Hero({ banner }) {
                 </h2>
                 <br />
                 <h3>
-                  December 10th, 2021 <span>(online conference)</span>
+                  March 30th, 2022 <span>(online conference)</span>
                 </h3>
                 <h3>
-                  December 9th, 2021 <span>(online workshops)</span>
+                  March 29th, 2022 <span>(online workshops)</span>
                 </h3>
+                <h3>
+                  March 28th, 2022 <span>(social events)</span>
+                </h3>{' '}
                 <h4>Virtual (will be back to in-person in 2022)</h4>
               </div>
             </div>
@@ -178,14 +175,7 @@ export default function Hero({ banner }) {
               <a href="#conference" className="learn_more">
                 Learn More
               </a>
-              <a
-                href="https://learn.react-europe.org/"
-                target="_blank"
-                className="learn_more"
-                style={{ width: '700px', marginLeft: '25px' }}
-              >
-                Learn from our previous workshops
-              </a>
+
               <a href="#tickets" className="book_now">
                 Tickets
               </a>

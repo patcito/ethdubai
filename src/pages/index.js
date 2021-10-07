@@ -74,7 +74,7 @@ export default function IndexPage({ data, location }) {
             <h2>Conference Events</h2>
             <ReactMarkdown
               source={
-                'ReactEurope will be back in 2021 on December 10th for talks and December 9th for workshops in a virtual edition. **Both our' +
+                'ETHDubai will be back in 2021 on December 10th for talks and December 9th for workshops in a virtual edition. **Both our' +
                 ' workshops and talks will be live streamed for free on our [YouTube channel](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A)** ' +
                 'so make sure to subscribe to get notified when we go up.' +
                 " We'll go back to in-person in 2022. Stay tuned for more news."
@@ -147,9 +147,7 @@ export default function IndexPage({ data, location }) {
               <Img fixed={data.testimonial.childImageSharp.fixed} />
             </div>
             <h2 style={{ textAlign: 'center' }}>What People Said</h2>
-            <p>
-              What our previous attendees had to say about ReactEurope 2019.
-            </p>
+            <p>What our previous attendees had to say about ETHDubai 2019.</p>
           </div>
           <div className="testimonials-slider">
             <CarouselPeople />
@@ -209,28 +207,25 @@ export default function IndexPage({ data, location }) {
             <div className="footer_social">
               <ul>
                 <li>
-                  <a
-                    href="https://www.facebook.com/ReactEurope"
-                    target="_blank"
-                  >
+                  <a href="https://www.facebook.com/ETHDubai" target="_blank">
                     <Img fixed={data.facebook_icon.childImageSharp.fixed} />
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/ReactEurope" target="_blank">
+                  <a href="https://twitter.com/ETHDubai" target="_blank">
                     <Img fixed={data.twitter_icon.childImageSharp.fixed} />
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://www.youtube.com/c/ReacteuropeOrgConf"
+                    href="https://www.youtube.com/c/ETHDubaiOrgConf"
                     target="_blank"
                   >
                     <Img fixed={data.youtube_icon.childImageSharp.fixed} />
                   </a>
                 </li>
                 <li>
-                  <a href="https://medium.com/@reacteurope" target="_blank">
+                  <a href="https://medium.com/@ETHDubai" target="_blank">
                     <Img fixed={data.medium_icon.childImageSharp.fixed} />
                   </a>
                 </li>
@@ -279,17 +274,14 @@ export default function IndexPage({ data, location }) {
                 <li>
                   <a
                     className="nav-link"
-                    href="https://medium.com/@reacteurope"
+                    href="https://medium.com/@ETHDubai"
                     target="_blank"
                   >
                     Blog
                   </a>
                 </li>
                 <li>
-                  <a
-                    className="nav-link"
-                    href="mailto:reacteurope@eventlama.com"
-                  >
+                  <a className="nav-link" href="mailto:ETHDubai@eventlama.com">
                     Contact
                   </a>
                 </li>
@@ -466,7 +458,7 @@ export default function IndexPage({ data, location }) {
                 Yes, we want everyone to have a safe, productive, enjoyable time
                 at the conference.{' '}
                 <a href="/coc.html" target="_blank">
-                  Here's the Code of Coduct for ReactEurope
+                  Here's the Code of Coduct for ETHDubai
                 </a>
                 .
               </p>
@@ -512,7 +504,7 @@ export const pageQuery = graphql`
       }
     }
     eventlama {
-      events(slug: "reacteurope-2021") {
+      events(slug: "ethdubai") {
         id
         description
         websiteUrl
@@ -765,9 +757,9 @@ export const pageQuery = graphql`
         }
       }
     }
-    heading_logo: file(relativePath: { eq: "re-black.png" }) {
+    heading_logo: file(relativePath: { eq: "ethdubailogo.png" }) {
       childImageSharp {
-        fluid(maxWidth: 200) {
+        fluid(maxWidth: 600) {
           ...GatsbyImageSharpFluid_withWebp
         }
       }

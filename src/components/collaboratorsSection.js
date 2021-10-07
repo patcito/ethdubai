@@ -75,7 +75,7 @@ export default function CollaboratorsSection({ collaborators = [] }) {
       <div className="container">
         <div className="headings">
           <Img fixed={data.people.childImageSharp.fixed} />
-          <h2>People Behind ReactEurope</h2>
+          <h2>People Behind ETHDubai</h2>
         </div>
         <div className="speaker_profile">
           <div className="row">
