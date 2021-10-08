@@ -14,7 +14,7 @@ export default function Navi() {
       }
       logo_icon: file(relativePath: { eq: "ethdubailogo.png" }) {
         childImageSharp {
-          fixed(width: 70, height: 70) {
+          fixed(height: 40) {
             ...GatsbyImageSharpFixed_withWebp
           }
         }
