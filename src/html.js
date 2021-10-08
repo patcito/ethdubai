@@ -13,7 +13,7 @@ export default class HTML extends React.Component {
           />
           <meta
             property="og:title"
-            content="ETHDubai - The Dev Conference for everything DeFi, Web3, EVM and more"
+            content="ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more"
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://www.ethdubai.xyz" />

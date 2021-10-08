@@ -207,34 +207,8 @@ export default function IndexPage({ data, location }) {
             <div className="footer_social">
               <ul>
                 <li>
-                  <a href="https://www.facebook.com/ETHDubai" target="_blank">
-                    <Img fixed={data.facebook_icon.childImageSharp.fixed} />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/ETHDubai" target="_blank">
+                  <a href="https://twitter.com/ETHDubaiConf" target="_blank">
                     <Img fixed={data.twitter_icon.childImageSharp.fixed} />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.youtube.com/c/ETHDubaiOrgConf"
-                    target="_blank"
-                  >
-                    <Img fixed={data.youtube_icon.childImageSharp.fixed} />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://medium.com/@ETHDubai" target="_blank">
-                    <Img fixed={data.medium_icon.childImageSharp.fixed} />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.linkedin.com/company/14810131/"
-                    target="_blank"
-                  >
-                    <Img fixed={data.linkedin_icon.childImageSharp.fixed} />
                   </a>
                 </li>
               </ul>

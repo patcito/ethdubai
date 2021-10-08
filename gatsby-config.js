@@ -1,14 +1,14 @@
 module.exports = {
   siteMetadata: {
     title:
-      'ETHDubai - The Dev Conference for everything DeFi, Web3, EVM and more!',
+      'ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
     description:
-      'ETHDubai - The Dev Conference for everything DeFi, Web3, EVM and more!',
+      'ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
     siteUrl: 'https://www.ethdubai.xyz',
     author: 'ETHDubai',
     twitter: 'ETHDubai',
     'og:title':
-      'ETHDubai - The Dev Conference for everything DeFi, Web3, EVM and more!',
+      'ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
     'og:type': 'website',
     'og:image': 'https://www.ethdubai.xyz/images/ethdubai.png',
   },
@@ -79,7 +79,7 @@ module.exports = {
         name: 'ETHDubai',
         short_name: 'ETHDubai',
         description:
-          'The Dev Conference for everything DeFi, Web3, EVM and more!',
+          'The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
         homepage_url: 'https://www.ethdubai.xyz',
         start_url: '/',
         background_color: '#fff',
