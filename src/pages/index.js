@@ -74,8 +74,8 @@ export default function IndexPage({ data, location }) {
             <h2>Conference Events</h2>
             <ReactMarkdown
               children={
-                'ETHDubai is the conference by passionate devs and for passionate devs' +
-                ' and contributors to everything **Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more!**. ' +
+                'ETHDubai is the conference for passionate devs and contributors on anything renlated to ' +
+                ' **Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more** with a focus on decentralization and **community projects such as Yearn and its ecosystem**. ' +
                 'Expect **great speakers, talks, workshops and tons of great social events** you will not forget. ' +
                 'Dubai is one of the easiest place on Earth to get to **without a visa** wherever you are from, with ' +
                 'beautiful prestine sand beaches, great weather, affordable accomodation and endless entertainment for all.'
@@ -473,6 +473,20 @@ export default function IndexPage({ data, location }) {
               Copyrights © 2021 - Design by{' '}
               <a href="https://eventlama.com" target="_blank">
                 EventLama
+              </a>{' '}
+              | Credits for 2 pictures under CC license{' '}
+              <a
+                href="https://www.flickr.com/photos/twohungrydudes/5380195330"
+                target="_blank"
+              >
+                1
+              </a>{' '}
+              and{' '}
+              <a
+                href="https://www.flickr.com/photos/stuckincustoms/19708859789"
+                target="_blank"
+              >
+                2
               </a>
             </p>
           </div>
