@@ -189,7 +189,7 @@ export default function IndexPage({ data, location }) {
                   <h2>Subscribe</h2>
                   <p>
                     Subscribe to our{' '}
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform">
                       mailing list to get the latest news here
                     </a>
                   </p>
@@ -273,6 +273,7 @@ export default function IndexPage({ data, location }) {
                   <div className="card-header" id="headingOne">
                     <h2 className="mb-0">
                       <button
+                        id="why-attend"
                         className="btn btn-link"
                         type="button"
                         data-toggle="collapse"
@@ -362,7 +363,7 @@ export default function IndexPage({ data, location }) {
                       <h3 className="panel-body-title">Ticket Refund</h3>
                       <p>
                         We do full refund upon request until December, 15th
-                        2022, then we will charge a 15% fee
+                        2021, then we will charge a 15% fee
                       </p>
                       <p>
                         In case of a lockdown or travel ban related to covid-19,

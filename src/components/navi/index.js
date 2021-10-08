@@ -116,12 +116,7 @@ export default function Navi() {
                     <a href="#tickets">tickets</a>
                   </li>
                   <li>
-                    <a href="#location">
-                      <img
-                        src={imgs.pin.childImageSharp.fixed.base64}
-                        alt="location pin image"
-                      />
-                    </a>
+                    <a href="#why-attend">Why attend?</a>
                   </li>
                   <li>
                     <a href="#subscribe">contact</a>

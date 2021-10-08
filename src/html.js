@@ -54,6 +54,19 @@ export default class HTML extends React.Component {
             type="image/png"
             href="images/logo_icon.png?x=4"
           />
+          <span
+            dangerouslySetInnerHTML={{
+              __html: `<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NLLM838EDT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NLLM838EDT');
+</script>`,
+            }}
+          />
         </head>
         <body>
           <div
