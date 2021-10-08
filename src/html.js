@@ -11,6 +11,19 @@ export default class HTML extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:site" content="@ETHDubaiConf" />
+          <meta property="twitter:creator" content="@ETHDubaiConf" />
+          <meta property="twitter:creator" content="@ETHDubaiConf" />
+          <meta property="twitter:title" content="ETHDubai" />
+          <meta
+            property="twitter:descriptio"
+            content="The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!"
+          />
+          <meta
+            property="twitter:image"
+            content="https://www.ethdubai.xyz/images/mosaic.png"
+          />
           <meta
             property="og:title"
             content="ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more"
