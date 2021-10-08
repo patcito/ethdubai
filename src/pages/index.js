@@ -459,10 +459,7 @@ export default function IndexPage({ data, location }) {
               <p>
                 You can apply for a diversity scholarship that will give you
                 free access to the conference, learn more about how to apply{' '}
-                <a
-                  href="http://bit.ly/reacteu-2020-scholarship"
-                  target="_blank"
-                >
+                <a href="https://bit.ly/ethdubai-scholarship" target="_blank">
                   here
                 </a>
                 .
