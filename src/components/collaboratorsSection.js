@@ -99,7 +99,9 @@ export default function CollaboratorsSection({ collaborators = [] }) {
                       <h3 className="speaker-name">
                         {collaborator.firstName} {collaborator.lastName}
                       </h3>
-                      <span>{collaborator.role}</span>
+                      <span>
+                        <ReactMarkdown children={collaborator.role} />
+                      </span>
                       <ul>
                         <li>
                           <a

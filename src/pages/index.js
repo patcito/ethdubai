@@ -74,17 +74,38 @@ export default function IndexPage({ data, location }) {
             <h2>Conference Events</h2>
             <ReactMarkdown
               children={
-                'ETHDubai is the conference for passionate devs and contributors on anything renlated to ' +
+                'ETHDubai is the conference for passionate devs and contributors on anything related to ' +
                 ' **Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more** with a focus on decentralization and **community projects such as Yearn and its ecosystem**. ' +
                 'Expect **great speakers, talks, workshops and tons of great social events** you will not forget. ' +
                 'Dubai is one of the easiest place on Earth to get to **without a visa** wherever you are from, with ' +
-                'beautiful prestine sand beaches, great weather, affordable accomodation and endless entertainment for all.'
+                'beautiful pristine sand beaches, great weather, affordable accomodation and endless entertainment for all.'
               }
             />
           </div>
         </div>
       </section>
       <SpeakersSection speakers={event.speakers} />
+      <section className="event_moments">
+        <div className="container">
+          <div className="headings">
+            <h2>A preview of Dubai</h2>
+          </div>
+        </div>
+        <div className="events_images d-sm-none">
+          <ul>
+            <li>
+              <Img fluid={data.our_journey_mobile.childImageSharp.fluid} />
+            </li>
+          </ul>
+        </div>
+        <div className="events_images d-none d-sm-block">
+          <Img
+            className="no-animation"
+            fluid={data.mosaic.childImageSharp.fluid}
+          />
+        </div>
+      </section>
+
       <ScheduleSection
         schedule={schedule}
         setSchedule={setSchedule}
@@ -154,26 +175,6 @@ export default function IndexPage({ data, location }) {
           </div>
         </section>
       */}
-      <section className="event_moments">
-        <div className="container">
-          <div className="headings">
-            <h2>A preview of Dubai</h2>
-          </div>
-        </div>
-        <div className="events_images d-sm-none">
-          <ul>
-            <li>
-              <Img fluid={data.our_journey_mobile.childImageSharp.fluid} />
-            </li>
-          </ul>
-        </div>
-        <div className="events_images d-none d-sm-block">
-          <Img
-            className="no-animation"
-            fluid={data.mosaic.childImageSharp.fluid}
-          />
-        </div>
-      </section>
       <section className="subscribe_bottom">
         <div className="container">
           <div className="row">

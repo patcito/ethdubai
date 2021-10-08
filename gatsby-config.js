@@ -11,6 +11,14 @@ module.exports = {
       'ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
     'og:type': 'website',
     'og:image': 'https://www.ethdubai.xyz/images/ethdubai.png',
+    'twitter:card': 'summary_large_image',
+    'twitter:site': '@ETHDubaiConf',
+    'twitter:creator': '@ETHDubaiConf',
+    'twitter:creator': '@ETHDubaiConf',
+    'twitter:title': 'ETHDubai',
+    'twitter:description':
+      'The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
+    'twitter:image': 'https://www.ethdubai.xyz/images/mosaic.png',
   },
   pathPrefix: '/',
   plugins: [
