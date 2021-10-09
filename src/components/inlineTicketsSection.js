@@ -169,7 +169,7 @@ export default function InlineTicketsSection({ event }) {
                 allowfullscreen
               ></iframe>*/}
               <h3 className="d-none">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
+                <a href="https://www.getrevue.co/profile/ethdubaiconf/">
                   Don't miss our tickets release by subscribing here.
                 </a>
               </h3>
