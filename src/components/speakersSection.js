@@ -189,7 +189,7 @@ export default function SpeakersSection({ speakers = [] }) {
                       call for paper here
                     </a>
                     {' and '}
-                    <a href="https://www.getrevue.co/profile/ethdubaiconf/">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                       Subscribe here to not miss new announcements.
                     </a>
                   </p>

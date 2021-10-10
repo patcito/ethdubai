@@ -189,7 +189,7 @@ export default function IndexPage({ data, location }) {
                   <h2>Subscribe</h2>
                   <p>
                     Subscribe to our{' '}
-                    <a href="https://www.getrevue.co/profile/ethdubaiconf/">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                       mailing list to get the latest news here
                     </a>
                   </p>

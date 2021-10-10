@@ -47,7 +47,7 @@ export default function TicketsSection() {
                 list below.
               </h3>
               <h3 className="d-none">
-                <a href="https://www.getrevue.co/profile/ethdubaiconf/">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                   Don't miss our tickets release by subscribing here.
                 </a>
               </h3>
