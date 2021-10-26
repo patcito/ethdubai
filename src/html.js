@@ -17,26 +17,26 @@ export default class HTML extends React.Component {
           <meta property="twitter:creator" content="@ETHDubaiConf" />
           <meta property="twitter:title" content="ETHDubai" />
           <meta
-            property="twitter:descriptio"
+            property="twitter:description"
             content="The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!"
           />
           <meta
             property="twitter:image"
-            content="https://www.ethdubai.xyz/images/mosaic.png"
+            content="https://www.ethdubaiconf.org/images/mosaic.png"
           />
           <meta
             property="og:title"
             content="ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more"
           />
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://www.ethdubai.xyz" />
+          <meta property="og:url" content="https://www.ethdubaiconf.org" />
           <meta
             property="og:image"
-            content="https://www.ethdubai.xyz/images/ethdubailogo.png"
+            content="https://www.ethdubaiconf.org/images/mosaic.png"
           />
           <meta
             property="og:description"
-            content="ETHDubai is the conference by passionate devs and for passionate devs and contributors to everything Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more!. Expect great speakers, talks, workshops and tons of great social events you will not forget. Dubai is one of the easiest place on Earth to get to without a visa wherever you are from, with beautiful prestine sand beaches, great weather, affordable accomodation and endless entertainment for all."
+            content="ETHDubai is the conference by passionate devs and for passionate devs and contributors to everything Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more!. Expect great speakers, talks, workshops and tons of great social events you will not forget. Dubai is one of the easiest place on Earth to get to without a visa wherever you are from, with beautiful prestine sand beaches, great weather, affordable accommodation and endless entertainment for all."
           />
           {this.props.headComponents}
           <link
@@ -57,13 +57,13 @@ export default class HTML extends React.Component {
           <span
             dangerouslySetInnerHTML={{
               __html: `<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NLLM838EDT"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FCGJL10P2M"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-NLLM838EDT');
+  gtag('config', 'G-FCGJL10P2M');
 </script>`,
             }}
           />

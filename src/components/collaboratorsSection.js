@@ -139,7 +139,7 @@ export default function CollaboratorsSection({ collaborators = [] }) {
             })}
           </div>
           <div className="get_your_ticket">
-            <a href="#tickets">Get Your Ticket</a>
+            <a href="#tickets">Tickets</a>
           </div>
         </div>
       </div>

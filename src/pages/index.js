@@ -76,9 +76,19 @@ export default function IndexPage({ data, location }) {
               children={
                 'ETHDubai is the conference for passionate devs and contributors on anything related to ' +
                 ' **Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more** with a focus on decentralization and **community projects such as Yearn and its ecosystem**. ' +
-                'Expect **great speakers, talks, workshops and tons of great social events** you will not forget. ' +
+                'Expect **great speakers, talks, workshops for both experts and beginners and tons of great social events** you will not forget. ' +
                 'Dubai is one of the easiest place on Earth to get to **without a visa** wherever you are from, with ' +
-                'beautiful pristine sand beaches, great weather, affordable accomodation and endless entertainment for all.'
+                'beautiful pristine sand beaches, great weather, affordable accommodation and endless entertainment for all.'
+              }
+            />
+            <p></p>
+            <ReactMarkdown
+              children={
+                "Last but not least, if you are a frontend developer that wants to learn web3 but don't know where to start," +
+                ' we will have workshops with experts so that you can get started writing your first dapp with Solidity,' +
+                ' Typescript and basic React knowledge. **We will also provide more advanced workshops for people already ' +
+                'familiar with web3 technologies**. We will post more details soon so make sure to [subscribe to our mailing list ' +
+                'for more details](https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform).'
               }
             />
           </div>
@@ -189,7 +199,7 @@ export default function IndexPage({ data, location }) {
                   <h2>Subscribe</h2>
                   <p>
                     Subscribe to our{' '}
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform">
                       mailing list to get the latest news here
                     </a>
                   </p>
@@ -208,8 +218,37 @@ export default function IndexPage({ data, location }) {
             <div className="footer_social">
               <ul>
                 <li>
+                  <a
+                    href="https://www.facebook.com/ETHDubaiConf"
+                    target="_blank"
+                  >
+                    <Img fixed={data.facebook_icon.childImageSharp.fixed} />
+                  </a>
+                </li>
+                <li>
                   <a href="https://twitter.com/ETHDubaiConf" target="_blank">
                     <Img fixed={data.twitter_icon.childImageSharp.fixed} />
+                  </a>
+                </li>
+                {/*<li>
+                  <a
+                    href="https://www.youtube.com/c/ETHDubaiConfOrgConf"
+                    target="_blank"
+                  >
+                    <Img fixed={data.youtube_icon.childImageSharp.fixed} />
+                  </a>
+                </li>*/}
+                <li>
+                  <a href="https://medium.com/@ETHDubaiConf" target="_blank">
+                    <Img fixed={data.medium_icon.childImageSharp.fixed} />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/company/ethdubai"
+                    target="_blank"
+                  >
+                    <Img fixed={data.linkedin_icon.childImageSharp.fixed} />
                   </a>
                 </li>
               </ul>
@@ -255,6 +294,24 @@ export default function IndexPage({ data, location }) {
                     Blog
                   </a>
                 </li>
+                <li>
+                  <a
+                    className="nav-link"
+                    href="https://discord.gg/TS87qg2Ema"
+                    target="_blank"
+                  >
+                    Discord
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="nav-link"
+                    href="https://t.me/joinchat/5hfCs5S9PzlmNzM0"
+                    target="_blank"
+                  >
+                    Telegram
+                  </a>
+                </li>{' '}
                 <li>
                   <a className="nav-link" href="mailto:ETHDubai@eventlama.com">
                     Contact

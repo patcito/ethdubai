@@ -4,13 +4,13 @@ module.exports = {
       'ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
     description:
       'ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
-    siteUrl: 'https://www.ethdubai.xyz',
+    siteUrl: 'https://www.ethdubaiconf.org',
     author: 'ETHDubai',
     twitter: 'ETHDubai',
     'og:title':
       'ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
     'og:type': 'website',
-    'og:image': 'https://www.ethdubai.xyz/images/ethdubai.png',
+    'og:image': 'https://www.ethdubaiconf.org/images/ethdubai.png',
     'twitter:card': 'summary_large_image',
     'twitter:site': '@ETHDubaiConf',
     'twitter:creator': '@ETHDubaiConf',
@@ -18,7 +18,7 @@ module.exports = {
     'twitter:title': 'ETHDubai',
     'twitter:description':
       'The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
-    'twitter:image': 'https://www.ethdubai.xyz/images/mosaic.png',
+    'twitter:image': 'https://www.ethdubaiconf.org/images/mosaic.png',
   },
   pathPrefix: '/',
   plugins: [
@@ -58,7 +58,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: 'G-NLLM838EDT',
+        trackingId: 'G-FCGJL10P2M',
       },
     },
     {
@@ -88,7 +88,7 @@ module.exports = {
         short_name: 'ETHDubai',
         description:
           'The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
-        homepage_url: 'https://www.ethdubai.xyz',
+        homepage_url: 'https://www.ethdubaiconf.org',
         start_url: '/',
         background_color: '#fff',
         theme_color: '#fff',

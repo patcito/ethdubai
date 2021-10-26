@@ -40,7 +40,7 @@ export default function TicketsSection() {
           <div className="container">
             <div className="headings">
               <Img fixed={imgs.ticket.childImageSharp.fixed} />
-              <h2>Get Your Tickets</h2>
+              <h2>Tickets</h2>
               <h3>
                 An announcement will be made soon about the tickets and when
                 they will be available. Make sure to subscribe to our mailing
@@ -53,7 +53,7 @@ export default function TicketsSection() {
               </h3>
               <IframeResizer
                 log
-                src="https://www.ethdubai.xyz?iframe=true"
+                src="https://www.ethdubaiconf.org?iframe=true"
                 style={{
                   width: '1px',
                   minWidth: '100%',

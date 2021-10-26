@@ -84,6 +84,33 @@ export default function Navi() {
                     Location
                   </a>
                 </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    href="https://twitter.com/ETHDubaiConf"
+                    target="_blank"
+                  >
+                    Twitter
+                  </a>
+                </li>{' '}
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    href="https://discord.gg/TS87qg2Ema"
+                    target="_blank"
+                  >
+                    Discord
+                  </a>
+                </li>{' '}
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    href="https://t.me/joinchat/5hfCs5S9PzlmNzM0"
+                    target="_blank"
+                  >
+                    Telegram
+                  </a>
+                </li>{' '}
               </ul>
             </div>
           </nav>

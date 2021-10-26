@@ -5,6 +5,7 @@ import get from 'lodash/get'
 const Meta = ({ site, title }) => {
   const siteTitle = get(site, 'title')
   title = title ? `${title} | ${siteTitle}` : siteTitle
+  return <Helmet title={title} />
   return (
     <Helmet
       title={title}

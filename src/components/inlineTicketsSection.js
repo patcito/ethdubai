@@ -35,7 +35,7 @@ export default function InlineTicketsSection({ event }) {
 
     if (window && window.fetch) {
       fetch(
-        'https://www.ethdubai.xyz/search/discounts?code=' +
+        'https://www.ethdubaiconf.org/search/discounts?code=' +
           discountCode +
           '&event_id=377',
         {
@@ -94,7 +94,7 @@ export default function InlineTicketsSection({ event }) {
     })
     console.log(order)
     if (window && window.fetch && order.tickets.length > 0) {
-      fetch('https://www.ethdubai.xyz/checkout', {
+      fetch('https://www.ethdubaiconf.org/checkout', {
         method: 'post',
         body: JSON.stringify(order),
         headers: {
@@ -151,7 +151,7 @@ export default function InlineTicketsSection({ event }) {
           <div className="container">
             <div className="headings">
               <Img fixed={imgs.ticket.childImageSharp.fixed} />
-              <h2>Get Your Tickets</h2>
+              <h2>Tickets</h2>
               <h3>
                 An announcement will be made soon about the tickets and when
                 they will be available. Make sure to subscribe to our mailing
@@ -169,7 +169,7 @@ export default function InlineTicketsSection({ event }) {
                 allowfullscreen
               ></iframe>*/}
               <h3 className="d-none">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform">
                   Don't miss our tickets release by subscribing here.
                 </a>
               </h3>

@@ -189,7 +189,7 @@ export default function SpeakersSection({ speakers = [] }) {
                       call for paper here
                     </a>
                     {' and '}
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform">
                       Subscribe here to not miss new announcements.
                     </a>
                   </p>
@@ -198,7 +198,7 @@ export default function SpeakersSection({ speakers = [] }) {
             </div>
           </div>
           <div className="get_your_ticket">
-            <a href="#tickets">Get Your Ticket</a>
+            <a href="#tickets">Tickets</a>
           </div>
         </div>
       </div>
