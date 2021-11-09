@@ -11,7 +11,8 @@
 //
 @import './fonts.scss';
 
-@import 'node_modules/bootstrap/scss/bootstrap.scss';
+//@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 .gatsby-image-wrapper:hover:not(.no-animation) img {
   animation: pulse 0.5s;

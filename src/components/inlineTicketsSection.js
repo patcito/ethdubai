@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import ReactMarkdown from 'react-markdown'
 import Img from 'gatsby-image'
-
+import Web3Modal from 'web3modal'
+import { ethers } from 'ethers'
+import { Modal, Form, Row, Col, Button } from 'react-bootstrap'
+import abi from './abis/ETHDubaiTickets.json'
+import {
+  useBalance,
+  useContractLoader,
+  useContractReader,
+  useGasPrice,
+  useOnBlock,
+  useUserProviderAndSigner,
+} from 'eth-hooks'
+import { useEventListener } from 'eth-hooks/events/useEventListener'
+import BigNumber from '../../../../.cache/typescript/4.4/node_modules/bignumber.js/bignumber'
 export default function InlineTicketsSection({ event }) {
   const [isFrench, setIsFrench] = React.useState(false)
   const [isPL, setIsPL] = React.useState(false)
@@ -11,6 +24,105 @@ export default function InlineTicketsSection({ event }) {
   const [discountMessage, setDiscountMessage] = React.useState('')
   const [discountCodeApplied, setDiscountCodeApplied] = React.useState(false)
   const [message, setMessage] = React.useState({ message: '', status: 'error' })
+  const [ethersProvider, setEthersProvider] = useState()
+  const [oneDayTicket, setOneDayTicket] = useState(0)
+  const [threeDayTicket, setThreeDayTicket] = useState(0)
+  const [includeHotel, setIncludeHotel] = useState(false)
+  const [showCheckout, setShowCheckout] = React.useState(false)
+  const [attendeeInfos, setAttendeeInfos] = React.useState([])
+  const [currentAttendeeInfoIndex, setCurrentAttendeeInfoIndex] =
+    React.useState(0)
+  console.log(abi)
+  const getTicketPrice = (oneDay, threeDay, hotel) => {
+    if (oneDay && !hotel) {
+      return 0.1
+    }
+    if (oneDay && hotel) {
+      return 0.2
+    }
+    if (threeDay && !hotel) {
+      return 0.2
+    }
+    if (threeDay && hotel) {
+      return 0.4
+    }
+  }
+  const total = () => {
+    const oneDayPrice = ethers.BigNumber.from('10').pow(17)
+    const threeDayPrice = ethers.BigNumber.from('10').pow(17).mul(2)
+    let hotelPrice = ethers.BigNumber.from('10').pow(16).mul(5)
+    let hasOneDayHotel = 1
+    let hasThreeDayHotel = 1
+    if (oneDayTicket <= 0 || !includeHotel) {
+      hasOneDayHotel = 0
+    }
+    if (threeDayTicket <= 0 || !includeHotel) {
+      hasThreeDayHotel = 0
+    }
+    let hotelTotalOneDay = hotelPrice.mul(2 * oneDayTicket * hasOneDayHotel)
+    let hotelTotalThreeDay = hotelPrice.mul(
+      4 * threeDayTicket * hasThreeDayHotel
+    )
+    let oneDayTotal = oneDayPrice.mul(oneDayTicket)
+    let threeDayTotal = threeDayPrice.mul(threeDayTicket)
+    let t = oneDayTotal
+      .add(threeDayTotal)
+      .add(hotelTotalOneDay)
+      .add(hotelTotalThreeDay)
+      .toString()
+    return t / 10 ** 18
+  }
+  const handleCheckout = () => {
+    setShowCheckout(true)
+    let tickets = []
+    let attendeeInfo = {
+      email: '',
+      name: '',
+      twitter: '',
+      bio: '',
+      job: '',
+      company: '',
+      diet: '',
+      tshirt: '',
+      telegram: '',
+    }
+
+    let includeWorkshops = false
+    let includeHotelExtra = includeHotel
+    for (let i = 0; i < oneDayTicket; i++) {
+      tickets.push({
+        attendeeInfo,
+        ticketCode: crypto.randomUUID(),
+        resellable: {
+          isResellable: false,
+          price: getTicketPrice(true, false, includeHotel),
+        },
+        includeWorkshops,
+        includeWorkshopsAndPreParty: false,
+        includeHotelExtra,
+      })
+    }
+    for (let i = 0; i < threeDayTicket; i++) {
+      tickets.push({
+        attendeeInfo,
+        ticketCode: crypto.randomUUID(),
+        resellable: {
+          isResellable: false,
+          price: getTicketPrice(false, true, includeHotel),
+        },
+        includeWorkshops,
+        includeWorkshopsAndPreParty: true,
+        includeHotelExtra,
+      })
+    }
+    if (threeDayTicket === 0 && oneDayTicket === 0) {
+      tickets = []
+    }
+
+    console.log(tickets)
+    setAttendeeInfos(tickets)
+    setCurrentAttendeeInfoIndex(0)
+  }
   const imgs = useStaticQuery(graphql`
     {
       ticket: file(relativePath: { eq: "ticket.png" }) {
@@ -22,6 +134,16 @@ export default function InlineTicketsSection({ event }) {
       }
     }
   `)
+  const providerOptions = {
+    /* See Provider Options Section */
+  }
+
+  const web3Modal = new Web3Modal({
+    network: 'mainnet', // optional
+    cacheProvider: true, // optional
+    providerOptions, // required
+  })
+
   function checkDiscount(e) {
     //{"event_id":250,"tickets":[{"ticket_max_per_order":10,"ticket_children_ids":"","ticket_id":769,"quantity":1},{"ticket_max_per_order":10,"ticket_children_ids":"","ticket_id":727,"quantity":2}],"referer":""}
     let newTickets = [...tickets]
@@ -157,7 +279,140 @@ export default function InlineTicketsSection({ event }) {
                 they will be available. Make sure to subscribe to our mailing
                 list below.
               </h3>
-
+              <div style={{ textAlign: 'left' }}>
+                <ul class="list-group">
+                  <li className="list-group-item d-flex justify-content-between align-items-center alignb">
+                    Conference Ticket (March 30th) 0.1 ETH
+                    <span>
+                      <select
+                        onChange={(e, v) => {
+                          console.log(e, v)
+                          setOneDayTicket(e.target.value)
+                          console.log('currentValue', oneDayTicket)
+                          if (e.target.value <= 0 && threeDayTicket <= 0) {
+                            setIncludeHotel(false)
+                          }
+                        }}
+                        value={oneDayTicket}
+                      >
+                        <>
+                          {Array.apply(null, { length: 20 }).map((e, i) => {
+                            return <option value={i}>{i}</option>
+                          })}
+                        </>
+                      </select>
+                    </span>
+                  </li>
+                  <li className="list-group-item d-flex justify-content-between align-items-center alignb">
+                    Conference + Workshop + pre-Party event (March
+                    28th-29th-30th) 0.2 ETH
+                    <span>
+                      <select
+                        onChange={(e, v) => {
+                          console.log(e, v)
+                          setThreeDayTicket(e.target.value)
+                          console.log('currentValue', threeDayTicket)
+                          if (e.target.value <= 0 && oneDayTicket <= 0) {
+                            setIncludeHotel(false)
+                          }
+                        }}
+                        value={threeDayTicket}
+                      >
+                        <>
+                          {Array.apply(null, { length: 20 }).map((e, i) => {
+                            return <option value={i}>{i}</option>
+                          })}
+                        </>
+                      </select>
+                    </span>
+                  </li>
+                  <li className="list-group-item d-flex justify-content-between align-items-center alignb">
+                    Total
+                    <span>
+                      <button
+                        className="addHotel"
+                        onClick={() => {
+                          setIncludeHotel(!includeHotel)
+                        }}
+                      >
+                        {includeHotel ? 'remove hotel' : 'include hotel'}
+                      </button>
+                      {total()} ETH
+                    </span>
+                  </li>
+                  <li className="list-group-item d-flex justify-content-between align-items-center alignb">
+                    <span />
+                    <span>
+                      <button
+                        onClick={() => {
+                          handleCheckout()
+                        }}
+                      >
+                        Checkout
+                      </button>
+                    </span>
+                  </li>{' '}
+                </ul>
+              </div>
+              <button
+                onClick={async () => {
+                  const provider = await web3Modal.connect()
+                  const newProvider = new ethers.providers.Web3Provider(
+                    provider
+                  )
+                  setEthersProvider(newProvider)
+                  console.log(newProvider)
+                }}
+              >
+                Mint
+              </button>
+              <button
+                onClick={async () => {
+                  let attendeeInfo = {
+                    email: 'patcito+fromWebSite@gmail.com',
+                    name: 'From WebSite Patrick Aljord',
+                    twitter: 'patcito',
+                    bio: 'hello there',
+                    job: 'dev',
+                    company: 'yearn',
+                    diet: 'omnivore',
+                    tshirt: 'M',
+                    telegram: 'patcitotel',
+                  }
+                  let ticketCode = 'xyz'
+                  let resellable = {
+                    isResellable: true,
+                    price: ethers.BigNumber.from('50'),
+                  }
+                  let includeWorkshops = false
+                  let includeWorkshopsAndPreParty = false
+                  let includeHotelExtra = false
+                  const signer = ethersProvider.getSigner()
+                  let contract = new ethers.Contract(
+                    '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9',
+                    abi.abi,
+                    signer
+                  )
+                  const tx = await contract.mintItem(
+                    [
+                      {
+                        attendeeInfo,
+                        ticketCode,
+                        resellable,
+                        includeWorkshops,
+                        includeWorkshopsAndPreParty,
+                        includeHotelExtra,
+                      },
+                    ],
+                    { value: ethers.utils.parseEther('0.1').toHexString() }
+                  )
+                  console.log(tx)
+                  console.log(abi.abi)
+                  console.log(contract)
+                }}
+              >
+                Buy
+              </button>
               {/*<iframe
                 width="560"
                 height="315"
@@ -432,6 +687,126 @@ export default function InlineTicketsSection({ event }) {
             </div>
           </div>
         </div>
+        <Modal
+          show={showCheckout}
+          onHide={() => {
+            setShowCheckout(false)
+            if (window) history.pushState(null, null, null)
+          }}
+          id="speaker_popup"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowCheckout(false)
+                    if (window) history.pushState(null, null, '/')
+                  }}
+                  className="close"
+                  data-dismiss="modal"
+                >
+                  &times;
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="">
+                  <div
+                    className="speaker-bio-full-modal"
+                    style={{ padding: '45px' }}
+                  >
+                    {/**
+                     * 
+                     * email: 'patcito+fromWebSite@gmail.com',
+                    name: 'From WebSite Patrick Aljord',
+                    twitter: 'patcito',
+                    bio: 'hello there',
+                    job: 'dev',
+                    company: 'yearn',
+                    diet: 'omnivore',
+                    tshirt: 'M',
+                    telegram: 'patcitotel',
+                     */}
+                    <h3>Attendee info</h3>
+                    <Form>
+                      <Form.Group>
+                        <Form.Row>
+                          <Col>
+                            <Form.Control placeholder="First name" />
+                          </Col>
+                          <Col>
+                            <Form.Control placeholder="Last name" />
+                          </Col>
+                        </Form.Row>
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Row>
+                          <Col>
+                            <Form.Control placeholder="Email" />
+                          </Col>
+                          <Col>
+                            <Form.Control placeholder="Telegram (will be featured on badge)" />
+                          </Col>
+                        </Form.Row>
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Row>
+                          <Col>
+                            <Form.Control placeholder="Company (will be featured on badge)" />
+                          </Col>
+                          <Col>
+                            <Form.Control as="select" aria-label="Job">
+                              <option value="0">
+                                Solidity/Vyper Developer
+                              </option>
+                              <option value="1">Frontend Web3 Developer</option>
+                              <option value="2">Fullstack developer</option>
+                              <option value="3">Backend Developer</option>
+                              <option value="5">Project Manager</option>
+                              <option value="6">CTO</option>
+                              <option value="7">CEO</option>
+                              <option value="8">HR</option>
+                              <option value="9">Marketing</option>
+                              <option value="10">Investor</option>
+                              <option value="11">Trader</option>
+                              <option value="12">Other</option>
+                            </Form.Control>
+                          </Col>
+                        </Form.Row>
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Row>
+                          <Col>
+                            <Form.Control placeholder="Short bio (will be featured on badge)" />
+                          </Col>
+                          <Col>
+                            <Form.Check type="checkbox" label="Include Hotel" />
+                          </Col>
+                        </Form.Row>
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Row>
+                          <Col>
+                            <Form.Check
+                              type="checkbox"
+                              label="Include Workshop and pre-party"
+                            />
+                          </Col>
+                        </Form.Row>
+                      </Form.Group>
+                      <Form.Group>
+                        <Button variant="primary" type="submit">
+                          {attendeeInfos.length > 1 ? 'Next' : 'Checkout'}
+                        </Button>
+                      </Form.Group>
+                    </Form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal>
       </section>
     </>
   )
