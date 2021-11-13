@@ -1,5 +1,6 @@
 const path = require('path')
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+const webpack = require('webpack')
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
@@ -9,7 +10,18 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         templates: path.resolve(__dirname, 'src/templates'),
         scss: path.resolve(__dirname, 'src/scss'),
       },
+      fallback: {
+        crypto: require.resolve('crypto-browserify'),
+        stream: require.resolve('stream-browserify'),
+        buffer: require.resolve('buffer'),
+      },
     },
+    plugins: [
+      new webpack.ProvidePlugin({
+        process: 'process/browser',
+        Buffer: ['buffer', 'Buffer'],
+      }),
+    ],
   })
 }
 
