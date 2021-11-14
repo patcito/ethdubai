@@ -32,7 +32,7 @@ export default function NFTTicketsSection() {
     React.useState(0)
 
   console.log(abi)
-  const CONTRACT_ADDRESS = '0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82'
+  const CONTRACT_ADDRESS = '0x09635F643e140090A9A8Dcd712eD6285858ceBef'
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
   const handleIncludeHotel = () => {
@@ -182,6 +182,7 @@ export default function NFTTicketsSection() {
             ),
           },
           ticketOption: ticketOption,
+          specialStatus: '',
         }
         return finalTicket
       })
