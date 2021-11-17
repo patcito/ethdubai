@@ -1741,6 +1741,7 @@ li.nav-item.active a {
   right: -5px;
 }
 div#speaker_popup .modal-header,
+div#checkout_popup .modal-header,
 #sponser_popup .modal-header,
 div#event_popup .modal-header {
   padding: 0;
@@ -1781,6 +1782,7 @@ div#event_popup .modal-dialog .modal-body {
   padding: 0;
 }
 div#speaker_popup .modal-header button.close,
+div#checkout_popup .modal-header button.close,
 #sponser_popup .modal-header button.close,
 div#event_popup button.close {
   padding: 0;
@@ -1841,13 +1843,16 @@ div#event_popup button.close {
   border-radius: 50px;
   margin-top: 32px;
 }
-div#speaker_popup .icon_box a {
+div#speaker_popup .icon_box a,
+div#checkout_popup .icon_box a {
   margin-right: 6px;
 }
-div#speaker_popup .modal-body {
+div#speaker_popup .modal-body,
+div#checkout_popup .modal-body {
   padding: 0;
 }
-div#speaker_popup .icon_box {
+div#speaker_popup .icon_box,
+div#checkout_popup .icon_box {
   background: #5361fe;
   height: 125px;
   display: flex;
@@ -1857,7 +1862,8 @@ div#speaker_popup .icon_box {
   padding-right: 25px;
   border-radius: 10px 10px 0 0;
 }
-div#speaker_popup .modal-dialog {
+div#speaker_popup .modal-dialog,
+div#checkout_popup .modal-dialog {
   width: 597px;
   @media (min-width: 768px) {
     width: 800px;
@@ -1870,12 +1876,20 @@ div#speaker_popup .modal-dialog {
   margin-top: 0;
   margin-bottom: 0;
 }
-div#speaker_popup .icon_box ul {
+div#checkout_popup .modal-dialog {
+  width: 597px;
+  @media (min-width: 768px) {
+    width: 830px;
+  }
+}
+div#speaker_popup .icon_box ul,
+div#checkout_popup .icon_box ul {
   list-style: none;
   padding: 0;
   margin-bottom: 0;
 }
-div#speaker_popup .modal-content {
+div#speaker_popup .modal-content,
+div#checkout_popup .modal-content {
   border-radius: 10px;
 }
 .speaker_popup_profile {

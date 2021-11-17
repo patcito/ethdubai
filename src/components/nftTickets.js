@@ -4,10 +4,12 @@ import ReactMarkdown from 'react-markdown'
 import Img from 'gatsby-image'
 import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
-import { Modal, Form, Row, Col, Button } from 'react-bootstrap'
+import { Container, Modal, Form, Row, Col, Button } from 'react-bootstrap'
 import abi from './abis/ETHDubaiTickets.json'
 import EthCrypto from 'eth-crypto'
 import { Buffer } from 'buffer'
+import html2pdf from 'html2pdf.js'
+import QRCode from 'qrcode-svg'
 import {
   useBalance,
   useContractLoader,
@@ -27,12 +29,16 @@ export default function NFTTicketsSection() {
   const [ownerIds, setOwnerIds] = useState([])
   const [showCheckout, setShowCheckout] = React.useState(false)
   const [attendeeInfos, setAttendeeInfos] = React.useState([])
+  const [pdfTickets, setPdfTickets] = React.useState([])
   const [svgTickets, setSvgTickets] = React.useState([])
+  const [validated, setValidated] = React.useState(false)
+  const [buyTx, setBuyTx] = React.useState({})
+  const [chainId, setChainId] = React.useState(1)
   const [currentAttendeeInfoIndex, setCurrentAttendeeInfoIndex] =
     React.useState(0)
 
   console.log(abi)
-  const CONTRACT_ADDRESS = '0x09635F643e140090A9A8Dcd712eD6285858ceBef'
+  const CONTRACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
   const handleIncludeHotel = () => {
@@ -46,6 +52,56 @@ export default function NFTTicketsSection() {
   }
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms))
+  }
+  const generateTicketPdfs = async (tx, pdfTix) => {
+    if (!tx) tx = buyTx
+    if (!pdfTix) pdfTix = pdfTickets
+    let element = document.getElementById('pdf-tickets')
+    let elements = document.getElementsByClassName('ticket-qr')
+    let fileName = `ethdubai-ticket-${tx.to}-${tx.txHash}.pdf`
+    let opt = {
+      margin: 1,
+      filename: fileName,
+      pagebreak: { mode: 'legacy' },
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+    }
+    html2pdf().from(element).set(opt).save()
+    let tickets = [...elements]
+    tickets.map((tix, i) => {
+      let fileName = `ethdubai-ticket-${tx.to}-${tx.txHash}-${pdfTix[i].attendeeInfo.email}-${i}.pdf`
+      let opt = {
+        margin: 1,
+        filename: fileName,
+        pagebreak: { mode: 'legacy' },
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+      }
+      html2pdf()
+        .from(tix)
+        .set(opt)
+        .toPdf()
+        .output('datauristring')
+        .then(function (pdfAsString) {
+          // The PDF has been converted to a Data URI string and passed to this function.
+          // Use pdfAsString however you like (send as email, etc)!
+          var arr = pdfAsString.split(',')
+          pdfAsString = arr[1]
+          console.log('buyTX', buyTx)
+          var data = new FormData()
+          data.append('fileName', fileName)
+          data.append('data', pdfAsString)
+          data.append('email', pdfTix[i].attendeeInfo.email)
+          data.append('fname', pdfTix[i].attendeeInfo.fname)
+          data.append('lname', pdfTix[i].attendeeInfo.lname)
+          data.append('ticketOption', pdfTix[i].ticketOption)
+          var xhr = new XMLHttpRequest()
+          xhr.open('post', 'http://localhost:8080/upload', true) //Post the Data URI to php Script to save to server
+          xhr.send(data)
+        })
+    })
   }
   const getOwnerTickets = async () => {
     const provider = await web3Modal.connect()
@@ -126,6 +182,12 @@ export default function NFTTicketsSection() {
   const handleBuyButton = (e) => {
     e.preventDefault()
     console.log('all', attendeeInfos)
+    const form = document.getElementById('attendeeForm')
+    setValidated(true)
+    if (form.checkValidity() === false) {
+      return
+    }
+
     if (currentAttendeeInfoIsNotLast()) {
       setCurrentAttendeeInfoIndex(currentAttendeeInfoIndex + 1)
     } else {
@@ -139,6 +201,42 @@ export default function NFTTicketsSection() {
     return EthCrypto.cipher.stringify(encryptedString)
   }
   const prepareTickets = async () => {
+    let finalPdfTickets = attendeeInfos.map((tix) => {
+      let ticketOption = getTicketOption(
+        tix.includeWorkshopsAndPreParty,
+        tix.includeHotelExtra
+      )
+      let pdfTix = {
+        attendeeInfo: {
+          email: tix.email,
+          fname: tix.fname,
+          lname: tix.lname,
+          twitter: tix.twitter,
+          bio: tix.bio,
+          job: tix.job,
+          company: tix.company,
+          diet: tix.diet,
+          tshirt: tix.tshirt,
+          telegram: tix.telegram,
+        },
+        ticketCode: tix.ticketCode,
+        resellable: {
+          isResellable: false,
+          price: ethers.utils.parseEther(
+            '' +
+              getTicketPrice(
+                !tix.includeWorkshopsAndPreParty,
+                tix.includeWorkshopsAndPreParty,
+                tix.includeHotelExtra
+              )
+          ),
+        },
+        ticketOption: ticketOption,
+        specialStatus: '',
+      }
+      return pdfTix
+    })
+    console.log('FINAL TIX', finalPdfTickets)
     let finalTickets = await Promise.all(
       attendeeInfos.map(async (a) => {
         let email = await encryptStr(a.email || '_')
@@ -150,7 +248,7 @@ export default function NFTTicketsSection() {
         let company = await encryptStr(a.company || '')
         let diet = a.diet || '_'
         let tshirt = a.tshirt || '_'
-        let telegram = a.telegram
+        let telegram = a.telegram || '_'
         let ticketOption = getTicketOption(
           a.includeWorkshopsAndPreParty,
           a.includeHotelExtra
@@ -187,7 +285,7 @@ export default function NFTTicketsSection() {
         return finalTicket
       })
     )
-    return finalTickets
+    return [finalTickets, finalPdfTickets]
   }
   const getTicketOption = (workshopsAndPreParty, hotelExtra) => {
     if (!workshopsAndPreParty && !hotelExtra) {
@@ -267,9 +365,15 @@ export default function NFTTicketsSection() {
     const newProvider = new ethers.providers.Web3Provider(provider)
     setEthersProvider(newProvider)
     const signer = newProvider.getSigner()
+    const network = await newProvider.getNetwork()
+    console.log('chainiddddd', network)
+    setChainId(network.chainId)
+
     let contract = new ethers.Contract(CONTRACT_ADDRESS, abi.abi, signer)
+    console.log('contract', contract)
     console.log('attendeeInfos', attendeeInfos)
-    const finalTickets = await prepareTickets()
+    let [finalTickets, finalPdfTickets] = await prepareTickets()
+    console.log('final broken', finalTickets)
     console.log('final', finalTickets)
     //setAttendeeInfos(finalTickets)
     console.log('final price', getFinalTicketsPrice(finalTickets))
@@ -279,17 +383,39 @@ export default function NFTTicketsSection() {
       'final ethers price',
       ethers.utils.parseEther('0.1').toHexString()
     )
+    const txTotalPrice = await contract.totalPrice(finalTickets)
+    console.log('totalPriceTXXX', txTotalPrice)
+
     const tx = await contract.mintItem(finalTickets, {
-      value: getFinalTicketsPrice(finalTickets).toHexString(),
+      value: txTotalPrice.toHexString(),
       // value: ethers.BigNumber.from(total()).toHexString(),
     })
     console.log(tx)
     const receipt = await tx.wait()
     console.log('receipt', receipt)
-    const ownedids = await getOwnerTickets()
+    setBuyTx({ to: receipt.to, txHash: receipt.transactionHash })
+    //    const ownedids = await getOwnerTickets()
+    let ownedids = []
+    receipt.events.map((event) => {
+      if (event.args?.tokenId) {
+        ownedids.push(event.args.tokenId.toString())
+      }
+    })
+    console.log('ownedids', ownedids)
+    setOwnerIds(ownedids)
+    setSuccessPurchase(true)
     await getSvgTickets(ownedids)
     setShowCheckout(true)
     setSuccessPurchase(true)
+    finalPdfTickets = finalPdfTickets.map((ft) => {
+      return { ...ft, ...{ tx: receipt.transactionHash } }
+    })
+    console.log('fffffffffff', finalPdfTickets)
+    setPdfTickets(finalPdfTickets)
+    generateTicketPdfs(
+      { to: receipt.to, txHash: receipt.transactionHash },
+      finalPdfTickets
+    )
     console.log(abi.abi)
     console.log(contract)
   }
@@ -492,137 +618,32 @@ export default function NFTTicketsSection() {
             </li>{' '}
           </ul>
         </div>
-        <button
-          onClick={async () => {
-            const provider = await web3Modal.connect()
-            const newProvider = new ethers.providers.Web3Provider(provider)
-            setEthersProvider(newProvider)
-            console.log(newProvider)
-            const signer = newProvider.getSigner()
-            let contract = new ethers.Contract(
-              CONTRACT_ADDRESS,
-              abi.abi,
-              signer
-            )
-            console.log('signer', signer)
-            const filter = contract.filters.Transfer(null, signer.address)
-            console.log(filter)
-            const f2 = contract.filters.LogMintId(signer.address)
-            console.log('f2', f2)
-            const account = await signer.getAddress()
-            const token = contract
-            console.log('token', token)
-            const name = await token.name()
-            console.log(name, 'tokens owned by', account)
-            const sentLogs = await token.queryFilter(
-              token.filters.Transfer(account, null)
-            )
-            const receivedLogs = await token.queryFilter(
-              token.filters.Transfer(null, account)
-            )
-
-            const logs = sentLogs
-              .concat(receivedLogs)
-              .sort(
-                (a, b) =>
-                  a.blockNumber - b.blockNumber ||
-                  a.transactionIndex - b.TransactionIndex
+        {pdfTickets.length > 0 && (
+          <button
+            onClick={async () => {
+              const provider = await web3Modal.connect()
+              const newProvider = new ethers.providers.Web3Provider(provider)
+              setEthersProvider(newProvider)
+              console.log(newProvider)
+              const signer = newProvider.getSigner()
+              let contract = new ethers.Contract(
+                CONTRACT_ADDRESS,
+                abi.abi,
+                signer
               )
-
-            const owned = new Set()
-
-            for (const log of logs) {
-              const { from, to, tokenId } = log.args
-
-              if (to === account) {
-                owned.add(tokenId.toString())
-              } else if (from === account) {
-                owned.delete(tokenId.toString())
-              }
-            }
-            setOwnerIds(owned)
-            console.log([...owned].join('\n'))
-            //let x = await RenderTickets(owned)
-            //console.log(x)
-            await getSvgTickets()
-            setShowCheckout(true)
-            setSuccessPurchase(true)
-          }}
-        >
-          Mint
-        </button>
-        <button
-          onClick={async (e) => {
-            const provider = await web3Modal.connect()
-            const newProvider = new ethers.providers.Web3Provider(provider)
-            setEthersProvider(newProvider)
-
-            let attendeeInfo = {
-              email: 'patcito+fromWebSite@gmail.com',
-              fname: 'From WebSite Pat Aljord',
-              lname: 'From WebSite Aljord',
-              twitter: 'patcito',
-              bio: 'hello there',
-              job: 'dev',
-              company: 'yearn',
-              diet: 'omnivore',
-              tshirt: 'M',
-              telegram: 'patcitotel',
-            }
-
-            let ticketCode = 'xyz'
-            let resellable = {
-              isResellable: true,
-              price: ethers.BigNumber.from('50'),
-            }
-            let includeWorkshops = false
-            let includeWorkshopsAndPreParty = false
-            let includeHotelExtra = false
-            const signer = ethersProvider.getSigner()
-            let contract = new ethers.Contract(
-              CONTRACT_ADDRESS,
-              abi.abi,
-              signer
-            )
-            console.log('final hard', [
-              {
-                attendeeInfo,
-                ticketCode,
-                resellable,
-                includeWorkshops,
-                includeWorkshopsAndPreParty,
-                includeHotelExtra,
-              },
-            ])
-            const tx = await contract.mintItem(
-              [
-                {
-                  attendeeInfo,
-                  ticketCode,
-                  resellable,
-                  includeWorkshops,
-                  includeWorkshopsAndPreParty,
-                  includeHotelExtra,
-                },
-              ],
-              { value: ethers.utils.parseEther('0.9').toHexString() }
-            )
-            console.log(tx)
-            console.log(abi.abi)
-            console.log(contract)
-            e.preventDefault()
-          }}
-        >
-          Buy
-        </button>
-
+              generateTicketPdfs()
+            }}
+          >
+            Download Tickets
+          </button>
+        )}
         <Modal
           show={showCheckout}
           onHide={() => {
             setShowCheckout(false)
             if (window) history.pushState(null, null, null)
           }}
-          id="speaker_popup"
+          id="checkout_popup"
         >
           <div className="modal-dialog">
             <div className="modal-content">
@@ -655,37 +676,33 @@ export default function NFTTicketsSection() {
                       className="speaker-bio-full-modal"
                       style={{ padding: '45px' }}
                     >
-                      {/**
-                     * 
-                     * email: 'patcito+fromWebSite@gmail.com',
-                    name: 'From WebSite Patrick Aljord',
-                    twitter: 'patcito',
-                    bio: 'hello there',
-                    job: 'dev',
-                    company: 'yearn',
-                    diet: 'omnivore',
-                    tshirt: 'M',
-                    telegram: 'patcitotel',
-                     */}
                       <h3>Attendee info</h3>
                       {attendeeInfos.length > 0
                         ? attendeeInfos.map((attendee, index) =>
                             index === currentAttendeeInfoIndex ? (
                               //true ? (
-                              <Form key={index}>
+                              <Form
+                                key={index}
+                                noValidate
+                                validated={validated}
+                                id="attendeeForm"
+                              >
                                 <Form.Group>
                                   <Form.Row>
-                                    <Col>
+                                    <Col xs="12" sm="6">
                                       <Form.Control
-                                        placeholder="First name"
+                                        required
+                                        placeholder="First name*"
                                         name="fname"
                                         value={attendeeInfos[index].fname}
                                         onChange={handleAttendeeInfo}
+                                        maxlength="30"
                                       />
                                     </Col>
-                                    <Col>
+                                    <Col xs="12" sm="6">
                                       <Form.Control
-                                        placeholder="Last name"
+                                        required="true"
+                                        placeholder="Last name*"
                                         onChange={handleAttendeeInfo}
                                         name="lname"
                                         value={
@@ -694,27 +711,31 @@ export default function NFTTicketsSection() {
                                           ].lname
                                         }
                                         onChange={handleAttendeeInfo}
+                                        maxlength="30"
                                       />
                                     </Col>
                                   </Form.Row>
                                 </Form.Group>
                                 <Form.Group>
                                   <Form.Row>
-                                    <Col>
+                                    <Col xs="12" sm="6">
                                       <Form.Control
-                                        placeholder="Email"
+                                        required="true"
+                                        placeholder="Email*"
                                         onChange={handleAttendeeInfo}
                                         name="email"
+                                        type="email"
                                         value={
                                           attendeeInfos[
                                             currentAttendeeInfoIndex
                                           ].email
                                         }
+                                        maxlength="60"
                                       />
                                     </Col>
-                                    <Col>
+                                    <Col xs="12" sm="6">
                                       <Form.Control
-                                        placeholder="Telegram (will be featured on badge)"
+                                        placeholder="ENS or telegram (saved in clear on chain)"
                                         onChange={handleAttendeeInfo}
                                         name="telegram"
                                         value={
@@ -722,13 +743,14 @@ export default function NFTTicketsSection() {
                                             currentAttendeeInfoIndex
                                           ].telegram
                                         }
+                                        maxlength="20"
                                       />
                                     </Col>
                                   </Form.Row>
                                 </Form.Group>
                                 <Form.Group>
                                   <Form.Row>
-                                    <Col>
+                                    <Col xs="12" sm="6">
                                       <Form.Control
                                         placeholder="Company (will be featured on badge)"
                                         onChange={handleAttendeeInfo}
@@ -738,9 +760,10 @@ export default function NFTTicketsSection() {
                                             currentAttendeeInfoIndex
                                           ].company
                                         }
+                                        maxlength="20"
                                       />
                                     </Col>
-                                    <Col>
+                                    <Col xs="12" sm="6">
                                       <Form.Control
                                         as="select"
                                         aria-label="Job"
@@ -780,9 +803,9 @@ export default function NFTTicketsSection() {
                                 </Form.Group>
                                 <Form.Group>
                                   <Form.Row>
-                                    <Col>
+                                    <Col xs="12" sm="6">
                                       <Form.Control
-                                        placeholder="Short bio (will be featured on badge)"
+                                        placeholder="Short bio (will be featured on badge)*"
                                         onChange={handleAttendeeInfo}
                                         name="bio"
                                         value={
@@ -790,9 +813,10 @@ export default function NFTTicketsSection() {
                                             currentAttendeeInfoIndex
                                           ].bio
                                         }
+                                        maxlength={30}
                                       />
                                     </Col>
-                                    <Col>
+                                    <Col xs="12" sm="6">
                                       <Form.Check
                                         type="checkbox"
                                         label="Include Hotel"
@@ -809,7 +833,7 @@ export default function NFTTicketsSection() {
                                 </Form.Group>
                                 <Form.Group>
                                   <Form.Row>
-                                    <Col>
+                                    <Col xs="12" sm="6">
                                       <Form.Check
                                         type="checkbox"
                                         label="Include Workshop and pre-party"
@@ -844,6 +868,22 @@ export default function NFTTicketsSection() {
                                       ? 'Next'
                                       : 'Checkout'}
                                   </Button>
+                                  <span>
+                                    {' '}
+                                    Current ticket price: $ ETH{' '}
+                                    {getTicketPrice(
+                                      !attendeeInfos[currentAttendeeInfoIndex]
+                                        .includeWorkshopsAndPreParty,
+                                      attendeeInfos[currentAttendeeInfoIndex]
+                                        .includeWorkshopsAndPreParty,
+                                      attendeeInfos[currentAttendeeInfoIndex]
+                                        .includeHotelExtra
+                                    )}
+                                  </span>
+                                  <span>
+                                    {' | '}
+                                    Current total price: $ ETH {total()}
+                                  </span>
                                 </Form.Group>
                               </Form>
                             ) : null
@@ -856,6 +896,63 @@ export default function NFTTicketsSection() {
             </div>
           </div>
         </Modal>
+        <div id="pdf-tickets">
+          {pdfTickets.map((tix, i) => (
+            <>
+              <div
+                className="ticket-qr html2pdf__page-break"
+                style={{
+                  border: '1px solid black',
+                  marginBottom: '30px',
+                  pageBreakAfter: 'always',
+                }}
+              >
+                <Container>
+                  <Row>
+                    <Col>
+                      <img
+                        src={`data:image/svg+xml;base64,${btoa(
+                          new QRCode(
+                            JSON.stringify({
+                              ticketCode: tix.ticketCode,
+                              tx: `tx ${tix.tx}`,
+                              chainId: chainId,
+                            })
+                          ).svg()
+                        )}`}
+                      />
+
+                      <p>
+                        Do not share this QR code on social media or someone can
+                        use your ticket
+                      </p>
+                    </Col>
+                    <Col>
+                      <p style={{ paddingTop: '20px' }}>
+                        <h1>Your ETHDubai Ticket</h1>
+                        <h2>
+                          {tix.attendeeInfo.fname} {tix.attendeeInfo.lname}
+                        </h2>
+                      </p>
+                      <p>{tix.attendeeInfo.email}</p>
+                      <p>{tix.ticketOption}</p>
+                      <p>{tix.attendeeInfo.bio}</p>
+                      <p>{tix.attendeeInfo.company}</p>
+                      <p>{tix.attendeeInfo.telegram}</p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <p style={{ fontSize: '9px' }}>{tix.tx}</p>
+                    </Col>
+                  </Row>
+                </Container>
+              </div>
+              <div class="newBoxBefore1">&nbsp;</div>
+              <div class="newBoxBefore2">&nbsp;</div>
+            </>
+          ))}
+        </div>
       </section>
     </>
   )
