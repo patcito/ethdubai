@@ -685,7 +685,13 @@ export default function NFTTicketsSection() {
                       className="speaker-bio-full-modal"
                       style={{ padding: '45px' }}
                     >
-                      <h3>Attendee info</h3>
+                      <h3>
+                        Attendee info for ticket{' '}
+                        <strong>
+                          {currentAttendeeInfoIndex + 1} of{' '}
+                          {attendeeInfos.length}
+                        </strong>
+                      </h3>
                       {attendeeInfos.length > 0
                         ? attendeeInfos.map((attendee, index) =>
                             index === currentAttendeeInfoIndex ? (
@@ -878,7 +884,7 @@ export default function NFTTicketsSection() {
                                   >
                                     {attendeeInfos.length > 1 &&
                                     currentAttendeeInfoIsNotLast()
-                                      ? 'Next'
+                                      ? 'Next Ticket'
                                       : checkoutButtonText}
                                   </Button>
                                   <span>
