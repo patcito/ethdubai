@@ -422,7 +422,7 @@ export default function InlineTicketsSection({ event }) {
                   </div>
                 </div>
               </section>
-
+              {/*}
               <iframe
                 src="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform?embedded=true"
                 width="100%"
@@ -432,7 +432,7 @@ export default function InlineTicketsSection({ event }) {
                 marginwidth="0"
               >
                 Loading…
-              </iframe>
+                                </iframe>*/}
             </div>
           </div>
         </div>
