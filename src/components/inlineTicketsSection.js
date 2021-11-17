@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import ReactMarkdown from 'react-markdown'
 import Img from 'gatsby-image'
-import NFTTicketsSection from 'components/nftTickets'
+import loadable from '@loadable/component'
+const NFTTicketsSection = loadable(() => import('components/nftTickets'))
 
 export default function InlineTicketsSection({ event }) {
   const [isFrench, setIsFrench] = React.useState(false)
