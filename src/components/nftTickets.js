@@ -36,6 +36,7 @@ export default function NFTTicketsSection() {
   const [chainId, setChainId] = React.useState(1)
   const [disableCheckout, setDisableCheckout] = React.useState(false)
   const [checkoutButtonText, setCheckoutButtonText] = React.useState('Checkout')
+  const [onGoingTx, setOngoingTx] = React.useState()
   const [currentAttendeeInfoIndex, setCurrentAttendeeInfoIndex] =
     React.useState(0)
 
@@ -395,7 +396,8 @@ export default function NFTTicketsSection() {
       // value: ethers.BigNumber.from(total()).toHexString(),
       //gasLimit: 7500000,
     })
-    console.log(tx)
+    console.log('txiiiiiiiiiii', tx)
+    setOngoingTx(tx.hash)
     const receipt = await tx.wait()
     setDisableCheckout(false)
     setCheckoutButtonText('Checkout')
@@ -679,6 +681,19 @@ export default function NFTTicketsSection() {
                       <RenderTickets />
                     </div>
                   </>
+                ) : disableCheckout ? (
+                  <h2>
+                    {onGoingTx ? (
+                      <a
+                        href={`https://ropsten.etherscan.io/tx/${onGoingTx}`}
+                        target="_blank"
+                      >
+                        Transaction in progress, please wait... 🔗
+                      </a>
+                    ) : (
+                      `Please connect your wallet and accept the transaction.`
+                    )}
+                  </h2>
                 ) : (
                   <div className="">
                     <div
