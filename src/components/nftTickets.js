@@ -189,6 +189,8 @@ export default function NFTTicketsSection() {
     setValidated(true)
     if (form.checkValidity() === false) {
       return
+    } else {
+      setValidated(false)
     }
 
     if (currentAttendeeInfoIsNotLast()) {
@@ -356,9 +358,21 @@ export default function NFTTicketsSection() {
     console.log()
     return (
       <>
+        <h3>
+          Here {svgTickets.length > 1 ? 'are' : 'is'} the NFT
+          {svgTickets.length > 1 ? 'tickets' : 'ticket'} you can publicaly
+          share, {svgTickets.length > 1 ? null : 'a '}
+          private QR {svgTickets.length > 1 ? 'codes have' : 'code has'} been
+          sent to your email to access the event,{' '}
+          <a href="#tickets" onClick={generateTicketPdfs}>
+            {' '}
+            you can also download your QR code here
+          </a>
+          .
+        </h3>
         {svgTickets.map((svg, i) => (
           <div>
-            Your ticket SVG,{' '}
+            Your ticket NFT,{' '}
             <a
               href={`https://www.opensea.io/assets/${CONTRACT_ADDRESS}/${ownerIds[i]}`}
             >
@@ -493,6 +507,7 @@ export default function NFTTicketsSection() {
   }
   const handleCheckout = () => {
     console.log('hotelll', includeHotel)
+    setValidated(false)
     setDisableCheckout(false)
     setCheckoutButtonText('Checkout')
     setShowCheckout(true)
