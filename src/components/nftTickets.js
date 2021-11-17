@@ -356,8 +356,16 @@ export default function NFTTicketsSection() {
     console.log()
     return (
       <>
-        {svgTickets.map((svg) => (
-          <img src={`${svg}`} />
+        {svgTickets.map((svg, i) => (
+          <div>
+            Your ticket SVG,{' '}
+            <a
+              href={`https://www.opensea.io/assets/${CONTRACT_ADDRESS}/${ownerIds[i]}`}
+            >
+              view it on opensea
+            </a>
+            <img src={`${svg}`} />
+          </div>
         ))}
       </>
     )
@@ -561,7 +569,7 @@ export default function NFTTicketsSection() {
                   onChange={(e, v) => {
                     console.log(e, v)
                     setOneDayTicket(e.target.value)
-                    console.log('currentValue', oneDayTicket)
+                    console.log('currentValue', e.target.value)
                     if (e.target.value <= 0 && threeDayTicket <= 0) {
                       setIncludeHotel(false)
                     }
@@ -585,7 +593,7 @@ export default function NFTTicketsSection() {
                   onChange={(e, v) => {
                     console.log(e, v)
                     setThreeDayTicket(e.target.value)
-                    console.log('currentValue', threeDayTicket)
+                    console.log('currentValue', e.target.value)
                     if (e.target.value <= 0 && oneDayTicket <= 0) {
                       setIncludeHotel(false)
                     }
@@ -618,6 +626,7 @@ export default function NFTTicketsSection() {
               <span />
               <span>
                 <button
+                  disabled={threeDayTicket == 0 && oneDayTicket == 0}
                   onClick={(e) => {
                     handleCheckout()
                     setSuccessPurchase(false)
