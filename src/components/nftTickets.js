@@ -181,7 +181,14 @@ export default function NFTTicketsSection() {
     console.log(currentAttendeeInfoIndex)
     e.preventDefault()
   }
-
+  const uuidv4 = () => {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+      (
+        c ^
+        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+      ).toString(16)
+    )
+  }
   const handleBuyButton = (e) => {
     e.preventDefault()
     console.log('all', attendeeInfos)
@@ -530,7 +537,10 @@ export default function NFTTicketsSection() {
     for (let i = 0; i < oneDayTicket; i++) {
       tickets.push({
         attendeeInfo,
-        ticketCode: crypto.randomUUID(),
+        ticketCode:
+          typeof crypto['randomUUID'] !== 'undefined'
+            ? crypto.randomUUID()
+            : uuidv4(),
         resellable: {
           isResellable: false,
           price: getTicketPrice(false, false, includeHotel),
@@ -543,7 +553,10 @@ export default function NFTTicketsSection() {
     for (let i = 0; i < threeDayTicket; i++) {
       tickets.push({
         attendeeInfo,
-        ticketCode: crypto.randomUUID(),
+        ticketCode:
+          typeof crypto['randomUUID'] !== 'undefined'
+            ? crypto.randomUUID()
+            : uuidv4(),
         resellable: {
           isResellable: false,
           price: getTicketPrice(false, true, includeHotel),
