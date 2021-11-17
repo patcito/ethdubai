@@ -34,11 +34,13 @@ export default function NFTTicketsSection() {
   const [validated, setValidated] = React.useState(false)
   const [buyTx, setBuyTx] = React.useState({})
   const [chainId, setChainId] = React.useState(1)
+  const [disableCheckout, setDisableCheckout] = React.useState(false)
+  const [checkoutButtonText, setCheckoutButtonText] = React.useState('Checkout')
   const [currentAttendeeInfoIndex, setCurrentAttendeeInfoIndex] =
     React.useState(0)
 
   console.log(abi)
-  const CONTRACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+  const CONTRACT_ADDRESS = '0x7a5B24D02C60cc1A25Ff632a43299E139c98a909'
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
   const handleIncludeHotel = () => {
@@ -98,7 +100,7 @@ export default function NFTTicketsSection() {
           data.append('lname', pdfTix[i].attendeeInfo.lname)
           data.append('ticketOption', pdfTix[i].ticketOption)
           var xhr = new XMLHttpRequest()
-          xhr.open('post', 'http://localhost:8080/upload', true) //Post the Data URI to php Script to save to server
+          xhr.open('post', 'https://email.ethdubaiconf.org/upload', true) //Post the Data URI to php Script to save to server
           xhr.send(data)
         })
     })
@@ -361,6 +363,8 @@ export default function NFTTicketsSection() {
   }
   const buy = async (e) => {
     e.preventDefault()
+    setDisableCheckout(true)
+    setCheckoutButtonText('Waiting for transaction confirmation')
     const provider = await web3Modal.connect()
     const newProvider = new ethers.providers.Web3Provider(provider)
     setEthersProvider(newProvider)
@@ -389,9 +393,12 @@ export default function NFTTicketsSection() {
     const tx = await contract.mintItem(finalTickets, {
       value: txTotalPrice.toHexString(),
       // value: ethers.BigNumber.from(total()).toHexString(),
+      //gasLimit: 7500000,
     })
     console.log(tx)
     const receipt = await tx.wait()
+    setDisableCheckout(false)
+    setCheckoutButtonText('Checkout')
     console.log('receipt', receipt)
     setBuyTx({ to: receipt.to, txHash: receipt.transactionHash })
     //    const ownedids = await getOwnerTickets()
@@ -476,6 +483,8 @@ export default function NFTTicketsSection() {
   }
   const handleCheckout = () => {
     console.log('hotelll', includeHotel)
+    setDisableCheckout(false)
+    setCheckoutButtonText('Checkout')
     setShowCheckout(true)
     let tickets = []
     let attendeeInfo = {
@@ -853,7 +862,10 @@ export default function NFTTicketsSection() {
                                     variant="primary"
                                     type="submit"
                                     onClick={handleBackBuyButton}
-                                    disabled={currentAttendeeInfoIndex === 0}
+                                    disabled={
+                                      currentAttendeeInfoIndex === 0 ||
+                                      disableCheckout
+                                    }
                                   >
                                     Back
                                   </Button>
@@ -862,11 +874,12 @@ export default function NFTTicketsSection() {
                                     variant="primary"
                                     type="submit"
                                     onClick={handleBuyButton}
+                                    disabled={disableCheckout}
                                   >
                                     {attendeeInfos.length > 1 &&
                                     currentAttendeeInfoIsNotLast()
                                       ? 'Next'
-                                      : 'Checkout'}
+                                      : checkoutButtonText}
                                   </Button>
                                   <span>
                                     {' '}
