@@ -905,8 +905,8 @@ export default function NFTTicketsSection() {
         <div style={{ textAlign: 'left' }}>
           <ul class="list-group">
             <li className="list-group-item d-flex justify-content-between align-items-center alignb">
-              Conference Ticket (March 30th) 0.1 ETH + Pre-Conference Beach
-              Party (March 29th)
+              Conference Only: [Conference Ticket (March 30th) + Pre-Conference
+              Party (March 29th)]
               <span>
                 <select
                   onChange={(e, v) => {
@@ -928,9 +928,9 @@ export default function NFTTicketsSection() {
               </span>
             </li>
             <li className="list-group-item d-flex justify-content-between align-items-center alignb">
-              [Conference (March 30th)] + [Workshop + Pre-Conference Beach Party
-              (March 29th)] + [Special Yacht Pre-Party, Meet and Greet,
-              Networking Event (March 28th)] 0.2 ETH
+              All included: [Conference Ticket + Workshop + Pre-Conference Party
+              + Special Yacht Pre-Party, Meet and Greet, Networking Event (March
+              28-30th)] 0.2 ETH
               <span>
                 <select
                   onChange={(e, v) => {
