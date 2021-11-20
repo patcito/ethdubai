@@ -4,8 +4,18 @@ import ReactMarkdown from 'react-markdown'
 import Img from 'gatsby-image'
 import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
-import { Container, Modal, Form, Row, Col, Button } from 'react-bootstrap'
+import {
+  Container,
+  Modal,
+  Form,
+  Row,
+  Col,
+  Button,
+  Alert,
+} from 'react-bootstrap'
 import abi from './abis/ETHDubaiTickets.json'
+import abiNonEth from './abis/ETHDubaiTicketsERC20.json'
+import erc20abi from './abis/erc20.json'
 import EthCrypto from 'eth-crypto'
 import { Buffer } from 'buffer'
 import html2pdf from 'html2pdf.js'
@@ -37,13 +47,217 @@ export default function NFTTicketsSection() {
   const [disableCheckout, setDisableCheckout] = React.useState(false)
   const [checkoutButtonText, setCheckoutButtonText] = React.useState('Checkout')
   const [onGoingTx, setOngoingTx] = React.useState()
+  const [onGoingTxText, setOngoingTxText] = React.useState({ txText: '' })
+  const [currentNetwork, setCurrentNetwork] = React.useState(0)
+  const [warning, setWarning] = React.useState('')
   const [currentAttendeeInfoIndex, setCurrentAttendeeInfoIndex] =
     React.useState(0)
 
+  const OnGoingTxTextMessage = () => {
+    switch (onGoingTxText.txText) {
+      case 'connect':
+        return <h2>Please connect your wallet and accept the transaction.</h2>
+      case 'approve':
+        return (
+          <h2>
+            <a
+              href={`${networks[currentNetwork].networkInfo.blockExplorerUrls[0]}tx/${onGoingTxText.tx.hash}`}
+              target="_blank"
+            >
+              Approve transaction in progress, please wait... 🔗
+            </a>
+          </h2>
+        )
+
+      case 'mint':
+        return (
+          <h2>
+            <a
+              href={`https://ropsten.etherscan.io/tx/${onGoingTxText.tx.hash}`}
+              target="_blank"
+            >
+              Minting transaction in progress, please wait... 🔗
+            </a>
+          </h2>
+        )
+
+      default:
+        return <h2>{onGoingTxText.txText}</h2>
+    }
+  }
+  const networks = [
+    {
+      contract: '',
+      abi: abi.abi,
+      marketplace: 'https://opensea.io/assets/',
+      networkInfo: {
+        chainId: '0x1',
+        chainName: 'Ethereum',
+
+        blockExplorerUrls: ['https://etherscan.io/'],
+      },
+    },
+    {
+      contract: '',
+      abi: abiNonEth.abi,
+      marketplace: 'https://opensea.io/assets/matic/',
+      networkInfo: {
+        chainId: ethers.BigNumber.from('137').toHexString(),
+        chainName: 'Polygon',
+        rpcUrls: ['https://polygon-rpc.com'],
+        nativeCurrency: {
+          name: 'MATIC',
+          symbol: 'MATIC',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://polygonscan.com/'],
+      },
+    },
+    {
+      contract: '',
+      abi: abiNonEth.abi,
+      marketplace: 'https://artion.io/explore/',
+      networkInfo: {
+        chainId: ethers.BigNumber.from('250').toHexString(),
+        chainName: 'Fantom',
+        rpcUrls: ['https://rpc.ftm.tools'],
+        nativeCurrency: {
+          name: 'Fantom',
+          symbol: 'FTM',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://ftmscan.com/'],
+      },
+    },
+    {
+      contract: '0x1a0403e116aE61eAaA013a77779af72e073F674C',
+      abi: abi.abi,
+      token: '',
+      networkInfo: {
+        chainId: '0x3',
+        chainName: 'Ethereum Ropsten',
+
+        blockExplorerUrls: ['https://ropsten.etherscan.io/'],
+      },
+    },
+    {
+      contract: '0x1246799ccd360C668CBFBD992978692417B70a9A',
+      abi: abi.abi,
+      marketplace: 'https://testnets.opensea.io/assets/',
+      token: '',
+      networkInfo: { chainId: '0x4', chainName: 'Ethereum Rinkeby' },
+    },
+    {
+      contract: '0x2C445DAaa70fc39B14cF7a37d9501aD65DbD24a8',
+      abi: abiNonEth.abi,
+      marketplace: 'https://testnets.opensea.io/assets/matic',
+      token: '0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1',
+      networkInfo: {
+        chainId: '0x13881',
+        chainName: 'Polygon Mumbai',
+        rpcUrls: ['https://rpc-endpoints.superfluid.dev/mumbai'],
+        nativeCurrency: {
+          name: 'MATIC',
+          symbol: 'MATIC',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://mumbai.polygonscan.com/'],
+      },
+    },
+    {
+      contract: '0x9769bdE6d1832a0Ba9b8eBe4Da81fC3Cbd82f577',
+      abi: abiNonEth.abi,
+      token: '0x6244D7f9245ad590490338db2fbEd815c2358034',
+      networkInfo: {
+        chainId: '0xFA2',
+        chainName: 'Fantom Testnet',
+        rpcUrls: ['https://rpc.testnet.fantom.network'],
+        nativeCurrency: {
+          name: 'Fantom',
+          symbol: 'FTM',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://testnet.ftmscan.com/'],
+      },
+    },
+    {
+      contract: '0x2D65069FA23dBC7B54C6BbF0Dbef6cd1823d8E35',
+      token: '',
+      abi: abi.abi,
+      networkInfo: {
+        chainId: '0x66EEB',
+        chainName: 'Arbitrum Testnet Rinkeby',
+        rpcUrls: ['https://rinkeby.arbitrum.io/rpc'],
+        nativeCurrency: {
+          name: 'ETHER',
+          symbol: 'ETH',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://testnet.arbiscan.io/'],
+      },
+    },
+    {
+      contract: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+      abi: abi.abi,
+      token: '',
+      networkInfo: {
+        chainId: '0x7A69',
+        chainName: 'hardhat',
+        rpcUrls: ['http://localhost:8545'],
+        nativeCurrency: {
+          name: 'ETHER',
+          symbol: 'ETH',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://testnet.arbiscan.io/'],
+      },
+    },
+  ]
   console.log(abi)
-  const CONTRACT_ADDRESS = '0x7a5B24D02C60cc1A25Ff632a43299E139c98a909'
+  const CONTRACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
+  const handleNetwork = async (e) => {
+    let value = e.target.value
+    const provider = await web3Modal.connect()
+    const newProvider = new ethers.providers.Web3Provider(provider)
+    const signer = newProvider.getSigner()
+    const account = signer.getAddress()
+
+    console.log(value)
+    if (
+      networks[value].networkInfo.chainName === 'Ethereum Ropsten' ||
+      networks[value].networkInfo.chainName === 'hardhat' ||
+      networks[value].networkInfo.chainName === 'Ethereum Rinkeby' ||
+      networks[value].networkInfo.chainName === 'Ethereum'
+    ) {
+      await window.ethereum
+        .request({
+          method: 'wallet_switchEthereumChain',
+          params: [
+            { chainId: networks[value].networkInfo.chainId },
+            '0x05A2C738cff019c405D7c5e8a4488e34D82be161',
+          ],
+        })
+        .then((result) => {
+          console.log(value)
+          setCurrentNetwork(value)
+        })
+    } else {
+      await window.ethereum
+        .request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            networks[value].networkInfo,
+            '0x05A2C738cff019c405D7c5e8a4488e34D82be161',
+          ],
+        })
+        .then((result) => {
+          console.log(value)
+          setCurrentNetwork(value)
+        })
+    }
+  }
   const handleIncludeHotel = () => {
     let attendeeInfosTmp = [...attendeeInfos]
 
@@ -110,7 +324,11 @@ export default function NFTTicketsSection() {
     const provider = await web3Modal.connect()
     const newProvider = new ethers.providers.Web3Provider(provider)
     const signer = newProvider.getSigner()
-    let contract = new ethers.Contract(CONTRACT_ADDRESS, abi.abi, signer)
+    let contract = new ethers.Contract(
+      networks[currentNetwork].contract,
+      networks[currentNetwork].abi,
+      signer
+    )
 
     const account = await signer.getAddress()
     const token = contract
@@ -339,7 +557,11 @@ export default function NFTTicketsSection() {
     const newProvider = new ethers.providers.Web3Provider(provider)
     setEthersProvider(newProvider)
     const signer = newProvider.getSigner()
-    let contract = new ethers.Contract(CONTRACT_ADDRESS, abi.abi, signer)
+    let contract = new ethers.Contract(
+      networks[currentNetwork].contract,
+      networks[currentNetwork].abi,
+      signer
+    )
     const svgs = Promise.all(
       ownedIdsArr.map(async (id) => {
         let data = await contract.tokenURI(id)
@@ -381,7 +603,8 @@ export default function NFTTicketsSection() {
           <div>
             Your ticket NFT,{' '}
             <a
-              href={`https://www.opensea.io/assets/${CONTRACT_ADDRESS}/${ownerIds[i]}`}
+              href={`${networks[currentNetwork].marketplace}/${networks[currentNetwork].contract}/${ownerIds[i]}`}
+              target="_blank"
             >
               view it on opensea
             </a>
@@ -391,9 +614,18 @@ export default function NFTTicketsSection() {
       </>
     )
   }
+  const showWarning = (error) => {
+    setDisableCheckout(false)
+    console.log('errorrrrr', error)
+    setWarning(error.message)
+    setCheckoutButtonText('Checkout')
+  }
+
   const buy = async (e) => {
     e.preventDefault()
+    setWarning('')
     setDisableCheckout(true)
+    setOngoingTxText({ txText: 'connect' })
     setCheckoutButtonText('Waiting for transaction confirmation')
     const provider = await web3Modal.connect()
     const newProvider = new ethers.providers.Web3Provider(provider)
@@ -402,8 +634,13 @@ export default function NFTTicketsSection() {
     const network = await newProvider.getNetwork()
     console.log('chainiddddd', network)
     setChainId(network.chainId)
-
-    let contract = new ethers.Contract(CONTRACT_ADDRESS, abi.abi, signer)
+    console.log('currenttttttttt', networks)
+    console.log('currentttttttttNET', currentNetwork)
+    let contract = new ethers.Contract(
+      networks[currentNetwork].contract,
+      networks[currentNetwork].abi,
+      signer
+    )
     console.log('contract', contract)
     console.log('attendeeInfos', attendeeInfos)
     let [finalTickets, finalPdfTickets] = await prepareTickets()
@@ -417,45 +654,114 @@ export default function NFTTicketsSection() {
       'final ethers price',
       ethers.utils.parseEther('0.1').toHexString()
     )
+    const account = signer.getAddress()
+
     const txTotalPrice = await contract.totalPrice(finalTickets)
     console.log('totalPriceTXXX', txTotalPrice)
+    if (networks[currentNetwork].token !== '') {
+      let tokenContract = new ethers.Contract(
+        networks[currentNetwork].token,
+        erc20abi,
+        signer
+      )
+      console.log('tokenContract TXXXXX', tokenContract)
 
-    const tx = await contract.mintItem(finalTickets, {
-      value: txTotalPrice.toHexString(),
-      // value: ethers.BigNumber.from(total()).toHexString(),
-      //gasLimit: 7500000,
-    })
-    console.log('txiiiiiiiiiii', tx)
-    setOngoingTx(tx.hash)
-    const receipt = await tx.wait()
-    setDisableCheckout(false)
-    setCheckoutButtonText('Checkout')
-    console.log('receipt', receipt)
-    setBuyTx({ to: receipt.to, txHash: receipt.transactionHash })
-    //    const ownedids = await getOwnerTickets()
-    let ownedids = []
-    receipt.events.map((event) => {
-      if (event.args?.tokenId) {
-        ownedids.push(event.args.tokenId.toString())
+      try {
+        const allowance = await tokenContract.allowance(
+          account,
+          networks[currentNetwork].contract
+        )
+
+        console.log('aaaaaaaaaaaaaaallTXXX', allowance)
+        if (allowance.lt(txTotalPrice)) {
+          try {
+            const approveTx = await tokenContract.approve(
+              networks[currentNetwork].contract,
+              txTotalPrice
+            )
+            setOngoingTxText({ txText: 'approve', tx: approveTx })
+            try {
+              const approveReceipt = await approveTx.wait()
+              setOngoingTxText({
+                txText: 'Please accept the minting transaction now.',
+              })
+
+              manageBuyTx(finalPdfTickets, finalTickets, contract, {})
+            } catch (error) {
+              showWarning(error)
+              console.log(error)
+            }
+          } catch (error) {
+            showWarning(error)
+            return
+          }
+        } else {
+          alert('above' + allowance)
+          manageBuyTx(finalPdfTickets, finalTickets, contract, {})
+        }
+      } catch (error) {
+        showWarning(error)
+        return
       }
-    })
-    console.log('ownedids', ownedids)
-    setOwnerIds(ownedids)
-    setSuccessPurchase(true)
-    await getSvgTickets(ownedids)
-    setShowCheckout(true)
-    setSuccessPurchase(true)
-    finalPdfTickets = finalPdfTickets.map((ft) => {
-      return { ...ft, ...{ tx: receipt.transactionHash } }
-    })
-    console.log('fffffffffff', finalPdfTickets)
-    setPdfTickets(finalPdfTickets)
-    generateTicketPdfs(
-      { to: receipt.to, txHash: receipt.transactionHash },
-      finalPdfTickets
-    )
-    console.log(abi.abi)
-    console.log(contract)
+    } else {
+      manageBuyTx(finalPdfTickets, finalTickets, contract, {
+        value: txTotalPrice.toHexString(),
+      })
+    }
+  }
+  const manageBuyTx = async (
+    finalPdfTickets,
+    finalTickets,
+    contract,
+    value
+  ) => {
+    try {
+      const tx = await contract.mintItem(finalTickets, value)
+      console.log('txiiiiiiiiiii', tx)
+      setOngoingTx(tx.hash)
+      setOngoingTxText({ txText: 'mint', tx: tx })
+      try {
+        const receipt = await tx.wait()
+        setDisableCheckout(false)
+        setCheckoutButtonText('Checkout')
+        console.log('receipt', receipt)
+        setBuyTx({ to: receipt.to, txHash: receipt.transactionHash })
+        //    const ownedids = await getOwnerTickets()
+        let ownedids = []
+        receipt.events.map((event) => {
+          if (event.args?.tokenId) {
+            ownedids.push(event.args.tokenId.toString())
+          }
+        })
+        console.log('ownedids', ownedids)
+        setOwnerIds(ownedids)
+        setSuccessPurchase(true)
+        try {
+          await getSvgTickets(ownedids)
+          setShowCheckout(true)
+          setSuccessPurchase(true)
+          finalPdfTickets = finalPdfTickets.map((ft) => {
+            return { ...ft, ...{ tx: receipt.transactionHash } }
+          })
+          console.log('fffffffffff', finalPdfTickets)
+          setPdfTickets(finalPdfTickets)
+          generateTicketPdfs(
+            { to: receipt.to, txHash: receipt.transactionHash },
+            finalPdfTickets
+          )
+        } catch (error) {
+          showWarning(error)
+          console.log(error)
+        }
+      } catch (error) {
+        showWarning(error)
+        console.log(error)
+      }
+    } catch (error) {
+      showWarning(error)
+
+      console.log(error)
+    }
   }
   const getTicketPrice = (oneDay, threeDay, hotel) => {
     if (oneDay && !hotel) {
@@ -675,8 +981,8 @@ export default function NFTTicketsSection() {
               console.log(newProvider)
               const signer = newProvider.getSigner()
               let contract = new ethers.Contract(
-                CONTRACT_ADDRESS,
-                abi.abi,
+                networks[currentNetwork].contract,
+                networks[currentNetwork].abi,
                 signer
               )
               generateTicketPdfs()
@@ -719,18 +1025,7 @@ export default function NFTTicketsSection() {
                     </div>
                   </>
                 ) : disableCheckout ? (
-                  <h2>
-                    {onGoingTx ? (
-                      <a
-                        href={`https://ropsten.etherscan.io/tx/${onGoingTx}`}
-                        target="_blank"
-                      >
-                        Transaction in progress, please wait... 🔗
-                      </a>
-                    ) : (
-                      `Please connect your wallet and accept the transaction.`
-                    )}
-                  </h2>
+                  <OnGoingTxTextMessage />
                 ) : (
                   <div className="">
                     <div
@@ -754,6 +1049,15 @@ export default function NFTTicketsSection() {
                                 validated={validated}
                                 id="attendeeForm"
                               >
+                                {warning !== '' ? (
+                                  <Alert
+                                    variant="warning"
+                                    dismissible
+                                    onClose={() => setWarning('')}
+                                  >
+                                    {warning}
+                                  </Alert>
+                                ) : null}
                                 <Form.Group>
                                   <Form.Row>
                                     <Col xs="12" sm="6">
@@ -916,45 +1220,71 @@ export default function NFTTicketsSection() {
                                   </Form.Row>
                                 </Form.Group>
                                 <Form.Group>
-                                  <Button
-                                    variant="primary"
-                                    type="submit"
-                                    onClick={handleBackBuyButton}
-                                    disabled={
-                                      currentAttendeeInfoIndex === 0 ||
-                                      disableCheckout
-                                    }
-                                  >
-                                    Back
-                                  </Button>
-                                  {'  '}
-                                  <Button
-                                    variant="primary"
-                                    type="submit"
-                                    onClick={handleBuyButton}
-                                    disabled={disableCheckout}
-                                  >
-                                    {attendeeInfos.length > 1 &&
-                                    currentAttendeeInfoIsNotLast()
-                                      ? 'Next Ticket'
-                                      : checkoutButtonText}
-                                  </Button>
-                                  <span>
-                                    {' '}
-                                    Current ticket price: $ ETH{' '}
-                                    {getTicketPrice(
-                                      !attendeeInfos[currentAttendeeInfoIndex]
-                                        .includeWorkshopsAndPreParty,
-                                      attendeeInfos[currentAttendeeInfoIndex]
-                                        .includeWorkshopsAndPreParty,
-                                      attendeeInfos[currentAttendeeInfoIndex]
-                                        .includeHotelExtra
-                                    )}
-                                  </span>
-                                  <span>
-                                    {' | '}
-                                    Current total price: $ ETH {total()}
-                                  </span>
+                                  <Form.Row>
+                                    <Col xs="12">
+                                      <Button
+                                        variant="primary"
+                                        type="submit"
+                                        onClick={handleBackBuyButton}
+                                        disabled={
+                                          currentAttendeeInfoIndex === 0 ||
+                                          disableCheckout
+                                        }
+                                      >
+                                        Back
+                                      </Button>
+                                      {'  '}
+                                      <Button
+                                        variant="primary"
+                                        type="submit"
+                                        onClick={handleBuyButton}
+                                        disabled={disableCheckout}
+                                      >
+                                        {attendeeInfos.length > 1 &&
+                                        currentAttendeeInfoIsNotLast()
+                                          ? 'Next Ticket'
+                                          : checkoutButtonText}
+                                      </Button>
+                                      <Form.Control
+                                        as="select"
+                                        aria-label="Network"
+                                        onChange={handleNetwork}
+                                        name="network"
+                                        style={{
+                                          display: 'inline',
+                                          width: 'auto',
+                                          marginLeft: '10px',
+                                        }}
+                                        value={currentNetwork}
+                                      >
+                                        {networks.map((network, i) => (
+                                          <option value={i}>
+                                            {network.networkInfo.chainName}
+                                          </option>
+                                        ))}
+                                      </Form.Control>
+                                    </Col>
+                                  </Form.Row>
+                                </Form.Group>
+                                <Form.Group>
+                                  <div>
+                                    <span>
+                                      {' '}
+                                      Current ticket price: $ ETH{' '}
+                                      {getTicketPrice(
+                                        !attendeeInfos[currentAttendeeInfoIndex]
+                                          .includeWorkshopsAndPreParty,
+                                        attendeeInfos[currentAttendeeInfoIndex]
+                                          .includeWorkshopsAndPreParty,
+                                        attendeeInfos[currentAttendeeInfoIndex]
+                                          .includeHotelExtra
+                                      )}
+                                    </span>
+                                    <span>
+                                      {' | '}
+                                      Total price: $ ETH {total()}
+                                    </span>
+                                  </div>
                                 </Form.Group>
                               </Form>
                             ) : null
