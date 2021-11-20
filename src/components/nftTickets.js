@@ -598,8 +598,8 @@ export default function NFTTicketsSection() {
       <>
         <h3>
           Here {svgTickets.length > 1 ? 'are' : 'is'} the NFT
-          {svgTickets.length > 1 ? 'tickets' : 'ticket'} you can publicaly
-          share, {svgTickets.length > 1 ? null : 'a '}
+          {svgTickets.length > 1 ? 'tickets' : 'ticket'} you can publicly share,{' '}
+          {svgTickets.length > 1 ? null : 'a '}
           private QR {svgTickets.length > 1 ? 'codes have' : 'code has'} been
           sent to your email to access the event,{' '}
           <a href="#tickets" onClick={generateTicketPdfs}>
@@ -610,12 +610,12 @@ export default function NFTTicketsSection() {
         </h3>
         {svgTickets.map((svg, i) => (
           <div>
-            Your ticket NFT,{' '}
+            View your NFT ticket{' '}
             <a
               href={`${networks[currentNetwork].marketplace}/${networks[currentNetwork].contract}/${ownerIds[i]}`}
               target="_blank"
             >
-              view it on opensea
+              on opensea
             </a>
             <img src={`${svg}`} />
           </div>
