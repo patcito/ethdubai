@@ -56,10 +56,14 @@ export default function NFTTicketsSection() {
   const OnGoingTxTextMessage = () => {
     switch (onGoingTxText.txText) {
       case 'connect':
-        return <h2>Please connect your wallet and accept the transaction.</h2>
+        return (
+          <h2 style={{ padding: '25px' }}>
+            Please connect your wallet and accept the transaction.
+          </h2>
+        )
       case 'approve':
         return (
-          <h2>
+          <h2 style={{ padding: '25px' }}>
             <a
               href={`${networks[currentNetwork].networkInfo.blockExplorerUrls[0]}tx/${onGoingTxText.tx.hash}`}
               target="_blank"
@@ -71,7 +75,7 @@ export default function NFTTicketsSection() {
 
       case 'mint':
         return (
-          <h2>
+          <h2 style={{ padding: '25px' }}>
             <a
               href={`https://ropsten.etherscan.io/tx/${onGoingTxText.tx.hash}`}
               target="_blank"
@@ -80,9 +84,15 @@ export default function NFTTicketsSection() {
             </a>
           </h2>
         )
+      case 'acceptMinting':
+        return (
+          <Button onClick={buy} style={{ margin: '25px' }}>
+            <h2>You can now mint your ticket by clicking here</h2>
+          </Button>
+        )
 
       default:
-        return <h2>{onGoingTxText.txText}</h2>
+        return <h2 style={{ padding: '25px' }}>{onGoingTxText.txText}</h2>
     }
   }
   const networks = [
@@ -214,7 +224,6 @@ export default function NFTTicketsSection() {
     },
   ]
   console.log(abi)
-  const CONTRACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
   const handleNetwork = async (e) => {
@@ -657,6 +666,8 @@ export default function NFTTicketsSection() {
     const account = signer.getAddress()
 
     const txTotalPrice = await contract.totalPrice(finalTickets)
+
+    setOngoingTxText({ txText: 'Please accept the transaction' })
     console.log('totalPriceTXXX', txTotalPrice)
     if (networks[currentNetwork].token !== '') {
       let tokenContract = new ethers.Contract(
@@ -683,10 +694,9 @@ export default function NFTTicketsSection() {
             try {
               const approveReceipt = await approveTx.wait()
               setOngoingTxText({
-                txText: 'Please accept the minting transaction now.',
+                txText: 'acceptMinting',
               })
-
-              manageBuyTx(finalPdfTickets, finalTickets, contract, {})
+              return
             } catch (error) {
               showWarning(error)
               console.log(error)
@@ -696,7 +706,6 @@ export default function NFTTicketsSection() {
             return
           }
         } else {
-          alert('above' + allowance)
           manageBuyTx(finalPdfTickets, finalTickets, contract, {})
         }
       } catch (error) {
@@ -1153,7 +1162,7 @@ export default function NFTTicketsSection() {
                                           Frontend Web3 Developer
                                         </option>
                                         <option value="2">
-                                          Fullstack developer
+                                          Fullstack Developer
                                         </option>
                                         <option value="3">
                                           Backend Developer
@@ -1344,7 +1353,9 @@ export default function NFTTicketsSection() {
                   </Row>
                   <Row>
                     <Col>
-                      <p style={{ fontSize: '9px' }}>{tix.tx}</p>
+                      <p style={{ fontSize: '9px' }}>
+                        {networks[currentNetwork].name} {tix.tx}
+                      </p>
                     </Col>
                   </Row>
                 </Container>
