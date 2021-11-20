@@ -906,7 +906,7 @@ export default function NFTTicketsSection() {
           <ul class="list-group">
             <li className="list-group-item d-flex justify-content-between align-items-center alignb">
               Conference Only: [Conference Ticket (March 30th) + Pre-Conference
-              Party (March 29th)]
+              Party (March 29th)] 0.1 ETH
               <span>
                 <select
                   onChange={(e, v) => {
@@ -928,9 +928,9 @@ export default function NFTTicketsSection() {
               </span>
             </li>
             <li className="list-group-item d-flex justify-content-between align-items-center alignb">
-              All included: [Conference Ticket + Workshop + Pre-Conference Party
-              + Special Yacht Pre-Party, Meet and Greet, Networking Event (March
-              28-30th)] 0.2 ETH
+              All included: [Conference Ticket + Workshop + Hackathon +
+              Pre-Conference Party + Special Yacht Pre-Party (March 28-29-30th)]
+              0.2 ETH
               <span>
                 <select
                   onChange={(e, v) => {
