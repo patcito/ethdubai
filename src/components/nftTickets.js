@@ -1175,11 +1175,11 @@ export default function NFTTicketsSection() {
             </li>
             <li className="list-group-item d-flex justify-content-between align-items-center alignb">
               <div>
-                <strong> All included Ticket:</strong>
+                <strong> Combo Ticket:</strong>
                 <ul>
                   <li>Conference Ticket (March 30th)</li>
                   <li>Pre-Conference Party (March 29th)</li>
-                  <li>Workshop and Hackathon (March 29th)</li>
+                  <li>All-day Workshops and Hackathon (March 29th)</li>
                   <li>Special Yacht Meet and Greet Pre-Party (March 28th)</li>
                 </ul>
                 <strong>Unit Price: 0.2 ETH</strong>
@@ -1249,7 +1249,7 @@ export default function NFTTicketsSection() {
                 networks[currentNetwork].abi,
                 signer
               )
-              generateTicketPdfs()
+              generateTicketPdfs(buyTx, pdfTickets)
             }}
           >
             Download Tickets
