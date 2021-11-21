@@ -231,6 +231,26 @@ export default function NFTTicketsSection() {
       },
     },
     {
+      contract: '0x9ED6fE2964F0468f180382470025CB3DBE946d1A',
+      token: '',
+      abi: abi.abi,
+      exchangeUrl: 'https://app.uniswap.org',
+      exchangeName: 'UniSwap',
+      tokenSymbol: 'ETH',
+      web3Name: 'Optimism Kovan',
+      networkInfo: {
+        chainId: '0x45',
+        chainName: 'Optimism Kovan',
+        rpcUrls: ['https://kovan.optimism.io/'],
+        nativeCurrency: {
+          name: 'ETHER',
+          symbol: 'ETH',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://kovan-optimistic.etherscan.io/'],
+      },
+    },
+    {
       contract: '0x2D65069FA23dBC7B54C6BbF0Dbef6cd1823d8E35',
       token: '',
       abi: abi.abi,
@@ -326,6 +346,7 @@ export default function NFTTicketsSection() {
         networks[value].networkInfo.chainName === 'Ethereum Ropsten' ||
         networks[value].networkInfo.chainName === 'hardhat' ||
         networks[value].networkInfo.chainName === 'Ethereum Rinkeby' ||
+        networks[value].networkInfo.chainName === 'Optimism Kovan' ||
         networks[value].networkInfo.chainName === 'Ethereum'
       ) {
         await window.ethereum
