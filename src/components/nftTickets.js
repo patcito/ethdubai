@@ -50,6 +50,7 @@ export default function NFTTicketsSection() {
   const [onGoingTxText, setOngoingTxText] = React.useState({ txText: '' })
   const [currentNetwork, setCurrentNetwork] = React.useState(0)
   const [warning, setWarning] = React.useState('')
+  const [tokenBalance, setTokenBalance] = React.useState(0)
   const [currentAttendeeInfoIndex, setCurrentAttendeeInfoIndex] =
     React.useState(0)
 
@@ -99,6 +100,9 @@ export default function NFTTicketsSection() {
     {
       contract: '',
       abi: abi.abi,
+      exchangeUrl: 'https://app.uniswap.org',
+      exchangeName: 'UniSwap',
+      tokenSymbol: 'ETH',
       marketplace: 'https://opensea.io/assets/',
       networkInfo: {
         chainId: '0x1',
@@ -111,6 +115,9 @@ export default function NFTTicketsSection() {
       contract: '',
       abi: abiNonEth.abi,
       marketplace: 'https://opensea.io/assets/matic/',
+      exchangeUrl: 'https://www.quickswap.finance/#/swap',
+      exchangeName: 'QuickSwap',
+      tokenSymbol: 'WETH',
       networkInfo: {
         chainId: ethers.BigNumber.from('137').toHexString(),
         chainName: 'Polygon',
@@ -127,6 +134,10 @@ export default function NFTTicketsSection() {
       contract: '',
       abi: abiNonEth.abi,
       marketplace: 'https://artion.io/explore/',
+      exchangeUrl:
+        'https://swap.spiritswap.finance/#/exchange/swap/0x74b23882a30290451A17c44f4F05243b6b58C76d',
+      exchangeName: 'SpiritSwap',
+      tokenSymbol: 'WETH',
       networkInfo: {
         chainId: ethers.BigNumber.from('250').toHexString(),
         chainName: 'Fantom',
@@ -143,6 +154,9 @@ export default function NFTTicketsSection() {
       contract: '0x1a0403e116aE61eAaA013a77779af72e073F674C',
       abi: abi.abi,
       token: '',
+      exchangeUrl: 'https://app.uniswap.org',
+      exchangeName: 'UniSwap',
+      tokenSymbol: 'ETH',
       networkInfo: {
         chainId: '0x3',
         chainName: 'Ethereum Ropsten',
@@ -153,8 +167,11 @@ export default function NFTTicketsSection() {
     {
       contract: '0x1246799ccd360C668CBFBD992978692417B70a9A',
       abi: abi.abi,
+      exchangeUrl: 'https://app.uniswap.org',
+      exchangeName: 'UniSwap',
       marketplace: 'https://testnets.opensea.io/assets/',
       token: '',
+      tokenSymbol: 'ETH',
       networkInfo: { chainId: '0x4', chainName: 'Ethereum Rinkeby' },
     },
     {
@@ -162,6 +179,9 @@ export default function NFTTicketsSection() {
       abi: abiNonEth.abi,
       marketplace: 'https://testnets.opensea.io/assets/matic',
       token: '0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1',
+      exchangeUrl: 'https://www.quickswap.finance/#/swap',
+      exchangeName: 'QuickSwap',
+      tokenSymbol: 'WETH',
       networkInfo: {
         chainId: '0x13881',
         chainName: 'Polygon Mumbai',
@@ -178,6 +198,11 @@ export default function NFTTicketsSection() {
       contract: '0x9769bdE6d1832a0Ba9b8eBe4Da81fC3Cbd82f577',
       abi: abiNonEth.abi,
       token: '0x6244D7f9245ad590490338db2fbEd815c2358034',
+      exchangeUrl:
+        'https://swap.spiritswap.finance/#/exchange/swap/0x74b23882a30290451A17c44f4F05243b6b58C76d',
+      exchangeName: 'SpiritSwap',
+      tokenSymbol: 'WETH',
+
       networkInfo: {
         chainId: '0xFA2',
         chainName: 'Fantom Testnet',
@@ -194,6 +219,9 @@ export default function NFTTicketsSection() {
       contract: '0x2D65069FA23dBC7B54C6BbF0Dbef6cd1823d8E35',
       token: '',
       abi: abi.abi,
+      exchangeUrl: 'https://app.uniswap.org',
+      exchangeName: 'UniSwap',
+      tokenSymbol: 'ETH',
       networkInfo: {
         chainId: '0x66EEB',
         chainName: 'Arbitrum Testnet Rinkeby',
@@ -210,6 +238,9 @@ export default function NFTTicketsSection() {
       contract: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
       abi: abi.abi,
       token: '',
+      exchangeUrl: 'https://app.uniswap.org',
+      exchangeName: 'UniSwap',
+      tokenSymbol: 'ETH',
       networkInfo: {
         chainId: '0x7A69',
         chainName: 'hardhat',
@@ -248,9 +279,10 @@ export default function NFTTicketsSection() {
             '0x05A2C738cff019c405D7c5e8a4488e34D82be161',
           ],
         })
-        .then((result) => {
+        .then(async (result) => {
           console.log(value)
           setCurrentNetwork(value)
+          await getEthBalance(value)
         })
     } else {
       await window.ethereum
@@ -261,11 +293,69 @@ export default function NFTTicketsSection() {
             '0x05A2C738cff019c405D7c5e8a4488e34D82be161',
           ],
         })
-        .then((result) => {
+        .then(async (result) => {
           console.log(value)
           setCurrentNetwork(value)
+          await getTokenBalance(value)
         })
     }
+  }
+  const getEthBalance = async (networkIndex) => {
+    const provider = await web3Modal.connect()
+    const newProvider = new ethers.providers.Web3Provider(provider)
+    const signer = newProvider.getSigner()
+    const account = signer.getAddress()
+    try {
+      let balance = await newProvider.getBalance(account)
+      // convert a currency unit from wei to ether
+      const balanceInEth = ethers.utils.formatEther(balance)
+      setTokenBalance('ETH ' + parseFloat(balanceInEth).toFixed(3))
+      console.log(`balance: ${balanceInEth} ETH`)
+      return balance
+    } catch (error) {
+      return 0
+    }
+  }
+  const showHtmlWarning = () => {
+    return (
+      <p>
+        You do not have enough {networks[currentNetwork].tokenSymbol}. You need
+        to get some on an exchange such as{' '}
+        <a href={networks[currentNetwork].exchangeUrl}>
+          {networks[currentNetwork].exchangeName}
+        </a>
+      </p>
+    )
+  }
+  const getTokenBalance = async (networkIndex) => {
+    const provider = await web3Modal.connect()
+    const newProvider = new ethers.providers.Web3Provider(provider)
+    const signer = newProvider.getSigner()
+    const account = signer.getAddress()
+
+    if (networks[networkIndex].token !== '') {
+      let tokenContract = new ethers.Contract(
+        networks[networkIndex].token,
+        erc20abi,
+        signer
+      )
+      try {
+        let balance = await tokenContract.balanceOf(account)
+        const newTokenBalance = ethers.utils.formatEther(balance)
+
+        setTokenBalance('ETH ' + parseFloat(newTokenBalance).toFixed(3))
+        return balance
+      } catch (error) {
+        return 0
+      }
+    }
+  }
+
+  const getCurrentNetworkBalance = async () => {
+    if (networks[currentNetwork].token !== '') {
+      return await getTokenBalance(currentNetwork)
+    }
+    return await getEthBalance(currentNetwork)
   }
   const handleIncludeHotel = () => {
     let attendeeInfosTmp = [...attendeeInfos]
@@ -597,7 +687,7 @@ export default function NFTTicketsSection() {
     return (
       <>
         <h3>
-          Here {svgTickets.length > 1 ? 'are' : 'is'} the NFT
+          Here {svgTickets.length > 1 ? 'are' : 'is'} the NFT{' '}
           {svgTickets.length > 1 ? 'tickets' : 'ticket'} you can publicly share,{' '}
           {svgTickets.length > 1 ? null : 'a '}
           private QR {svgTickets.length > 1 ? 'codes have' : 'code has'} been
@@ -626,7 +716,11 @@ export default function NFTTicketsSection() {
   const showWarning = (error) => {
     setDisableCheckout(false)
     console.log('errorrrrr', error)
-    setWarning(error.message)
+    let message = error.message
+    if (error.data?.message) {
+      message += error.data.message
+    }
+    setWarning(message)
     setCheckoutButtonText('Checkout')
   }
 
@@ -664,9 +758,19 @@ export default function NFTTicketsSection() {
       ethers.utils.parseEther('0.1').toHexString()
     )
     const account = signer.getAddress()
-
+    console.log('okkkkkkkkkk')
     const txTotalPrice = await contract.totalPrice(finalTickets)
 
+    console.log('okkkkkkkkkk2')
+    const balance = await getCurrentNetworkBalance(currentNetwork)
+
+    console.log('okkkkkkkkkk3')
+    console.log('txtotal xxxxxxxx', txTotalPrice)
+    console.log('tokenBalance xxxxxxxx', balance)
+    if (balance.lt(txTotalPrice)) {
+      showWarning({ message: 'balance' })
+      return
+    }
     setOngoingTxText({ txText: 'Please accept the transaction' })
     console.log('totalPriceTXXX', txTotalPrice)
     if (networks[currentNetwork].token !== '') {
@@ -1064,7 +1168,9 @@ export default function NFTTicketsSection() {
                                     dismissible
                                     onClose={() => setWarning('')}
                                   >
-                                    {warning}
+                                    {warning === 'balance'
+                                      ? showHtmlWarning()
+                                      : warning}
                                   </Alert>
                                 ) : null}
                                 <Form.Group>
@@ -1254,24 +1360,26 @@ export default function NFTTicketsSection() {
                                           ? 'Next Ticket'
                                           : checkoutButtonText}
                                       </Button>
-                                      <Form.Control
-                                        as="select"
-                                        aria-label="Network"
-                                        onChange={handleNetwork}
-                                        name="network"
-                                        style={{
-                                          display: 'inline',
-                                          width: 'auto',
-                                          marginLeft: '10px',
-                                        }}
-                                        value={currentNetwork}
-                                      >
-                                        {networks.map((network, i) => (
-                                          <option value={i}>
-                                            {network.networkInfo.chainName}
-                                          </option>
-                                        ))}
-                                      </Form.Control>
+                                      {!currentAttendeeInfoIsNotLast() ? (
+                                        <Form.Control
+                                          as="select"
+                                          aria-label="Network"
+                                          onChange={handleNetwork}
+                                          name="network"
+                                          style={{
+                                            display: 'inline',
+                                            width: 'auto',
+                                            marginLeft: '10px',
+                                          }}
+                                          value={currentNetwork}
+                                        >
+                                          {networks.map((network, i) => (
+                                            <option value={i}>
+                                              {network.networkInfo.chainName}
+                                            </option>
+                                          ))}
+                                        </Form.Control>
+                                      ) : null}
                                     </Col>
                                   </Form.Row>
                                 </Form.Group>
@@ -1279,7 +1387,7 @@ export default function NFTTicketsSection() {
                                   <div>
                                     <span>
                                       {' '}
-                                      Current ticket price: $ ETH{' '}
+                                      Current ticket price: ETH{' '}
                                       {getTicketPrice(
                                         !attendeeInfos[currentAttendeeInfoIndex]
                                           .includeWorkshopsAndPreParty,
@@ -1291,8 +1399,13 @@ export default function NFTTicketsSection() {
                                     </span>
                                     <span>
                                       {' | '}
-                                      Total price: $ ETH {total()}
+                                      Total price: ETH {total()}
                                     </span>
+                                    {tokenBalance ? (
+                                      <span>
+                                        {' | '} Current balance: {tokenBalance}
+                                      </span>
+                                    ) : null}
                                   </div>
                                 </Form.Group>
                               </Form>
