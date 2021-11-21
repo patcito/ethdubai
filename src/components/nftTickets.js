@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
-import ReactMarkdown from 'react-markdown'
-import Img from 'gatsby-image'
+import React, { useEffect, useState } from 'react'
+
 import Web3Modal from 'web3modal'
+import WalletConnectProvider from '@walletconnect/web3-provider'
+
 import { ethers } from 'ethers'
 import {
   Container,
@@ -51,6 +51,7 @@ export default function NFTTicketsSection() {
   const [currentNetwork, setCurrentNetwork] = React.useState(0)
   const [warning, setWarning] = React.useState('')
   const [tokenBalance, setTokenBalance] = React.useState(0)
+  const [walletNetwork, setWalletNetwork] = React.useState({})
   const [currentAttendeeInfoIndex, setCurrentAttendeeInfoIndex] =
     React.useState(0)
 
@@ -104,6 +105,8 @@ export default function NFTTicketsSection() {
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       marketplace: 'https://opensea.io/assets/',
+      marketplaceName: 'opensea',
+      web3Network: 'mainnet',
       networkInfo: {
         chainId: '0x1',
         chainName: 'Ethereum',
@@ -114,6 +117,8 @@ export default function NFTTicketsSection() {
     {
       contract: '',
       abi: abiNonEth.abi,
+      web3Network: 'matic',
+      marketplaceName: 'opensea',
       marketplace: 'https://opensea.io/assets/matic/',
       exchangeUrl: 'https://www.quickswap.finance/#/swap',
       exchangeName: 'QuickSwap',
@@ -133,10 +138,12 @@ export default function NFTTicketsSection() {
     {
       contract: '',
       abi: abiNonEth.abi,
-      marketplace: 'https://artion.io/explore/',
+      marketplaceName: 'artion',
+      marketplace: 'https://artion.io/explore',
       exchangeUrl:
         'https://swap.spiritswap.finance/#/exchange/swap/0x74b23882a30290451A17c44f4F05243b6b58C76d',
       exchangeName: 'SpiritSwap',
+      web3Name: 'Fantom',
       tokenSymbol: 'WETH',
       networkInfo: {
         chainId: ethers.BigNumber.from('250').toHexString(),
@@ -156,6 +163,7 @@ export default function NFTTicketsSection() {
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
+      web3Name: 'Ropsten',
       tokenSymbol: 'ETH',
       networkInfo: {
         chainId: '0x3',
@@ -169,6 +177,8 @@ export default function NFTTicketsSection() {
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
+      web3Name: 'Rinkeby',
+      marketplaceName: 'opensea',
       marketplace: 'https://testnets.opensea.io/assets/',
       token: '',
       tokenSymbol: 'ETH',
@@ -177,10 +187,12 @@ export default function NFTTicketsSection() {
     {
       contract: '0x2C445DAaa70fc39B14cF7a37d9501aD65DbD24a8',
       abi: abiNonEth.abi,
+      marketplaceName: 'opensea',
       marketplace: 'https://testnets.opensea.io/assets/matic',
       token: '0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1',
       exchangeUrl: 'https://www.quickswap.finance/#/swap',
       exchangeName: 'QuickSwap',
+      web3Name: 'Polygon Mumbai',
       tokenSymbol: 'WETH',
       networkInfo: {
         chainId: '0x13881',
@@ -201,8 +213,11 @@ export default function NFTTicketsSection() {
       exchangeUrl:
         'https://swap.spiritswap.finance/#/exchange/swap/0x74b23882a30290451A17c44f4F05243b6b58C76d',
       exchangeName: 'SpiritSwap',
-      tokenSymbol: 'WETH',
+      marketplaceName: 'artion',
+      marketplace: 'https://artion.io/explore',
 
+      tokenSymbol: 'WETH',
+      web3Name: 'Fantom Testnet',
       networkInfo: {
         chainId: '0xFA2',
         chainName: 'Fantom Testnet',
@@ -222,6 +237,7 @@ export default function NFTTicketsSection() {
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
+      web3Name: 'Arbitrum Rinkeby',
       networkInfo: {
         chainId: '0x66EEB',
         chainName: 'Arbitrum Testnet Rinkeby',
@@ -241,6 +257,7 @@ export default function NFTTicketsSection() {
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
+      web3Name: 'Hardhat',
       networkInfo: {
         chainId: '0x7A69',
         chainName: 'hardhat',
@@ -257,59 +274,151 @@ export default function NFTTicketsSection() {
   console.log(abi)
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
+  const providerOptions = {
+    walletconnect: {
+      package: WalletConnectProvider, // required
+      options: {
+        infuraId: '753e543666274e8f9ab27ff3a082c75c', // required
+      },
+    },
+  }
+  const initWeb3Modal = async () => {
+    setShowCheckout(false)
+
+    const web3Modal = new Web3Modal({
+      cacheProvider: true, // optional
+      providerOptions, // required
+      disableInjectedProvider: false,
+    })
+    try {
+      console.log('proviiiiii', provider)
+      const provider = await web3Modal.connect()
+      const newProvider = new ethers.providers.Web3Provider(provider)
+      setEthersProvider(newProvider)
+      setShowCheckout(true)
+      const network = await getWalletNetwork(newProvider)
+      setCurrentNetworkBasedOnWallet(network)
+      return newProvider
+    } catch (error) {
+      console.log(error)
+      setShowCheckout(true)
+      return {}
+    }
+    return {}
+  }
+  const setCurrentNetworkBasedOnWallet = (network) => {
+    networks.map((n, i) => {
+      let x = parseInt(n.networkInfo.chainId, 16)
+      console.log('nnnnnn', n, i, x, network)
+      if (x === network.chainId) {
+        setCurrentNetwork(i)
+      }
+    })
+  }
   const handleNetwork = async (e) => {
     let value = e.target.value
-    const provider = await web3Modal.connect()
-    const newProvider = new ethers.providers.Web3Provider(provider)
-    const signer = newProvider.getSigner()
-    const account = signer.getAddress()
+    //    const newProvider = new ethers.providers.Web3Provider(ethersProvider)
+    //    const provider = await web3Modal.connect()
 
     console.log(value)
-    if (
-      networks[value].networkInfo.chainName === 'Ethereum Ropsten' ||
-      networks[value].networkInfo.chainName === 'hardhat' ||
-      networks[value].networkInfo.chainName === 'Ethereum Rinkeby' ||
-      networks[value].networkInfo.chainName === 'Ethereum'
-    ) {
-      await window.ethereum
-        .request({
-          method: 'wallet_switchEthereumChain',
-          params: [
-            { chainId: networks[value].networkInfo.chainId },
-            '0x05A2C738cff019c405D7c5e8a4488e34D82be161',
-          ],
-        })
-        .then(async (result) => {
-          console.log(value)
-          setCurrentNetwork(value)
-          await getEthBalance(value)
-        })
+    if (window.ethereum) {
+      if (
+        networks[value].networkInfo.chainName === 'Ethereum Ropsten' ||
+        networks[value].networkInfo.chainName === 'hardhat' ||
+        networks[value].networkInfo.chainName === 'Ethereum Rinkeby' ||
+        networks[value].networkInfo.chainName === 'Ethereum'
+      ) {
+        await window.ethereum
+          .request({
+            method: 'wallet_switchEthereumChain',
+            params: [
+              { chainId: networks[value].networkInfo.chainId },
+              '0x05A2C738cff019c405D7c5e8a4488e34D82be161',
+            ],
+          })
+          .then(async (result) => {
+            console.log(value)
+            setCurrentNetwork(value)
+            const web3Modal = new Web3Modal({
+              providerOptions, // required
+            })
+            const provider = await web3Modal.connect()
+            const newProvider = new ethers.providers.Web3Provider(provider)
+            setEthersProvider(newProvider)
+
+            await getEthBalance(newProvider)
+          })
+      } else {
+        await window.ethereum
+          .request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              networks[value].networkInfo,
+              '0x05A2C738cff019c405D7c5e8a4488e34D82be161',
+            ],
+          })
+          .then(async (result) => {
+            console.log(value)
+            const web3Modal = new Web3Modal({
+              providerOptions, // required
+            })
+            const provider = await web3Modal.connect()
+            const newProvider = new ethers.providers.Web3Provider(provider)
+            setEthersProvider(newProvider)
+
+            setCurrentNetwork(value)
+            await getTokenBalance(value)
+          })
+      }
     } else {
-      await window.ethereum
-        .request({
-          method: 'wallet_addEthereumChain',
-          params: [
-            networks[value].networkInfo,
-            '0x05A2C738cff019c405D7c5e8a4488e34D82be161',
-          ],
+      if (
+        networks[value].networkInfo.chainName === 'Ethereum Ropsten' ||
+        networks[value].networkInfo.chainName === 'hardhat' ||
+        networks[value].networkInfo.chainName === 'Ethereum Rinkeby' ||
+        networks[value].networkInfo.chainName === 'Ethereum'
+      ) {
+        const web3Modal = new Web3Modal({
+          providerOptions, // required
         })
-        .then(async (result) => {
-          console.log(value)
-          setCurrentNetwork(value)
-          await getTokenBalance(value)
+        const provider = await web3Modal.connect()
+        const newProvider = new ethers.providers.Web3Provider(provider)
+        setEthersProvider(newProvider)
+
+        setCurrentNetwork(value)
+        await getEthBalance(provider)
+      } else {
+        const web3Modal = new Web3Modal({
+          providerOptions, // required
         })
+        const provider = await web3Modal.connect()
+        const newProvider = new ethers.providers.Web3Provider(provider)
+        setEthersProvider(newProvider)
+
+        setCurrentNetwork(value)
+        await getTokenBalance(value)
+      }
     }
   }
-  const getEthBalance = async (networkIndex) => {
-    const provider = await web3Modal.connect()
-    const newProvider = new ethers.providers.Web3Provider(provider)
+  const getWalletNetwork = async (newProvider) => {
+    let p = ethersProvider || newProvider
+    if (p) {
+      const network = await p.getNetwork()
+      console.log('wawawaw', network)
+      setWalletNetwork(network)
+      return network
+    }
+    return {}
+  }
+  const getEthBalance = async (newProvider) => {
+    //    const newProvider = new ethers.providers.Web3Provider(provider)
+
     const signer = newProvider.getSigner()
     const account = signer.getAddress()
     try {
       let balance = await newProvider.getBalance(account)
       // convert a currency unit from wei to ether
       const balanceInEth = ethers.utils.formatEther(balance)
-      setTokenBalance('ETH ' + parseFloat(balanceInEth).toFixed(3))
+      setTokenBalance(parseFloat(balanceInEth).toFixed(3))
       console.log(`balance: ${balanceInEth} ETH`)
       return balance
     } catch (error) {
@@ -328,8 +437,15 @@ export default function NFTTicketsSection() {
     )
   }
   const getTokenBalance = async (networkIndex) => {
+    //const provider = await web3Modal.connect()
+    //const newProvider = new ethers.providers.Web3Provider(provider)
+    const web3Modal = new Web3Modal({
+      providerOptions, // required
+    })
     const provider = await web3Modal.connect()
     const newProvider = new ethers.providers.Web3Provider(provider)
+    setEthersProvider(newProvider)
+
     const signer = newProvider.getSigner()
     const account = signer.getAddress()
 
@@ -355,7 +471,7 @@ export default function NFTTicketsSection() {
     if (networks[currentNetwork].token !== '') {
       return await getTokenBalance(currentNetwork)
     }
-    return await getEthBalance(currentNetwork)
+    return await getEthBalance(ethersProvider)
   }
   const handleIncludeHotel = () => {
     let attendeeInfosTmp = [...attendeeInfos]
@@ -506,7 +622,7 @@ export default function NFTTicketsSection() {
       ).toString(16)
     )
   }
-  const handleBuyButton = (e) => {
+  const handleBuyButton = async (e) => {
     e.preventDefault()
     console.log('all', attendeeInfos)
     const form = document.getElementById('attendeeForm')
@@ -520,7 +636,11 @@ export default function NFTTicketsSection() {
     if (currentAttendeeInfoIsNotLast()) {
       setCurrentAttendeeInfoIndex(currentAttendeeInfoIndex + 1)
     } else {
-      buy(e)
+      if (ethersProvider) {
+        buy(e)
+      } else {
+        await initWeb3Modal()
+      }
     }
     console.log(currentAttendeeInfoIndex)
     e.preventDefault()
@@ -652,8 +772,10 @@ export default function NFTTicketsSection() {
     if (owned) {
       ownedIdsArr = [...owned]
     }
-    const provider = await web3Modal.connect()
-    const newProvider = new ethers.providers.Web3Provider(provider)
+    //const provider = await web3Modal.connect()
+    //const newProvider = new ethers.providers.Web3Provider(provider)
+
+    const newProvider = ethersProvider
     setEthersProvider(newProvider)
     const signer = newProvider.getSigner()
     let contract = new ethers.Contract(
@@ -705,7 +827,7 @@ export default function NFTTicketsSection() {
               href={`${networks[currentNetwork].marketplace}/${networks[currentNetwork].contract}/${ownerIds[i]}`}
               target="_blank"
             >
-              on opensea
+              on {networks[currentNetwork].marketplaceName}
             </a>
             <img src={`${svg}`} />
           </div>
@@ -730,9 +852,11 @@ export default function NFTTicketsSection() {
     setDisableCheckout(true)
     setOngoingTxText({ txText: 'connect' })
     setCheckoutButtonText('Waiting for transaction confirmation')
-    const provider = await web3Modal.connect()
-    const newProvider = new ethers.providers.Web3Provider(provider)
-    setEthersProvider(newProvider)
+    //const provider = await web3Modal.connect()
+    //const newProvider = new ethers.providers.Web3Provider(provider)
+    const newProvider = ethersProvider
+
+    //setEthersProvider(newProvider)
     const signer = newProvider.getSigner()
     const network = await newProvider.getNetwork()
     console.log('chainiddddd', network)
@@ -993,15 +1117,6 @@ export default function NFTTicketsSection() {
     setAttendeeInfos(tickets)
     setCurrentAttendeeInfoIndex(0)
   }
-  const providerOptions = {
-    /* See Provider Options Section */
-  }
-
-  const web3Modal = new Web3Modal({
-    network: 'mainnet', // optional
-    cacheProvider: true, // optional
-    providerOptions, // required
-  })
 
   return (
     <>
@@ -1009,8 +1124,14 @@ export default function NFTTicketsSection() {
         <div style={{ textAlign: 'left' }}>
           <ul class="list-group">
             <li className="list-group-item d-flex justify-content-between align-items-center alignb">
-              Conference Only: [Conference Ticket (March 30th) + Pre-Conference
-              Party (March 29th)] 0.1 ETH
+              <div>
+                Conference Only Ticket:
+                <ul>
+                  <li>Conference Ticket (March 30th)</li>
+                  <li>Pre-Conference Party (March 29th)</li>
+                </ul>
+                <strong>Price: 0.1 ETH</strong>
+              </div>
               <span>
                 <select
                   onChange={(e, v) => {
@@ -1032,9 +1153,16 @@ export default function NFTTicketsSection() {
               </span>
             </li>
             <li className="list-group-item d-flex justify-content-between align-items-center alignb">
-              All included: [Conference Ticket + Workshop + Hackathon +
-              Pre-Conference Party + Special Yacht Pre-Party (March 28-29-30th)]
-              0.2 ETH
+              <div>
+                All included Ticket:
+                <ul>
+                  <li>Conference Ticket (March 30th)</li>
+                  <li>Pre-Conference Party (March 29th)</li>
+                  <li>Workshop and Hackathon (March 29th)</li>
+                  <li>Special Yacht Meet and Greet Pre-Party (March 28th)</li>
+                </ul>
+                <strong>Price: 0.2 ETH</strong>
+              </div>
               <span>
                 <select
                   onChange={(e, v) => {
@@ -1056,7 +1184,7 @@ export default function NFTTicketsSection() {
               </span>
             </li>
             <li className="list-group-item d-flex justify-content-between align-items-center alignb">
-              Total
+              <strong>Total</strong>
               <span>
                 <button
                   className="addHotel"
@@ -1066,7 +1194,7 @@ export default function NFTTicketsSection() {
                 >
                   {includeHotel ? 'remove hotel' : 'include hotel'}
                 </button>
-                {total()} ETH
+                <strong> {total()} ETH</strong>
               </span>
             </li>
             <li className="list-group-item d-flex justify-content-between align-items-center alignb">
@@ -1088,9 +1216,11 @@ export default function NFTTicketsSection() {
         {pdfTickets.length > 0 && (
           <button
             onClick={async () => {
-              const provider = await web3Modal.connect()
-              const newProvider = new ethers.providers.Web3Provider(provider)
-              setEthersProvider(newProvider)
+              //          const provider = await web3Modal.connect()
+              //        const newProvider = new ethers.providers.Web3Provider(provider)
+
+              const newProvider = ethersProvider
+              //              setEthersProvider(newProvider)
               console.log(newProvider)
               const signer = newProvider.getSigner()
               let contract = new ethers.Contract(
@@ -1118,8 +1248,11 @@ export default function NFTTicketsSection() {
                 <button
                   type="button"
                   onClick={() => {
-                    setShowCheckout(false)
-                    if (window) history.pushState(null, null, '/')
+                    let ok = confirm('Are you sure you want to close?')
+                    if (ok) {
+                      setShowCheckout(false)
+                      if (window) history.pushState(null, null, '/')
+                    }
                   }}
                   className="close"
                   data-dismiss="modal"
@@ -1349,6 +1482,7 @@ export default function NFTTicketsSection() {
                                         Back
                                       </Button>
                                       {'  '}
+                                      {}
                                       <Button
                                         variant="primary"
                                         type="submit"
@@ -1358,9 +1492,12 @@ export default function NFTTicketsSection() {
                                         {attendeeInfos.length > 1 &&
                                         currentAttendeeInfoIsNotLast()
                                           ? 'Next Ticket'
-                                          : checkoutButtonText}
+                                          : ethersProvider
+                                          ? checkoutButtonText
+                                          : 'Connect'}
                                       </Button>
-                                      {!currentAttendeeInfoIsNotLast() ? (
+                                      {!currentAttendeeInfoIsNotLast() &&
+                                      ethersProvider ? (
                                         <Form.Control
                                           as="select"
                                           aria-label="Network"
@@ -1401,9 +1538,12 @@ export default function NFTTicketsSection() {
                                       {' | '}
                                       Total price: ETH {total()}
                                     </span>
-                                    {tokenBalance ? (
+                                    {ethersProvider && tokenBalance ? (
                                       <span>
-                                        {' | '} Current balance: {tokenBalance}
+                                        {' | '} Current balance:{' '}
+                                        {networks[currentNetwork].tokenSymbol}{' '}
+                                        {tokenBalance} on{' '}
+                                        {networks[currentNetwork].web3Name}
                                       </span>
                                     ) : null}
                                   </div>
@@ -1467,7 +1607,7 @@ export default function NFTTicketsSection() {
                   <Row>
                     <Col>
                       <p style={{ fontSize: '9px' }}>
-                        {networks[currentNetwork].name} {tix.tx}
+                        {networks[currentNetwork].web3Name} {tix.tx}
                       </p>
                     </Col>
                   </Row>

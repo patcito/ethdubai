@@ -14,6 +14,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         crypto: require.resolve('crypto-browserify'),
         stream: require.resolve('stream-browserify'),
         buffer: require.resolve('buffer'),
+        os: require.resolve('os-browserify/browser'),
+        https: require.resolve('https-browserify'),
+        http: require.resolve('stream-http'),
       },
     },
     plugins: [
