@@ -13,6 +13,7 @@ import {
   Button,
   Alert,
   Collapse,
+  Badge,
 } from 'react-bootstrap'
 import abi from './abis/ETHDubaiTickets.json'
 import abiNonEth from './abis/ETHDubaiTicketsERC20.json'
@@ -82,7 +83,7 @@ export default function NFTTicketsSection() {
         return (
           <h2 style={{ padding: '25px' }}>
             <a
-              href={`https://ropsten.etherscan.io/tx/${onGoingTxText.tx.hash}`}
+              href={`${networks[currentNetwork].networkInfo.blockExplorerUrls[0]}tx/${onGoingTxText.tx.hash}`}
               target="_blank"
             >
               Minting transaction in progress, please wait... 🔗
@@ -161,7 +162,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x1a0403e116aE61eAaA013a77779af72e073F674C',
+      contract: '0xef52BC6b70ed2d8a1923203BBb296008410c2E2c',
       abi: abi.abi,
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
@@ -176,7 +177,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x1246799ccd360C668CBFBD992978692417B70a9A',
+      contract: '0x9ab1130cdfcE397aB6283e681fDaa2B1D49e7CBD',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
@@ -188,7 +189,7 @@ export default function NFTTicketsSection() {
       networkInfo: { chainId: '0x4', chainName: 'Ethereum Rinkeby' },
     },
     {
-      contract: '0x2C445DAaa70fc39B14cF7a37d9501aD65DbD24a8',
+      contract: '0xe6f07674675e8f02Aa3822e8BF57AbB406C36799',
       abi: abiNonEth.abi,
       marketplaceName: 'opensea',
       marketplace: 'https://testnets.opensea.io/assets/matic',
@@ -210,7 +211,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x9769bdE6d1832a0Ba9b8eBe4Da81fC3Cbd82f577',
+      contract: '0xE345546Cc2616DBC51b51933FC32D5708d90BF75',
       abi: abiNonEth.abi,
       token: '0x6244D7f9245ad590490338db2fbEd815c2358034',
       exchangeUrl:
@@ -234,7 +235,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x9ED6fE2964F0468f180382470025CB3DBE946d1A',
+      contract: '0xfb0b3E0f27a2a858cc6656627E662B0D3cd5b19b',
       token: '',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
@@ -274,7 +275,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+      contract: '0xa85233C63b9Ee964Add6F2cffe00Fd84eb32338f',
       abi: abi.abi,
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
@@ -314,9 +315,19 @@ export default function NFTTicketsSection() {
       disableInjectedProvider: false,
     })
     try {
-      console.log('proviiiiii', provider)
       const provider = await web3Modal.connect()
+      provider.on('accountsChanged', async (accounts) => {
+        await initWeb3Modal()
+        setTokenBalance(null)
+      })
+
+      // Subscribe to chainId change
+      provider.on('chainChanged', async (chainId) => {
+        await initWeb3Modal()
+        setTokenBalance(null)
+      })
       const newProvider = new ethers.providers.Web3Provider(provider)
+      console.log('ethersprovider', newProvider)
       setEthersProvider(newProvider)
       setShowCheckout(true)
       const network = await getWalletNetwork(newProvider)
@@ -483,7 +494,7 @@ export default function NFTTicketsSection() {
         let balance = await tokenContract.balanceOf(account)
         const newTokenBalance = ethers.utils.formatEther(balance)
 
-        setTokenBalance('ETH ' + parseFloat(newTokenBalance).toFixed(3))
+        setTokenBalance('' + parseFloat(newTokenBalance).toFixed(3))
         return balance
       } catch (error) {
         return 0
@@ -1696,7 +1707,22 @@ export default function NFTTicketsSection() {
                         </h2>
                       </p>
                       <p>{tix.attendeeInfo.email}</p>
-                      <p>{tix.ticketOption}</p>
+                      <p>
+                        {tix.ticketOption
+                          .replace(/([a-z])([A-Z])/g, '$1 $2')
+                          .split(' ')
+                          .map((w) => {
+                            return (
+                              <Badge
+                                pill
+                                variant="primary"
+                                style={{ marginRight: '5px' }}
+                              >
+                                {w}
+                              </Badge>
+                            )
+                          })}
+                      </p>
                       <p>{tix.attendeeInfo.bio}</p>
                       <p>{tix.attendeeInfo.company}</p>
                       <p>{tix.attendeeInfo.telegram}</p>
