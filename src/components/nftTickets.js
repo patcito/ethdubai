@@ -12,6 +12,7 @@ import {
   Col,
   Button,
   Alert,
+  Collapse,
 } from 'react-bootstrap'
 import abi from './abis/ETHDubaiTickets.json'
 import abiNonEth from './abis/ETHDubaiTicketsERC20.json'
@@ -31,6 +32,8 @@ import {
 import { useEventListener } from 'eth-hooks/events/useEventListener'
 export default function NFTTicketsSection() {
   //const [message, setMessage] = React.useState({ message: '', status: 'error' })
+  const [openDesc1, setOpenDesc1] = useState(false)
+  const [openDesc2, setOpenDesc2] = useState(false)
   const [ethersProvider, setEthersProvider] = useState()
   const [oneDayTicket, setOneDayTicket] = useState(0)
   const [threeDayTicket, setThreeDayTicket] = useState(0)
@@ -835,7 +838,10 @@ export default function NFTTicketsSection() {
           {svgTickets.length > 1 ? null : 'a '}
           private QR {svgTickets.length > 1 ? 'codes have' : 'code has'} been
           sent to your email to access the event,{' '}
-          <a href="#tickets" onClick={generateTicketPdfs}>
+          <a
+            href="#tickets"
+            onClick={() => generateTicketPdfs(buyTx, pdfTickets)}
+          >
             {' '}
             you can also download your QR code here
           </a>
@@ -1035,6 +1041,23 @@ export default function NFTTicketsSection() {
       return 0.4
     }
   }
+  const getAllTicketsPrices = () => {
+    let total = ethers.utils.parseEther('0.0')
+    let totalFinal = ethers.utils.parseEther('0.0')
+
+    attendeeInfos.map((ai) => {
+      let price = getTicketPrice(
+        !ai.includeWorkshopsAndPreParty,
+        ai.includeWorkshopsAndPreParty,
+        ai.includeHotelExtra
+      )
+      let priceBN = ethers.utils.parseEther(price + '')
+      console.log('ppppppppp', priceBN)
+      totalFinal = total.add(priceBN)
+      console.log('ppppppppp total', totalFinal)
+    })
+    return totalFinal.toString() / 10 ** 18
+  }
   const getFinalTicketsPrice = (finalTickets) => {
     let total = []
     finalTickets.map((ft) => {
@@ -1141,7 +1164,7 @@ export default function NFTTicketsSection() {
 
   return (
     <>
-      <section>
+      <section className="nft-checkout-section">
         <div style={{ textAlign: 'left' }}>
           <ul class="list-group">
             <li className="list-group-item d-flex justify-content-between align-items-center alignb">
@@ -1152,6 +1175,26 @@ export default function NFTTicketsSection() {
                   <li>Pre-Conference Party (March 29th)</li>
                 </ul>
                 <strong>Unit Price: 0.1 ETH</strong>
+                <div>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setOpenDesc1(!openDesc1)
+                    }}
+                    aria-controls="open-ticket-description"
+                    aria-expanded={openDesc1}
+                  >
+                    read more
+                  </a>
+                </div>
+                <Collapse in={openDesc1}>
+                  <div className="hidden">
+                    Full day of insightful keynotes with the best innovators and
+                    contritors from the DeFi and Ethereum community on March
+                    30th. Great party on the night before on March 29th.
+                  </div>
+                </Collapse>
               </div>
               <span>
                 <select
@@ -1173,7 +1216,10 @@ export default function NFTTicketsSection() {
                 </select>
               </span>
             </li>
-            <li className="list-group-item d-flex justify-content-between align-items-center alignb">
+            <li
+              style={{ borderTop: '1px solid black' }}
+              className="list-group-item d-flex justify-content-between align-items-center alignb"
+            >
               <div>
                 <strong> Combo Ticket:</strong>
                 <ul>
@@ -1183,6 +1229,32 @@ export default function NFTTicketsSection() {
                   <li>Special Yacht Meet and Greet Pre-Party (March 28th)</li>
                 </ul>
                 <strong>Unit Price: 0.2 ETH</strong>
+                <div>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setOpenDesc2(!openDesc2)
+                    }}
+                    aria-controls="open-ticket-description"
+                    aria-expanded={openDesc2}
+                  >
+                    read more
+                  </a>
+                </div>
+                <Collapse in={openDesc2}>
+                  <div className="hidden">
+                    Full day of insightful keynotes with the best innovators and
+                    contritors from the DeFi and Ethereum community on March
+                    30th. Great party on the night before on March 29th.
+                    <br />
+                    On March 29th, full day workshops with some of the best
+                    instructors from the DeFi and Ethereum world and a hackathon
+                    with more than DAI 10k cash in prize. On the 28th, you will
+                    be invited to an exclusive yacht party with bbq and jetski
+                    animation in Dubai Marina.
+                  </div>
+                </Collapse>
               </div>
               <span>
                 <select
@@ -1204,7 +1276,10 @@ export default function NFTTicketsSection() {
                 </select>
               </span>
             </li>
-            <li className="list-group-item d-flex justify-content-between align-items-center alignb">
+            <li
+              style={{ borderTop: '1px solid black' }}
+              className="list-group-item d-flex justify-content-between align-items-center alignb"
+            >
               <strong>Total</strong>
               <span>
                 <button
@@ -1221,21 +1296,23 @@ export default function NFTTicketsSection() {
             <li className="list-group-item d-flex justify-content-between align-items-center alignb">
               <span />
               <span>
-                <button
+                <Button
                   disabled={threeDayTicket == 0 && oneDayTicket == 0}
                   onClick={(e) => {
                     handleCheckout()
                     setSuccessPurchase(false)
                   }}
+                  style={{ marginTop: '1em' }}
                 >
                   Checkout
-                </button>
+                </Button>
               </span>
             </li>{' '}
           </ul>
         </div>
         {pdfTickets.length > 0 && (
-          <button
+          <Button
+            style={{ margin: '1em' }}
             onClick={async () => {
               //          const provider = await web3Modal.connect()
               //        const newProvider = new ethers.providers.Web3Provider(provider)
@@ -1253,7 +1330,7 @@ export default function NFTTicketsSection() {
             }}
           >
             Download Tickets
-          </button>
+          </Button>
         )}
         <Modal
           show={showCheckout}
@@ -1557,7 +1634,7 @@ export default function NFTTicketsSection() {
                                     </span>
                                     <span>
                                       {' | '}
-                                      Total price: ETH {total()}
+                                      Total price: ETH {getAllTicketsPrices()}
                                     </span>
                                     {ethersProvider && tokenBalance ? (
                                       <span>
