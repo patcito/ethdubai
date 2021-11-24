@@ -1405,12 +1405,14 @@ export default function NFTTicketsSection() {
         )}
         <Modal
           keyboard={false}
+          backdrop="static"
           show={showCheckout}
           onHide={() => {
             setShowCheckout(false)
             if (window) history.pushState(null, null, null)
           }}
           id="checkout_popup"
+          autoFocus={true}
         >
           <div className="modal-dialog">
             <div className="modal-content">
