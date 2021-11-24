@@ -1878,10 +1878,20 @@ div#checkout_popup .modal-dialog {
 }
 div#checkout_popup .modal-dialog {
   width: 597px;
-  @media (min-width: 768px) {
+  @media (min-width: 830px) {
     width: 830px;
   }
+  @media (min-width: 768px) {
+    width: 730px;
+  }
+  @media (max-width: 414px) {
+    width: 360px;
+  }
+  @media (max-width: 375px) {
+    width: 320px;
+  }
 }
+
 div#speaker_popup .icon_box ul,
 div#checkout_popup .icon_box ul {
   list-style: none;
@@ -3951,4 +3961,13 @@ body {
 
 .addHotel {
   margin-right: 10px;
+}
+.checkout-full-modal {
+  @media (min-width: 768px) {
+    padding: 45px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 }

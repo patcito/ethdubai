@@ -56,9 +56,39 @@ export default function NFTTicketsSection() {
   const [warning, setWarning] = React.useState('')
   const [tokenBalance, setTokenBalance] = React.useState(0)
   const [walletNetwork, setWalletNetwork] = React.useState({})
+  const [showSharedTicket, setShowSharedTicket] = React.useState(false)
   const [currentAttendeeInfoIndex, setCurrentAttendeeInfoIndex] =
     React.useState(0)
-
+  const [sharedSVG, setSharedSVG] = useState('')
+  useEffect(async () => {
+    const urlSearchParams = new URLSearchParams(window.location.search)
+    const params = Object.fromEntries(urlSearchParams.entries())
+    console.log('params', params)
+    if (params.tokenid) {
+      let paramsArray = params.tokenid.split(',')
+      const url =
+        `https://svg.ethdubaiconf.org/token?tokenid=${paramsArray[0]}` +
+        `&network=${paramsArray[1]}&contract=${paramsArray[2]}`
+      console.log('lllll', url)
+      const response = await fetch(url)
+      const data = await response.text()
+      console.log('llllllllllllllll', data)
+      const json = Buffer.from(data.substring(29), 'base64').toString()
+      console.log(json)
+      const obj = JSON.parse(json)
+      console.log(obj)
+      const svg = Buffer.from(obj.image.substring(26), 'base64').toString()
+      console.log('hihihi', svg)
+      setSharedSVG(obj.image.substring(26))
+      setShowSharedTicket(true)
+      //var xhr = new XMLHttpRequest()
+      //xhr.open('get', url, true) //Post the Data URI to php Script to save to server
+      //xhr.send()
+    }
+  }, [])
+  const SharedSvg = () => {
+    return sharedSVG
+  }
   const OnGoingTxTextMessage = () => {
     switch (onGoingTxText.txText) {
       case 'connect':
@@ -108,6 +138,7 @@ export default function NFTTicketsSection() {
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
+      networkShare: 'mainnet',
       marketplace: 'https://opensea.io/assets/',
       marketplaceName: 'opensea',
       web3Network: 'mainnet',
@@ -122,6 +153,7 @@ export default function NFTTicketsSection() {
       contract: '',
       abi: abiNonEth.abi,
       web3Network: 'matic',
+      networkShare: 'polygon',
       marketplaceName: 'opensea',
       marketplace: 'https://opensea.io/assets/matic/',
       exchangeUrl: 'https://www.quickswap.finance/#/swap',
@@ -144,6 +176,7 @@ export default function NFTTicketsSection() {
       abi: abiNonEth.abi,
       marketplaceName: 'artion',
       marketplace: 'https://artion.io/explore',
+      networkShare: 'ftm',
       exchangeUrl:
         'https://swap.spiritswap.finance/#/exchange/swap/0x74b23882a30290451A17c44f4F05243b6b58C76d',
       exchangeName: 'SpiritSwap',
@@ -167,6 +200,7 @@ export default function NFTTicketsSection() {
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
+      networkShare: 'ropsten',
       web3Name: 'Ropsten',
       tokenSymbol: 'ETH',
       networkInfo: {
@@ -182,11 +216,21 @@ export default function NFTTicketsSection() {
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       web3Name: 'Rinkeby',
+      networkShare: 'rinkeby',
       marketplaceName: 'opensea',
       marketplace: 'https://testnets.opensea.io/assets/',
       token: '',
       tokenSymbol: 'ETH',
-      networkInfo: { chainId: '0x4', chainName: 'Ethereum Rinkeby' },
+      networkInfo: {
+        chainId: '0x4',
+        chainName: 'Ethereum Rinkeby',
+
+        networkInfo: {
+          chainId: '0x4',
+          chainName: 'Ethereum Rinkeby',
+          blockExplorerUrls: ['https://rinkeby.etherscan.io/'],
+        },
+      },
     },
     {
       contract: '0xe6f07674675e8f02Aa3822e8BF57AbB406C36799',
@@ -197,6 +241,7 @@ export default function NFTTicketsSection() {
       exchangeUrl: 'https://www.quickswap.finance/#/swap',
       exchangeName: 'QuickSwap',
       web3Name: 'Polygon Mumbai',
+      networkShare: 'polygon-mumbai',
       tokenSymbol: 'WETH',
       networkInfo: {
         chainId: '0x13881',
@@ -222,6 +267,7 @@ export default function NFTTicketsSection() {
 
       tokenSymbol: 'WETH',
       web3Name: 'Fantom Testnet',
+      networkShare: 'ftm-test',
       networkInfo: {
         chainId: '0xFA2',
         chainName: 'Fantom Testnet',
@@ -242,6 +288,7 @@ export default function NFTTicketsSection() {
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       web3Name: 'Optimism Kovan',
+      networkShare: 'optimism-kovan',
       networkInfo: {
         chainId: '0x45',
         chainName: 'Optimism Kovan',
@@ -262,6 +309,7 @@ export default function NFTTicketsSection() {
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       web3Name: 'Arbitrum Rinkeby',
+      networkShare: 'notworking',
       networkInfo: {
         chainId: '0x66EEB',
         chainName: 'Arbitrum Testnet Rinkeby',
@@ -282,6 +330,7 @@ export default function NFTTicketsSection() {
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       web3Name: 'Hardhat',
+      networkShare: 'hardhat',
       networkInfo: {
         chainId: '0x7A69',
         chainName: 'hardhat',
@@ -845,8 +894,19 @@ export default function NFTTicketsSection() {
       <>
         <h3>
           Here {svgTickets.length > 1 ? 'are' : 'is'} the NFT{' '}
-          {svgTickets.length > 1 ? 'tickets' : 'ticket'} you can publicly share,{' '}
-          {svgTickets.length > 1 ? null : 'a '}
+          {svgTickets.length > 1 ? 'tickets' : 'ticket'}{' '}
+          <a
+            href={
+              `https://twitter.com/intent/tweet?url=https://www.ethdubaiconf.org/?tokenid=` +
+              `${ownerIds[0]},${networks[currentNetwork].networkShare}` +
+              `,${networks[currentNetwork].contract}` +
+              `&text=I just bought my NFT Ticket to ETHDubai 2022 Conference, get yours too!&via=ETHDubaiConf&original_referer=https://www.ethdubaiconf.org`
+            }
+            target="_blank"
+          >
+            you can publicly share it on Twitter
+          </a>
+          , {svgTickets.length > 1 ? null : 'a '}
           private QR {svgTickets.length > 1 ? 'codes have' : 'code has'} been
           sent to your email to access the event,{' '}
           <a
@@ -1344,6 +1404,7 @@ export default function NFTTicketsSection() {
           </Button>
         )}
         <Modal
+          keyboard={false}
           show={showCheckout}
           onHide={() => {
             setShowCheckout(false)
@@ -1372,10 +1433,7 @@ export default function NFTTicketsSection() {
               <div className="modal-body">
                 {successPurchase ? (
                   <>
-                    <div
-                      className="speaker-bio-full-modal"
-                      style={{ padding: '45px' }}
-                    >
+                    <div className="checkout-full-modal">
                       <RenderTickets />
                     </div>
                   </>
@@ -1383,10 +1441,7 @@ export default function NFTTicketsSection() {
                   <OnGoingTxTextMessage />
                 ) : (
                   <div className="">
-                    <div
-                      className="speaker-bio-full-modal"
-                      style={{ padding: '45px' }}
-                    >
+                    <div className="checkout-full-modal">
                       <h3>
                         Attendee info for ticket{' '}
                         <strong>
@@ -1668,6 +1723,44 @@ export default function NFTTicketsSection() {
             </div>
           </div>
         </Modal>
+        <Modal
+          show={showSharedTicket}
+          onHide={() => {
+            if (window) history.pushState(null, null, null)
+          }}
+          id="checkout_popup"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowSharedTicket(false)
+                    if (window) history.pushState(null, null, '/')
+                  }}
+                  className="close"
+                  data-dismiss="modal"
+                >
+                  &times;
+                </button>
+              </div>
+              <div className="modal-body" style={{ padding: '25px' }}>
+                <h2>
+                  Here is your friend's NFT ticket to ETHDubai,{' '}
+                  <a href="#tickets" onClick={() => setShowSharedTicket(false)}>
+                    get yours here!
+                  </a>
+                </h2>
+                <img
+                  style={{ width: '100%' }}
+                  src={`data:image/svg+xml;base64,${sharedSVG}`}
+                />
+              </div>
+            </div>
+          </div>
+        </Modal>
+
         <div id="pdf-tickets">
           {pdfTickets.map((tix, i) => (
             <>
