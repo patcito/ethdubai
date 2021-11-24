@@ -927,7 +927,7 @@ export default function NFTTicketsSection() {
             >
               on {networks[currentNetwork].marketplaceName}
             </a>
-            <img src={`${svg}`} />
+            <img style={{ width: '100%' }} src={`${svg}`} />
           </div>
         ))}
       </>
