@@ -228,12 +228,12 @@ export default function NFTTicketsSection() {
         networkInfo: {
           chainId: '0x4',
           chainName: 'Ethereum Rinkeby',
-          blockExplorerUrls: ['https://rinkeby.etherscan.io/'],
         },
+        blockExplorerUrls: ['https://rinkeby.etherscan.io/'],
       },
     },
     {
-      contract: '0xe6f07674675e8f02Aa3822e8BF57AbB406C36799',
+      contract: '0xbb4C52e21b2f7a7b620253560c3DeDB7fc67D806',
       abi: abiNonEth.abi,
       marketplaceName: 'opensea',
       marketplace: 'https://testnets.opensea.io/assets/matic',
@@ -256,7 +256,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xE345546Cc2616DBC51b51933FC32D5708d90BF75',
+      contract: '0x8339E55273a11c80f75c22Ce0ed647984319B6B0',
       abi: abiNonEth.abi,
       token: '0x6244D7f9245ad590490338db2fbEd815c2358034',
       exchangeUrl:
@@ -323,7 +323,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xa85233C63b9Ee964Add6F2cffe00Fd84eb32338f',
+      contract: '0x8198f5d8F8CfFE8f9C413d98a0A55aEB8ab9FbB7',
       abi: abi.abi,
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
@@ -748,7 +748,7 @@ export default function NFTTicketsSection() {
           bio: tix.bio,
           job: tix.job,
           company: tix.company,
-          diet: tix.diet,
+          workshop: tix.workshop,
           tshirt: tix.tshirt,
           telegram: tix.telegram,
         },
@@ -779,7 +779,7 @@ export default function NFTTicketsSection() {
         let bio = await encryptStr(a.bio || '_')
         let job = await encryptStr(a.job || '0')
         let company = await encryptStr(a.company || '')
-        let diet = a.diet || '_'
+        let workshop = a.workshop || '_'
         let tshirt = a.tshirt || '_'
         let telegram = a.telegram || '_'
         let ticketOption = getTicketOption(
@@ -796,7 +796,7 @@ export default function NFTTicketsSection() {
             bio: bio,
             job: job,
             company: company,
-            diet: diet,
+            workshop: workshop,
             tshirt: tshirt,
             telegram: telegram,
           },
@@ -981,6 +981,7 @@ export default function NFTTicketsSection() {
     )
     const account = signer.getAddress()
     console.log('okkkkkkkkkk')
+    console.log(finalTickets)
     const txTotalPrice = await contract.totalPrice(finalTickets)
 
     console.log('okkkkkkkkkk2')
@@ -1129,6 +1130,16 @@ export default function NFTTicketsSection() {
     })
     return totalFinal.toString() / 10 ** 18
   }
+  const getPreFinalTicketsPrice = (finalTickets) => {
+    const pre = finalTickets.map((pft) => {
+      let ticketOption = getTicketOption(
+        pft.includeWorkshopsAndPreParty,
+        pft.includeHotelExtra
+      )
+      return { ...pft, ...{ ticketOption: ticketOption } }
+    })
+    return getFinalTicketsPrice(pre)
+  }
   const getFinalTicketsPrice = (finalTickets) => {
     let total = []
     finalTickets.map((ft) => {
@@ -1185,7 +1196,7 @@ export default function NFTTicketsSection() {
       bio: '',
       job: '',
       company: '',
-      diet: '',
+      workshop: '',
       tshirt: '',
       telegram: '',
     }
@@ -1631,6 +1642,45 @@ export default function NFTTicketsSection() {
                                         }
                                       />
                                     </Col>
+                                    {attendeeInfos[currentAttendeeInfoIndex]
+                                      .includeWorkshopsAndPreParty ? (
+                                      <Col xs="12" sm="6">
+                                        <Form.Control
+                                          as="select"
+                                          aria-label="Job"
+                                          onChange={handleAttendeeInfo}
+                                          name="job"
+                                          value={
+                                            attendeeInfos[
+                                              currentAttendeeInfoIndex
+                                            ].job
+                                          }
+                                        >
+                                          <option value="0">
+                                            Solidity/Vyper Developer
+                                          </option>
+                                          <option value="1">
+                                            Frontend Web3 Developer
+                                          </option>
+                                          <option value="2">
+                                            Fullstack Developer
+                                          </option>
+                                          <option value="3">
+                                            Backend Developer
+                                          </option>
+                                          <option value="5">
+                                            Project Manager
+                                          </option>
+                                          <option value="6">CTO</option>
+                                          <option value="7">CEO</option>
+                                          <option value="8">HR</option>
+                                          <option value="9">Marketing</option>
+                                          <option value="10">Investor</option>
+                                          <option value="11">Trader</option>
+                                          <option value="12">Other</option>
+                                        </Form.Control>
+                                      </Col>
+                                    ) : null}
                                   </Form.Row>
                                 </Form.Group>
                                 <Form.Group>
@@ -1702,7 +1752,13 @@ export default function NFTTicketsSection() {
                                     </span>
                                     <span>
                                       {' | '}
-                                      Total price: ETH {getAllTicketsPrices()}
+                                      Total price: ETH{' '}
+                                      {JSON.stringify(
+                                        getPreFinalTicketsPrice(
+                                          attendeeInfos
+                                        ).toString() /
+                                          10 ** 18
+                                      )}
                                     </span>
                                     {ethersProvider && tokenBalance ? (
                                       <span>
