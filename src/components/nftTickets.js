@@ -706,12 +706,28 @@ export default function NFTTicketsSection() {
       ).toString(16)
     )
   }
+  const checkWorkshop = () => {
+    if (attendeeInfos[currentAttendeeInfoIndex].includeWorkshopsAndPreParty) {
+      if (
+        attendeeInfos[currentAttendeeInfoIndex].workshop ===
+          'Select a workshop' ||
+        attendeeInfos[currentAttendeeInfoIndex].workshop === undefined ||
+        typeof attendeeInfos[currentAttendeeInfoIndex].workshop === 'undefined'
+      ) {
+        showWarning({ message: 'Please select a workshop' })
+
+        return true
+      }
+    }
+    return false
+  }
   const handleBuyButton = async (e) => {
     e.preventDefault()
     console.log('all', attendeeInfos)
     const form = document.getElementById('attendeeForm')
     setValidated(true)
-    if (form.checkValidity() === false) {
+
+    if (form.checkValidity() === false || checkWorkshop()) {
       return
     } else {
       setValidated(false)
@@ -871,6 +887,7 @@ export default function NFTTicketsSection() {
         return '0.4'
         break
       default:
+        return '0.2'
         break
     }
   }
@@ -1686,7 +1703,9 @@ export default function NFTTicketsSection() {
                                             ].workshop
                                           }
                                         >
-                                          <option>Select a workshop</option>
+                                          <option value={null}>
+                                            Select a workshop
+                                          </option>
                                           <option value="1">
                                             Web3 &amp; Graph Protocol workshop
                                             with Nader Dabit
