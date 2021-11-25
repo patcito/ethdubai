@@ -195,7 +195,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xef52BC6b70ed2d8a1923203BBb296008410c2E2c',
+      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
       abi: abi.abi,
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
@@ -211,7 +211,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x9ab1130cdfcE397aB6283e681fDaa2B1D49e7CBD',
+      contract: '0xE345546Cc2616DBC51b51933FC32D5708d90BF75',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
@@ -281,7 +281,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xfb0b3E0f27a2a858cc6656627E662B0D3cd5b19b',
+      contract: '0x7a5B24D02C60cc1A25Ff632a43299E139c98a909',
       token: '',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
@@ -302,7 +302,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x2D65069FA23dBC7B54C6BbF0Dbef6cd1823d8E35',
+      contract: '0xE345546Cc2616DBC51b51933FC32D5708d90BF75',
       token: '',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
@@ -323,7 +323,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x8198f5d8F8CfFE8f9C413d98a0A55aEB8ab9FbB7',
+      contract: '0xf4B146FbA71F41E0592668ffbF264F1D186b2Ca8',
       abi: abi.abi,
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
@@ -737,7 +737,8 @@ export default function NFTTicketsSection() {
     let finalPdfTickets = attendeeInfos.map((tix) => {
       let ticketOption = getTicketOption(
         tix.includeWorkshopsAndPreParty,
-        tix.includeHotelExtra
+        tix.includeHotelExtra,
+        tix.workshop
       )
       let pdfTix = {
         attendeeInfo: {
@@ -784,7 +785,8 @@ export default function NFTTicketsSection() {
         let telegram = a.telegram || '_'
         let ticketOption = getTicketOption(
           a.includeWorkshopsAndPreParty,
-          a.includeHotelExtra
+          a.includeHotelExtra,
+          a.workshop
         )
         console.log('OPTIONSS', ticketOption)
         let finalTicket = {
@@ -820,15 +822,19 @@ export default function NFTTicketsSection() {
     )
     return [finalTickets, finalPdfTickets]
   }
-  const getTicketOption = (workshopsAndPreParty, hotelExtra) => {
+  const getTicketOption = (workshopsAndPreParty, hotelExtra, workshop) => {
+    if (!workshop) {
+      workshop = ''
+    }
     if (!workshopsAndPreParty && !hotelExtra) {
       return 'conference'
     } else if (!workshopsAndPreParty && hotelExtra) {
       return 'hotelConference'
     } else if (workshopsAndPreParty && !hotelExtra) {
-      return 'workshopAndPreParty'
+      console.log('wwwwwwwwwww', `workshop${workshop}AndPreParty`)
+      return `workshop${workshop}AndPreParty`
     } else if (workshopsAndPreParty && hotelExtra) {
-      return 'hotelWorkshopsAndPreParty'
+      return `hotelWorkshops${workshop}AndPreParty`
     }
     return 'conference'
   }
@@ -843,10 +849,27 @@ export default function NFTTicketsSection() {
       case 'workshopAndPreParty':
         return '0.2'
         break
+      case 'workshop1AndPreParty':
+        return '0.2'
+        break
+      case 'workshop2AndPreParty':
+        return '0.2'
+        break
+      case 'workshop3AndPreParty':
+        return '0.2'
+        break
       case 'hotelWorkshopsAndPreParty':
         return '0.4'
         break
-
+      case 'hotelWorkshops1AndPreParty':
+        return '0.4'
+        break
+      case 'hotelWorkshops2AndPreParty':
+        return '0.4'
+        break
+      case 'hotelWorkshops3AndPreParty':
+        return '0.4'
+        break
       default:
         break
     }
@@ -982,67 +1005,72 @@ export default function NFTTicketsSection() {
     const account = signer.getAddress()
     console.log('okkkkkkkkkk')
     console.log(finalTickets)
-    const txTotalPrice = await contract.totalPrice(finalTickets)
+    try {
+      const txTotalPrice = await contract.totalPrice(finalTickets)
 
-    console.log('okkkkkkkkkk2')
-    const balance = await getCurrentNetworkBalance(currentNetwork)
+      console.log('okkkkkkkkkk2')
+      const balance = await getCurrentNetworkBalance(currentNetwork)
 
-    console.log('okkkkkkkkkk3')
-    console.log('txtotal xxxxxxxx', txTotalPrice)
-    console.log('tokenBalance xxxxxxxx', balance)
-    if (balance.lt(txTotalPrice)) {
-      showWarning({ message: 'balance' })
-      return
-    }
-    setOngoingTxText({ txText: 'Please accept the transaction' })
-    console.log('totalPriceTXXX', txTotalPrice)
-    if (networks[currentNetwork].token !== '') {
-      let tokenContract = new ethers.Contract(
-        networks[currentNetwork].token,
-        erc20abi,
-        signer
-      )
-      console.log('tokenContract TXXXXX', tokenContract)
-
-      try {
-        const allowance = await tokenContract.allowance(
-          account,
-          networks[currentNetwork].contract
-        )
-
-        console.log('aaaaaaaaaaaaaaallTXXX', allowance)
-        if (allowance.lt(txTotalPrice)) {
-          try {
-            const approveTx = await tokenContract.approve(
-              networks[currentNetwork].contract,
-              txTotalPrice
-            )
-            setOngoingTxText({ txText: 'approve', tx: approveTx })
-            try {
-              const approveReceipt = await approveTx.wait()
-              setOngoingTxText({
-                txText: 'acceptMinting',
-              })
-              return
-            } catch (error) {
-              showWarning(error)
-              console.log(error)
-            }
-          } catch (error) {
-            showWarning(error)
-            return
-          }
-        } else {
-          manageBuyTx(finalPdfTickets, finalTickets, contract, {})
-        }
-      } catch (error) {
-        showWarning(error)
+      console.log('okkkkkkkkkk3')
+      console.log('txtotal xxxxxxxx', txTotalPrice)
+      console.log('tokenBalance xxxxxxxx', balance)
+      if (balance.lt(txTotalPrice)) {
+        showWarning({ message: 'balance' })
         return
       }
-    } else {
-      manageBuyTx(finalPdfTickets, finalTickets, contract, {
-        value: txTotalPrice.toHexString(),
-      })
+      setOngoingTxText({ txText: 'Please accept the transaction' })
+      console.log('totalPriceTXXX', txTotalPrice)
+      if (networks[currentNetwork].token !== '') {
+        let tokenContract = new ethers.Contract(
+          networks[currentNetwork].token,
+          erc20abi,
+          signer
+        )
+        console.log('tokenContract TXXXXX', tokenContract)
+
+        try {
+          const allowance = await tokenContract.allowance(
+            account,
+            networks[currentNetwork].contract
+          )
+
+          console.log('aaaaaaaaaaaaaaallTXXX', allowance)
+          if (allowance.lt(txTotalPrice)) {
+            try {
+              const approveTx = await tokenContract.approve(
+                networks[currentNetwork].contract,
+                txTotalPrice
+              )
+              setOngoingTxText({ txText: 'approve', tx: approveTx })
+              try {
+                const approveReceipt = await approveTx.wait()
+                setOngoingTxText({
+                  txText: 'acceptMinting',
+                })
+                return
+              } catch (error) {
+                showWarning(error)
+                console.log(error)
+              }
+            } catch (error) {
+              showWarning(error)
+              return
+            }
+          } else {
+            manageBuyTx(finalPdfTickets, finalTickets, contract, {})
+          }
+        } catch (error) {
+          showWarning(error)
+          return
+        }
+      } else {
+        manageBuyTx(finalPdfTickets, finalTickets, contract, {
+          value: txTotalPrice.toHexString(),
+        })
+      }
+    } catch (error) {
+      showWarning(error)
+      console.log(error)
     }
   }
   const manageBuyTx = async (
@@ -1134,7 +1162,8 @@ export default function NFTTicketsSection() {
     const pre = finalTickets.map((pft) => {
       let ticketOption = getTicketOption(
         pft.includeWorkshopsAndPreParty,
-        pft.includeHotelExtra
+        pft.includeHotelExtra,
+        pft.workshop
       )
       return { ...pft, ...{ ticketOption: ticketOption } }
     })
@@ -1647,37 +1676,28 @@ export default function NFTTicketsSection() {
                                       <Col xs="12" sm="6">
                                         <Form.Control
                                           as="select"
-                                          aria-label="Job"
+                                          aria-label="Workshop"
                                           onChange={handleAttendeeInfo}
-                                          name="job"
+                                          name="workshop"
+                                          required
                                           value={
                                             attendeeInfos[
                                               currentAttendeeInfoIndex
-                                            ].job
+                                            ].workshop
                                           }
                                         >
-                                          <option value="0">
-                                            Solidity/Vyper Developer
-                                          </option>
+                                          <option>Select a workshop</option>
                                           <option value="1">
-                                            Frontend Web3 Developer
+                                            Web3 &amp; Graph Protocol workshop
+                                            with Nader Dabit
                                           </option>
                                           <option value="2">
-                                            Fullstack Developer
+                                            Yearn strategies workshop with Facu
+                                            Ameal
                                           </option>
                                           <option value="3">
-                                            Backend Developer
+                                            Web3 workshop with Metamask team
                                           </option>
-                                          <option value="5">
-                                            Project Manager
-                                          </option>
-                                          <option value="6">CTO</option>
-                                          <option value="7">CEO</option>
-                                          <option value="8">HR</option>
-                                          <option value="9">Marketing</option>
-                                          <option value="10">Investor</option>
-                                          <option value="11">Trader</option>
-                                          <option value="12">Other</option>
                                         </Form.Control>
                                       </Col>
                                     ) : null}
