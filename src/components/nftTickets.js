@@ -233,7 +233,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xbb4C52e21b2f7a7b620253560c3DeDB7fc67D806',
+      contract: '0x0D95566B084D578970D7e6748615Fb9B27f72349',
       abi: abiNonEth.abi,
       marketplaceName: 'opensea',
       marketplace: 'https://testnets.opensea.io/assets/matic',
@@ -256,7 +256,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x8339E55273a11c80f75c22Ce0ed647984319B6B0',
+      contract: '0x59B53E086f3c8f002B67A1f945C9e895f013a30f',
       abi: abiNonEth.abi,
       token: '0x6244D7f9245ad590490338db2fbEd815c2358034',
       exchangeUrl:
