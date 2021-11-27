@@ -455,9 +455,9 @@ export default function IndexPage({ data, location }) {
                     className={faq === 2 ? 'collapse show' : 'collapse'}
                   >
                     <div className="card-body">
-                      Full access to the talks on the 30th for regular
+                      Full access to the talks on the 31st for regular
                       conference ticket and both workshops and talks for Full
-                      Access tickets on March 29-30th.
+                      Access tickets on March 29-31st.
                     </div>
                   </div>
                 </div>
