@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import Web3Modal from 'web3modal'
 import WalletConnectProvider from '@walletconnect/web3-provider'
-
+import LZString from 'lz-string'
 import { ethers } from 'ethers'
 import {
   Container,
@@ -16,6 +16,7 @@ import {
   Badge,
 } from 'react-bootstrap'
 import abi from './abis/ETHDubaiTickets.json'
+import mainnetAbi from './abis/ETHDubaiTicketsMainnet.json'
 import abiNonEth from './abis/ETHDubaiTicketsERC20.json'
 import erc20abi from './abis/erc20.json'
 import EthCrypto from 'eth-crypto'
@@ -116,7 +117,11 @@ export default function NFTTicketsSection() {
               href={`${networks[currentNetwork].networkInfo.blockExplorerUrls[0]}tx/${onGoingTxText.tx.hash}`}
               target="_blank"
             >
-              Minting transaction in progress, please wait... 🔗
+              {isCurrentNetworkMainnetContract() ? (
+                <span>Buying transaction in progress, please wait... 🔗</span>
+              ) : (
+                <span>Minting transaction in progress, please wait... 🔗</span>
+              )}
             </a>
           </h2>
         )
@@ -134,11 +139,13 @@ export default function NFTTicketsSection() {
   const networks = [
     {
       contract: '',
+      address: '0x992dac69827A200BA112A0303Fe8F79F03c37D9d',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       networkShare: 'mainnet',
+      web3Name: 'mainnet',
       marketplace: 'https://opensea.io/assets/',
       marketplaceName: 'opensea',
       web3Network: 'mainnet',
@@ -195,10 +202,12 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
-      abi: abi.abi,
+      //      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
+      contract: '0x9ba9D63efCA8E4C30CaFDdb4F8Cce95773BE6F5b',
+      abi: mainnetAbi.abi,
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
+      hasNoNft: true,
       exchangeName: 'UniSwap',
       networkShare: 'ropsten',
       web3Name: 'Ropsten',
@@ -211,11 +220,14 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xE345546Cc2616DBC51b51933FC32D5708d90BF75',
-      abi: abi.abi,
+      //      contract: '0xE345546Cc2616DBC51b51933FC32D5708d90BF75',
+      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
+      abi: mainnetAbi.abi,
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       web3Name: 'Rinkeby',
+
+      hasNoNft: true,
       networkShare: 'rinkeby',
       marketplaceName: 'opensea',
       marketplace: 'https://testnets.opensea.io/assets/',
@@ -281,7 +293,28 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x7a5B24D02C60cc1A25Ff632a43299E139c98a909',
+      contract: '0x21ee01048225d0a0d5300878Cba220637fcEE742',
+      token: '',
+      abi: abi.abi,
+      exchangeUrl: 'https://app.uniswap.org',
+      exchangeName: 'UniSwap',
+      tokenSymbol: 'ETH',
+      web3Name: 'Metis Stardust',
+      networkShare: 'metis-stardust',
+      networkInfo: {
+        chainId: '0x24C',
+        chainName: 'Metis Stardust',
+        rpcUrls: ['https://stardust.metis.io/?owner=588'],
+        nativeCurrency: {
+          name: 'METIS',
+          symbol: 'METIS',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://stardust-explorer.metis.io/'],
+      },
+    },
+    {
+      contract: '0xF16dF3eec3e10169b21f83c7F3e7eBD11F55fa3f',
       token: '',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
@@ -323,14 +356,16 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xf4B146FbA71F41E0592668ffbF264F1D186b2Ca8',
-      abi: abi.abi,
+      contract: '0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1',
+      abi: mainnetAbi.abi,
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       web3Name: 'Hardhat',
       networkShare: 'hardhat',
+      hasNoNft: true,
+
       networkInfo: {
         chainId: '0x7A69',
         chainName: 'hardhat',
@@ -612,7 +647,10 @@ export default function NFTTicketsSection() {
           data.append('email', pdfTix[i].attendeeInfo.email)
           data.append('fname', pdfTix[i].attendeeInfo.fname)
           data.append('lname', pdfTix[i].attendeeInfo.lname)
-          data.append('ticketOption', pdfTix[i].ticketOption)
+          data.append(
+            'ticketOption',
+            getTicketOptionString(pdfTix[i].ticketOption)
+          )
           var xhr = new XMLHttpRequest()
           xhr.open('post', 'https://email.ethdubaiconf.org/upload', true) //Post the Data URI to php Script to save to server
           xhr.send(data)
@@ -747,7 +785,7 @@ export default function NFTTicketsSection() {
   }
   const encryptStr = async (str) => {
     const encryptedString = await EthCrypto.encryptWithPublicKey(PUB_KEY, str)
-    return EthCrypto.cipher.stringify(encryptedString)
+    return LZString.compressToUTF16(EthCrypto.cipher.stringify(encryptedString))
   }
   const prepareTickets = async () => {
     let finalPdfTickets = attendeeInfos.map((tix) => {
@@ -756,6 +794,8 @@ export default function NFTTicketsSection() {
         tix.includeHotelExtra,
         tix.workshop
       )
+      let addToCode = JSON.stringify(tix) + ticketOption
+
       let pdfTix = {
         attendeeInfo: {
           email: tix.email,
@@ -781,7 +821,7 @@ export default function NFTTicketsSection() {
               )
           ),
         },
-        ticketOption: ticketOption,
+        ticketOption: getTicketOptionOnChainFormat(ticketOption),
         specialStatus: '',
       }
       return pdfTix
@@ -789,6 +829,16 @@ export default function NFTTicketsSection() {
     console.log('FINAL TIX', finalPdfTickets)
     let finalTickets = await Promise.all(
       attendeeInfos.map(async (a) => {
+        let ticketOption = getTicketOption(
+          a.includeWorkshopsAndPreParty,
+          a.includeHotelExtra,
+          a.workshop
+        )
+
+        let addToCode = JSON.stringify(a) + ticketOption
+        if (!isCurrentNetworkMainnetContract()) {
+          addToCode = ''
+        }
         let email = await encryptStr(a.email || '_')
         let fname = await encryptStr(a.fname || '_')
         let lname = await encryptStr(a.lname || '_')
@@ -799,11 +849,6 @@ export default function NFTTicketsSection() {
         let workshop = a.workshop || '_'
         let tshirt = a.tshirt || '_'
         let telegram = a.telegram || '_'
-        let ticketOption = getTicketOption(
-          a.includeWorkshopsAndPreParty,
-          a.includeHotelExtra,
-          a.workshop
-        )
         console.log('OPTIONSS', ticketOption)
         let finalTicket = {
           attendeeInfo: {
@@ -818,7 +863,7 @@ export default function NFTTicketsSection() {
             tshirt: tshirt,
             telegram: telegram,
           },
-          ticketCode: await encryptStr(a.ticketCode),
+          ticketCode: await encryptStr(a.ticketCode + addToCode),
           resellable: {
             isResellable: false,
             price: ethers.utils.parseEther(
@@ -830,7 +875,7 @@ export default function NFTTicketsSection() {
                 )
             ),
           },
-          ticketOption: ticketOption,
+          ticketOption: getTicketOptionOnChainFormat(ticketOption),
           specialStatus: '',
         }
         return finalTicket
@@ -854,6 +899,98 @@ export default function NFTTicketsSection() {
     }
     return 'conference'
   }
+
+  const isCurrentNetworkMainnetContract = () => {
+    if (networks[currentNetwork].hasNoNft) {
+      return true
+    }
+    return false
+  }
+
+  const getTicketOptionString = (ticketOption) => {
+    if (!isCurrentNetworkMainnetContract()) {
+      return ticketOption
+    }
+    switch (ticketOption) {
+      case 0:
+        return 'conference'
+        break
+
+      case 1:
+        return 'hotelConference'
+        break
+
+      case 2:
+        return 'workshop1AndPreParty'
+        break
+
+      case 3:
+        return 'workshop2AndPreParty'
+        break
+
+      case 4:
+        return 'workshop3AndPreParty'
+        break
+
+      case 5:
+        return 'hotelWorkshopsAndPreParty'
+        break
+
+      case 6:
+        return 'hotelWorkshops1AndPreParty'
+        break
+
+      case 7:
+        return 'hotelWorkshops2AndPreParty'
+        break
+
+      case 8:
+        return 'hotelWorkshops3AndPreParty'
+        break
+      default:
+        return 10
+        break
+    }
+  }
+  const getTicketOptionOnChainFormat = (ticketOption) => {
+    console.log('is mainnet?', isCurrentNetworkMainnetContract())
+    if (!isCurrentNetworkMainnetContract()) {
+      return ticketOption
+    }
+    switch (ticketOption) {
+      case 'conference':
+        return 0
+        break
+      case 'hotelConference':
+        return 1
+        break
+      case 'workshop1AndPreParty':
+        return 2
+        break
+      case 'workshop2AndPreParty':
+        return 3
+        break
+      case 'workshop3AndPreParty':
+        return 4
+        break
+      case 'hotelWorkshopsAndPreParty':
+        return 5
+        break
+      case 'hotelWorkshops1AndPreParty':
+        return 6
+        break
+      case 'hotelWorkshops2AndPreParty':
+        return 7
+        break
+      case 'hotelWorkshops3AndPreParty':
+        return 8
+        break
+      default:
+        return 10
+        break
+    }
+  }
+
   const getTicketOptionPrice = (ticketOption) => {
     switch (ticketOption) {
       case 'conference':
@@ -932,44 +1069,93 @@ export default function NFTTicketsSection() {
     console.log()
     return (
       <>
-        <h3>
-          Here {svgTickets.length > 1 ? 'are' : 'is'} the NFT{' '}
-          {svgTickets.length > 1 ? 'tickets' : 'ticket'}{' '}
-          <a
-            href={
-              `https://twitter.com/intent/tweet?url=https://www.ethdubaiconf.org/?tokenid=` +
-              `${ownerIds[0]},${networks[currentNetwork].networkShare}` +
-              `,${networks[currentNetwork].contract}` +
-              `&text=I just bought my NFT Ticket to ETHDubai 2022 Conference, get yours too!&via=ETHDubaiConf&original_referer=https://www.ethdubaiconf.org`
-            }
-            target="_blank"
-          >
-            you can publicly share it on Twitter
-          </a>
-          , {svgTickets.length > 1 ? null : 'a '}
-          private QR {svgTickets.length > 1 ? 'codes have' : 'code has'} been
-          sent to your email to access the event,{' '}
-          <a
-            href="#tickets"
-            onClick={() => generateTicketPdfs(buyTx, pdfTickets)}
-          >
-            {' '}
-            you can also download your QR code here
-          </a>
-          .
-        </h3>
-        {svgTickets.map((svg, i) => (
-          <div>
-            View your NFT ticket{' '}
-            <a
-              href={`${networks[currentNetwork].marketplace}/${networks[currentNetwork].contract}/${ownerIds[i]}`}
-              target="_blank"
-            >
-              on {networks[currentNetwork].marketplaceName}
-            </a>
-            <img style={{ width: '100%' }} src={`${svg}`} />
-          </div>
-        ))}
+        {isCurrentNetworkMainnetContract() ? (
+          <>
+            <h3>
+              Here {svgTickets.length > 1 ? 'are' : 'is'} your QR code below
+              this modal {svgTickets.length > 1 ? 'tickets' : 'ticket'} to get
+              to the event.{' '}
+              <a
+                href={
+                  `https://twitter.com/intent/tweet?url=https://www.ethdubaiconf.org/` +
+                  `&text=I just bought my Ticket to ETHDubai 2022 Conference, get yours too!&via=ETHDubaiConf&original_referer=https://www.ethdubaiconf.org`
+                }
+                target="_blank"
+              >
+                You can tell the world to join us on Twitter!
+              </a>
+              {svgTickets.length > 1 ? 'Private ' : ' The Private '}
+              QR {svgTickets.length > 1 ? 'codes have' : 'code has'} also been
+              sent to your email,{' '}
+              <a
+                href="#tickets"
+                onClick={() => generateTicketPdfs(buyTx, pdfTickets)}
+              >
+                {' '}
+                you can also download your QR code here.
+              </a>
+              <p>
+                Bonus: you will soon receive and NFT on another chain, we'll
+                alert you by email.
+              </p>
+            </h3>
+            {svgTickets.map((svg, i) => (
+              <div>
+                View your NFT ticket{' '}
+                <a
+                  href={`${networks[currentNetwork].marketplace}/${networks[currentNetwork].contract}/${ownerIds[i]}`}
+                  target="_blank"
+                >
+                  on {networks[currentNetwork].marketplaceName}
+                </a>
+                <img style={{ width: '100%' }} src={`${svg}`} />
+              </div>
+            ))}
+          </>
+        ) : (
+          <>
+            <h3>
+              Here {svgTickets.length > 1 ? 'are' : 'is'} the NFT{' '}
+              {svgTickets.length > 1 ? 'tickets' : 'ticket'}{' '}
+              <a
+                href={
+                  `https://twitter.com/intent/tweet?url=https://www.ethdubaiconf.org/?tokenid=` +
+                  `${ownerIds[0]},${networks[currentNetwork].networkShare}` +
+                  `,${networks[currentNetwork].contract}` +
+                  `&text=I just bought my NFT Ticket to ETHDubai 2022 Conference, get yours too!&via=ETHDubaiConf&original_referer=https://www.ethdubaiconf.org`
+                }
+                target="_blank"
+              >
+                you can publicly share it on Twitter
+              </a>
+              , {svgTickets.length > 1 ? null : 'a '}
+              private QR {svgTickets.length > 1
+                ? 'codes have'
+                : 'code has'}{' '}
+              been sent to your email to access the event,{' '}
+              <a
+                href="#tickets"
+                onClick={() => generateTicketPdfs(buyTx, pdfTickets)}
+              >
+                {' '}
+                you can also download your QR code here
+              </a>
+              .
+            </h3>
+            {svgTickets.map((svg, i) => (
+              <div>
+                View your NFT ticket{' '}
+                <a
+                  href={`${networks[currentNetwork].marketplace}/${networks[currentNetwork].contract}/${ownerIds[i]}`}
+                  target="_blank"
+                >
+                  on {networks[currentNetwork].marketplaceName}
+                </a>
+                <img style={{ width: '100%' }} src={`${svg}`} />
+              </div>
+            ))}
+          </>
+        )}
       </>
     )
   }
@@ -1001,6 +1187,11 @@ export default function NFTTicketsSection() {
     setChainId(network.chainId)
     console.log('currenttttttttt', networks)
     console.log('currentttttttttNET', currentNetwork)
+    console.log(
+      networks[currentNetwork].contract,
+      networks[currentNetwork].abi,
+      signer
+    )
     let contract = new ethers.Contract(
       networks[currentNetwork].contract,
       networks[currentNetwork].abi,
@@ -1022,72 +1213,84 @@ export default function NFTTicketsSection() {
     const account = signer.getAddress()
     console.log('okkkkkkkkkk')
     console.log(finalTickets)
-    try {
-      const txTotalPrice = await contract.totalPrice(finalTickets)
+    console.log(JSON.stringify(finalTickets))
+    if (networks[currentNetwork].web3Name === 'iimainnet') {
+      const tx = signer.sendTransaction({
+        to: '0x992dac69827A200BA112A0303Fe8F79F03c37D9d',
+        value: ethers.utils.parseEther('0.1'),
+        data: ethers.utils.toUtf8Bytes(JSON.stringify(finalTickets)),
+      })
+      await signer.sendTransaction(tx)
+    } else {
+      try {
+        console.log('okkkkkkkkkk1')
 
-      console.log('okkkkkkkkkk2')
-      const balance = await getCurrentNetworkBalance(currentNetwork)
+        const txTotalPrice = await contract.totalPrice(finalTickets)
 
-      console.log('okkkkkkkkkk3')
-      console.log('txtotal xxxxxxxx', txTotalPrice)
-      console.log('tokenBalance xxxxxxxx', balance)
-      if (balance.lt(txTotalPrice)) {
-        showWarning({ message: 'balance' })
-        return
-      }
-      setOngoingTxText({ txText: 'Please accept the transaction' })
-      console.log('totalPriceTXXX', txTotalPrice)
-      if (networks[currentNetwork].token !== '') {
-        let tokenContract = new ethers.Contract(
-          networks[currentNetwork].token,
-          erc20abi,
-          signer
-        )
-        console.log('tokenContract TXXXXX', tokenContract)
+        console.log('okkkkkkkkkk2')
+        const balance = await getCurrentNetworkBalance(currentNetwork)
 
-        try {
-          const allowance = await tokenContract.allowance(
-            account,
-            networks[currentNetwork].contract
-          )
-
-          console.log('aaaaaaaaaaaaaaallTXXX', allowance)
-          if (allowance.lt(txTotalPrice)) {
-            try {
-              const approveTx = await tokenContract.approve(
-                networks[currentNetwork].contract,
-                txTotalPrice
-              )
-              setOngoingTxText({ txText: 'approve', tx: approveTx })
-              try {
-                const approveReceipt = await approveTx.wait()
-                setOngoingTxText({
-                  txText: 'acceptMinting',
-                })
-                return
-              } catch (error) {
-                showWarning(error)
-                console.log(error)
-              }
-            } catch (error) {
-              showWarning(error)
-              return
-            }
-          } else {
-            manageBuyTx(finalPdfTickets, finalTickets, contract, {})
-          }
-        } catch (error) {
-          showWarning(error)
+        console.log('okkkkkkkkkk3')
+        console.log('txtotal xxxxxxxx', txTotalPrice)
+        console.log('tokenBalance xxxxxxxx', balance)
+        if (balance.lt(txTotalPrice)) {
+          showWarning({ message: 'balance' })
           return
         }
-      } else {
-        manageBuyTx(finalPdfTickets, finalTickets, contract, {
-          value: txTotalPrice.toHexString(),
-        })
+        setOngoingTxText({ txText: 'Please accept the transaction' })
+        console.log('totalPriceTXXX', txTotalPrice)
+        if (networks[currentNetwork].token !== '') {
+          let tokenContract = new ethers.Contract(
+            networks[currentNetwork].token,
+            erc20abi,
+            signer
+          )
+          console.log('tokenContract TXXXXX', tokenContract)
+
+          try {
+            const allowance = await tokenContract.allowance(
+              account,
+              networks[currentNetwork].contract
+            )
+
+            console.log('aaaaaaaaaaaaaaallTXXX', allowance)
+            if (allowance.lt(txTotalPrice)) {
+              try {
+                const approveTx = await tokenContract.approve(
+                  networks[currentNetwork].contract,
+                  txTotalPrice
+                )
+                setOngoingTxText({ txText: 'approve', tx: approveTx })
+                try {
+                  const approveReceipt = await approveTx.wait()
+                  setOngoingTxText({
+                    txText: 'acceptMinting',
+                  })
+                  return
+                } catch (error) {
+                  showWarning(error)
+                  console.log(error)
+                }
+              } catch (error) {
+                showWarning(error)
+                return
+              }
+            } else {
+              manageBuyTx(finalPdfTickets, finalTickets, contract, {})
+            }
+          } catch (error) {
+            showWarning(error)
+            return
+          }
+        } else {
+          manageBuyTx(finalPdfTickets, finalTickets, contract, {
+            value: txTotalPrice.toHexString(),
+          })
+        }
+      } catch (error) {
+        showWarning(error)
+        console.log(error)
       }
-    } catch (error) {
-      showWarning(error)
-      console.log(error)
     }
   }
   const manageBuyTx = async (
@@ -1250,12 +1453,13 @@ export default function NFTTicketsSection() {
     let includeWorkshops = false
     let includeHotelExtra = includeHotel
     for (let i = 0; i < oneDayTicket; i++) {
+      const rand =
+        typeof crypto['randomUUID'] !== 'undefined'
+          ? crypto.randomUUID()
+          : uuidv4()
       tickets.push({
         attendeeInfo,
-        ticketCode:
-          typeof crypto['randomUUID'] !== 'undefined'
-            ? crypto.randomUUID()
-            : uuidv4(),
+        ticketCode: rand,
         resellable: {
           isResellable: false,
           price: getTicketPrice(false, false, includeHotel),
@@ -1266,12 +1470,13 @@ export default function NFTTicketsSection() {
       })
     }
     for (let i = 0; i < threeDayTicket; i++) {
+      const rand =
+        typeof crypto['randomUUID'] !== 'undefined'
+          ? crypto.randomUUID()
+          : uuidv4()
       tickets.push({
         attendeeInfo,
-        ticketCode:
-          typeof crypto['randomUUID'] !== 'undefined'
-            ? crypto.randomUUID()
-            : uuidv4(),
+        ticketCode: rand,
         resellable: {
           isResellable: false,
           price: getTicketPrice(false, true, includeHotel),
@@ -1299,8 +1504,8 @@ export default function NFTTicketsSection() {
               <div>
                 <strong>Conference Only Ticket:</strong>
                 <ul>
-                  <li>Conference Ticket (March 30th)</li>
-                  <li>Pre-Conference Party (March 29th)</li>
+                  <li>Conference Ticket (March 31st)</li>
+                  <li>Pre-Conference Party (March 30th)</li>
                 </ul>
                 <strong>Unit Price: 0.1 ETH</strong>
                 <div>
@@ -1320,7 +1525,7 @@ export default function NFTTicketsSection() {
                   <div className="hidden">
                     Full day of insightful keynotes with the best innovators and
                     contritors from the DeFi and Ethereum community on March
-                    30th. Great party on the night before on March 29th.
+                    31st. Great party on the night before on March 30th.
                   </div>
                 </Collapse>
               </div>
@@ -1351,10 +1556,10 @@ export default function NFTTicketsSection() {
               <div>
                 <strong> Combo Ticket:</strong>
                 <ul>
-                  <li>Conference Ticket (March 30th)</li>
-                  <li>Pre-Conference Party (March 29th)</li>
-                  <li>All-day Workshops and Hackathon (March 29th)</li>
-                  <li>Special Yacht Meet and Greet Pre-Party (March 28th)</li>
+                  <li>Conference Ticket (March 31st)</li>
+                  <li>Pre-Conference Party (March 30th)</li>
+                  <li>All-day Workshops and Hackathon (March 30th)</li>
+                  <li>Special Yacht Meet and Greet Pre-Party (March 29th)</li>
                 </ul>
                 <strong>Unit Price: 0.2 ETH</strong>
                 <div>
@@ -1374,11 +1579,11 @@ export default function NFTTicketsSection() {
                   <div className="hidden">
                     Full day of insightful keynotes with the best innovators and
                     contritors from the DeFi and Ethereum community on March
-                    30th. Great party on the night before on March 29th.
+                    31st. Great party on the night before on March 30th.
                     <br />
-                    On March 29th, full day workshops with some of the best
+                    On March 30th, full day workshops with some of the best
                     instructors from the DeFi and Ethereum world and a hackathon
-                    with more than DAI 10k cash in prize. On the 28th, you will
+                    with more than DAI 10k cash in prize. On the 29th, you will
                     be invited to an exclusive yacht party with bbq and jetski
                     animation in Dubai Marina.
                   </div>
@@ -1898,7 +2103,7 @@ export default function NFTTicketsSection() {
                       </p>
                       <p>{tix.attendeeInfo.email}</p>
                       <p>
-                        {tix.ticketOption
+                        {getTicketOptionString(tix.ticketOption)
                           .replace(/([a-z])([A-Z])/g, '$1 $2')
                           .split(' ')
                           .map((w) => {
