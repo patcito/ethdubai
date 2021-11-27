@@ -1,6 +1,4 @@
 import React from 'react'
-import videoMP4 from './videos/video.mp4'
-import videoWebm from './videos/video.webm'
 import { useStaticQuery, graphql } from 'gatsby'
 import './hero.css'
 
@@ -152,13 +150,13 @@ export default function Hero({ banner }) {
               <div className="react_text_content" style={{ color: '#FFF' }}>
                 <br />
                 <h3>
-                  March 30th, 2022 <span>(conference)</span>
+                  March 31st, 2022 <span>(conference)</span>
                 </h3>
                 <h3>
-                  March 29th, 2022 <span>(workshops)</span>
+                  March 30th, 2022 <span>(workshops)</span>
                 </h3>
                 <h3>
-                  March 28th, 2022 <span>(social events)</span>
+                  March 29th, 2022 <span>(social events)</span>
                 </h3>
               </div>
             </div>
