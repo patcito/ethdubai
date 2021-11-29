@@ -155,7 +155,17 @@ export default function InlineTicketsSection({ event }) {
               <h3>
                 An announcement will be made soon about the tickets and when
                 they will be available. Make sure to subscribe to our mailing
-                list below.
+                list below.{' '}
+                <strong>
+                  You can join our{' '}
+                  <a
+                    href="https://t.me/joinchat/5hfCs5S9PzlmNzM0"
+                    target="_blank"
+                  >
+                    telegram in the meantime
+                  </a>
+                  .{' '}
+                </strong>
               </h3>
 
               {/*<iframe
