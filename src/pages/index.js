@@ -488,8 +488,8 @@ export default function IndexPage({ data, location }) {
                         As of today, you will need a negative PCR test to enter
                         the country and you will be required by law to wear a
                         mask inside the venue. We will notify you by mail and
-                        update the website if the the situation changes. In case
-                        of event cancelation or travel ban, you will get a full
+                        update the website if the situation changes. In case
+                        of event cancellation or travel ban, you will get a full
                         refund or the possibility to transfer your ticket to
                         next year's edition.
                       </p>
@@ -510,7 +510,7 @@ export default function IndexPage({ data, location }) {
                 Yes, we want everyone to have a safe, productive, enjoyable time
                 at the conference.{' '}
                 <a href="/coc.html" target="_blank">
-                  Here's the Code of Coduct for ETHDubai
+                  Here's the Code of Conduct for ETHDubai
                 </a>
                 .
               </p>
