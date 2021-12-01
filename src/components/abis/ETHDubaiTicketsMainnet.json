@@ -2,7 +2,6 @@
   "_format": "hh-sol-artifact-1",
   "contractName": "ETHDubaiTicket",
   "sourceName": "contracts/ETHDubaiTicket.sol",
-  "mainnet": true,
   "abi": [
     {
       "inputs": [],
@@ -56,10 +55,27 @@
           "type": "address"
         },
         {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "ticketCode",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "ticketOption",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "specialStatus",
+              "type": "string"
+            }
+          ],
           "indexed": false,
-          "internalType": "uint256",
-          "name": "id",
-          "type": "uint256"
+          "internalType": "struct ETHDubaiTicket.MintInfo[]",
+          "name": "mintInfo",
+          "type": "tuple[]"
         },
         {
           "indexed": false,
@@ -68,32 +84,7 @@
           "type": "string"
         }
       ],
-      "name": "LMintId",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "id",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "bool",
-          "name": "value",
-          "type": "bool"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "message",
-          "type": "string"
-        }
-      ],
-      "name": "LTicketAction",
+      "name": "LMint",
       "type": "event"
     },
     {
@@ -161,51 +152,94 @@
       "type": "event"
     },
     {
-      "inputs": [],
-      "name": "dao1",
-      "outputs": [
+      "inputs": [
         {
           "internalType": "address",
           "name": "",
           "type": "address"
         }
       ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "dao2",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "dao3",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "daoa",
+      "name": "daosDiscount",
       "outputs": [
         {
           "internalType": "uint256",
           "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosMinBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosMinTotal",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosQty",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosUsed",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "_value",
           "type": "uint256"
         }
       ],
@@ -226,6 +260,30 @@
         }
       ],
       "name": "getPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "ticketOption",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPriceView",
       "outputs": [
         {
           "internalType": "uint256",
@@ -273,6 +331,42 @@
       "type": "function"
     },
     {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "ticketCode",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "ticketOption",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "specialStatus",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct ETHDubaiTicket.MintInfo[]",
+          "name": "mintInfos",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "mintItemNoDiscount",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "name": "owner",
       "outputs": [
@@ -289,26 +383,31 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "d1",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "d2",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "d3",
+          "name": "dao",
           "type": "address"
         },
         {
           "internalType": "uint256",
-          "name": "a",
+          "name": "qty",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "discount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minBalance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minTotal",
           "type": "uint256"
         }
       ],
-      "name": "setDaos",
+      "name": "setDao",
       "outputs": [
         {
           "internalType": "bool",
@@ -328,7 +427,7 @@
         },
         {
           "internalType": "uint256[]",
-          "name": "discounts",
+          "name": "newDiscounts",
           "type": "uint256[]"
         },
         {
@@ -424,6 +523,25 @@
         {
           "internalType": "uint256",
           "name": "maxMint",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "ticketOptions",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
           "type": "uint256"
         }
       ],

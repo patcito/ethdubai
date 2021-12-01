@@ -719,51 +719,75 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "dao1",
-      "outputs": [
+      "inputs": [
         {
           "internalType": "address",
           "name": "",
           "type": "address"
         }
       ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "dao2",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "dao3",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "daoa",
+      "name": "daosDiscount",
       "outputs": [
         {
           "internalType": "uint256",
           "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosMinBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosQty",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosUsed",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "_value",
           "type": "uint256"
         }
       ],
@@ -803,6 +827,30 @@
         }
       ],
       "name": "getPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "ticketOption",
+          "type": "string"
+        }
+      ],
+      "name": "getPriceView",
       "outputs": [
         {
           "internalType": "uint256",
@@ -1126,26 +1174,26 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "d1",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "d2",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "d3",
+          "name": "dao",
           "type": "address"
         },
         {
           "internalType": "uint256",
-          "name": "a",
+          "name": "qty",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "discount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minBalance",
           "type": "uint256"
         }
       ],
-      "name": "setDaos",
+      "name": "setDao",
       "outputs": [
         {
           "internalType": "bool",

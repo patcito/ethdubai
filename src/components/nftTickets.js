@@ -157,6 +157,27 @@ export default function NFTTicketsSection() {
       },
     },
     {
+      contract: '0x9ED6fE2964F0468f180382470025CB3DBE946d1A',
+      token: '',
+      abi: abi.abi,
+      exchangeUrl: 'https://app.uniswap.org',
+      exchangeName: 'UniSwap',
+      tokenSymbol: 'ETH',
+      web3Name: 'Optimism',
+      networkShare: 'optimism',
+      networkInfo: {
+        chainId: '0xA',
+        chainName: 'Optimism',
+        rpcUrls: ['https://mainnet.optimism.io'],
+        nativeCurrency: {
+          name: 'ETHER',
+          symbol: 'ETH',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://optimistic.etherscan.io/'],
+      },
+    },
+    {
       contract: '',
       token: '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619',
       abi: abiNonEth.abi,
@@ -205,7 +226,7 @@ export default function NFTTicketsSection() {
     },
     {
       //      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
-      contract: '0x9ba9D63efCA8E4C30CaFDdb4F8Cce95773BE6F5b',
+      contract: '0xE46299FD63d2615788b5d1d77535C17Ac1006C6f',
       abi: mainnetAbi.abi,
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
@@ -316,7 +337,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xF16dF3eec3e10169b21f83c7F3e7eBD11F55fa3f',
+      contract: '0xa10524978dD504ccAe20dE8D8ee85c8BC3De47b2',
       token: '',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
@@ -381,14 +402,16 @@ export default function NFTTicketsSection() {
       },
     },*/
     {
-      contract: '0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44',
-      token: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
-      abi: abiNonEth.abi,
+      contract: '0xE46299FD63d2615788b5d1d77535C17Ac1006C6f',
+      //      token: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
+      abi: mainnetAbi.abi,
+      token: '',
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       web3Name: 'Hardhat',
       networkShare: 'hardhat',
+      hasNoNft: true,
 
       networkInfo: {
         chainId: '0x7A69',
@@ -451,7 +474,6 @@ export default function NFTTicketsSection() {
   const setCurrentNetworkBasedOnWallet = (network) => {
     networks.map((n, i) => {
       let x = parseInt(n.networkInfo.chainId, 16)
-      console.log('nnnnnn', n, i, x, network)
       if (x === network.chainId) {
         setCurrentNetwork(i)
       }
@@ -573,7 +595,7 @@ export default function NFTTicketsSection() {
       <p>
         You do not have enough {networks[currentNetwork].tokenSymbol}. You need
         to get some on an exchange such as{' '}
-        <a href={networks[currentNetwork].exchangeUrl}>
+        <a href={networks[currentNetwork].exchangeUrl} target="_blank">
           {networks[currentNetwork].exchangeName}
         </a>
       </p>
@@ -998,9 +1020,6 @@ export default function NFTTicketsSection() {
       case 'workshop3AndPreParty':
         return 4
         break
-      case 'hotelWorkshopsAndPreParty':
-        return 5
-        break
       case 'hotelWorkshops1AndPreParty':
         return 6
         break
@@ -1017,36 +1036,31 @@ export default function NFTTicketsSection() {
   }
 
   const getTicketOptionPrice = (ticketOption) => {
+    console.log('ticketOption yes eth', ticketOption)
     switch (ticketOption) {
       case 'conference':
-        return '0.1'
+        return '0.07'
         break
       case 'hotelConference':
-        return '0.2'
-        break
-      case 'workshopAndPreParty':
-        return '0.2'
+        return '0.17'
         break
       case 'workshop1AndPreParty':
-        return '0.2'
+        return '0.12'
         break
       case 'workshop2AndPreParty':
-        return '0.2'
+        return '0.12'
         break
       case 'workshop3AndPreParty':
-        return '0.2'
-        break
-      case 'hotelWorkshopsAndPreParty':
-        return '0.4'
+        return '0.12'
         break
       case 'hotelWorkshops1AndPreParty':
-        return '0.4'
+        return '0.32'
         break
       case 'hotelWorkshops2AndPreParty':
-        return '0.4'
+        return '0.32'
         break
       case 'hotelWorkshops3AndPreParty':
-        return '0.4'
+        return '0.32'
         break
       default:
         return '0.2'
@@ -1249,6 +1263,9 @@ export default function NFTTicketsSection() {
       'final ethers price',
       ethers.utils.parseEther('0.1').toHexString()
     )
+    //const feFinalTicketPrice = getFinalTicketsPrice(finalTickets)
+    const feFinalTicketPrice = getPreFinalTicketsPrice(attendeeInfos)
+
     const account = signer.getAddress()
     console.log('okkkkkkkkkk')
     console.log(finalTickets)
@@ -1331,7 +1348,13 @@ export default function NFTTicketsSection() {
                     return
                   }
                 } else {
-                  manageBuyTx(finalPdfTickets, finalTickets, contract, null)
+                  manageBuyTx(
+                    finalPdfTickets,
+                    finalTickets,
+                    contract,
+                    feFinalTicketPrice.gt(txTotalPrice),
+                    null
+                  )
                 }
               } catch (error) {
                 console.log('allowance')
@@ -1339,10 +1362,18 @@ export default function NFTTicketsSection() {
                 return
               }
             } else {
-              console.log('yes eth?')
-              manageBuyTx(finalPdfTickets, finalTickets, contract, {
-                value: txTotalPrice.toHexString(),
-              })
+              console.log('yes eth? fe', feFinalTicketPrice)
+              console.log('yes eth? tx', txTotalPrice)
+              manageBuyTx(
+                finalPdfTickets,
+                finalTickets,
+                contract,
+                feFinalTicketPrice.gt(txTotalPrice),
+
+                {
+                  value: txTotalPrice.toHexString(),
+                }
+              )
             }
           } catch (error) {
             console.log('current balance')
@@ -1364,14 +1395,23 @@ export default function NFTTicketsSection() {
     finalPdfTickets,
     finalTickets,
     contract,
+    hasDiscount,
     value
   ) => {
     try {
       let tx
       if (value) {
-        tx = await contract.mintItem(finalTickets, value)
+        if (hasDiscount) {
+          tx = await contract.mintItem(finalTickets, value)
+        } else {
+          tx = await contract.mintItemNoDiscount(finalTickets, value)
+        }
       } else {
-        tx = await contract.mintItem(finalTickets)
+        if (hasDiscount) {
+          tx = await contract.mintItem(finalTickets)
+        } else {
+          tx = await contract.mintItemNoDiscount(finalTickets)
+        }
       }
       console.log('txiiiiiiiiiii', tx)
       setOngoingTx(tx.hash)
@@ -1421,16 +1461,16 @@ export default function NFTTicketsSection() {
   }
   const getTicketPrice = (oneDay, threeDay, hotel) => {
     if (oneDay && !hotel) {
-      return 0.1
+      return 0.07
     }
     if (oneDay && hotel) {
-      return 0.2
+      return 0.17
     }
     if (threeDay && !hotel) {
-      return 0.2
+      return 0.12
     }
     if (threeDay && hotel) {
-      return 0.4
+      return 0.32
     }
   }
   const getAllTicketsPrices = () => {
@@ -1464,6 +1504,7 @@ export default function NFTTicketsSection() {
   const getFinalTicketsPrice = (finalTickets) => {
     let total = []
     finalTickets.map((ft) => {
+      console.log('calling yes eth ticketoption', ft.ticketOption)
       total.push(getTicketOptionPrice(ft.ticketOption))
     })
     const totalBN = total.map((t) => {
@@ -1478,8 +1519,8 @@ export default function NFTTicketsSection() {
     return totalFinal
   }
   const total = () => {
-    const oneDayPrice = ethers.BigNumber.from('10').pow(17)
-    const threeDayPrice = ethers.BigNumber.from('10').pow(17).mul(2)
+    const oneDayPrice = ethers.BigNumber.from('10').pow(16).mul(7)
+    const threeDayPrice = ethers.BigNumber.from('10').pow(16).mul(12)
     let hotelPrice = ethers.BigNumber.from('10').pow(16).mul(5)
     let hasOneDayHotel = 1
     let hasThreeDayHotel = 1
@@ -1576,10 +1617,10 @@ export default function NFTTicketsSection() {
               <div>
                 <strong>Conference Only Ticket:</strong>
                 <ul>
-                  <li>Conference Ticket (March 30th)</li>
-                  <li>Pre-Conference Party (March 29th)</li>
+                  <li>Conference Ticket (March 31th)</li>
+                  <li>Pre-Conference Party (March 30th)</li>
                 </ul>
-                <strong>Unit Price: 0.1 ETH</strong>
+                <strong>Unit Price: 0.07 ETH</strong>
                 <div>
                   <a
                     href="#"
@@ -1633,7 +1674,7 @@ export default function NFTTicketsSection() {
                   <li>All-day Workshops and Hackathon (March 29th)</li>
                   <li>Special Yacht Meet and Greet Pre-Party (March 28th)</li>
                 </ul>
-                <strong>Unit Price: 0.2 ETH</strong>
+                <strong>Unit Price: 0.12 ETH</strong>
                 <div>
                   <a
                     href="#"
@@ -1651,11 +1692,11 @@ export default function NFTTicketsSection() {
                   <div className="hidden">
                     Full day of insightful keynotes with the best innovators and
                     contritors from the DeFi and Ethereum community on March
-                    30th. Great party on the night before on March 29th.
+                    31th. Great party on the night before on March 30th.
                     <br />
-                    On March 29th, full day workshops with some of the best
+                    On March 30th, full day workshops with some of the best
                     instructors from the DeFi and Ethereum world and a hackathon
-                    with more than DAI 10k cash in prize. On the 28th, you will
+                    with more than DAI 10k cash in prize. On the 29th, you will
                     be invited to an exclusive yacht party with bbq and jetski
                     animation in Dubai Marina.
                   </div>
