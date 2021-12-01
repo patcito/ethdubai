@@ -108,7 +108,7 @@ export default function SponsorsSection({ sponsors }) {
               </div>
             </div>
           </Modal>
-          {false && sponsors.diamond?.length > 0 ? (
+          {sponsors.diamond?.length > 0 ? (
             <div className="platinium_box gold_box">
               <div className="row">
                 {sponsors.diamond.map((sponsor) =>
