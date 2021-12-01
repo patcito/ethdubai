@@ -550,45 +550,6 @@
           "type": "uint256"
         }
       ],
-      "name": "_idToColors",
-      "outputs": [
-        {
-          "internalType": "bytes3",
-          "name": "color1",
-          "type": "bytes3"
-        },
-        {
-          "internalType": "bytes3",
-          "name": "color2",
-          "type": "bytes3"
-        },
-        {
-          "internalType": "bytes3",
-          "name": "color3",
-          "type": "bytes3"
-        },
-        {
-          "internalType": "bytes3",
-          "name": "color4",
-          "type": "bytes3"
-        },
-        {
-          "internalType": "bytes3",
-          "name": "color5",
-          "type": "bytes3"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
       "name": "_idToScanned",
       "outputs": [
         {
@@ -764,6 +725,25 @@
           "type": "address"
         }
       ],
+      "name": "daosMinTotal",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
       "name": "daosQty",
       "outputs": [
         {
@@ -788,6 +768,25 @@
         {
           "internalType": "uint256",
           "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "discounts",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
           "type": "uint256"
         }
       ],
@@ -821,6 +820,30 @@
           "internalType": "address",
           "name": "",
           "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "ticketOption",
+          "type": "string"
+        }
+      ],
+      "name": "getDiscount",
+      "outputs": [
+        {
+          "internalType": "uint256[2]",
+          "name": "",
+          "type": "uint256[2]"
         }
       ],
       "stateMutability": "view",
@@ -1204,6 +1227,11 @@
           "internalType": "uint256",
           "name": "minBalance",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minTotal",
+          "type": "uint256"
         }
       ],
       "name": "setDao",
@@ -1226,7 +1254,7 @@
         },
         {
           "internalType": "string[]",
-          "name": "discounts",
+          "name": "newDiscount",
           "type": "string[]"
         },
         {
@@ -1394,25 +1422,6 @@
           "internalType": "string",
           "name": "",
           "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "name": "ticketOptionPrices",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
         }
       ],
       "stateMutability": "view",

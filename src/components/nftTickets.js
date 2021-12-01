@@ -226,7 +226,7 @@ export default function NFTTicketsSection() {
     },
     {
       //      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
-      contract: '0xE46299FD63d2615788b5d1d77535C17Ac1006C6f',
+      contract: '0xefc1aB2475ACb7E60499Efb171D173be19928a05',
       abi: mainnetAbi.abi,
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
@@ -402,16 +402,16 @@ export default function NFTTicketsSection() {
       },
     },*/
     {
-      contract: '0xE46299FD63d2615788b5d1d77535C17Ac1006C6f',
-      //      token: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
-      abi: mainnetAbi.abi,
-      token: '',
+      contract: '0x3C15538ED063e688c8DF3d571Cb7a0062d2fB18D',
+      token: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
+      abi: abiNonEth.abi,
+      //token: '',
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       web3Name: 'Hardhat',
       networkShare: 'hardhat',
-      hasNoNft: true,
+      hasNoNft: false,
 
       networkInfo: {
         chainId: '0x7A69',
@@ -1063,7 +1063,7 @@ export default function NFTTicketsSection() {
         return '0.32'
         break
       default:
-        return '0.2'
+        return '0.12'
         break
     }
   }
@@ -1138,18 +1138,25 @@ export default function NFTTicketsSection() {
                 alert you by email.
               </p>
             </h3>
-            {svgTickets.map((svg, i) => (
-              <div>
-                View your NFT ticket{' '}
-                <a
-                  href={`${networks[currentNetwork].marketplace}/${networks[currentNetwork].contract}/${ownerIds[i]}`}
-                  target="_blank"
-                >
-                  on {networks[currentNetwork].marketplaceName}
-                </a>
-                <img style={{ width: '100%' }} src={`${svg}`} />
-              </div>
-            ))}
+            <div style={{ overflowY: 'scroll' }}>
+              {svgTickets.map((svg, i) => (
+                <div>
+                  {networks[currentNetwork].marketplaceName !== '' ? (
+                    <>
+                      View your NFT ticket{' '}
+                      <a
+                        href={`${networks[currentNetwork].marketplace}/${networks[currentNetwork].contract}/${ownerIds[i]}`}
+                        target="_blank"
+                      >
+                        on {networks[currentNetwork].marketplaceName}
+                      </a>
+                    </>
+                  ) : null}
+
+                  <img style={{ width: '100%' }} src={`${svg}`} />
+                </div>
+              ))}
+            </div>
           </>
         ) : (
           <>
@@ -1284,7 +1291,7 @@ export default function NFTTicketsSection() {
         console.log('okkkkkkkkkk1')
         console.log(1116666666)
         try {
-          console.log('asking total price')
+          console.log('asking total price', finalTickets)
           const txTotalPrice = await contract.totalPrice(finalTickets)
           console.log(111777777, txTotalPrice, finalTickets)
 
@@ -1399,19 +1406,18 @@ export default function NFTTicketsSection() {
     value
   ) => {
     try {
+      console.log('hasiscount', hasDiscount)
       let tx
-      if (value) {
+      if (value !== null) {
         if (hasDiscount) {
+          alert('has discount')
           tx = await contract.mintItem(finalTickets, value)
         } else {
+          alert('has no discount')
           tx = await contract.mintItemNoDiscount(finalTickets, value)
         }
       } else {
-        if (hasDiscount) {
-          tx = await contract.mintItem(finalTickets)
-        } else {
-          tx = await contract.mintItemNoDiscount(finalTickets)
-        }
+        tx = await contract.mintItem(finalTickets)
       }
       console.log('txiiiiiiiiiii', tx)
       setOngoingTx(tx.hash)
@@ -1810,7 +1816,10 @@ export default function NFTTicketsSection() {
               <div className="modal-body">
                 {successPurchase ? (
                   <>
-                    <div className="checkout-full-modal">
+                    <div
+                      className="checkout-full-modal"
+                      style={{ overflowY: 'scroll', height: '625px' }}
+                    >
                       <RenderTickets />
                     </div>
                   </>
@@ -2118,12 +2127,7 @@ export default function NFTTicketsSection() {
                                       )}
                                     </span>
                                     {ethersProvider && tokenBalance ? (
-                                      <span>
-                                        {' | '} Current balance:{' '}
-                                        {networks[currentNetwork].tokenSymbol}{' '}
-                                        {tokenBalance} on{' '}
-                                        {networks[currentNetwork].web3Name}
-                                      </span>
+                                      <span></span>
                                     ) : null}
                                   </div>
                                 </Form.Group>
