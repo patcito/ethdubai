@@ -70,7 +70,6 @@ export default function NFTTicketsSection() {
       const url =
         `https://svg.ethdubaiconf.org/token?tokenid=${paramsArray[0]}` +
         `&network=${paramsArray[1]}&contract=${paramsArray[2]}`
-      console.log('lllll', url)
       const response = await fetch(url)
       const data = await response.text()
       console.log('llllllllllllllll', data)
@@ -79,7 +78,7 @@ export default function NFTTicketsSection() {
       const obj = JSON.parse(json)
       console.log(obj)
       const svg = Buffer.from(obj.image.substring(26), 'base64').toString()
-      console.log('hihihi', svg)
+      console.log('svg', svg)
       setSharedSVG(obj.image.substring(26))
       setShowSharedTicket(true)
       //var xhr = new XMLHttpRequest()
