@@ -512,9 +512,14 @@
     {
       "inputs": [
         {
-          "internalType": "uint256[20]",
-          "name": "ticketOptionsNew",
-          "type": "uint256[20]"
+          "internalType": "uint256",
+          "name": "ticketOptionId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
         }
       ],
       "name": "setTicketOptions",
