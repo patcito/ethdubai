@@ -225,11 +225,11 @@ export default function NFTTicketsSection() {
     },
     {
       //      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
-      contract: '0xefc1aB2475ACb7E60499Efb171D173be19928a05',
-      abi: mainnetAbi.abi,
+      contract: '0xa32DBcB19C870e40C9FC7d14E25171313d21C3E0',
+      abi: abi.abi,
       token: '',
       exchangeUrl: 'https://app.uniswap.org',
-      hasNoNft: true,
+      hasNoNft: false,
       exchangeName: 'UniSwap',
       networkShare: 'ropsten',
       web3Name: 'Ropsten',
@@ -243,8 +243,8 @@ export default function NFTTicketsSection() {
     },
     {
       //      contract: '0xE345546Cc2616DBC51b51933FC32D5708d90BF75',
-      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
-      abi: mainnetAbi.abi,
+      contract: '0x9ab1130cdfcE397aB6283e681fDaa2B1D49e7CBD',
+      abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       web3Name: 'Rinkeby',
@@ -336,7 +336,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xa10524978dD504ccAe20dE8D8ee85c8BC3De47b2',
+      contract: '0x9ab1130cdfcE397aB6283e681fDaa2B1D49e7CBD',
       token: '',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
@@ -357,7 +357,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xE345546Cc2616DBC51b51933FC32D5708d90BF75',
+      contract: '0xdB54fc2c0f176f6c1ca1ddEcFC842339BF096763',
       token: '',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
