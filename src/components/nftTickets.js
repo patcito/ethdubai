@@ -267,11 +267,11 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x0D95566B084D578970D7e6748615Fb9B27f72349',
+      contract: '0xe0Be75a148d6bF6F631d61c926d409945F528D0b',
       abi: abiNonEth.abi,
       marketplaceName: 'opensea',
       marketplace: 'https://testnets.opensea.io/assets/matic',
-      token: '0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1',
+      token: '0xC058595908ea52FCE6AA6ef22BB54a1458705D44',
       exchangeUrl: 'https://www.quickswap.finance/#/swap',
       exchangeName: 'QuickSwap',
       web3Name: 'Polygon Mumbai',
@@ -290,9 +290,9 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xC058595908ea52FCE6AA6ef22BB54a1458705D44',
+      contract: '0x5eF5758B47b7fdb01e5a35197d046131db9281F0',
       abi: abiNonEth.abi,
-      token: '0x0D95566B084D578970D7e6748615Fb9B27f72349',
+      token: '0x5B98ffed5FC15BeE1D3A4e6190c3504620d75c5F',
       exchangeUrl:
         'https://swap.spiritswap.finance/#/exchange/swap/0x74b23882a30290451A17c44f4F05243b6b58C76d',
       exchangeName: 'SpiritSwap',
@@ -357,7 +357,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xdB54fc2c0f176f6c1ca1ddEcFC842339BF096763',
+      contract: '0x3Ca017499946E08cff1252529193eC57f3d4F562',
       token: '',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
@@ -1409,10 +1409,8 @@ export default function NFTTicketsSection() {
       let tx
       if (value !== null) {
         if (hasDiscount) {
-          alert('has discount')
           tx = await contract.mintItem(finalTickets, value)
         } else {
-          alert('has no discount')
           tx = await contract.mintItemNoDiscount(finalTickets, value)
         }
       } else {
