@@ -145,7 +145,16 @@ export default function Hero({ banner }) {
                 The dev conference on anything related to Ethereum, DeFi, NFTs,
                 EVM scaling, Gaming and more with a focus on decentralization
                 and community projects such as Yearn and its ecosystem.
+                Questions?{' '}
+                <a
+                  href="https://t.me/joinchat/5hfCs5S9PzlmNzM0"
+                  target="_blank"
+                  style={{ color: '#fff', textDecoration: 'underline' }}
+                >
+                  Ask us on Telegram
+                </a>{' '}
               </h2>
+              <p />
               <h1 className="title-header-mobile">ETHDubai</h1>
               <div className="react_text_content" style={{ color: '#FFF' }}>
                 <br />
@@ -164,7 +173,6 @@ export default function Hero({ banner }) {
               <a href="#conference" className="learn_more">
                 Learn More
               </a>
-
               <a href="#tickets" className="book_now">
                 Tickets
               </a>
