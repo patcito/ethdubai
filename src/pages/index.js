@@ -991,26 +991,5 @@ export const pageQuery = graphql`
         }
       }
     }
-    pool: file(relativePath: { eq: "pool.png" }) {
-      childImageSharp {
-        fluid(height: 300) {
-          ...GatsbyImageSharpFixed_withWebp
-        }
-      }
-    }
-    inside: file(relativePath: { eq: "inside.png" }) {
-      childImageSharp {
-        fluid(height: 300) {
-          ...GatsbyImageSharpFixed_withWebp
-        }
-      }
-    }
-    meridien: file(relativePath: { eq: "meridien.jpg" }) {
-      childImageSharp {
-        fluid(height: 300) {
-          ...GatsbyImageSharpFixed_withWebp
-        }
-      }
-    }
   }
 `
