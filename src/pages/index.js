@@ -165,12 +165,20 @@ export default function IndexPage({ data, location }) {
                     </a>{' '}
                     @ Dubai, UAE
                   </h3>
-                  <div className="row">
+                  <div className="row d-block d-sm-none">
                     <div className="col-md-10">
                       <Img fluid={data.pool.childImageSharp.fluid} />
                     </div>
                     <div className="col-md-2">
                       <Img fluid={data.inside.childImageSharp.fluid} />
+                    </div>
+                  </div>
+                  <div className="row d-none d-sm-block">
+                    <div className="col-md-6">
+                      <Img fixed={data.pool.childImageSharp.fixed} />
+                    </div>
+                    <div className="col-md-6">
+                      <Img fixed={data.inside.childImageSharp.fixed} />
                     </div>
                   </div>
                 </div>
@@ -1010,6 +1018,20 @@ export const pageQuery = graphql`
       childImageSharp {
         fluid(maxHeight: 300) {
           ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    pool: file(relativePath: { eq: "pool.png" }) {
+      childImageSharp {
+        fixed(height: 300) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    inside: file(relativePath: { eq: "inside.png" }) {
+      childImageSharp {
+        fixed(height: 300) {
+          ...GatsbyImageSharpFixed_withWebp
         }
       }
     }
