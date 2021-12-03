@@ -60,7 +60,7 @@ export default function IndexPage({ data, location }) {
   }
 
   return (
-    <Layout location={location}>
+    <>
       <Meta site={get(data, 'site.meta')} />
       <Hero banner={data.banner.childImageSharp.fluid} />
 
@@ -551,7 +551,7 @@ export default function IndexPage({ data, location }) {
           </div>
         </div>
       </footer>
-    </Layout>
+    </>
   )
 }
 

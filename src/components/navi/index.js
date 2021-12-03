@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
+import { AppContext } from '../../components/context/AppContext'
 import Img from 'gatsby-image'
 
 export default function Navi() {
+  const context = useContext(AppContext)
   const imgs = useStaticQuery(graphql`
     {
       logo: file(relativePath: { eq: "ethdubailogo-white.png" }) {
+        childImageSharp {
+          fixed(height: 90) {
+            ...GatsbyImageSharpFixed_withWebp
+          }
+        }
+      }
+      logo_dark: file(relativePath: { eq: "ethdubailogo-black.png" }) {
         childImageSharp {
           fixed(height: 90) {
             ...GatsbyImageSharpFixed_withWebp
@@ -37,7 +46,11 @@ export default function Navi() {
               <Img
                 className="no-animation"
                 style={{ verticalAlign: 'middle' }}
-                fixed={imgs.logo.childImageSharp.fixed}
+                fixed={
+                  context.isPinned 
+                    ? imgs.logo.childImageSharp.fixed 
+                    : imgs.logo_dark.childImageSharp.fixed
+                }
               />
             </a>
             <button
