@@ -1002,21 +1002,21 @@ export const pageQuery = graphql`
     pool: file(relativePath: { eq: "pool.png" }) {
       childImageSharp {
         fluid(maxHeight: 300) {
-          ...GatsbyImageSharpFixed_withWebp
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
     inside: file(relativePath: { eq: "inside.png" }) {
       childImageSharp {
         fluid(maxHeight: 300) {
-          ...GatsbyImageSharpFixed_withWebp
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
     meridien: file(relativePath: { eq: "meridien.jpg" }) {
       childImageSharp {
         fluid(maxHeight: 300) {
-          ...GatsbyImageSharpFixed_withWebp
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
