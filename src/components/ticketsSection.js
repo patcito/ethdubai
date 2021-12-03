@@ -42,9 +42,20 @@ export default function TicketsSection() {
               <Img fixed={imgs.ticket.childImageSharp.fixed} />
               <h2>Tickets</h2>
               <h3>
-                An announcement will be made soon about the tickets and when
-                they will be available. Make sure to subscribe to our mailing
-                list below.
+                Tickets will be made available on
+                <a
+                  target="_blank"
+                  href="https://dateful.com/time-zone-converter?t=2pm&d=2021-12-04&tz2=Dubai-United-Arab-Emirates"
+                >
+                  Saturday 4th of December at 10AM UTC{' '}
+                </a>
+                . Get notified by subscribing{' '}
+                <a
+                  target="_blank"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform"
+                >
+                  here
+                </a>
               </h3>
               <h3 className="d-none">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
