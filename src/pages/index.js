@@ -8,7 +8,6 @@ const Caroussel = loadable(() => import('components/caroussel'))
 const CarouselPeople = loadable(() => import('components/carouselpeople'))
 
 import Meta from 'components/meta'
-import Layout from 'components/layout'
 import ReactMarkdown from 'react-markdown'
 import Hero from 'components/hero'
 
@@ -60,7 +59,7 @@ export default function IndexPage({ data, location }) {
   }
 
   return (
-    <Layout location={location}>
+    <>
       <Meta site={get(data, 'site.meta')} />
       <Hero banner={data.banner.childImageSharp.fluid} />
 
@@ -551,7 +550,7 @@ export default function IndexPage({ data, location }) {
           </div>
         </div>
       </footer>
-    </Layout>
+    </>
   )
 }
 
