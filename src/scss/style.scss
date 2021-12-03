@@ -83,18 +83,18 @@ header.fixed-header li.nav-item.active a.nav-link {
   transition: 0.3s;
 }
 a.learn_more:hover {
-  background: #00b3b0;
+  background: #06ceca;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.0784313725490196);
 }
 a.book_now:hover {
-  background: #4a55d6;
+  background: #705ce4;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.0784313725490196);
 }
 a.learn_more {
-  background: #00d7d3;
+  background: #11bdba;
 }
 a.book_now {
-  background: #2972a5;
+  background: #4e39c5;
   margin-left: 15px;
 }
 section.react_section,
@@ -3931,6 +3931,10 @@ header.desktop_header {
 
 body {
   overflow-x: hidden;
+  background-color: #000;
+  .conference, .speaker, .event_moments, .schedule, .book_ticket, .sponser, .support, .location, .people-behind, .subscribe_bottom {
+    background: #fff;
+  }
 }
 .regular_ticket:last-child {
   border-bottom: none !important;
