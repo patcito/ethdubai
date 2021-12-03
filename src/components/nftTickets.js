@@ -137,14 +137,15 @@ export default function NFTTicketsSection() {
   }
   const networks = [
     {
-      contract: '',
-      address: '0x992dac69827A200BA112A0303Fe8F79F03c37D9d',
-      abi: abi.abi,
+      contract: '0x9ED6fE2964F0468f180382470025CB3DBE946d1A',
+      token: '',
+      abi: mainnetAbi.abi,
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
-      tokenSymbol: 'ETH',
-      networkShare: 'mainnet',
       web3Name: 'mainnet',
+      networkShare: 'mainnet',
+      tokenSymbol: 'ETH',
+      hasNoNft: true,
       marketplace: 'https://opensea.io/assets/',
       marketplaceName: 'opensea',
       web3Network: 'mainnet',
@@ -378,16 +379,16 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x3C15538ED063e688c8DF3d571Cb7a0062d2fB18D',
-      token: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
-      abi: abiNonEth.abi,
+      contract: '0x976C214741b4657bd99DFD38a5c0E3ac5C99D903',
+      token: '',
+      abi: mainnetAbi.abi,
       //token: '',
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       web3Name: 'Hardhat',
       networkShare: 'hardhat',
-      hasNoNft: false,
+      hasNoNft: true,
 
       networkInfo: {
         chainId: '0x7A69',
