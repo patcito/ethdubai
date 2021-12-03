@@ -1878,6 +1878,7 @@ div#checkout_popup .modal-dialog {
 }
 div#checkout_popup .modal-dialog {
   width: 597px;
+
   @media (min-width: 830px) {
     width: 830px;
   }
@@ -1889,6 +1890,9 @@ div#checkout_popup .modal-dialog {
   }
   @media (max-width: 375px) {
     width: 320px;
+  }
+  @media (min-width: 880px) {
+    width: 880px;
   }
 }
 
@@ -3964,10 +3968,13 @@ body {
 }
 .checkout-full-modal {
   @media (min-width: 768px) {
-    padding: 45px;
+    padding: 10px;
   }
 
   @media (max-width: 768px) {
     padding: 10px;
+  }
+  @media (min-width: 880px) {
+    padding: 45px;
   }
 }
