@@ -930,6 +930,12 @@ export default function NFTTicketsSection() {
     return false
   }
 
+  const getHotelInfo = (attendee) => {
+    if (attendee.includeWorkshopsAndPreParty) {
+      return { in: '28' }
+    }
+    return { in: '30' }
+  }
   const getTicketOptionString = (ticketOption) => {
     if (!isCurrentNetworkMainnetContract()) {
       return ticketOption
@@ -1960,7 +1966,7 @@ export default function NFTTicketsSection() {
                                     <Col xs="12" sm="6">
                                       <Form.Check
                                         type="checkbox"
-                                        label="Include Hotel"
+                                        label="Include Hotel (single Deluxe room)"
                                         onClick={handleAttendeeInfoCheck}
                                         name="includeHotelExtra"
                                         checked={
@@ -1969,6 +1975,20 @@ export default function NFTTicketsSection() {
                                           ].includeHotelExtra
                                         }
                                       />
+                                      {attendeeInfos[currentAttendeeInfoIndex]
+                                        .includeHotelExtra ? (
+                                        <span>
+                                          Checkin:{' '}
+                                          {
+                                            getHotelInfo(
+                                              attendeeInfos[
+                                                currentAttendeeInfoIndex
+                                              ]
+                                            ).in
+                                          }
+                                          th | Checkout: April 1st
+                                        </span>
+                                      ) : null}
                                     </Col>
                                   </Form.Row>
                                 </Form.Group>
