@@ -377,29 +377,6 @@ export default function NFTTicketsSection() {
         blockExplorerUrls: ['https://testnet.arbiscan.io/'],
       },
     },
-    /*    {
-      contract: '0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1',
-      abi: mainnetAbi.abi,
-      token: '',
-      exchangeUrl: 'https://app.uniswap.org',
-      exchangeName: 'UniSwap',
-      tokenSymbol: 'ETH',
-      web3Name: 'Hardhat',
-      networkShare: 'hardhat',
-      hasNoNft: true,
-
-      networkInfo: {
-        chainId: '0x7A69',
-        chainName: 'hardhat',
-        rpcUrls: ['http://localhost:8545'],
-        nativeCurrency: {
-          name: 'ETHER',
-          symbol: 'ETH',
-          decimals: 18,
-        },
-        blockExplorerUrls: ['https://testnet.arbiscan.io/'],
-      },
-    },*/
     {
       contract: '0x3C15538ED063e688c8DF3d571Cb7a0062d2fB18D',
       token: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
