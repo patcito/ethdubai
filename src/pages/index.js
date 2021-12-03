@@ -165,14 +165,6 @@ export default function IndexPage({ data, location }) {
                     </a>{' '}
                     @ Dubai, UAE
                   </h3>
-                  <div className="row">
-                    <div className="col-md-10">
-                      <Img fixed={data.pool.childImageSharp.fixed} />
-                    </div>
-                    <div className="col-md-2">
-                      <Img fixed={data.inside.childImageSharp.fixed} />
-                    </div>
-                  </div>
                 </div>
 
                 <div className="airport"></div>
@@ -1001,21 +993,21 @@ export const pageQuery = graphql`
     }
     pool: file(relativePath: { eq: "pool.png" }) {
       childImageSharp {
-        fixed(height: 300) {
+        fluid(height: 300) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
     }
     inside: file(relativePath: { eq: "inside.png" }) {
       childImageSharp {
-        fixed(height: 300) {
+        fluid(height: 300) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
     }
     meridien: file(relativePath: { eq: "meridien.jpg" }) {
       childImageSharp {
-        fixed(height: 300) {
+        fluid(height: 300) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
