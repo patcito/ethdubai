@@ -157,9 +157,10 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x9ED6fE2964F0468f180382470025CB3DBE946d1A',
+      contract: '0xfb0b3E0f27a2a858cc6656627E662B0D3cd5b19b',
       token: '',
       abi: abi.abi,
+      hasNoNft: false,
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
@@ -178,8 +179,8 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '',
-      token: '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619',
+      contract: '0x9ed6fe2964f0468f180382470025cb3dbe946d1a',
+      token: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
       abi: abiNonEth.abi,
       web3Network: 'matic',
       networkShare: 'polygon',
@@ -188,6 +189,7 @@ export default function NFTTicketsSection() {
       exchangeUrl: 'https://www.quickswap.finance/#/swap',
       exchangeName: 'QuickSwap',
       tokenSymbol: 'WETH',
+      hasNoNft: false,
       networkInfo: {
         chainId: ethers.BigNumber.from('137').toHexString(),
         chainName: 'Polygon',
@@ -201,8 +203,8 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x9ED6fE2964F0468f180382470025CB3DBE946d1A',
-      token: '0x5cc61a78f164885776aa610fb0fe1257df78e59b',
+      contract: '0x3Ca017499946E08cff1252529193eC57f3d4F562',
+      token: '0x74b23882a30290451A17c44f4F05243b6b58C76d',
       abi: abiNonEth.abi,
       marketplaceName: 'artion',
       marketplace: 'https://artion.io/explore',
@@ -603,9 +605,11 @@ export default function NFTTicketsSection() {
         const newTokenBalance = ethers.utils.formatEther(balance)
 
         setTokenBalance('' + parseFloat(newTokenBalance).toFixed(3))
+        console.log('failbalanceok')
         return balance
       } catch (error) {
-        return 0
+        console.log('failbalance', error)
+        return ethers.utils.formatEther(0)
       }
     }
   }
