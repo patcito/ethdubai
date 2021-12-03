@@ -1629,7 +1629,7 @@ export default function NFTTicketsSection() {
                   <div className="hidden">
                     Full day of insightful keynotes with the best innovators and
                     contributors from the DeFi and Ethereum community on March
-                    30th. Great party on the night before on March 29th.
+                    31st. Great party on the night before on March 30th.
                   </div>
                 </Collapse>
               </div>

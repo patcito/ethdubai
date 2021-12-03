@@ -156,8 +156,25 @@ export default function IndexPage({ data, location }) {
                 </div>
 
                 <div className="office_address">
-                  <h3>Dubai (more details coming soon)</h3>
+                  <h3>
+                    <a
+                      href="https://www.marriott.com/hotels/travel/dxbmd-le-m%C3%A9ridien-dubai-hotel-and-conference-centre/?scid=bb1a189a-fec3-4d19-a255-54ba596febe2&y_source=1_Mjc4MTkyMC03MTUtbG9jYXRpb24uZ29vZ2xlX3dlYnNpdGVfb3ZlcnJpZGU%3D"
+                      target="_blank"
+                    >
+                      Le Meridien Dubai Hotel &amp; Conference Centre
+                    </a>{' '}
+                    @ Dubai, UAE
+                  </h3>
+                  <div className="row">
+                    <div className="col-md-10">
+                      <Img fixed={data.pool.childImageSharp.fixed} />
+                    </div>
+                    <div className="col-md-2">
+                      <Img fixed={data.inside.childImageSharp.fixed} />
+                    </div>
+                  </div>
                 </div>
+
                 <div className="airport"></div>
                 <div className="airport train"></div>
               </div>
@@ -488,8 +505,8 @@ export default function IndexPage({ data, location }) {
                         As of today, you will need a negative PCR test to enter
                         the country and you will be required by law to wear a
                         mask inside the venue. We will notify you by mail and
-                        update the website if the situation changes. In case
-                        of event cancellation or travel ban, you will get a full
+                        update the website if the situation changes. In case of
+                        event cancellation or travel ban, you will get a full
                         refund or the possibility to transfer your ticket to
                         next year's edition.
                       </p>
@@ -978,6 +995,27 @@ export const pageQuery = graphql`
     linkedin_icon: file(relativePath: { eq: "linkedin.png" }) {
       childImageSharp {
         fixed(height: 24) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    pool: file(relativePath: { eq: "pool.png" }) {
+      childImageSharp {
+        fixed(height: 300) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    inside: file(relativePath: { eq: "inside.png" }) {
+      childImageSharp {
+        fixed(height: 300) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    meridien: file(relativePath: { eq: "meridien.jpg" }) {
+      childImageSharp {
+        fixed(height: 300) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
