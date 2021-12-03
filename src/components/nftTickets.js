@@ -1732,14 +1732,14 @@ export default function NFTTicketsSection() {
               <span />
               <span>
                 <Button
-                  disabled={threeDayTicket == 0 && oneDayTicket == 0}
+                  disabled={true || (threeDayTicket == 0 && oneDayTicket == 0)}
                   onClick={(e) => {
                     handleCheckout()
                     setSuccessPurchase(false)
                   }}
                   style={{ marginTop: '1em' }}
                 >
-                  Checkout
+                  Available on December 4th
                 </Button>
               </span>
             </li>{' '}
