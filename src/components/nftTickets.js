@@ -1597,7 +1597,7 @@ export default function NFTTicketsSection() {
               <div>
                 <strong>Conference Only Ticket:</strong>
                 <ul>
-                  <li>Conference Ticket (March 31th)</li>
+                  <li>Conference Ticket (March 31st)</li>
                   <li>Pre-Conference Party (March 30th)</li>
                 </ul>
                 <strong>Unit Price: 0.07 ETH</strong>
@@ -1617,7 +1617,7 @@ export default function NFTTicketsSection() {
                 <Collapse in={openDesc1}>
                   <div className="hidden">
                     Full day of insightful keynotes with the best innovators and
-                    contritors from the DeFi and Ethereum community on March
+                    contributors from the DeFi and Ethereum community on March
                     30th. Great party on the night before on March 29th.
                   </div>
                 </Collapse>
@@ -1649,10 +1649,10 @@ export default function NFTTicketsSection() {
               <div>
                 <strong> Combo Ticket:</strong>
                 <ul>
-                  <li>Conference Ticket (March 30th)</li>
-                  <li>Pre-Conference Party (March 29th)</li>
-                  <li>All-day Workshops and Hackathon (March 29th)</li>
-                  <li>Special Yacht Meet and Greet Pre-Party (March 28th)</li>
+                  <li>Conference Ticket (March 31st all-day)</li>
+                  <li>Pre-Conference Party (March 30th night)</li>
+                  <li>All-day Workshops and Hackathon (March 30th)</li>
+                  <li>Special Yacht Meet and Greet Party (March 29th)</li>
                 </ul>
                 <strong>Unit Price: 0.12 ETH</strong>
                 <div>
@@ -1674,11 +1674,17 @@ export default function NFTTicketsSection() {
                     contritors from the DeFi and Ethereum community on March
                     31th. Great party on the night before on March 30th.
                     <br />
+                    <br />
                     On March 30th, full day workshops with some of the best
                     instructors from the DeFi and Ethereum world and a hackathon
-                    with more than DAI 10k cash in prize. On the 29th, you will
-                    be invited to an exclusive yacht party with bbq and jetski
-                    animation in Dubai Marina.
+                    with more than DAI 10k cash in prize. The Hackathon will
+                    start remotely on March 26th to give participants time to
+                    build a great app.
+                    <br />
+                    <br />
+                    On the 29th, you will be invited to an exclusive yacht party
+                    to hack and network with bbq and jetski animation in Dubai
+                    Marina.
                   </div>
                 </Collapse>
               </div>
@@ -1708,14 +1714,6 @@ export default function NFTTicketsSection() {
             >
               <strong>Total</strong>
               <span>
-                <button
-                  className="addHotel"
-                  onClick={() => {
-                    setIncludeHotel(!includeHotel)
-                  }}
-                >
-                  {includeHotel ? 'remove hotel' : 'include hotel'}
-                </button>
                 <strong> {total()} ETH</strong>
               </span>
             </li>
