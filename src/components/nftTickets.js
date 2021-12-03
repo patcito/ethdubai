@@ -1688,9 +1688,9 @@ export default function NFTTicketsSection() {
                     <br />
                     On March 30th, full day workshops with some of the best
                     instructors from the DeFi and Ethereum world and a hackathon
-                    with more than DAI 10k cash in prize. The Hackathon will
-                    start remotely on March 26th to give participants time to
-                    build a great app.
+                    with a big prize given in DAI cash. The Hackathon will start
+                    remotely on March 26th to give participants time to build a
+                    great app.
                     <br />
                     <br />
                     On the 29th, you will be invited to an exclusive yacht party

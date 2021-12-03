@@ -165,6 +165,14 @@ export default function IndexPage({ data, location }) {
                     </a>{' '}
                     @ Dubai, UAE
                   </h3>
+                  <div className="row">
+                    <div className="col-md-10">
+                      <Img fluid={data.pool.childImageSharp.fluid} />
+                    </div>
+                    <div className="col-md-2">
+                      <Img fluid={data.inside.childImageSharp.fluid} />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="airport"></div>
@@ -987,6 +995,27 @@ export const pageQuery = graphql`
     linkedin_icon: file(relativePath: { eq: "linkedin.png" }) {
       childImageSharp {
         fixed(height: 24) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    pool: file(relativePath: { eq: "pool.png" }) {
+      childImageSharp {
+        fluid(maxHeight: 300) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    inside: file(relativePath: { eq: "inside.png" }) {
+      childImageSharp {
+        fluid(maxHeight: 300) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    meridien: file(relativePath: { eq: "meridien.jpg" }) {
+      childImageSharp {
+        fluid(maxHeight: 300) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
