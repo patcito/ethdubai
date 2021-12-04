@@ -47,8 +47,8 @@ export default function Navi() {
                 className="no-animation"
                 style={{ verticalAlign: 'middle' }}
                 fixed={
-                  context.isPinned 
-                    ? imgs.logo.childImageSharp.fixed 
+                  context.isPinned
+                    ? imgs.logo.childImageSharp.fixed
                     : imgs.logo_dark.childImageSharp.fixed
                 }
               />
@@ -124,6 +124,15 @@ export default function Navi() {
                     Telegram
                   </a>
                 </li>{' '}
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    href="mailto:ETHDubai@eventlama.com?subject=ETHDubai 2022"
+                    target="_blank"
+                  >
+                    Contact
+                  </a>
+                </li>{' '}
               </ul>
             </div>
           </nav>
@@ -159,7 +168,9 @@ export default function Navi() {
                     <a href="#why-attend">Why attend?</a>
                   </li>
                   <li>
-                    <a href="#subscribe">contact</a>
+                    <a href="mailto:ethdubai@eventlama.com?subject=ETHDubai 2022">
+                      contact
+                    </a>
                   </li>
                 </ul>
               </div>

@@ -338,7 +338,10 @@ export default function IndexPage({ data, location }) {
                   </a>
                 </li>{' '}
                 <li>
-                  <a className="nav-link" href="mailto:ETHDubai@eventlama.com">
+                  <a
+                    className="nav-link"
+                    href="mailto:ethdubai@eventlama.com?subject=ETHDubai 2022"
+                  >
                     Contact
                   </a>
                 </li>
