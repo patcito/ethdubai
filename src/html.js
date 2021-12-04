@@ -44,7 +44,6 @@ export default class HTML extends React.Component {
             rel="apple-touch-icon"
             sizes="180x180"
           />
-          <link href="/img/favicon.ico" rel="icon" type="image/x-icon" />
           <link
             href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
             rel="stylesheet"
@@ -52,7 +51,7 @@ export default class HTML extends React.Component {
           <link
             rel="shortcut icon"
             type="image/png"
-            href="images/logo_icon.png?x=4"
+            href="images/logo_icon.png"
           />
           <span
             dangerouslySetInnerHTML={{

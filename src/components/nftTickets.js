@@ -35,6 +35,7 @@ import { useEventListener } from 'eth-hooks/events/useEventListener'
 export default function NFTTicketsSection() {
   //const [message, setMessage] = React.useState({ message: '', status: 'error' })
   const [openDesc1, setOpenDesc1] = useState(false)
+  const [openDesc1pp, setOpenDesc1pp] = useState(false)
   const [openDesc2, setOpenDesc2] = useState(false)
   const [ethersProvider, setEthersProvider] = useState()
   const [oneDayTicket, setOneDayTicket] = useState(0)
@@ -135,7 +136,7 @@ export default function NFTTicketsSection() {
         return <h2 style={{ padding: '25px' }}>{onGoingTxText.txText}</h2>
     }
   }
-  const networks = [
+  const networksTest = [
     {
       contract: '0x9ED6fE2964F0468f180382470025CB3DBE946d1A',
       token: '',
@@ -405,6 +406,7 @@ export default function NFTTicketsSection() {
       },
     },
   ]
+  const networks = networksTest.slice(0, 4)
   console.log(abi)
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
@@ -1682,15 +1684,15 @@ export default function NFTTicketsSection() {
                 <Collapse in={openDesc2}>
                   <div className="hidden">
                     Full day of insightful keynotes with the best innovators and
-                    contritors from the DeFi and Ethereum community on March
+                    contributors from the DeFi and Ethereum community on March
                     31th. Great party on the night before on March 30th.
                     <br />
                     <br />
-                    On March 30th, full day workshops with some of the best
-                    instructors from the DeFi and Ethereum world and a hackathon
-                    with a big prize given in DAI cash. The Hackathon will start
-                    remotely on March 26th to give participants time to build a
-                    great app.
+                    On March 30th, a day full of workshops and hackathon with
+                    some of the best instructors from the DeFi and Ethereum
+                    world. The hackathon will come with a big prize given cash
+                    in DAI, it will start remotely on March 26th to give
+                    participants time to build a great app.
                     <br />
                     <br />
                     On the 29th, you will be invited to an exclusive yacht party
@@ -1732,14 +1734,14 @@ export default function NFTTicketsSection() {
               <span />
               <span>
                 <Button
-                  disabled={true || (threeDayTicket == 0 && oneDayTicket == 0)}
+                  disabled={threeDayTicket == 0 && oneDayTicket == 0}
                   onClick={(e) => {
                     handleCheckout()
                     setSuccessPurchase(false)
                   }}
                   style={{ marginTop: '1em' }}
                 >
-                  Available on December 4th
+                  Checkout
                 </Button>
               </span>
             </li>{' '}
@@ -2039,7 +2041,7 @@ export default function NFTTicketsSection() {
                                             Ameal
                                           </option>
                                           <option value="3">
-                                            Web3 workshop with Metamask team
+                                            Web3 workshop for frontend devs
                                           </option>
                                         </Form.Control>
                                       </Col>
@@ -2123,10 +2125,47 @@ export default function NFTTicketsSection() {
                                           10 ** 18
                                       )}
                                     </span>
+                                    <span>
+                                      {' | '}
+                                      <a
+                                        href="https://ramp.network/buy/"
+                                        target="_blank"
+                                      >
+                                        Buy ETH here
+                                      </a>
+                                    </span>
                                     {ethersProvider && tokenBalance ? (
                                       <span></span>
                                     ) : null}
                                   </div>
+                                  <div>
+                                    Privacy policy: your data is not for sale
+                                    and is not shared with sponsors/external
+                                    partners.{' '}
+                                    <a
+                                      href="#"
+                                      onClick={(e) => {
+                                        e.preventDefault()
+                                        setOpenDesc1pp(!openDesc1pp)
+                                      }}
+                                      aria-controls="open-ticket-description"
+                                      aria-expanded={openDesc1pp}
+                                    >
+                                      [more]
+                                    </a>
+                                  </div>
+                                  <Collapse in={openDesc1pp}>
+                                    <div className="hidden">
+                                      We only use email to send you tickets and
+                                      event info as well as any prize you may
+                                      win through the event. You only need to
+                                      provide a real name if you include the
+                                      hotel option. All the data is encrypted
+                                      before sent on chain except for your
+                                      ENS/telegram which is optional.
+                                    </div>
+                                  </Collapse>
+                                  <div></div>
                                 </Form.Group>
                               </Form>
                             ) : null
