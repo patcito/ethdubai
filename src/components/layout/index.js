@@ -30,7 +30,19 @@ export default function Layout({ children, ...rest }) {
 
   return (
     <div>
-      <Headroom onPin={() => context.updateIsPinned(true)} onUnpin={() => context.updateIsPinned(false)}>
+      <Headroom 
+        onPin={() => {
+          context.updateIsPinned(true)
+          context.updateIsUnfixed(false)
+        }} 
+        onUnpin={() => {
+          context.updateIsPinned(false)
+          context.updateIsUnfixed(false)
+        }} 
+        onUnfix={() => {
+          context.updateIsUnfixed(true)
+        }} 
+      >
         <Navi title={data.site.siteMetadata.title} {...rest} />
       </Headroom>
       {children}
