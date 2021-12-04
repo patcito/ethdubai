@@ -157,14 +157,8 @@ export default function InlineTicketsSection({ event }) {
               <Img fixed={imgs.ticket.childImageSharp.fixed} />
               <h2>Tickets</h2>
               <h3>
-                Tickets will be made available on{' '}
-                <a
-                  target="_blank"
-                  href="https://dateful.com/time-zone-converter?t=2pm&d=2021-12-04&tz2=Dubai-United-Arab-Emirates"
-                >
-                  Saturday 4th of December at 10AM UTC{' '}
-                </a>
-                . Get notified by subscribing{' '}
+                Tickets are now available to all. Get notified about upcoming
+                news by subscribing{' '}
                 <a
                   target="_blank"
                   href="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform"
