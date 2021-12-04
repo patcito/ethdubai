@@ -47,7 +47,7 @@ export default function Navi() {
                 className="no-animation"
                 style={{ verticalAlign: 'middle' }}
                 fixed={
-                  context.isPinned
+                  context.isUnfixed
                     ? imgs.logo.childImageSharp.fixed
                     : imgs.logo_dark.childImageSharp.fixed
                 }
