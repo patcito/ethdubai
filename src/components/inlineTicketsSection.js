@@ -165,11 +165,18 @@ export default function InlineTicketsSection({ event }) {
                 >
                   here
                 </a>
+                . In case of a lockdown or travel ban related to covid-19, we
+                will do a full refund regardless of the date or a ticket
+                transfer to next year's edition.
               </h3>
               <h3 className="d-none">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSejydjRdhyxE5sbzRqT93aHhx0PosforW88yZdem7HejNl-yA/viewform">
                   Don't miss our tickets release by subscribing here.
                 </a>
+                . We do full refund upon request until December, 15th 2021, then
+                we will charge a 15% fee In case of a lockdown or travel ban
+                related to covid-19, we will do a full refund regardless of the
+                date or a ticket transfer to next year's edition.
               </h3>
               <NFTTicketsSection />
               {/*<iframe

@@ -1973,7 +1973,7 @@ export default function NFTTicketsSection() {
                                     <Col xs="12" sm="6">
                                       <Form.Check
                                         type="checkbox"
-                                        label="Include Hotel (single Deluxe room)"
+                                        label="Include Hotel (single room)"
                                         onClick={handleAttendeeInfoCheck}
                                         name="includeHotelExtra"
                                         checked={
