@@ -5,9 +5,14 @@ const AppContext = createContext()
 const AppProvider = props => {
   const [appData, setApp] = useState({
 
-    isPinned: false,
+    isPinned: true,
     updateIsPinned: value => setApp(data => (
       { ...data, isPinned: value }
+    )),
+
+    isUnfixed: true,
+    updateIsUnfixed: value => setApp(data => (
+      { ...data, isUnfixed: value }
     )),
 
   })
