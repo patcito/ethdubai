@@ -1031,7 +1031,7 @@ export default function NFTTicketsSection() {
         return '0.07'
         break
       case 'hotelConference':
-        return '0.17'
+        return '0.2'
         break
       case 'workshop1AndPreParty':
         return '0.12'
@@ -1043,13 +1043,13 @@ export default function NFTTicketsSection() {
         return '0.12'
         break
       case 'hotelWorkshops1AndPreParty':
-        return '0.32'
+        return '0.4'
         break
       case 'hotelWorkshops2AndPreParty':
-        return '0.32'
+        return '0.4'
         break
       case 'hotelWorkshops3AndPreParty':
-        return '0.32'
+        return '0.4'
         break
       default:
         return '0.12'
@@ -1457,13 +1457,13 @@ export default function NFTTicketsSection() {
       return 0.07
     }
     if (oneDay && hotel) {
-      return 0.17
+      return 0.2
     }
     if (threeDay && !hotel) {
       return 0.12
     }
     if (threeDay && hotel) {
-      return 0.32
+      return 0.4
     }
   }
   const getAllTicketsPrices = () => {
