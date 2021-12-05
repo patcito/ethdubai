@@ -204,6 +204,29 @@ export default function NFTTicketsSection() {
       },
     },
     {
+      contract: '0xDA3f56bE2dC99466E6a1Ca8e1a29E930d5Abb886',
+      token: '0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1',
+      abi: abiNonEth.abi,
+      marketplaceName: '',
+      marketplace: '',
+      networkShare: 'xdai',
+      exchangeUrl: 'https://app.sushi.com',
+      exchangeName: 'SushiSwap',
+      web3Name: 'xDai',
+      tokenSymbol: 'WETH',
+      networkInfo: {
+        chainId: '0x64',
+        chainName: 'xDai',
+        rpcUrls: ['https://rpc.xdaichain.com'],
+        nativeCurrency: {
+          name: 'xDai',
+          symbol: 'XDAI',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://blockscout.com/xdai/mainnet/'],
+      },
+    },
+    {
       contract: '0x3Ca017499946E08cff1252529193eC57f3d4F562',
       token: '0x74b23882a30290451A17c44f4F05243b6b58C76d',
       abi: abiNonEth.abi,
@@ -406,7 +429,7 @@ export default function NFTTicketsSection() {
       },
     },
   ]
-  const networks = networksTest.slice(0, 4)
+  const networks = networksTest.slice(0, 5)
   console.log(abi)
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
