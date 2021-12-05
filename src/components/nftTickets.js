@@ -38,6 +38,7 @@ export default function NFTTicketsSection() {
   const [openDesc1pp, setOpenDesc1pp] = useState(false)
   const [openDesc2, setOpenDesc2] = useState(false)
   const [ethersProvider, setEthersProvider] = useState()
+  const [currentAddress, setCurrentAddress] = useState()
   const [oneDayTicket, setOneDayTicket] = useState(0)
   const [threeDayTicket, setThreeDayTicket] = useState(0)
   const [includeHotel, setIncludeHotel] = useState(false)
@@ -467,6 +468,11 @@ export default function NFTTicketsSection() {
       setShowCheckout(true)
       const network = await getWalletNetwork(newProvider)
       setCurrentNetworkBasedOnWallet(network)
+      const signer = newProvider.getSigner()
+      const addr = await signer.getAddress()
+      console.log('signer', addr)
+
+      setCurrentAddress(addr || '')
       return newProvider
     } catch (error) {
       console.log(error)
@@ -2111,6 +2117,8 @@ export default function NFTTicketsSection() {
                                             display: 'inline',
                                             width: 'auto',
                                             marginLeft: '10px',
+                                            marginRight: '10px',
+                                            marginBottom: '10px',
                                           }}
                                           value={currentNetwork}
                                         >
@@ -2121,9 +2129,24 @@ export default function NFTTicketsSection() {
                                           ))}
                                         </Form.Control>
                                       ) : null}
+                                      {currentAddress ? (
+                                        <Button
+                                          variant="secondary"
+                                          onClick={(e) => {
+                                            setEthersProvider(null)
+                                            setCurrentAddress(null)
+                                            localStorage.clear()
+                                            e.preventDefault()
+                                          }}
+                                        >
+                                          disconnect{' '}
+                                          {currentAddress.slice(0, 7)}
+                                        </Button>
+                                      ) : null}
                                     </Col>
                                   </Form.Row>
                                 </Form.Group>
+
                                 <Form.Group>
                                   <div>
                                     <span>
@@ -2157,9 +2180,6 @@ export default function NFTTicketsSection() {
                                         Buy ETH here
                                       </a>
                                     </span>
-                                    {ethersProvider && tokenBalance ? (
-                                      <span></span>
-                                    ) : null}
                                   </div>
                                   <div>
                                     Privacy policy: your data is not for sale
