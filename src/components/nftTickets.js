@@ -42,6 +42,7 @@ export default function NFTTicketsSection() {
   const [oneDayTicket, setOneDayTicket] = useState(0)
   const [threeDayTicket, setThreeDayTicket] = useState(0)
   const [includeHotel, setIncludeHotel] = useState(false)
+  const [includeHotel2, setIncludeHotel2] = useState(false)
   const [successPurchase, setSuccessPurchase] = useState(false)
   const [ownerIds, setOwnerIds] = useState([])
   const [showCheckout, setShowCheckout] = React.useState(false)
@@ -660,6 +661,16 @@ export default function NFTTicketsSection() {
     })
     setAttendeeInfos((attendeeInfos) => [...attendeeInfosTmp])
   }
+  const handleIncludeHotel2 = () => {
+    let attendeeInfosTmp = [...attendeeInfos]
+
+    attendeeInfosTmp = attendeeInfosTmp.map((a) => {
+      a.includeHotel2Extra = true
+      return a
+    })
+    setAttendeeInfos((attendeeInfos) => [...attendeeInfosTmp])
+  }
+
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms))
   }
@@ -851,7 +862,8 @@ export default function NFTTicketsSection() {
       let ticketOption = getTicketOption(
         tix.includeWorkshopsAndPreParty,
         tix.includeHotelExtra,
-        tix.workshop
+        tix.workshop,
+        tix.includeHotel2Extra
       )
       let addToCode = JSON.stringify(tix) + ticketOption
 
@@ -876,7 +888,8 @@ export default function NFTTicketsSection() {
               getTicketPrice(
                 !tix.includeWorkshopsAndPreParty,
                 tix.includeWorkshopsAndPreParty,
-                tix.includeHotelExtra
+                tix.includeHotelExtra,
+                tix.includeHotel2Extra
               )
           ),
         },
@@ -891,7 +904,8 @@ export default function NFTTicketsSection() {
         let ticketOption = getTicketOption(
           a.includeWorkshopsAndPreParty,
           a.includeHotelExtra,
-          a.workshop
+          a.workshop,
+          a.includeHotel2Extra
         )
 
         let addToCode = JSON.stringify(a) + ticketOption
@@ -930,7 +944,8 @@ export default function NFTTicketsSection() {
                 getTicketPrice(
                   !a.includeWorkshopsAndPreParty,
                   a.includeWorkshopsAndPreParty,
-                  a.includeHotelExtra
+                  a.includeHotelExtra,
+                  a.includeHotel2Extra
                 )
             ),
           },
@@ -942,20 +957,30 @@ export default function NFTTicketsSection() {
     )
     return [finalTickets, finalPdfTickets]
   }
-  const getTicketOption = (workshopsAndPreParty, hotelExtra, workshop) => {
+  const getTicketOption = (
+    workshopsAndPreParty,
+    hotelExtra,
+    workshop,
+    hotel2Extra
+  ) => {
     if (!workshop) {
       workshop = ''
     }
-    if (!workshopsAndPreParty && !hotelExtra) {
+    if (!workshopsAndPreParty && !hotelExtra && !hotel2Extra) {
       return 'conference'
-    } else if (!workshopsAndPreParty && hotelExtra) {
+    } else if (!workshopsAndPreParty && hotelExtra && !hotel2Extra) {
       return 'hotelConference'
-    } else if (workshopsAndPreParty && !hotelExtra) {
+    } else if (!workshopsAndPreParty && hotel2Extra && !hotelExtra) {
+      return 'hotel2Conference'
+    } else if (workshopsAndPreParty && !hotelExtra && !hotel2Extra) {
       console.log('wwwwwwwwwww', `workshop${workshop}AndPreParty`)
       return `workshop${workshop}AndPreParty`
-    } else if (workshopsAndPreParty && hotelExtra) {
+    } else if (workshopsAndPreParty && hotelExtra && !hotel2Extra) {
       return `hotelWorkshops${workshop}AndPreParty`
+    } else if (workshopsAndPreParty && hotel2Extra && !hotelExtra) {
+      return `hotel2Workshops${workshop}AndPreParty`
     }
+
     return 'conference'
   }
 
@@ -1012,8 +1037,22 @@ export default function NFTTicketsSection() {
       case 8:
         return 'hotelWorkshops3AndPreParty'
         break
+      case 9:
+        return 'hotel2Workshops1AndPreParty'
+        break
+      case 10:
+        return 'hotel2Workshops2AndPreParty'
+        break
+
+      case 11:
+        return 'hotel2Workshops3AndPreParty'
+        break
+      case 12:
+        return 'hotel2Conference'
+        break
       default:
-        return 10
+        console.log('totalBN fail', ticketOption)
+        return 13
         break
     }
   }
@@ -1047,8 +1086,20 @@ export default function NFTTicketsSection() {
       case 'hotelWorkshops3AndPreParty':
         return 8
         break
-      default:
+      case 'hotel2Workshops1AndPreParty':
+        return 9
+        break
+      case 'hotel2Workshops2AndPreParty':
         return 10
+        break
+      case 'hotel2Workshops3AndPreParty':
+        return 11
+        break
+      case 'hotel2Conference':
+        return 12
+        break
+      default:
+        return 13
         break
     }
   }
@@ -1061,6 +1112,9 @@ export default function NFTTicketsSection() {
         break
       case 'hotelConference':
         return '0.2'
+        break
+      case 'hotel2Conference':
+        return '0.3'
         break
       case 'workshop1AndPreParty':
         return '0.12'
@@ -1080,10 +1134,31 @@ export default function NFTTicketsSection() {
       case 'hotelWorkshops3AndPreParty':
         return '0.4'
         break
-      default:
-        return '0.12'
+      case 'hotel2Workshops1AndPreParty':
+        return '0.5'
+        break
+      case 'hotel2Workshops2AndPreParty':
+        return '0.5'
+        break
+      case 'hotel2Workshops3AndPreParty':
+        return '0.5'
         break
     }
+    if (
+      attendeeInfos[currentAttendeeInfoIndex].includeHotelExtra &&
+      attendeeInfos[currentAttendeeInfoIndex].includeWorkshopsAndPreParty
+    )
+      return '0.4'
+    if (
+      attendeeInfos[currentAttendeeInfoIndex].includeHotel2Extra &&
+      attendeeInfos[currentAttendeeInfoIndex].includeWorkshopsAndPreParty
+    )
+      return '0.5'
+    if (attendeeInfos[currentAttendeeInfoIndex].includeWorkshopsAndPreParty)
+      return '0.2'
+    if (attendeeInfos[currentAttendeeInfoIndex].includeHotel2Extra) return '0.3'
+    if (attendeeInfos[currentAttendeeInfoIndex].includeHotel1Extra) return '0.2'
+    return '0.07'
   }
   const getSvgTickets = async (owned) => {
     let ownedIdsArr = [...ownerIds]
@@ -1481,18 +1556,24 @@ export default function NFTTicketsSection() {
       console.log(error)
     }
   }
-  const getTicketPrice = (oneDay, threeDay, hotel) => {
-    if (oneDay && !hotel) {
+  const getTicketPrice = (oneDay, threeDay, hotel, hotel2) => {
+    if (oneDay && !hotel && !hotel2) {
       return 0.07
     }
-    if (oneDay && hotel) {
+    if (oneDay && hotel && !hotel2) {
       return 0.2
     }
-    if (threeDay && !hotel) {
+    if (threeDay && !hotel && !hotel2) {
       return 0.12
     }
-    if (threeDay && hotel) {
+    if (threeDay && hotel && !hotel2) {
       return 0.4
+    }
+    if (oneDay && !hotel && hotel2) {
+      return 0.3
+    }
+    if (threeDay && !hotel && hotel2) {
+      return 0.5
     }
   }
   const getAllTicketsPrices = () => {
@@ -1503,7 +1584,8 @@ export default function NFTTicketsSection() {
       let price = getTicketPrice(
         !ai.includeWorkshopsAndPreParty,
         ai.includeWorkshopsAndPreParty,
-        ai.includeHotelExtra
+        ai.includeHotelExtra,
+        ai.includeHotel2Extra
       )
       let priceBN = ethers.utils.parseEther(price + '')
       console.log('ppppppppp', priceBN)
@@ -1517,7 +1599,8 @@ export default function NFTTicketsSection() {
       let ticketOption = getTicketOption(
         pft.includeWorkshopsAndPreParty,
         pft.includeHotelExtra,
-        pft.workshop
+        pft.workshop,
+        pft.includeHotel2Extra
       )
       return { ...pft, ...{ ticketOption: ticketOption } }
     })
@@ -1530,6 +1613,7 @@ export default function NFTTicketsSection() {
       total.push(getTicketOptionPrice(ft.ticketOption))
     })
     const totalBN = total.map((t) => {
+      console.log('totalBN', t)
       return ethers.utils.parseEther(t + '')
     })
     let totalFinal = ethers.utils.parseEther('0.0')
@@ -1587,6 +1671,7 @@ export default function NFTTicketsSection() {
 
     let includeWorkshops = false
     let includeHotelExtra = includeHotel
+    let includeHotel2Extra = includeHotel2
     for (let i = 0; i < oneDayTicket; i++) {
       const rand =
         typeof crypto['randomUUID'] !== 'undefined'
@@ -1597,11 +1682,12 @@ export default function NFTTicketsSection() {
         ticketCode: rand,
         resellable: {
           isResellable: false,
-          price: getTicketPrice(false, false, includeHotel),
+          price: getTicketPrice(false, false, includeHotel, includeHotel2),
         },
         includeWorkshops,
         includeWorkshopsAndPreParty: false,
         includeHotelExtra,
+        includeHotel2Extra,
       })
     }
     for (let i = 0; i < threeDayTicket; i++) {
@@ -1614,11 +1700,12 @@ export default function NFTTicketsSection() {
         ticketCode: rand,
         resellable: {
           isResellable: false,
-          price: getTicketPrice(false, true, includeHotel),
+          price: getTicketPrice(false, true, includeHotel, includeHotel2),
         },
         includeWorkshops,
         includeWorkshopsAndPreParty: true,
         includeHotelExtra,
+        includeHotel2Extra,
       })
     }
     if (threeDayTicket === 0 && oneDayTicket === 0) {
@@ -2000,19 +2087,40 @@ export default function NFTTicketsSection() {
                                       />
                                     </Col>
                                     <Col xs="12" sm="6">
-                                      <Form.Check
-                                        type="checkbox"
-                                        label="Include Hotel (single room)"
-                                        onClick={handleAttendeeInfoCheck}
-                                        name="includeHotelExtra"
-                                        checked={
-                                          attendeeInfos[
-                                            currentAttendeeInfoIndex
-                                          ].includeHotelExtra
-                                        }
-                                      />
-                                      {attendeeInfos[currentAttendeeInfoIndex]
+                                      <span>Do you want to include hotel?</span>
+                                      {!attendeeInfos[currentAttendeeInfoIndex]
+                                        .includeHotel2Extra ? (
+                                        <Form.Check
+                                          type="checkbox"
+                                          label="single room"
+                                          onClick={handleAttendeeInfoCheck}
+                                          name="includeHotelExtra"
+                                          checked={
+                                            attendeeInfos[
+                                              currentAttendeeInfoIndex
+                                            ].includeHotelExtra
+                                          }
+                                        />
+                                      ) : null}
+                                      {!attendeeInfos[currentAttendeeInfoIndex]
                                         .includeHotelExtra ? (
+                                        <Form.Check
+                                          type="checkbox"
+                                          label="double room"
+                                          onClick={handleAttendeeInfoCheck}
+                                          name="includeHotel2Extra"
+                                          checked={
+                                            attendeeInfos[
+                                              currentAttendeeInfoIndex
+                                            ].includeHotel2Extra
+                                          }
+                                        />
+                                      ) : null}
+
+                                      {attendeeInfos[currentAttendeeInfoIndex]
+                                        .includeHotelExtra ||
+                                      attendeeInfos[currentAttendeeInfoIndex]
+                                        .includeHotel2Extra ? (
                                         <span>
                                           Checkin:{' '}
                                           {
@@ -2158,7 +2266,9 @@ export default function NFTTicketsSection() {
                                         attendeeInfos[currentAttendeeInfoIndex]
                                           .includeWorkshopsAndPreParty,
                                         attendeeInfos[currentAttendeeInfoIndex]
-                                          .includeHotelExtra
+                                          .includeHotelExtra,
+                                        attendeeInfos[currentAttendeeInfoIndex]
+                                          .includeHotel2Extra
                                       )}
                                     </span>
                                     <span>
