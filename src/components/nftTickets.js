@@ -1155,7 +1155,7 @@ export default function NFTTicketsSection() {
     )
       return '0.5'
     if (attendeeInfos[currentAttendeeInfoIndex].includeWorkshopsAndPreParty)
-      return '0.2'
+      return '0.12'
     if (attendeeInfos[currentAttendeeInfoIndex].includeHotel2Extra) return '0.3'
     if (attendeeInfos[currentAttendeeInfoIndex].includeHotel1Extra) return '0.2'
     return '0.07'
