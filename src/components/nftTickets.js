@@ -1050,9 +1050,18 @@ export default function NFTTicketsSection() {
       case 12:
         return 'hotel2Conference'
         break
+      case 13:
+        return 'workshop4AndPreParty'
+        break
+      case 14:
+        return 'hotelWorkshops4AndPreParty'
+        break
+      case 15:
+        return 'hotel2Workshops4AndPreParty'
+        break
       default:
         console.log('totalBN fail', ticketOption)
-        return 13
+        return 16
         break
     }
   }
@@ -1098,8 +1107,17 @@ export default function NFTTicketsSection() {
       case 'hotel2Conference':
         return 12
         break
-      default:
+      case 'workshop4AndPreParty':
         return 13
+        break
+      case 'hotelWorkshops4AndPreParty':
+        return 14
+        break
+      case 'hotel2Workshops4AndPreParty':
+        return 15
+        break
+      default:
+        return 16
         break
     }
   }
@@ -1125,6 +1143,9 @@ export default function NFTTicketsSection() {
       case 'workshop3AndPreParty':
         return '0.12'
         break
+      case 'workshop4AndPreParty':
+        return '0.12'
+        break
       case 'hotelWorkshops1AndPreParty':
         return '0.4'
         break
@@ -1132,6 +1153,9 @@ export default function NFTTicketsSection() {
         return '0.4'
         break
       case 'hotelWorkshops3AndPreParty':
+        return '0.4'
+        break
+      case 'hotelWorkshops4AndPreParty':
         return '0.4'
         break
       case 'hotel2Workshops1AndPreParty':
@@ -1143,6 +1167,8 @@ export default function NFTTicketsSection() {
       case 'hotel2Workshops3AndPreParty':
         return '0.5'
         break
+      case 'hotel2Workshops4AndPreParty':
+        return '0.5'
     }
     if (
       attendeeInfos[currentAttendeeInfoIndex].includeHotelExtra &&
@@ -2179,6 +2205,10 @@ export default function NFTTicketsSection() {
                                           </option>
                                           <option value="3">
                                             Web3 workshop for frontend devs
+                                          </option>
+                                          <option value="4">
+                                            BentoBox workshop with Sushi Core
+                                            Trident Dev Sarang Parikh
                                           </option>
                                         </Form.Control>
                                       </Col>
