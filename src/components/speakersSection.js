@@ -337,7 +337,7 @@ export default function SpeakersSection({ speakers = [] }) {
                                 }
                               >
                                 Close speaker box
-                              </a>{' '}
+                              </a>
                             </div>
                           ) : null}
                         </div>
