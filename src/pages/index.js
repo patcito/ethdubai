@@ -3,9 +3,10 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
 import loadable from '@loadable/component'
+import { Carousel } from 'react-bootstrap'
 
-const Caroussel = loadable(() => import('components/caroussel'))
-const CarouselPeople = loadable(() => import('components/carouselpeople'))
+//const Caroussel = loadable(() => import('components/caroussel'))
+//const CarouselPeople = loadable(() => import('components/carouselpeople'))
 
 import Meta from 'components/meta'
 import Layout from 'components/layout'
@@ -46,6 +47,10 @@ export default function IndexPage({ data, location }) {
   //TODO: separate logic into components
   const [event, setEvent] = useState(data.eventlama.events[0])
   const [faq, setFaq] = useState(null)
+  const [index, setIndex] = useState(0)
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex)
+  }
   const [schedule, setSchedule] = useState(
     data.eventlama.events[0].groupedSchedule
   )
@@ -148,7 +153,7 @@ export default function IndexPage({ data, location }) {
       <section className="location" id="location">
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-12">
               <div className="location_content">
                 <div className="location_heading">
                   <Img fixed={data.location.childImageSharp.fixed} />
@@ -165,30 +170,22 @@ export default function IndexPage({ data, location }) {
                     </a>{' '}
                     @ Dubai, UAE
                   </h3>
-                  <div className="row d-block d-sm-none">
-                    <div className="col-md-10">
+                  <Carousel activeIndex={index} onSelect={handleSelect}>
+                    <Carousel.Item>
                       <Img fluid={data.pool.childImageSharp.fluid} />
-                    </div>
-                    <div className="col-md-2">
+                    </Carousel.Item>
+                    <Carousel.Item>
                       <Img fluid={data.inside.childImageSharp.fluid} />
-                    </div>
-                  </div>
-                  <div className="row d-none d-sm-block">
-                    <div className="col-md-6">
-                      <Img fixed={data.pool.childImageSharp.fixed} />
-                    </div>
-                    <div className="col-md-6">
-                      <Img fixed={data.inside.childImageSharp.fixed} />
-                    </div>
-                  </div>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <Img fluid={data.meridien.childImageSharp.fluid} />
+                    </Carousel.Item>
+                  </Carousel>
                 </div>
 
                 <div className="airport"></div>
                 <div className="airport train"></div>
               </div>
-            </div>
-            <div className="col-md-6">
-              <div className="map_location"></div>
             </div>
           </div>
         </div>
@@ -1010,37 +1007,24 @@ export const pageQuery = graphql`
         }
       }
     }
+
     pool: file(relativePath: { eq: "pool.png" }) {
       childImageSharp {
-        fluid(maxHeight: 300) {
+        fluid(maxWidth: 1600) {
           ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
     inside: file(relativePath: { eq: "inside.png" }) {
       childImageSharp {
-        fluid(maxHeight: 300) {
+        fluid(maxWidth: 1600) {
           ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    pool: file(relativePath: { eq: "pool.png" }) {
-      childImageSharp {
-        fixed(height: 300) {
-          ...GatsbyImageSharpFixed_withWebp
-        }
-      }
-    }
-    inside: file(relativePath: { eq: "inside.png" }) {
-      childImageSharp {
-        fixed(height: 300) {
-          ...GatsbyImageSharpFixed_withWebp
         }
       }
     }
     meridien: file(relativePath: { eq: "meridien.jpg" }) {
       childImageSharp {
-        fluid(maxHeight: 300) {
+        fluid(maxWidth: 1600) {
           ...GatsbyImageSharpFluid_withWebp
         }
       }
