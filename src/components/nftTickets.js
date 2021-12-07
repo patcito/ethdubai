@@ -64,24 +64,28 @@ export default function NFTTicketsSection() {
   const [currentAttendeeInfoIndex, setCurrentAttendeeInfoIndex] =
     React.useState(0)
   const [sharedSVG, setSharedSVG] = useState('')
+  const getSVG = async (tokenid, network, contract) => {
+    const url =
+      `https://svg.ethdubaiconf.org/token?tokenid=${tokenid}` +
+      `&network=${network}&contract=${contract}`
+    const response = await fetch(url)
+    const data = await response.text()
+    console.log('llllllllllllllll', data)
+    const json = Buffer.from(data.substring(29), 'base64').toString()
+    console.log(json)
+    const obj = JSON.parse(json)
+    console.log(obj)
+    const svg = Buffer.from(obj.image.substring(26), 'base64').toString()
+    console.log('svg', svg)
+    return obj
+  }
   useEffect(async () => {
     const urlSearchParams = new URLSearchParams(window.location.search)
     const params = Object.fromEntries(urlSearchParams.entries())
     console.log('params', params)
     if (params.tokenid) {
       let paramsArray = params.tokenid.split(',')
-      const url =
-        `https://svg.ethdubaiconf.org/token?tokenid=${paramsArray[0]}` +
-        `&network=${paramsArray[1]}&contract=${paramsArray[2]}`
-      const response = await fetch(url)
-      const data = await response.text()
-      console.log('llllllllllllllll', data)
-      const json = Buffer.from(data.substring(29), 'base64').toString()
-      console.log(json)
-      const obj = JSON.parse(json)
-      console.log(obj)
-      const svg = Buffer.from(obj.image.substring(26), 'base64').toString()
-      console.log('svg', svg)
+      const obj = await getSVG(paramsArray[0], paramsArray[1], paramsArray[2])
       setSharedSVG(obj.image.substring(26))
       setShowSharedTicket(true)
       //var xhr = new XMLHttpRequest()
@@ -296,11 +300,11 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xe0Be75a148d6bF6F631d61c926d409945F528D0b',
+      contract: '0x5294c67B1B189ceDcCC4d5eE5155AC49e8a3151B',
       abi: abiNonEth.abi,
       marketplaceName: 'opensea',
       marketplace: 'https://testnets.opensea.io/assets/matic',
-      token: '0xC058595908ea52FCE6AA6ef22BB54a1458705D44',
+      token: '0xd35be38fA360E81813B0a0b67DB472b8F17F3C83',
       exchangeUrl: 'https://www.quickswap.finance/#/swap',
       exchangeName: 'QuickSwap',
       web3Name: 'Polygon Mumbai',
@@ -407,16 +411,17 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x976C214741b4657bd99DFD38a5c0E3ac5C99D903',
-      token: '',
-      abi: mainnetAbi.abi,
+      //contract: '0x976C214741b4657bd99DFD38a5c0E3ac5C99D903',
+      constract: '0x1343248Cbd4e291C6979e70a138f4c774e902561',
+      token: '0x01E21d7B8c39dc4C764c19b308Bd8b14B1ba139E',
+      abi: abiNonEth.abi,
       //token: '',
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       web3Name: 'Hardhat',
       networkShare: 'hardhat',
-      hasNoNft: true,
+      hasNoNft: false,
 
       networkInfo: {
         chainId: '0x7A69',
@@ -912,6 +917,9 @@ export default function NFTTicketsSection() {
         if (!isCurrentNetworkMainnetContract()) {
           addToCode = ''
         }
+        if (a.telegram) {
+          a.telegram = a.telegram.replace('@', '')
+        }
         let email = await encryptStr(a.email || '_')
         let fname = await encryptStr(a.fname || '_')
         let lname = await encryptStr(a.lname || '_')
@@ -921,7 +929,7 @@ export default function NFTTicketsSection() {
         let company = await encryptStr(a.company || '')
         let workshop = a.workshop || '_'
         let tshirt = a.tshirt || '_'
-        let telegram = a.telegram || '_'
+        let telegram = a.telegram || 'anon'
         console.log('OPTIONSS', ticketOption)
         let finalTicket = {
           attendeeInfo: {
@@ -1187,6 +1195,29 @@ export default function NFTTicketsSection() {
     return '0.07'
   }
   const getSvgTickets = async (owned) => {
+    let ownedIdsArr = [...ownerIds]
+    if (owned) {
+      ownedIdsArr = [...owned]
+    }
+    const svgs = Promise.all(
+      ownedIdsArr.map(async (id) => {
+        let obj = await getSVG(
+          id,
+          networks[currentNetwork].networkShare,
+          networks[currentNetwork].contract
+        )
+        //setSvgTickets(svgTickets.push(svg))
+
+        return obj.image
+      })
+    )
+    svgs.then((results) => {
+      setSvgTickets([...results])
+    })
+    console.log('hohoho', svgs)
+    return svgs
+  }
+  const getOldSvgTickets = async (owned) => {
     let ownedIdsArr = [...ownerIds]
     if (owned) {
       ownedIdsArr = [...owned]
