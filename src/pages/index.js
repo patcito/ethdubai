@@ -175,10 +175,22 @@ export default function IndexPage({ data, location }) {
                       <Img fluid={data.pool.childImageSharp.fluid} />
                     </Carousel.Item>
                     <Carousel.Item>
-                      <Img fluid={data.inside.childImageSharp.fluid} />
+                      <Img fluid={data.inside2.childImageSharp.fluid} />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <Img fluid={data.ballroom.childImageSharp.fluid} />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <Img fluid={data.confroom.childImageSharp.fluid} />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <Img fluid={data.fitness.childImageSharp.fluid} />
                     </Carousel.Item>
                     <Carousel.Item>
                       <Img fluid={data.meridien.childImageSharp.fluid} />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <Img fluid={data.inside.childImageSharp.fluid} />
                     </Carousel.Item>
                   </Carousel>
                 </div>
@@ -1023,6 +1035,34 @@ export const pageQuery = graphql`
       }
     }
     meridien: file(relativePath: { eq: "meridien.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    inside2: file(relativePath: { eq: "inside2.webp" }) {
+      childImageSharp {
+        fluid(maxWidth: 1600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    ballroom: file(relativePath: { eq: "ballroom.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    confroom: file(relativePath: { eq: "confroom.webp" }) {
+      childImageSharp {
+        fluid(maxWidth: 1600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    fitness: file(relativePath: { eq: "fitness.webp" }) {
       childImageSharp {
         fluid(maxWidth: 1600) {
           ...GatsbyImageSharpFluid_withWebp
