@@ -2198,7 +2198,7 @@ export default function NFTTicketsSection() {
                                     <Col xs="12" sm="6">
                                       <Form.Check
                                         type="checkbox"
-                                        label="Include Workshop and pre-party"
+                                        label="Include Workshop and parties (yacht and pre-conference)"
                                         onClick={handleAttendeeInfoCheck}
                                         name="includeWorkshopsAndPreParty"
                                         checked={
