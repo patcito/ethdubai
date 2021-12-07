@@ -172,10 +172,13 @@ export default function IndexPage({ data, location }) {
                   </h3>
                   <Carousel activeIndex={index} onSelect={handleSelect}>
                     <Carousel.Item>
-                      <Img fluid={data.pool.childImageSharp.fluid} />
+                      <Img fluid={data.inside2.childImageSharp.fluid} />
                     </Carousel.Item>
                     <Carousel.Item>
-                      <Img fluid={data.inside2.childImageSharp.fluid} />
+                      <Img fluid={data.inside3.childImageSharp.fluid} />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <Img fluid={data.pool.childImageSharp.fluid} />
                     </Carousel.Item>
                     <Carousel.Item>
                       <Img fluid={data.ballroom.childImageSharp.fluid} />
@@ -184,13 +187,10 @@ export default function IndexPage({ data, location }) {
                       <Img fluid={data.confroom.childImageSharp.fluid} />
                     </Carousel.Item>
                     <Carousel.Item>
-                      <Img fluid={data.fitness.childImageSharp.fluid} />
-                    </Carousel.Item>
-                    <Carousel.Item>
                       <Img fluid={data.meridien.childImageSharp.fluid} />
                     </Carousel.Item>
                     <Carousel.Item>
-                      <Img fluid={data.inside.childImageSharp.fluid} />
+                      <Img fluid={data.fitness.childImageSharp.fluid} />
                     </Carousel.Item>
                   </Carousel>
                 </div>
@@ -1042,6 +1042,13 @@ export const pageQuery = graphql`
       }
     }
     inside2: file(relativePath: { eq: "inside2.webp" }) {
+      childImageSharp {
+        fluid(maxWidth: 1600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    inside3: file(relativePath: { eq: "inside3.webp" }) {
       childImageSharp {
         fluid(maxWidth: 1600) {
           ...GatsbyImageSharpFluid_withWebp
