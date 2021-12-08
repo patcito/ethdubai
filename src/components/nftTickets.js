@@ -65,9 +65,10 @@ export default function NFTTicketsSection() {
     React.useState(0)
   const [sharedSVG, setSharedSVG] = useState('')
   const getSVG = async (tokenid, network, contract) => {
-    const url =
+    let url =
       `https://svg.ethdubaiconf.org/token?tokenid=${tokenid}` +
       `&network=${network}&contract=${contract}`
+
     const response = await fetch(url)
     const data = await response.text()
     console.log('llllllllllllllll', data)
@@ -2239,7 +2240,8 @@ export default function NFTTicketsSection() {
                                             Ameal
                                           </option>
                                           <option value="3">
-                                            Web3 workshop for frontend devs
+                                            Web3 workshop for frontend devs with
+                                            the Metamask Team
                                           </option>
                                           <option value="4">
                                             BentoBox workshop with Sushi Core
