@@ -436,7 +436,7 @@ export default function NFTTicketsSection() {
       },
     },
   ]
-  const networks = networksTest //.slice(0, 5)
+  const networks = networksTest.slice(0, 5)
   console.log(abi)
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
