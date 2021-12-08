@@ -25,10 +25,11 @@ export default function Sponsor({ handleShowSponsor, sponsor }) {
           <a href={sponsor.jobUrl}>Work with us</a>
         </div>
         <a
-          onClick={e => {
+          onClick={(e) => {
             handleShowSponsor(sponsor, e)
           }}
           className="read_more"
+          style={{ cursor: 'pointer' }}
         >
           Read More
         </a>
@@ -48,7 +49,7 @@ export default function Sponsor({ handleShowSponsor, sponsor }) {
               <a
                 data-toggle="modal"
                 data-target="#sponser_popup"
-                onClick={e => {
+                onClick={(e) => {
                   handleShowSponsor(sponsor, e)
                 }}
               >
