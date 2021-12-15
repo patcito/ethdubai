@@ -188,7 +188,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x9ED6fE2964F0468f180382470025CB3DBE946d1A',
+      contract: '0x7a5B24D02C60cc1A25Ff632a43299E139c98a909',
       token: '',
       abi: abiArbi.abi,
       exchangeUrl: 'https://app.uniswap.org',
@@ -299,7 +299,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      //      contract: '0xE345546Cc2616DBC51b51933FC32D5708d90BF75',
+      // /     contract: '0xE345546Cc2616DBC51b51933FC32D5708d90BF75',
       contract: '0x9ab1130cdfcE397aB6283e681fDaa2B1D49e7CBD',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
