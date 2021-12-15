@@ -18,6 +18,7 @@ import {
 import abi from './abis/ETHDubaiTickets.json'
 import mainnetAbi from './abis/ETHDubaiTicketsMainnet.json'
 import abiNonEth from './abis/ETHDubaiTicketsERC20.json'
+import abiArbi from './abis/ETHDubaiTicketsArbi.json'
 import erc20abi from './abis/erc20.json'
 import EthCrypto from 'eth-crypto'
 import { Buffer } from 'buffer'
@@ -186,6 +187,28 @@ export default function NFTTicketsSection() {
         blockExplorerUrls: ['https://optimistic.etherscan.io/'],
       },
     },
+    {
+      contract: '0x9ED6fE2964F0468f180382470025CB3DBE946d1A',
+      token: '',
+      abi: abiArbi.abi,
+      exchangeUrl: 'https://app.uniswap.org',
+      exchangeName: 'UniSwap',
+      tokenSymbol: 'ETH',
+      web3Name: 'Arbitrum',
+      networkShare: 'arbitrum',
+      networkInfo: {
+        chainId: '0xA4B1',
+        chainName: 'Arbitrum',
+        rpcUrls: ['https://arb1.arbitrum.io/rpc'],
+        nativeCurrency: {
+          name: 'ETHER',
+          symbol: 'ETH',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://arbiscan.io/'],
+      },
+    },
+
     {
       contract: '0x9ed6fe2964f0468f180382470025cb3dbe946d1a',
       token: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
@@ -391,14 +414,14 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x3Ca017499946E08cff1252529193eC57f3d4F562',
+      contract: '0xfd4222BAE1eDe996387C47EE384d57D246Ae3F1B',
       token: '',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       web3Name: 'Arbitrum Rinkeby',
-      networkShare: 'notworking',
+      networkShare: 'arbitrum-rinkeby',
       networkInfo: {
         chainId: '0x66EEB',
         chainName: 'Arbitrum Testnet Rinkeby',
@@ -413,10 +436,10 @@ export default function NFTTicketsSection() {
     },
     {
       //contract: '0x976C214741b4657bd99DFD38a5c0E3ac5C99D903',
-      constract: '0x1343248Cbd4e291C6979e70a138f4c774e902561',
-      token: '0x01E21d7B8c39dc4C764c19b308Bd8b14B1ba139E',
-      abi: abiNonEth.abi,
-      //token: '',
+      contract: '0xD8a5a9b31c3C0232E196d518E89Fd8bF83AcAd43',
+      //token: '0x01E21d7B8c39dc4C764c19b308Bd8b14B1ba139E',
+      abi: abi.abi,
+      token: '',
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
@@ -437,8 +460,8 @@ export default function NFTTicketsSection() {
       },
     },
   ]
-  const networks = networksTest.slice(0, 5)
-  console.log(abi)
+  const networks = networksTest.slice(0, 6)
+  //console.log(abi)
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
   const providerOptions = {

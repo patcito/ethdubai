@@ -1,0 +1,1824 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ETHDubaiTicket",
+  "sourceName": "contracts/ETHDubaiTicket.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "approved",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "name": "ApprovalForAll",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "email",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "fname",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "lname",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "twitter",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "bio",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "job",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "company",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "workshop",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "tshirt",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "telegram",
+              "type": "string"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct ETHDubaiTicket.AttendeeInfo",
+          "name": "attendeeInfo",
+          "type": "tuple"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "LAttendeeInfo",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "string[]",
+                  "name": "ticketOptions",
+                  "type": "string[]"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "qty",
+                  "type": "uint256"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "uint256",
+                      "name": "_value",
+                      "type": "uint256"
+                    }
+                  ],
+                  "internalType": "struct Counters.Counter",
+                  "name": "used",
+                  "type": "tuple"
+                }
+              ],
+              "internalType": "struct ETHDubaiTicket.Discount",
+              "name": "discount",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct ETHDubaiTicket.TicketSettings",
+              "name": "ticketSettings",
+              "type": "tuple"
+            },
+            {
+              "internalType": "address",
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "ticketOption",
+              "type": "string"
+            }
+          ],
+          "indexed": true,
+          "internalType": "struct ETHDubaiTicket.MintLog",
+          "name": "mintLog",
+          "type": "tuple"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "LMint",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "LMintId",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "indexed": true,
+          "internalType": "struct ETHDubaiTicket.ResellLog",
+          "name": "resellLog",
+          "type": "tuple"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "LResell",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "isResellable",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct ETHDubaiTicket.Resellable",
+          "name": "resellable",
+          "type": "tuple"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "LResellable",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "value",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "LTicketAction",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            }
+          ],
+          "indexed": true,
+          "internalType": "struct ETHDubaiTicket.TicketSettings",
+          "name": "ticketSettings",
+          "type": "tuple"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "LTicketSettings",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "Lint",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "Log",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "_idToAttendeeInfo",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "fname",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "lname",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "twitter",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "bio",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "job",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "company",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "workshop",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "tshirt",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "telegram",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "_idToCanceled",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "_idToScanned",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "_idToSpecialStatus",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "_idToTicketCode",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "_idToTicketOption",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "_idToTicketResellable",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "isResellable",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosDiscount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosMaxTotal",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosMinBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosMinTotal",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosQty",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "daosUsed",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "discounts",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "qty",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "_value",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Counters.Counter",
+          "name": "used",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getApproved",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "ticketOption",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "ticketsLength",
+          "type": "uint256"
+        }
+      ],
+      "name": "getDiscount",
+      "outputs": [
+        {
+          "internalType": "uint256[2]",
+          "name": "",
+          "type": "uint256[2]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "ticketOption",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "ticketsLength",
+          "type": "uint256"
+        }
+      ],
+      "name": "getDiscountView",
+      "outputs": [
+        {
+          "internalType": "uint256[2]",
+          "name": "",
+          "type": "uint256[2]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "ticketOption",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "ticketsLength",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "ticketOption",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "ticketsLength",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPriceView",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        }
+      ],
+      "name": "isApprovedForAll",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "scan",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "canceled",
+          "type": "bool"
+        }
+      ],
+      "name": "markAsScannedCanceld",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "email",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "fname",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "lname",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "twitter",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "bio",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "job",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "company",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "workshop",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "tshirt",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "telegram",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct ETHDubaiTicket.AttendeeInfo",
+              "name": "attendeeInfo",
+              "type": "tuple"
+            },
+            {
+              "internalType": "string",
+              "name": "ticketCode",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "ticketOption",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "specialStatus",
+              "type": "string"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bool",
+                  "name": "isResellable",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "price",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ETHDubaiTicket.Resellable",
+              "name": "resellable",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct ETHDubaiTicket.MintInfo[]",
+          "name": "mintInfos",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "mintItem",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "email",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "fname",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "lname",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "twitter",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "bio",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "job",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "company",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "workshop",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "tshirt",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "telegram",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct ETHDubaiTicket.AttendeeInfo",
+              "name": "attendeeInfo",
+              "type": "tuple"
+            },
+            {
+              "internalType": "string",
+              "name": "ticketCode",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "ticketOption",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "specialStatus",
+              "type": "string"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bool",
+                  "name": "isResellable",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "price",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ETHDubaiTicket.Resellable",
+              "name": "resellable",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct ETHDubaiTicket.MintInfo[]",
+          "name": "mintInfos",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "mintItemNoDiscount",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address payable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ownerOf",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "resell",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "safeTransferFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_data",
+          "type": "bytes"
+        }
+      ],
+      "name": "safeTransferFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "name": "setApprovalForAll",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "dao",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "qty",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "discount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minBalance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "minTotal",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxTotal",
+          "type": "uint256"
+        }
+      ],
+      "name": "setDao",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "buyer",
+          "type": "address"
+        },
+        {
+          "internalType": "string[]",
+          "name": "newDiscounts",
+          "type": "string[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "qty",
+          "type": "uint256"
+        }
+      ],
+      "name": "setDiscount",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "max",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMaxMint",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isResellable",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "name": "setResellable",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "setRsca",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "setTicketOption",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "name": "setTicketSettings",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "settings",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct ETHDubaiTicket.TicketSettings",
+          "name": "ticketSettings",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxMint",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "tokenURI",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "email",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "fname",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "lname",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "twitter",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "bio",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "job",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "company",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "workshop",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "tshirt",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "telegram",
+                  "type": "string"
+                }
+              ],
+              "internalType": "struct ETHDubaiTicket.AttendeeInfo",
+              "name": "attendeeInfo",
+              "type": "tuple"
+            },
+            {
+              "internalType": "string",
+              "name": "ticketCode",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "ticketOption",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "specialStatus",
+              "type": "string"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "bool",
+                  "name": "isResellable",
+                  "type": "bool"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "price",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ETHDubaiTicket.Resellable",
+              "name": "resellable",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct ETHDubaiTicket.MintInfo[]",
+          "name": "mIs",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "totalPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "email",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "fname",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "lname",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "twitter",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "bio",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "job",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "company",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "workshop",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "tshirt",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "telegram",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct ETHDubaiTicket.AttendeeInfo",
+          "name": "attendeeInfo",
+          "type": "tuple"
+        }
+      ],
+      "name": "updateAttendeeInfo",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
