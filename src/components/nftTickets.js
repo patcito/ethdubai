@@ -414,7 +414,8 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xfd4222BAE1eDe996387C47EE384d57D246Ae3F1B',
+      //      contract: '0xfd4222BAE1eDe996387C47EE384d57D246Ae3F1B',
+      contract: '0x7a5B24D02C60cc1A25Ff632a43299E139c98a909',
       token: '',
       abi: abi.abi,
       exchangeUrl: 'https://app.uniswap.org',
