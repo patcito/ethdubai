@@ -13,7 +13,7 @@ export default function ScheduleSection({
   const [currentScheduleTab, setCurrentScheduleTab] = React.useState(0)
   const [scheduleQuery, setScheduleQuery] = React.useState('')
   const [openDesc1, setOpenDesc1] = React.useState(false)
-  const slots = schedule[0].slots.reverse()
+  const slots = schedule[0].slots.sort((a, b) => (a.id < b.id ? 1 : -1))
   console.log('ssss', schedule)
   const data = useStaticQuery(graphql`
     {
