@@ -13,6 +13,7 @@ export default function ScheduleSection({
   const [currentScheduleTab, setCurrentScheduleTab] = React.useState(0)
   const [scheduleQuery, setScheduleQuery] = React.useState('')
   const [openDesc1, setOpenDesc1] = React.useState(false)
+  const slots = schedule[0].slots.reverse()
   console.log('ssss', schedule)
   const data = useStaticQuery(graphql`
     {
@@ -47,10 +48,25 @@ export default function ScheduleSection({
         <div className="headings">
           <Img fixed={data.scedual.childImageSharp.fixed} />
           <h2>Schedule</h2>
-          <h3 style={{ marginTop: '30px' }}>March 29th</h3>
+          <h3
+            style={{
+              marginTop: '30px',
+              textDecoration: 'underline dashed',
+              textUnderlineOffset: '5px',
+            }}
+          >
+            March 29th
+          </h3>
           <h4 style={{ margin: '30px' }}>Special Yacht Meet and Greet Party</h4>
           <hr />
-          <h3>March 30th</h3>
+          <h3
+            style={{
+              textDecoration: 'underline dashed',
+              textUnderlineOffset: '5px',
+            }}
+          >
+            March 30th
+          </h3>
           <h4 style={{ margin: '30px' }}>
             Learn from the best to level-up your web3 skills with our awesome
             workshops.
@@ -201,14 +217,21 @@ export default function ScheduleSection({
             </Row>
           </Container>
           <hr />
-          <h3>March 31st</h3>
+          <h3
+            style={{
+              textDecoration: 'underline dashed',
+              textUnderlineOffset: '5px',
+            }}
+          >
+            March 31st
+          </h3>
           <h4 style={{ margin: '30px' }}>
             Listen and learn from the best builders and contributors in the
             Ethereum and DeFi ecosystem! Our talks so far include:
           </h4>
 
           <ul>
-            {schedule[0].slots.reverse().map((slot) => (
+            {slots.map((slot) => (
               <div className="card">
                 <div className="card-body">
                   {slot.speakers.map((speaker) => (
@@ -227,12 +250,12 @@ export default function ScheduleSection({
                       paddingLeft: '20px',
                     }}
                   >
-                    <h5
+                    <h6
                       style={{ marginLeft: '20px' }}
                       className="card-description"
                     >
                       {slot.speakers[0].name} {slot.title}
-                    </h5>
+                    </h6>
                   </div>
                 </div>
               </div>
