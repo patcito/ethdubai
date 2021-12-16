@@ -3936,7 +3936,16 @@ header.desktop_header {
 body {
   overflow-x: hidden;
   background-color: #000;
-  .conference, .speaker, .event_moments, .schedule, .book_ticket, .sponser, .support, .location, .people-behind, .subscribe_bottom {
+  .conference,
+  .speaker,
+  .event_moments,
+  .schedule,
+  .book_ticket,
+  .sponser,
+  .support,
+  .location,
+  .people-behind,
+  .subscribe_bottom {
     background: #fff;
   }
 }
@@ -3980,5 +3989,11 @@ body {
   }
   @media (min-width: 880px) {
     padding: 45px;
+  }
+}
+
+.carddeskMobile {
+  @media (min-width: 768px) {
+    margin-bottom: 30px;
   }
 }

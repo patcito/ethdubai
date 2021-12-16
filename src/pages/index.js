@@ -125,6 +125,7 @@ export default function IndexPage({ data, location }) {
         schedule={schedule}
         setSchedule={setSchedule}
         event={event}
+        speakers={event.speakers}
       />
       {/*
       <div style={{ display: 'none' }}>
