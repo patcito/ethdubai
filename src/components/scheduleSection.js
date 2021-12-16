@@ -208,10 +208,10 @@ export default function ScheduleSection({
           </h4>
 
           <ul>
-            {schedule[0].slots.map((slot) => (
+            {schedule[0].slots.reverse().map((slot) => (
               <div className="card">
                 <div className="card-body">
-                  {slot.speakers.reverse().map((speaker) => (
+                  {slot.speakers.map((speaker) => (
                     <Img
                       fluid={speaker.localFile.childImageSharp.fluid}
                       style={{ width: '50px', height: '50px' }}
