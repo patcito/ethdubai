@@ -285,7 +285,7 @@ export default function SpeakersSection({ speakers = [] }) {
                               key={talk.id}
                             >
                               <h3 className="speaker-name-modal">Talk</h3>
-                              <h4>{talk.title}</h4>
+                              <h4>{speakerProps.name + ' ' + talk.title}</h4>
                               <div
                                 style={{ textAlign: 'initial' }}
                                 className={
