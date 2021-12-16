@@ -219,8 +219,18 @@ export default function ScheduleSection({
                     />
                   ))}
 
-                  <div className="message">
-                    <h5 className="card-description">
+                  <div
+                    className="message"
+                    style={{
+                      marginLeft: '20px',
+                      textAlign: 'left',
+                      paddingLeft: '20px',
+                    }}
+                  >
+                    <h5
+                      style={{ marginLeft: '20px' }}
+                      className="card-description"
+                    >
                       {slot.speakers[0].name} {slot.title}
                     </h5>
                   </div>
