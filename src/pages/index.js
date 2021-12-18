@@ -149,6 +149,11 @@ export default function IndexPage({ data, location }) {
                   <Img fixed={data.support2.childImageSharp.fixed} />
                 </a>
               </li>
+              <li>
+                <a href="https://www.meetup.com/defi-dubai/" target="_blank">
+                  <Img fixed={data.support7.childImageSharp.fixed} />
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -896,6 +901,13 @@ export const pageQuery = graphql`
       }
     }
     support6: file(relativePath: { eq: "expo.png" }) {
+      childImageSharp {
+        fixed(width: 120) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    support7: file(relativePath: { eq: "defidubai.png" }) {
       childImageSharp {
         fixed(width: 120) {
           ...GatsbyImageSharpFixed_withWebp
