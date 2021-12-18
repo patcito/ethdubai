@@ -54,7 +54,7 @@ export default function ScheduleSection({
               textDecoration: 'underline dashed',
               textUnderlineOffset: '5px',
             }}
-            id="#day1"
+            id="day1"
           >
             March 29th
           </h3>
@@ -65,7 +65,7 @@ export default function ScheduleSection({
               textDecoration: 'underline dashed',
               textUnderlineOffset: '5px',
             }}
-            id="#day2"
+            id="day2"
           >
             March 30th
           </h3>
@@ -224,7 +224,7 @@ export default function ScheduleSection({
               textDecoration: 'underline dashed',
               textUnderlineOffset: '5px',
             }}
-            id="#day3"
+            id="day3"
           >
             March 31st
           </h3>
