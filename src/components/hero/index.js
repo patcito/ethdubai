@@ -151,7 +151,7 @@ export default function Hero({ banner }) {
                   target="_blank"
                   style={{ color: '#fff', textDecoration: 'underline' }}
                 >
-                  Ask us on Telegram
+                  Join our community on Telegram
                 </a>{' '}
               </h2>
               <p />
