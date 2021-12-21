@@ -200,7 +200,7 @@ export default function ScheduleSection({
                         Web3 &amp; Graph Protocol workshop with Nader Dabit
                       </Card.Title>
                       <Card.Text>
-                        Writing you Smart Contract is only half the work, you
+                        Writing your Smart Contract is only half the work, you
                         also need a Web3 frontend and a way to query this
                         contract easily. In this workshop, you will learn how to
                         index your contract in order to query it easily in you
