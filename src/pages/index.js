@@ -164,7 +164,7 @@ export default function IndexPage({ data, location }) {
                 </a>
               </li>
               <li>
-                <a href="https://www.niftyrocks-studio.com/" target="_blank">
+                <a href="https://www.niftyrocks-studios.com/" target="_blank">
                   <Img fixed={data.niftyrocks.childImageSharp.fixed} />
                 </a>
               </li>
