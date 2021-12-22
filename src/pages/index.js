@@ -163,6 +163,11 @@ export default function IndexPage({ data, location }) {
                   <Img fixed={data.hysek.childImageSharp.fixed} />
                 </a>
               </li>
+              <li>
+                <a href="https://www.niftyrocks-studio.com/" target="_blank">
+                  <Img fixed={data.niftyrocks.childImageSharp.fixed} />
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -932,6 +937,13 @@ export const pageQuery = graphql`
       }
     }
     hysek: file(relativePath: { eq: "hyseksquare.png" }) {
+      childImageSharp {
+        fixed(width: 120) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    niftyrocks: file(relativePath: { eq: "niftyrocks.png" }) {
       childImageSharp {
         fixed(width: 120) {
           ...GatsbyImageSharpFixed_withWebp
