@@ -137,6 +137,37 @@ export default function IndexPage({ data, location }) {
       <InlineTicketsSection event={event} />
 
       <SponsorsSection sponsors={event.sponsors} />
+      <section
+        className="support"
+        id="nft-droppers"
+        style={{ backgroundColor: 'white' }}
+      >
+        <div className="container">
+          <div className="headings">
+            <h2>NFT Partners</h2>
+            <p>
+              <a
+                href="mailto:ETHDubai@eventlama.com?subject=sponsoring ETHDubai 2022"
+                className="spr-link"
+                target="_blank"
+              >
+                <i className="fa fa-envelope"></i>&nbsp;Want to drop an NFT at
+                the conference? Let's get in touch!
+              </a>
+            </p>
+          </div>
+          <div className="supporters_logo">
+            <ul>
+              <li>
+                <a href="https://epoch.hysek.swiss/" target="_blank">
+                  <Img fixed={data.hysek.childImageSharp.fixed} />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section className="support" id="supporters">
         <div className="container">
           <div className="headings">
@@ -896,6 +927,13 @@ export const pageQuery = graphql`
     support2: file(relativePath: { eq: "eventlama.png" }) {
       childImageSharp {
         fixed(width: 80) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    hysek: file(relativePath: { eq: "hyseksquare.png" }) {
+      childImageSharp {
+        fixed(width: 120) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
