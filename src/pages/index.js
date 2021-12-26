@@ -61,7 +61,7 @@ export default function IndexPage({ data, location }) {
         .then((res) => res.json())
         .then((json) => {
           if (json.CountryCode !== 'US') {
-            window.location = 'https://t.me/joinchat/5hfCs5S9PzlmNzM0'
+            window.location = 'https://t.me/ETHDubai'
           }
         })
         .catch((err) => {})
@@ -397,7 +397,7 @@ export default function IndexPage({ data, location }) {
                 <li>
                   <a
                     className="nav-link"
-                    href="https://t.me/joinchat/5hfCs5S9PzlmNzM0"
+                    href="https://t.me/ETHDubai"
                     target="_blank"
                   >
                     Telegram

@@ -147,7 +147,7 @@ export default function Hero({ banner }) {
                 and community projects such as Yearn and its ecosystem.
                 Questions?{' '}
                 <a
-                  href="https://t.me/joinchat/5hfCs5S9PzlmNzM0"
+                  href="https://t.me/ETHDubai"
                   target="_blank"
                   style={{ color: '#fff', textDecoration: 'underline' }}
                 >

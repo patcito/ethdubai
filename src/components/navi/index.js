@@ -118,7 +118,7 @@ export default function Navi() {
                 <li className="nav-item">
                   <a
                     className="nav-link"
-                    href="https://t.me/joinchat/5hfCs5S9PzlmNzM0"
+                    href="https://t.me/ETHDubai"
                     target="_blank"
                   >
                     Telegram
