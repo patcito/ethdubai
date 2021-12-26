@@ -72,7 +72,7 @@ export default function NFTTicketsSection() {
 
     const response = await fetch(url)
     const data = await response.text()
-    console.log('llllllll', data)
+    console.log('lllll', data)
     const json = Buffer.from(data.substring(29), 'base64').toString()
     console.log(json)
     const obj = JSON.parse(json)
