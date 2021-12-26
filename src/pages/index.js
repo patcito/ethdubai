@@ -54,6 +54,19 @@ export default function IndexPage({ data, location }) {
   const [schedule, setSchedule] = useState(
     data.eventlama.events[0].groupedSchedule
   )
+  React.useEffect(() => {
+    let tg = window.top.location.hash.substr(1)
+    if (tg === 'tg') {
+      fetch('https://api.eventlama.com/geoip')
+        .then((res) => res.json())
+        .then((json) => {
+          if (json.CountryCode !== 'US') {
+            window.location = 'https://t.me/joinchat/5hfCs5S9PzlmNzM0'
+          }
+        })
+        .catch((err) => {})
+    }
+  }, [])
   console.log('data', data)
   //TODO: useCheckoutListener
   if (typeof window !== 'undefined') {
