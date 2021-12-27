@@ -19,6 +19,7 @@ import abi from './abis/ETHDubaiTickets.json'
 import mainnetAbi from './abis/ETHDubaiTicketsMainnet.json'
 import abiNonEth from './abis/ETHDubaiTicketsERC20.json'
 import abiArbi from './abis/ETHDubaiTicketsArbi.json'
+import abiMetis from './abis/ETHDubaiTicketsMetis.json'
 import erc20abi from './abis/erc20.json'
 import EthCrypto from 'eth-crypto'
 import { Buffer } from 'buffer'
@@ -437,10 +438,10 @@ export default function NFTTicketsSection() {
     },
     {
       //contract: '0x976C214741b4657bd99DFD38a5c0E3ac5C99D903',
-      contract: '0xD8a5a9b31c3C0232E196d518E89Fd8bF83AcAd43',
+      contract: '0xAA292E8611aDF267e563f334Ee42320aC96D0463',
       //token: '0x01E21d7B8c39dc4C764c19b308Bd8b14B1ba139E',
-      abi: abi.abi,
-      token: '',
+      abi: abi.abiMetis,
+      token: '0x7A9Ec1d04904907De0ED7b6839CcdD59c3716AC9',
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
@@ -461,7 +462,7 @@ export default function NFTTicketsSection() {
       },
     },
   ]
-  const networks = networksTest //.slice(0, 6)
+  const networks = networksTest.slice(0, 6)
   //console.log(abi)
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
