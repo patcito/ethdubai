@@ -194,7 +194,7 @@ export default function InlineTicketsSection({ event }) {
               ></iframe>*/}
               <h3 className="d-none">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform">
-                  Don't miss our tickets release by subscribing here.
+                  Don't miss our tickets release by subscribing here
                 </a>
               </h3>
               <h4
