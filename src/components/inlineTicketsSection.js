@@ -13,6 +13,7 @@ export default function InlineTicketsSection({ event }) {
   const [discountMessage, setDiscountMessage] = React.useState('')
   const [discountCodeApplied, setDiscountCodeApplied] = React.useState(false)
   const [message, setMessage] = React.useState({ message: '', status: 'error' })
+  const [payInDollar, setPayInDollar] = React.useState('')
 
   const imgs = useStaticQuery(graphql`
     {
@@ -98,7 +99,7 @@ export default function InlineTicketsSection({ event }) {
     })
     console.log(order)
     if (window && window.fetch && order.tickets.length > 0) {
-      fetch('https://www.ethdubaiconf.org/checkout', {
+      fetch('https://api.eventlama.com/checkout', {
         method: 'post',
         body: JSON.stringify(order),
         headers: {
@@ -114,12 +115,12 @@ export default function InlineTicketsSection({ event }) {
           console.log(data)
           if (data.order && data.order.id && data.order.uuid) {
             document.location =
-              'https://checkout.eventlama.com/#/events/ETHDubai-2021/orders/' +
+              'https://checkout.eventlama.com/#/events/ethdubai/orders/' +
               data.order.id +
               '/edit/' +
               data.order.uuid
             console.log(
-              'https://checkout.eventlama.com/#/events/ETHDubai-2021/orders/' +
+              'https://checkout.eventlama.com/#/events/ethdubai/orders/' +
                 data.order.id +
                 '/edit/' +
                 data.order.uuid
@@ -178,7 +179,9 @@ export default function InlineTicketsSection({ event }) {
                 related to covid-19, we will do a full refund regardless of the
                 date or a ticket transfer to next year's edition.
               </h3>
-              <NFTTicketsSection />
+              <div style={{ display: !payInDollar ? '' : 'none' }}>
+                <NFTTicketsSection />
+              </div>
               {/*<iframe
                 width="560"
                 height="315"
@@ -194,10 +197,32 @@ export default function InlineTicketsSection({ event }) {
                   Don't miss our tickets release by subscribing here.
                 </a>
               </h3>
+              <h4
+                style={{
+                  marginTop: '25px',
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                  display: !payInDollar ? '' : 'none',
+                }}
+                onClick={() => setPayInDollar(true)}
+              >
+                Don't have ETH? Pay with your credit/debit card instead
+              </h4>
+              <h4
+                style={{
+                  marginTop: '25px',
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                  display: payInDollar ? '' : 'none',
+                }}
+                onClick={() => setPayInDollar(false)}
+              >
+                Got ETH? Pay with your wallet instead
+              </h4>{' '}
               <section
-                style={{ display: 'none' }}
                 className="book_ticket"
                 id="book_ticket"
+                style={{ display: payInDollar ? '' : 'none' }}
               >
                 <div className="container"></div>
                 <div className="book_ticket_box">
@@ -220,7 +245,7 @@ export default function InlineTicketsSection({ event }) {
                   </div>
                   <div>
                     <div className="row ticket_secound-row">
-                      <div>
+                      <div style={{ width: '100%' }}>
                         {message.message ? (
                           <div
                             class={`alert alert-${message.status}`}
@@ -280,12 +305,12 @@ export default function InlineTicketsSection({ event }) {
                                 <div className="col-md-6">
                                   <div className="regular_right">
                                     <h6 className="right-text">
-                                      €
+                                      $
                                       {(ticket.priceWithoutVat / 10000).toFixed(
                                         2
                                       )}{' '}
                                       <span>
-                                        (€
+                                        ($
                                         {(
                                           (ticket.priceWithVat -
                                             ticket.priceWithoutVat) /
@@ -325,8 +350,8 @@ export default function InlineTicketsSection({ event }) {
                                               t.OrderedQuantity &&
                                               parseInt(t.OrderedQuantity) > 0
                                             ) {
-                                              t.OrderedQuantity = 0
-                                              t.orderedQuantity = 0
+                                              //t.OrderedQuantity = 0
+                                              //t.orderedQuantity = 0
                                               console.log('yes', i)
                                             } else {
                                               console.log('no', i)

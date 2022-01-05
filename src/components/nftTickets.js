@@ -70,6 +70,9 @@ export default function NFTTicketsSection() {
     let url =
       `https://svg.ethdubaiconf.org/token?tokenid=${tokenid}` +
       `&network=${network}&contract=${contract}`
+    url =
+      `http://localhost:8082/token?tokenid=${tokenid}` +
+      `&network=${network}&contract=${contract}`
 
     const response = await fetch(url)
     const data = await response.text()
@@ -166,6 +169,28 @@ export default function NFTTicketsSection() {
         blockExplorerUrls: ['https://etherscan.io/'],
       },
     },
+    /* {
+      contract: '0xeA84735F0b44e2d3D3B42595F14A120C4398FEfc',
+      token: '0x4200000000000000000000000000000000000007',
+      abi: abiMetis.abi,
+      exchangeUrl: 'https://netswap.io/#/home',
+      exchangeName: 'NetSwap',
+      tokenSymbol: 'ETH',
+      web3Name: 'Metis Andromeda',
+      networkShare: 'metis-andromeda',
+      networkInfo: {
+        chainId: '0x440',
+        chainName: 'Metis Andromeda',
+        rpcUrls: ['https://andromeda.metis.io/?owner=1088'],
+        nativeCurrency: {
+          name: 'METIS',
+          symbol: 'METIS',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://andromeda-explorer.metis.io/'],
+      },
+    },
+*/
     {
       contract: '0xfb0b3E0f27a2a858cc6656627E662B0D3cd5b19b',
       token: '',
@@ -373,9 +398,9 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x21ee01048225d0a0d5300878Cba220637fcEE742',
-      token: '',
-      abi: abi.abi,
+      contract: '0xeA84735F0b44e2d3D3B42595F14A120C4398FEfc',
+      token: '0x6244D7f9245ad590490338db2fbEd815c2358034',
+      abi: abiMetis.abi,
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
@@ -438,9 +463,9 @@ export default function NFTTicketsSection() {
     },
     {
       //contract: '0x976C214741b4657bd99DFD38a5c0E3ac5C99D903',
-      contract: '0xAA292E8611aDF267e563f334Ee42320aC96D0463',
+      contract: '0xF32D39ff9f6Aa7a7A64d7a4F00a54826Ef791a55',
       //token: '0x01E21d7B8c39dc4C764c19b308Bd8b14B1ba139E',
-      abi: abi.abiMetis,
+      abi: abiMetis.abi,
       token: '0x7A9Ec1d04904907De0ED7b6839CcdD59c3716AC9',
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
