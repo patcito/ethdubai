@@ -177,7 +177,7 @@ export default function InlineTicketsSection({ event }) {
                 . We do full refund upon request until December, 15th 2021, then
                 we will charge a 15% fee In case of a lockdown or travel ban
                 related to covid-19, we will do a full refund regardless of the
-                date or a ticket transfer to next year's edition.
+                date or a ticket transfer to next year's edition
               </h3>
               <div style={{ display: !payInDollar ? '' : 'none' }}>
                 <NFTTicketsSection />
