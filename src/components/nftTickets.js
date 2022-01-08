@@ -307,7 +307,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      //      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
+      ///      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
       contract: '0xa32DBcB19C870e40C9FC7d14E25171313d21C3E0',
       abi: abi.abi,
       token: '',
