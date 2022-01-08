@@ -260,7 +260,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xDA3f56bE2dC99466E6a1Ca8e1a29E930d5Abb886',
+      contract: '0x9ab1130cdfcE397aB6283e681fDaa2B1D49e7CBD',
       token: '0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1',
       abi: abiNonEth.abi,
       marketplaceName: '',
