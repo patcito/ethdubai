@@ -283,7 +283,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0x3Ca017499946E08cff1252529193eC57f3d4F562',
+      contract: '0x59B53E086f3c8f002B67A1f945C9e895f013a30f',
       token: '0x74b23882a30290451A17c44f4F05243b6b58C76d',
       abi: abiNonEth.abi,
       marketplaceName: 'artion',
