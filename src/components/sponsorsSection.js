@@ -210,7 +210,7 @@ export default function SponsorsSection({ sponsors }) {
             <></>
           )}
           {sponsors.silver?.length > 0 ? (
-            <div className="platinium_box gold_box">
+            <div className="platinium_box silver_box">
               <div className="row">
                 {sponsors.silver.map((sponsor) =>
                   sponsor.name !== '' ? (
