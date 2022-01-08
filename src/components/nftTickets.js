@@ -272,7 +272,7 @@ export default function NFTTicketsSection() {
       tokenSymbol: 'WETH',
       networkInfo: {
         chainId: '0x64',
-        chainName: 'xDai',
+        chainName: 'Gnosis Chain',
         rpcUrls: ['https://rpc.xdaichain.com'],
         nativeCurrency: {
           name: 'xDai',
@@ -285,7 +285,7 @@ export default function NFTTicketsSection() {
     {
       contract: '0x59B53E086f3c8f002B67A1f945C9e895f013a30f',
       token: '0x74b23882a30290451A17c44f4F05243b6b58C76d',
-      abi: abiNonEth.abi,
+      abi: abiMetis.abi,
       marketplaceName: 'artion',
       marketplace: 'https://artion.io/explore',
       networkShare: 'ftm',
@@ -374,7 +374,7 @@ export default function NFTTicketsSection() {
     },
     {
       contract: '0x5eF5758B47b7fdb01e5a35197d046131db9281F0',
-      abi: abiNonEth.abi,
+      abi: abiMetis.abi,
       token: '0x5B98ffed5FC15BeE1D3A4e6190c3504620d75c5F',
       exchangeUrl:
         'https://swap.spiritswap.finance/#/exchange/swap/0x74b23882a30290451A17c44f4F05243b6b58C76d',
