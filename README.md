@@ -25,7 +25,4 @@ Install this starter (assuming Gatsby is installed) by running from your CLI:
 develop
 `gatsby develop`
 
-### Custom Theme
-
-`/src/scss/gatstrap.scss`
 
