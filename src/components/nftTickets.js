@@ -70,9 +70,9 @@ export default function NFTTicketsSection() {
     let url =
       `https://svg.ethdubaiconf.org/token?tokenid=${tokenid}` +
       `&network=${network}&contract=${contract}`
-    url =
-      `http://localhost:8082/token?tokenid=${tokenid}` +
-      `&network=${network}&contract=${contract}`
+    //url =
+    //  `http://localhost:8082/token?tokenid=${tokenid}` +
+    //  `&network=${network}&contract=${contract}`
 
     const response = await fetch(url)
     const data = await response.text()
