@@ -262,7 +262,7 @@ export default function NFTTicketsSection() {
     {
       contract: '0x9ab1130cdfcE397aB6283e681fDaa2B1D49e7CBD',
       token: '0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1',
-      abi: abiNonEth.abi,
+      abi: abiMetis.abi,
       marketplaceName: '',
       marketplace: '',
       networkShare: 'xdai',
