@@ -87,16 +87,7 @@ export default function SpeakersSection({ speakers = [] }) {
         <div className="headings">
           <Img fixed={data.head2.childImageSharp.fixed} />
           <h2>Our Speakers so far</h2>
-          <p>
-            Stay tuned for more announcements soon and you can also submit a
-            talk to our{' '}
-            <a
-              href="https://checkout.eventlama.com/#/events/ethdubai/cfp"
-              target="_blank"
-            >
-              call for paper here!
-            </a>
-          </p>
+          <p>Stay tuned for more announcements soon!</p>
         </div>
         <div className="speaker_profile">
           <div className="row">
@@ -181,16 +172,10 @@ export default function SpeakersSection({ speakers = [] }) {
                 <div className="profile_content">
                   <h3 className="speaker-name">More</h3>
                   <p className="speaker-bio">
-                    You can submit a talk to our{' '}
-                    <a
-                      href="https://checkout.eventlama.com/#/events/ethdubai/cfp"
-                      target="_blank"
-                    >
-                      call for paper here
-                    </a>
+                    Stay tuned for more great speakers
                     {' and '}
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSeg8F30N_NSKbupPydQc0L9SWT60PZpcZBjiS9ToMhsTE-nlw/viewform">
-                      Subscribe here to not miss new announcements.
+                      subscribe here to not miss new announcements.
                     </a>
                   </p>
                 </div>
