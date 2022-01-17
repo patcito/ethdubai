@@ -169,7 +169,7 @@ export default function NFTTicketsSection() {
         blockExplorerUrls: ['https://etherscan.io/'],
       },
     },
-    /* {
+    {
       contract: '0xeA84735F0b44e2d3D3B42595F14A120C4398FEfc',
       token: '0x4200000000000000000000000000000000000007',
       abi: abiMetis.abi,
@@ -190,7 +190,6 @@ export default function NFTTicketsSection() {
         blockExplorerUrls: ['https://andromeda-explorer.metis.io/'],
       },
     },
-*/
     {
       contract: '0xfb0b3E0f27a2a858cc6656627E662B0D3cd5b19b',
       token: '',
@@ -487,7 +486,7 @@ export default function NFTTicketsSection() {
       },
     },
   ]
-  const networks = networksTest.slice(0, 6)
+  const networks = networksTest.slice(0, 7)
   //console.log(abi)
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
