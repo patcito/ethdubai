@@ -170,8 +170,8 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xeA84735F0b44e2d3D3B42595F14A120C4398FEfc',
-      token: '0x4200000000000000000000000000000000000007',
+      contract: '0x8339E55273a11c80f75c22Ce0ed647984319B6B0',
+      token: '0x420000000000000000000000000000000000000A',
       abi: abiMetis.abi,
       exchangeUrl: 'https://netswap.io/#/home',
       exchangeName: 'NetSwap',
@@ -397,7 +397,7 @@ export default function NFTTicketsSection() {
       },
     },
     {
-      contract: '0xeA84735F0b44e2d3D3B42595F14A120C4398FEfc',
+      contract: '0x2C445DAaa70fc39B14cF7a37d9501aD65DbD24a8',
       token: '0x6244D7f9245ad590490338db2fbEd815c2358034',
       abi: abiMetis.abi,
       exchangeUrl: 'https://app.uniswap.org',
@@ -1615,7 +1615,11 @@ export default function NFTTicketsSection() {
           tx = await contract.mintItemNoDiscount(finalTickets, value)
         }
       } else {
-        tx = await contract.mintItem(finalTickets)
+        if (networks[currentNetwork].web3Name === 'Metis Andromeda') {
+          tx = await contract.mintItem(finalTickets)
+        } else {
+          tx = await contract.mintItem(finalTickets)
+        }
       }
       console.log('txiiiiiiiiiii', tx)
       setOngoingTx(tx.hash)
