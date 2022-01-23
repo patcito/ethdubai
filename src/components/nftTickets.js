@@ -36,6 +36,7 @@ import {
 import { useEventListener } from 'eth-hooks/events/useEventListener'
 export default function NFTTicketsSection() {
   //const [message, setMessage] = React.useState({ message: '', status: 'error' })
+  const [hackathon, setHackathon] = useState(false)
   const [openDesc1, setOpenDesc1] = useState(false)
   const [openDesc1pp, setOpenDesc1pp] = useState(false)
   const [openDesc2, setOpenDesc2] = useState(false)
@@ -918,7 +919,8 @@ export default function NFTTicketsSection() {
         tix.includeWorkshopsAndPreParty,
         tix.includeHotelExtra,
         tix.workshop,
-        tix.includeHotel2Extra
+        tix.includeHotel2Extra,
+        tix.hackathon
       )
       let addToCode = JSON.stringify(tix) + ticketOption
 
@@ -944,7 +946,8 @@ export default function NFTTicketsSection() {
                 !tix.includeWorkshopsAndPreParty,
                 tix.includeWorkshopsAndPreParty,
                 tix.includeHotelExtra,
-                tix.includeHotel2Extra
+                tix.includeHotel2Extra,
+                tix.hackathon
               )
           ),
         },
@@ -960,7 +963,8 @@ export default function NFTTicketsSection() {
           a.includeWorkshopsAndPreParty,
           a.includeHotelExtra,
           a.workshop,
-          a.includeHotel2Extra
+          a.includeHotel2Extra,
+          a.hackathon
         )
 
         let addToCode = JSON.stringify(a) + ticketOption
@@ -1019,16 +1023,26 @@ export default function NFTTicketsSection() {
     workshopsAndPreParty,
     hotelExtra,
     workshop,
-    hotel2Extra
+    hotel2Extra,
+    ihackathon
   ) => {
     if (!workshop) {
       workshop = ''
     }
     if (!workshopsAndPreParty && !hotelExtra && !hotel2Extra) {
+      if (ihackathon) {
+        return 'hackathonAndConferenceOnly'
+      }
       return 'conference'
     } else if (!workshopsAndPreParty && hotelExtra && !hotel2Extra) {
+      if (ihackathon) {
+        return 'hotelhackathonAndConferenceOnly'
+      }
       return 'hotelConference'
     } else if (!workshopsAndPreParty && hotel2Extra && !hotelExtra) {
+      if (ihackathon) {
+        return 'hotel2hackathonAndConferenceOnly'
+      }
       return 'hotel2Conference'
     } else if (workshopsAndPreParty && !hotelExtra && !hotel2Extra) {
       console.log('wwwwwwwwwww', `workshop${workshop}AndPreParty`)
@@ -1117,9 +1131,18 @@ export default function NFTTicketsSection() {
       case 15:
         return 'hotel2Workshops4AndPreParty'
         break
+      case 16:
+        return 'hackathonAndConferenceOnly'
+        break
+      case 17:
+        return 'hotelhackathonAndConferenceOnly'
+        break
+      case 18:
+        return 'hotel2hackathonAndConferenceOnly'
+        break
       default:
         console.log('totalBN fail', ticketOption)
-        return 16
+        return 19
         break
     }
   }
@@ -1174,8 +1197,14 @@ export default function NFTTicketsSection() {
       case 'hotel2Workshops4AndPreParty':
         return 15
         break
-      default:
+      case 'hackathonAndConferenceOnly':
         return 16
+      case 'hotelhackathonAndConferenceOnly':
+        return 17
+      case 'hotel2hackathonAndConferenceOnly':
+        return 18
+      default:
+        return 19
         break
     }
   }
@@ -1227,6 +1256,12 @@ export default function NFTTicketsSection() {
         break
       case 'hotel2Workshops4AndPreParty':
         return '0.5'
+      case 'hackathonAndConferenceOnly':
+        return '0.10'
+      case 'hotelhackathonAndConferenceOnly':
+        return '0.3'
+      case 'hotel2hackathonAndConferenceOnly':
+        return '0.4'
     }
     if (
       attendeeInfos[currentAttendeeInfoIndex].includeHotelExtra &&
@@ -1671,11 +1706,17 @@ export default function NFTTicketsSection() {
       console.log(error)
     }
   }
-  const getTicketPrice = (oneDay, threeDay, hotel, hotel2) => {
+  const getTicketPrice = (oneDay, threeDay, hotel, hotel2, ihackathon) => {
     if (oneDay && !hotel && !hotel2) {
+      if (ihackathon) {
+        return 0.1
+      }
       return 0.07
     }
     if (oneDay && hotel && !hotel2) {
+      if (ihackathon) {
+        return 0.3
+      }
       return 0.2
     }
     if (threeDay && !hotel && !hotel2) {
@@ -1685,6 +1726,9 @@ export default function NFTTicketsSection() {
       return 0.4
     }
     if (oneDay && !hotel && hotel2) {
+      if (ihackathon) {
+        return 0.4
+      }
       return 0.3
     }
     if (threeDay && !hotel && hotel2) {
@@ -1700,7 +1744,8 @@ export default function NFTTicketsSection() {
         !ai.includeWorkshopsAndPreParty,
         ai.includeWorkshopsAndPreParty,
         ai.includeHotelExtra,
-        ai.includeHotel2Extra
+        ai.includeHotel2Extra,
+        ai.hackathon
       )
       let priceBN = ethers.utils.parseEther(price + '')
       console.log('ppppppppp', priceBN)
@@ -1715,7 +1760,8 @@ export default function NFTTicketsSection() {
         pft.includeWorkshopsAndPreParty,
         pft.includeHotelExtra,
         pft.workshop,
-        pft.includeHotel2Extra
+        pft.includeHotel2Extra,
+        pft.hackathon
       )
       return { ...pft, ...{ ticketOption: ticketOption } }
     })
@@ -2254,17 +2300,34 @@ export default function NFTTicketsSection() {
                                 <Form.Group>
                                   <Form.Row>
                                     <Col xs="12" sm="6">
-                                      <Form.Check
-                                        type="checkbox"
-                                        label="Include Workshop and parties (yacht and pre-conference)"
-                                        onClick={handleAttendeeInfoCheck}
-                                        name="includeWorkshopsAndPreParty"
-                                        checked={
-                                          attendeeInfos[
-                                            currentAttendeeInfoIndex
-                                          ].includeWorkshopsAndPreParty
-                                        }
-                                      />
+                                      {attendeeInfos[currentAttendeeInfoIndex]
+                                        .hackathon ? null : (
+                                        <Form.Check
+                                          type="checkbox"
+                                          label="Include Workshop, hackathon and parties (yacht March 29th and pre-conference March 30th)"
+                                          onClick={handleAttendeeInfoCheck}
+                                          name="includeWorkshopsAndPreParty"
+                                          checked={
+                                            attendeeInfos[
+                                              currentAttendeeInfoIndex
+                                            ].includeWorkshopsAndPreParty
+                                          }
+                                        />
+                                      )}
+                                      {attendeeInfos[currentAttendeeInfoIndex]
+                                        .includeWorkshopsAndPreParty ? null : (
+                                        <Form.Check
+                                          type="checkbox"
+                                          label="Include Hackathon only (March 30th) and pre-conference party (March 30th)"
+                                          onClick={handleAttendeeInfoCheck}
+                                          name="hackathon"
+                                          checked={
+                                            attendeeInfos[
+                                              currentAttendeeInfoIndex
+                                            ].hackathon
+                                          }
+                                        />
+                                      )}
                                     </Col>
                                     {attendeeInfos[currentAttendeeInfoIndex]
                                       .includeWorkshopsAndPreParty ? (
@@ -2294,7 +2357,7 @@ export default function NFTTicketsSection() {
                                           </option>
                                           <option value="3">
                                             Web3 workshop for frontend devs with
-                                            the Metamask Team
+                                            the MetaMask Team
                                           </option>
                                           <option value="4">
                                             BentoBox workshop with Sushi Core
@@ -2388,7 +2451,9 @@ export default function NFTTicketsSection() {
                                         attendeeInfos[currentAttendeeInfoIndex]
                                           .includeHotelExtra,
                                         attendeeInfos[currentAttendeeInfoIndex]
-                                          .includeHotel2Extra
+                                          .includeHotel2Extra,
+                                        attendeeInfos[currentAttendeeInfoIndex]
+                                          .hackathon
                                       )}
                                     </span>
                                     <span>
