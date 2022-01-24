@@ -151,7 +151,7 @@ export default function NFTTicketsSection() {
   }
   const networksTest = [
     {
-      contract: '0x9ED6fE2964F0468f180382470025CB3DBE946d1A',
+      contract: '0x8e8ed4DB7486C70b5334c275A9dc8828a13619c3',
       token: '',
       abi: mainnetAbi.abi,
       exchangeUrl: 'https://app.uniswap.org',
@@ -463,16 +463,17 @@ export default function NFTTicketsSection() {
     },
     {
       //contract: '0x976C214741b4657bd99DFD38a5c0E3ac5C99D903',
-      contract: '0xF32D39ff9f6Aa7a7A64d7a4F00a54826Ef791a55',
+      //contract: '0xF32D39ff9f6Aa7a7A64d7a4F00a54826Ef791a55',
+      contract: '0x821f3361D454cc98b7555221A06Be563a7E2E0A6',
       //token: '0x01E21d7B8c39dc4C764c19b308Bd8b14B1ba139E',
-      abi: abiMetis.abi,
-      token: '0x7A9Ec1d04904907De0ED7b6839CcdD59c3716AC9',
+      abi: mainnetAbi.abi,
+      token: '', //'0x7A9Ec1d04904907De0ED7b6839CcdD59c3716AC9',
       exchangeUrl: 'https://app.uniswap.org',
       exchangeName: 'UniSwap',
       tokenSymbol: 'ETH',
       web3Name: 'Hardhat',
       networkShare: 'hardhat',
-      hasNoNft: false,
+      hasNoNft: true,
 
       networkInfo: {
         chainId: '0x7A69',
@@ -920,7 +921,8 @@ export default function NFTTicketsSection() {
         tix.includeHotelExtra,
         tix.workshop,
         tix.includeHotel2Extra,
-        tix.hackathon
+        tix.hackathon,
+        tix.hackathonAndPreParty
       )
       let addToCode = JSON.stringify(tix) + ticketOption
 
@@ -947,7 +949,8 @@ export default function NFTTicketsSection() {
                 tix.includeWorkshopsAndPreParty,
                 tix.includeHotelExtra,
                 tix.includeHotel2Extra,
-                tix.hackathon
+                tix.hackathon,
+                tix.hackathonAndPreParty
               )
           ),
         },
@@ -964,7 +967,8 @@ export default function NFTTicketsSection() {
           a.includeHotelExtra,
           a.workshop,
           a.includeHotel2Extra,
-          a.hackathon
+          a.hackathon,
+          a.hackathonAndPreParty
         )
 
         let addToCode = JSON.stringify(a) + ticketOption
@@ -1024,7 +1028,8 @@ export default function NFTTicketsSection() {
     hotelExtra,
     workshop,
     hotel2Extra,
-    ihackathon
+    ihackathon,
+    hackathonAndPreParty
   ) => {
     if (!workshop) {
       workshop = ''
@@ -1046,11 +1051,26 @@ export default function NFTTicketsSection() {
       return 'hotel2Conference'
     } else if (workshopsAndPreParty && !hotelExtra && !hotel2Extra) {
       console.log('wwwwwwwwwww', `workshop${workshop}AndPreParty`)
+      if (workshop == 5) {
+        return `hackathonAndPreParty`
+      }
       return `workshop${workshop}AndPreParty`
     } else if (workshopsAndPreParty && hotelExtra && !hotel2Extra) {
+      if (workshop == 5) {
+        return `hotelhackathonAndPreParty`
+      }
       return `hotelWorkshops${workshop}AndPreParty`
     } else if (workshopsAndPreParty && hotel2Extra && !hotelExtra) {
+      if (workshop == 5) {
+        return `hotel2hackathonAndPreParty`
+      }
       return `hotel2Workshops${workshop}AndPreParty`
+    } else if (hackathonAndPreParty && hotelExtra && !hotel2Extra) {
+      return `hotelhackathonAndPreParty`
+    } else if (hackathonAndPreParty && hotel2Extra && !hotelExtra) {
+      return `hotel2hackathonAndPreParty`
+    } else if ('hackathonAndPreParty') {
+      return 'hackathonAndPreParty'
     }
 
     return 'conference'
@@ -1115,7 +1135,6 @@ export default function NFTTicketsSection() {
       case 10:
         return 'hotel2Workshops2AndPreParty'
         break
-
       case 11:
         return 'hotel2Workshops3AndPreParty'
         break
@@ -1140,9 +1159,18 @@ export default function NFTTicketsSection() {
       case 18:
         return 'hotel2hackathonAndConferenceOnly'
         break
+      case 19:
+        return 'hackathonAndPreParty'
+        break
+      case 20:
+        return 'hotelhackathonAndPreParty'
+        break
+      case 21:
+        return 'hotel2hackathonAndPreParty'
+        break
       default:
         console.log('totalBN fail', ticketOption)
-        return 19
+        return 22
         break
     }
   }
@@ -1203,8 +1231,14 @@ export default function NFTTicketsSection() {
         return 17
       case 'hotel2hackathonAndConferenceOnly':
         return 18
-      default:
+      case 'hackathonAndPreParty':
         return 19
+      case 'hotelhackathonAndPreParty':
+        return 20
+      case 'hotel2hackathonAndPreParty':
+        return 21
+      default:
+        return 22
         break
     }
   }
@@ -1262,6 +1296,12 @@ export default function NFTTicketsSection() {
         return '0.3'
       case 'hotel2hackathonAndConferenceOnly':
         return '0.4'
+      case 'hackathonAndPreParty':
+        return '0.12'
+      case 'hotelhackathonAndPreParty':
+        return '0.4'
+      case 'hotel2hackathonAndPreParty':
+        return '0.5'
     }
     if (
       attendeeInfos[currentAttendeeInfoIndex].includeHotelExtra &&
@@ -1706,7 +1746,14 @@ export default function NFTTicketsSection() {
       console.log(error)
     }
   }
-  const getTicketPrice = (oneDay, threeDay, hotel, hotel2, ihackathon) => {
+  const getTicketPrice = (
+    oneDay,
+    threeDay,
+    hotel,
+    hotel2,
+    ihackathon,
+    hackathonAndPreParty
+  ) => {
     if (oneDay && !hotel && !hotel2) {
       if (ihackathon) {
         return 0.1
@@ -1734,6 +1781,16 @@ export default function NFTTicketsSection() {
     if (threeDay && !hotel && hotel2) {
       return 0.5
     }
+    if (hackathonAndPreParty && !hotel && hotel2) {
+      return 0.5
+    }
+
+    if (hackathonAndPreParty && !hotel && !hotel2) {
+      return 0.12
+    }
+    if (hackathonAndPreParty && hotel && !hotel2) {
+      return 0.4
+    }
   }
   const getAllTicketsPrices = () => {
     let total = ethers.utils.parseEther('0.0')
@@ -1745,7 +1802,8 @@ export default function NFTTicketsSection() {
         ai.includeWorkshopsAndPreParty,
         ai.includeHotelExtra,
         ai.includeHotel2Extra,
-        ai.hackathon
+        ai.hackathon,
+        ai.hackathonAndPreParty
       )
       let priceBN = ethers.utils.parseEther(price + '')
       console.log('ppppppppp', priceBN)
@@ -1761,7 +1819,8 @@ export default function NFTTicketsSection() {
         pft.includeHotelExtra,
         pft.workshop,
         pft.includeHotel2Extra,
-        pft.hackathon
+        pft.hackathon,
+        pft.hackathonAndPreParty
       )
       return { ...pft, ...{ ticketOption: ticketOption } }
     })
@@ -2363,6 +2422,9 @@ export default function NFTTicketsSection() {
                                             BentoBox workshop with Sushi Core
                                             Trident Dev Sarang Parikh
                                           </option>
+                                          <option value="5">
+                                            Hackathon Only
+                                          </option>
                                         </Form.Control>
                                       </Col>
                                     ) : null}
@@ -2453,7 +2515,9 @@ export default function NFTTicketsSection() {
                                         attendeeInfos[currentAttendeeInfoIndex]
                                           .includeHotel2Extra,
                                         attendeeInfos[currentAttendeeInfoIndex]
-                                          .hackathon
+                                          .hackathon,
+                                        attendeeInfos[currentAttendeeInfoIndex]
+                                          .hackathonAndPreParty
                                       )}
                                     </span>
                                     <span>
