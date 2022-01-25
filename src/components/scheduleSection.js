@@ -235,7 +235,7 @@ export default function ScheduleSection({
 
           <ul>
             {slots.map((slot) => (
-              <div className="card">
+              <div className="card" id={`slot-${slot.id}`}>
                 <div className="card-body">
                   {slot.speakers.map((speaker) => (
                     <Img
