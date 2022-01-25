@@ -113,7 +113,7 @@ export default function IndexPage({ data, location }) {
         </div>
       </section>
       <SpeakersSection
-        speakers={event.speakers.sort((a, b) => (a.id < b.id ? 1 : -1))}
+        speakers={event.speakers /*.sort((a, b) => (a.id < b.id ? 1 : -1))*/}
       />
       <section className="event_moments">
         <div className="container">
