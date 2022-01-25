@@ -25,4 +25,3 @@ Install this starter (assuming Gatsby is installed) by running from your CLI:
 develop
 `gatsby develop`
 
-
