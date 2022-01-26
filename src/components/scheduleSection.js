@@ -257,7 +257,7 @@ export default function ScheduleSection({
                       style={{ marginLeft: '20px' }}
                       className="card-description"
                     >
-                      {slot.speakers[0].name} {slot.title}
+                      {slot.speakers[0].name}: {slot.title}
                     </h6>
                   </div>
                 </div>
