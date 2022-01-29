@@ -5,5 +5,5 @@ https://www.ethdubaiconf.org
 ## Usage
 
 yarn
-gatsby develop`
+yarn run gatsby develop`
 
