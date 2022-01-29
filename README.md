@@ -4,6 +4,6 @@ https://www.ethdubaiconf.org/
 
 ## Usage
 
-develop
+yarn
 gatsby develop`
 
