@@ -1,6 +1,6 @@
 # ETHDubai 2022
 
-https://www.ethdubaiconf.org/
+https://www.ethdubaiconf.org
 
 ## Usage
 
