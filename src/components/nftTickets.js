@@ -354,7 +354,7 @@ export default function NFTTicketsSection() {
       abi: abiNonEth.abi,
       marketplaceName: 'opensea',
       marketplace: 'https://testnets.opensea.io/assets/matic',
-      token: '0xd35be38fA360E81813B0a0b67DB472b8F17F3C83',
+      token: '0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1',
       exchangeUrl: 'https://www.quickswap.finance/#/swap',
       exchangeName: 'QuickSwap',
       web3Name: 'Polygon Mumbai',
@@ -2406,6 +2406,10 @@ export default function NFTTicketsSection() {
                                           <option value={null}>
                                             Select a workshop
                                           </option>
+                                          <option value="3">
+                                            Web3 workshop for frontend devs with
+                                            the MetaMask Team
+                                          </option>
                                           <option value="1">
                                             Web3 &amp; Graph Protocol workshop
                                             with Nader Dabit
@@ -2413,10 +2417,6 @@ export default function NFTTicketsSection() {
                                           <option value="2">
                                             Yearn strategies workshop with Facu
                                             Ameal
-                                          </option>
-                                          <option value="3">
-                                            Web3 workshop for frontend devs with
-                                            the MetaMask Team
                                           </option>
                                           <option value="4">
                                             BentoBox workshop with Sushi Core
