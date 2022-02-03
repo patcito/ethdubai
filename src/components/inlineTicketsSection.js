@@ -8,6 +8,7 @@ const NFTTicketsSection = loadable(() => import('components/nftTickets'))
 export default function InlineTicketsSection({ event }) {
   const [isFrench, setIsFrench] = React.useState(false)
   const [isPL, setIsPL] = React.useState(false)
+  const [isAE, setIsAE] = React.useState(false)
   const [tickets, setTickets] = React.useState(event.tickets)
   const [discountCode, setDiscountCode] = React.useState('')
   const [discountMessage, setDiscountMessage] = React.useState('')
@@ -145,6 +146,12 @@ export default function InlineTicketsSection({ event }) {
         if (json.CountryCode === 'PL') {
           setIsPL(true)
         }
+        if (json.CountryCode === 'AE') {
+          //if (typeof web3 === 'undefined') {
+          setPayInDollar(true)
+          setIsAE(true)
+          //}
+        }
       })
       .catch((err) => {})
   }, [])
@@ -217,7 +224,7 @@ export default function InlineTicketsSection({ event }) {
                 }}
                 onClick={() => setPayInDollar(false)}
               >
-                Got ETH? Pay with your wallet instead
+                {!isAE ? `Got ETH? Pay with your wallet instead` : null}
               </h4>{' '}
               <section
                 className="book_ticket"
