@@ -147,10 +147,10 @@ export default function InlineTicketsSection({ event }) {
           setIsPL(true)
         }
         if (json.CountryCode === 'AE') {
-          //if (typeof web3 === 'undefined') {
-          setPayInDollar(true)
-          setIsAE(true)
-          //}
+          if (typeof web3 === 'undefined') {
+            setPayInDollar(true)
+            setIsAE(true)
+          }
         }
       })
       .catch((err) => {})
