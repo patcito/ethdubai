@@ -8,4 +8,3 @@ yarn
 yarn run gatsby develop`
 
 Send a PR if you find a bug, would be appreciated :)
-
