@@ -240,6 +240,37 @@ export default function SponsorsSection({ sponsors }) {
               </div>
             </div>
           ) : null}
+          {sponsors.bronze?.length > 0 ? (
+            <div className="platinium_box silver_box">
+              <div className="row">
+                {sponsors.bronze.map((sponsor) =>
+                  sponsor.name !== '' ? (
+                    <div className="col-md-4" key={sponsor.id}>
+                      <Sponsor
+                        key={sponsor.id}
+                        imgs={imgs}
+                        sponsor={sponsor}
+                        handleShowSponsor={handleShowSponsor}
+                      />
+                    </div>
+                  ) : null
+                )}
+                <p className="d-none">
+                  <a
+                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring ETHDubai 2022"
+                    className="spr-link"
+                    target="_blank"
+                  >
+                    <i className="fa fa-envelope"></i>&nbsp; If you would like
+                    to sponsor us, we'd love to hear from you.
+                  </a>
+                </p>
+                <div className="vertical_text brunse">
+                  <h3>BRONZE</h3>
+                </div>
+              </div>
+            </div>
+          ) : null}
           {/* <div className="platinium_box gold_box brunse_box d-none">
             <div className="row">
               <div className="col-md-4">
