@@ -157,6 +157,54 @@ export default function IndexPage({ data, location }) {
       >
         <div className="container">
           <div className="headings">
+            <h2>Social Events Partners</h2>
+            <p>
+              <a
+                href="mailto:ETHDubai@eventlama.com?subject=sponsoring ETHDubai 2022"
+                className="spr-link"
+                target="_blank"
+              >
+                <i className="fa fa-envelope"></i>&nbsp;Want to sponsor a side
+                event? Let's get in touch!
+              </a>
+            </p>
+          </div>
+          <div className="supporters_logo">
+            <ul>
+              <li>
+                <div>
+                  <div>
+                    <a href="https://polygon.technology/" target="_blank">
+                      <Img
+                        fixed={data.matic.childImageSharp.fixed}
+                        title="Polygon is the leading platform for Ethereum scaling and infrastructure development. Its growing suite of products offers developers easy access to all major scaling and infrastructure solutions: L2 solutions (ZK Rollups and Optimistic Rollups), sidechains, hybrid solutions, stand-alone and enterprise chains, data availability solutions, and more. Polygon’s scaling solutions have seen widespread adoption with 7000+ applications hosted, 1B+ total transactions processed, ~100M+ unique user addresses, and $5B+ in assets secured."
+                      />
+                    </a>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <p>
+                      <a
+                        href="https://polygon.technology/careers/#all-roles"
+                        target="_blank"
+                      >
+                        Polygon
+                      </a>{' '}
+                      - March 31st Party
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section
+        className="support"
+        id="nft-droppers"
+        style={{ backgroundColor: 'white' }}
+      >
+        <div className="container">
+          <div className="headings">
             <h2>NFT Partners</h2>
             <p>
               <a
@@ -960,6 +1008,13 @@ export const pageQuery = graphql`
       }
     }
     niftyrocks: file(relativePath: { eq: "niftyrocks.png" }) {
+      childImageSharp {
+        fixed(width: 120) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    matic: file(relativePath: { eq: "matic-token-icon.png" }) {
       childImageSharp {
         fixed(width: 120) {
           ...GatsbyImageSharpFixed_withWebp
