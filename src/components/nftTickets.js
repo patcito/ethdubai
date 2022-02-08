@@ -2024,11 +2024,11 @@ export default function NFTTicketsSection() {
                     31th. Great party on the night before on March 30th.
                     <br />
                     <br />
-                    On March 30th, a day full of workshops and hackathon with
-                    some of the best instructors from the DeFi and Ethereum
-                    world. The hackathon will come with a big prize given cash
-                    in DAI, it will start remotely on March 26th to give
-                    participants time to build a great app.
+                    On March 30th, a day full of half-day workshops and
+                    hackathon with some of the best instructors from the DeFi
+                    and Ethereum world. The hackathon will come with a big prize
+                    given cash in DAI, it will start remotely on March 26th to
+                    give participants time to build a great app.
                     <br />
                     <br />
                     On the 29th, you will be invited to an exclusive yacht party
