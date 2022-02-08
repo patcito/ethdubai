@@ -155,7 +155,7 @@ export default function IndexPage({ data, location }) {
         id="nft-droppers"
         style={{ backgroundColor: 'white' }}
       >
-        <div className="container">
+        <div className="container" id="side-events">
           <div className="headings">
             <h2>Social Events Partners</h2>
             <p>
