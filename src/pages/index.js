@@ -310,7 +310,7 @@ export default function IndexPage({ data, location }) {
               <ul>
                 <li>
                   <a
-                    href="https://www.facebook.com/ETHDubaiConf"
+                    href="https://www.facebook.com/ETHDubaiConfl/"
                     target="_blank"
                   >
                     <Img fixed={data.facebook_icon.childImageSharp.fixed} />
