@@ -7,6 +7,7 @@ import videoMP4 from './video/paul.mp4'
 
 export default function CollaboratorsSection({ collaborators = [] }) {
   const [show, setShow] = React.useState(false)
+  const [isAE, setIsAE] = React.useState(false)
   const [collaboratorProps, setCollaboratorProps] = React.useState({
     name: '',
     twitter: '',
@@ -21,7 +22,18 @@ export default function CollaboratorsSection({ collaborators = [] }) {
       },
     },
   })
-
+  React.useEffect(() => {
+    fetch('https://api.eventlama.com/geoip')
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.CountryCode === 'AE') {
+          if (typeof web3 === 'undefined') {
+            setIsAE(true)
+          }
+        }
+      })
+      .catch((err) => {})
+  }, [])
   const data = useStaticQuery(graphql`
     {
       people: file(relativePath: { eq: "people.png" }) {
@@ -81,7 +93,11 @@ export default function CollaboratorsSection({ collaborators = [] }) {
           <div className="row">
             {collaborators.map((collaborator, index) => {
               return (
-                <div className="col-md-3 col-sm-4 col-xs-12" key={index}>
+                <div
+                  style={{ display: isAE && index === 1 ? 'none' : '' }}
+                  className="col-md-3 col-sm-4 col-xs-12"
+                  key={index}
+                >
                   <div
                     class={`speaker_box ${
                       index % 2 == 0 ? 'left_box' : 'right_box'
