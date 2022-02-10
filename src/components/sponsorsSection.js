@@ -142,7 +142,8 @@ export default function SponsorsSection({ sponsors }) {
             <></>
           )}
 
-          {sponsors.platinum?.length > 0 ? (
+          {sponsors.platinum?.length > 0 &&
+          (sponsors.platinum.length !== 1 || sponsors.platinum[0].name) ? (
             <div className="platinium_box gold_box">
               <div className="row">
                 {sponsors.platinum.map((sponsor) =>
@@ -176,7 +177,8 @@ export default function SponsorsSection({ sponsors }) {
             <></>
           )}
 
-          {sponsors.gold?.length > 0 ? (
+          {sponsors.gold?.length > 0 &&
+          (sponsors.gold.length !== 1 || sponsors.gold[0].name) ? (
             <div className="platinium_box gold_box">
               <div className="row">
                 {sponsors.gold.map((sponsor) =>
@@ -209,7 +211,8 @@ export default function SponsorsSection({ sponsors }) {
           ) : (
             <></>
           )}
-          {sponsors.silver?.length > 0 ? (
+          {sponsors.silver?.length > 0 &&
+          (sponsors.silver.length !== 1 || sponsors.silver[0].name) ? (
             <div className="platinium_box silver_box">
               <div className="row">
                 {sponsors.silver.map((sponsor) =>
