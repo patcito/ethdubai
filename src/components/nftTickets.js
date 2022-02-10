@@ -2307,7 +2307,7 @@ export default function NFTTicketsSection() {
                                       />
                                     </Col>
                                     <Col xs="12" sm="6">
-                                      <span>Do you want to include hotel?</span>
+                                      {/* <span>Do you want to include hotel?</span>
                                       {!attendeeInfos[currentAttendeeInfoIndex]
                                         .includeHotel2Extra ? (
                                         <Form.Check
@@ -2353,6 +2353,7 @@ export default function NFTTicketsSection() {
                                           th | Checkout: April 1st
                                         </span>
                                       ) : null}
+                      */}
                                     </Col>
                                   </Form.Row>
                                 </Form.Group>
