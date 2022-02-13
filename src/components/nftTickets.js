@@ -1251,6 +1251,74 @@ export default function NFTTicketsSection() {
     }
   }
 
+  const getTicketOptionTitle = (ticketOption) => {
+    console.log('is mainnet?', isCurrentNetworkMainnetContract())
+    switch (ticketOption) {
+      case 'conference':
+        return 'conference'
+        break
+      case 'hotelConference':
+        return 'hotelConference'
+        break
+      case 'workshop1AndPreParty':
+        return 2
+        break
+      case 'workshop2AndPreParty':
+        return 3
+        break
+      case 'workshop3AndPreParty':
+        return 4
+        break
+      case 'hotelWorkshops1AndPreParty':
+        return 6
+        break
+      case 'hotelWorkshops2AndPreParty':
+        return 7
+        break
+      case 'hotelWorkshops3AndPreParty':
+        return 8
+        break
+      case 'hotel2Workshops1AndPreParty':
+        return 9
+        break
+      case 'hotel2Workshops2AndPreParty':
+        return 10
+        break
+      case 'hotel2Workshops3AndPreParty':
+        return 11
+        break
+      case 'hotel2Conference':
+        return 12
+        break
+      case 'workshop4AndPreParty':
+        return 13
+        break
+      case 'hotelWorkshops4AndPreParty':
+        return 14
+        break
+      case 'hotel2Workshops4AndPreParty':
+        return 15
+        break
+      case 'hackathonAndConferenceOnly':
+        return 16
+      case 'hotelhackathonAndConferenceOnly':
+        return 17
+      case 'hotel2hackathonAndConferenceOnly':
+        return 18
+      case 'hackathonAndPreParty':
+        return 19
+      case 'hotelhackathonAndPreParty':
+        return 20
+      case 'hotel2hackathonAndPreParty':
+        return 21
+      case 'workshop5AndPreParty':
+        return 22
+      default:
+        return 23
+        break
+    }
+  }
+
   const getTicketOptionPrice = (ticketOption) => {
     console.log('ticketOption yes eth', ticketOption)
     switch (ticketOption) {
