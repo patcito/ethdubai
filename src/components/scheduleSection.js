@@ -105,6 +105,18 @@ export default function ScheduleSection({
                         Skills required: basic Solidity level
                       </small>
                     </Card.Footer>
+                    <Card.Footer>
+                      <small className="text-muted">
+                        Morning session: 9:30am to 12:30pm with Facu Ameal and
+                        others to be announced soon
+                      </small>
+                    </Card.Footer>
+                    <Card.Footer>
+                      <small className="text-muted">
+                        Afternoon session: 1:30pm to 4:30pm (instructors to be
+                        announced soon)
+                      </small>
+                    </Card.Footer>
                   </Card>
                   <Card>
                     <Card.Img
@@ -131,6 +143,11 @@ export default function ScheduleSection({
                       <small className="text-muted">
                         Skills required: JavaScript and generic frontend skills
                         only
+                      </small>
+                    </Card.Footer>
+                    <Card.Footer>
+                      <small className="text-muted">
+                        Morning session: 9:30am to 12:30pm with Eric Bishard
                       </small>
                     </Card.Footer>
                   </Card>
@@ -184,6 +201,11 @@ export default function ScheduleSection({
                         Skills required: Basic solidity level
                       </small>
                     </Card.Footer>
+                    <Card.Footer>
+                      <small className="text-muted">
+                        Morning session: 9:30pm to 1:30pm with Sarang Parikh
+                      </small>
+                    </Card.Footer>
                   </Card>
                   <Card>
                     <Card.Img
@@ -211,6 +233,11 @@ export default function ScheduleSection({
                     <Card.Footer>
                       <small className="text-muted">
                         Skills required: Basic solidity and frontend level
+                      </small>
+                    </Card.Footer>
+                    <Card.Footer>
+                      <small className="text-muted">
+                        Afternoon session: 1:30pm to 4:30pm with Nader Dabit
                       </small>
                     </Card.Footer>
                   </Card>

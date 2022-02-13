@@ -1054,6 +1054,9 @@ export default function NFTTicketsSection() {
       if (workshop == 5) {
         return `hackathonAndPreParty`
       }
+      if (workshop == 22) {
+        return `workshop5AndPreParty`
+      }
       return `workshop${workshop}AndPreParty`
     } else if (workshopsAndPreParty && hotelExtra && !hotel2Extra) {
       if (workshop == 5) {
@@ -1168,9 +1171,12 @@ export default function NFTTicketsSection() {
       case 21:
         return 'hotel2hackathonAndPreParty'
         break
+      case 22:
+        return 'workshop5AndPreParty'
+        break
       default:
         console.log('totalBN fail', ticketOption)
-        return 22
+        return 23
         break
     }
   }
@@ -1237,8 +1243,10 @@ export default function NFTTicketsSection() {
         return 20
       case 'hotel2hackathonAndPreParty':
         return 21
-      default:
+      case 'workshop5AndPreParty':
         return 22
+      default:
+        return 23
         break
     }
   }
@@ -1302,6 +1310,8 @@ export default function NFTTicketsSection() {
         return '0.4'
       case 'hotel2hackathonAndPreParty':
         return '0.5'
+      case 'workshop5AndPreParty':
+        return '0.12'
     }
     if (
       attendeeInfos[currentAttendeeInfoIndex].includeHotelExtra &&
@@ -2415,9 +2425,9 @@ export default function NFTTicketsSection() {
                                             Web3 &amp; Graph Protocol workshop
                                             with Nader Dabit
                                           </option>
-                                          <option value="2">
-                                            Yearn strategies workshop with Facu
-                                            Ameal
+                                          <option value="22">
+                                            Yearn strategies workshop (Afternoon
+                                            Session){' '}
                                           </option>
                                           <option value="4">
                                             BentoBox workshop with Sushi Core
