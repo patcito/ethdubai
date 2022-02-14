@@ -433,7 +433,7 @@ export default function InlineTicketsSection({ event }) {
                       <div className="checkout">
                         <div className="row no-gutters">
                           <div className="col-md-6">
-                            <div style={{ display: 'inone' }}>
+                            <div style={{ display: 'none' }}>
                               <div className="discound_heading">
                                 <h3>
                                   If you have a discount code{' '}
