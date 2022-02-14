@@ -1057,6 +1057,9 @@ export default function NFTTicketsSection() {
       if (workshop == 22) {
         return `workshop5AndPreParty`
       }
+      if (workshop == 25) {
+        return `workshop6AndPreParty`
+      }
       return `workshop${workshop}AndPreParty`
     } else if (workshopsAndPreParty && hotelExtra && !hotel2Extra) {
       if (workshop == 5) {
@@ -1174,6 +1177,9 @@ export default function NFTTicketsSection() {
       case 22:
         return 'workshop5AndPreParty'
         break
+      case 25:
+        return 'workshop6AndPreParty'
+        break
       default:
         console.log('totalBN fail', ticketOption)
         return 23
@@ -1245,6 +1251,8 @@ export default function NFTTicketsSection() {
         return 21
       case 'workshop5AndPreParty':
         return 22
+      case 'workshop6AndPreParty':
+        return 25
       default:
         return 23
         break
@@ -1261,7 +1269,7 @@ export default function NFTTicketsSection() {
         return 'hotelConference'
         break
       case 'workshop1AndPreParty':
-        return 2
+        return 1
         break
       case 'workshop2AndPreParty':
         return 3
@@ -1313,6 +1321,8 @@ export default function NFTTicketsSection() {
         return 21
       case 'workshop5AndPreParty':
         return 22
+      case 'workshop6AndPreParty':
+        return 25
       default:
         return 23
         break
@@ -2500,6 +2510,11 @@ export default function NFTTicketsSection() {
                                           <option value="4">
                                             BentoBox workshop with Sushi Core
                                             Trident Dev Sarang Parikh
+                                          </option>
+                                          <option value="25">
+                                            Build your first blockchain
+                                            application in Python with The
+                                            Blockchain OS
                                           </option>
                                           <option value="5">
                                             Hackathon Only

@@ -210,6 +210,42 @@ export default function ScheduleSection({
                   <Card>
                     <Card.Img
                       variant="top"
+                      src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEiIGhlaWdodD0iNTEiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEyLjMyMiAxNi45NjQgMjYuODY2IDFsNS45OSAxNi4wMDdNMzIuNjUyIDM5Ljc3N2wtOC40OTggOS4yODctNS45ODgtMTYuMDIxIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0eWxlPSJmaWxsOiMwMDAiLz48cGF0aCBkPSJtMzguODMgMzMuMDQzLTYuMTc4IDYuNzM0IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHlsZT0iZmlsbDojMDAwIi8+PHBhdGggZD0iTTMyLjgyNiAxNy4wMDdoMTAuNDQxbDUuOTg5IDE2LjAzNkgyOC41NzhsLTUuOTktMTYuMDM2SDEuOTFMNy45IDMzLjA0M2gxMC4yNjYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3R5bGU9ImZpbGw6IzAwMCIvPjxwYXRoIGQ9Ik0zMi44NCAxNy4wMDcgMTguMTUyIDMzLjA0MyIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3R5bGU9ImZpbGw6IzAwMCIvPjwvc3ZnPg=="
+                      style={{
+                        height: '80px',
+                        margin: 'auto',
+                        width: '80px',
+                      }}
+                    />
+                    <Card.Body>
+                      <Card.Title>
+                        Build your first blockchain application in Python with
+                        The Blockchain OS.
+                      </Card.Title>
+                      <Card.Text>
+                        Code with{' '}
+                        <a href="https://cartesi.io/en/" target="_blank">
+                          Cartesi
+                        </a>
+                        . Use your current programming/tech stack to build
+                        blockchain applications. Open to all expertise levels of
+                        developers.
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small className="text-muted">
+                        Skills required: Basic programming skills
+                      </small>
+                    </Card.Footer>
+                    <Card.Footer>
+                      <small className="text-muted">
+                        Full-day session: 9:30pm to 4:30pm with Cartesi team
+                      </small>
+                    </Card.Footer>
+                  </Card>
+                  <Card>
+                    <Card.Img
+                      variant="top"
                       src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iR1JUIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDk2IDk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA5NiA5NjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe2ZpbGw6IzY3NDdFRDt9DQoJLnN0MXtmaWxsLXJ1bGU6ZXZlbm9kZDtjbGlwLXJ1bGU6ZXZlbm9kZDtmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxjaXJjbGUgY2xhc3M9InN0MCIgY3g9IjQ4IiBjeT0iNDgiIHI9IjQ4Ii8+DQo8ZyBpZD0iU3ltYm9scyI+DQoJPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTg4LjAwMDAwMCwgLTUyLjAwMDAwMCkiPg0KCQk8cGF0aCBpZD0iRmlsbC0xOSIgY2xhc3M9InN0MSIgZD0iTTEzNS4zLDEwNi4yYy03LjEsMC0xMi44LTUuNy0xMi44LTEyLjhjMC03LjEsNS43LTEyLjgsMTIuOC0xMi44YzcuMSwwLDEyLjgsNS43LDEyLjgsMTIuOA0KCQkJQzE0OC4xLDEwMC41LDE0Mi40LDEwNi4yLDEzNS4zLDEwNi4yIE0xMzUuMyw3NC4yYzEwLjYsMCwxOS4yLDguNiwxOS4yLDE5LjJzLTguNiwxOS4yLTE5LjIsMTkuMmMtMTAuNiwwLTE5LjItOC42LTE5LjItMTkuMg0KCQkJUzEyNC43LDc0LjIsMTM1LjMsNzQuMnogTTE1My42LDExMy42YzEuMywxLjMsMS4zLDMuMywwLDQuNWwtMTIuOCwxMi44Yy0xLjMsMS4zLTMuMywxLjMtNC41LDBjLTEuMy0xLjMtMS4zLTMuMywwLTQuNWwxMi44LTEyLjgNCgkJCUMxNTAuMywxMTIuMywxNTIuNCwxMTIuMywxNTMuNiwxMTMuNnogTTE2MSw3Ny40YzAsMS44LTEuNCwzLjItMy4yLDMuMmMtMS44LDAtMy4yLTEuNC0zLjItMy4yczEuNC0zLjIsMy4yLTMuMg0KCQkJQzE1OS41LDc0LjIsMTYxLDc1LjYsMTYxLDc3LjR6Ii8+DQoJPC9nPg0KPC9nPg0KPC9zdmc+DQo="
                       style={{
                         height: '80px',
