@@ -4,6 +4,19 @@ import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Sponsor from 'components/sponsor'
 export default function SponsorsSection({ sponsors }) {
+  React.useEffect(() => {
+    if (!diamond) {
+      let ds = sponsors.diamond
+      let z = ds[0]
+      let c = ds[2]
+      ds[0] = c
+      ds[2] = z
+      let dds = ds
+
+      setDiamond(ds)
+    }
+  }, [])
+  const [diamond, setDiamond] = React.useState(false)
   const [showSponsor, setShowSponsor] = React.useState(false)
   const [currentSponsor, setCurrentSponsor] = React.useState({
     name: 'url',
@@ -14,7 +27,6 @@ export default function SponsorsSection({ sponsors }) {
     level: '',
     localFile: { childImageSharp: { fluid: {} } },
   })
-
   //TODO: move to modal sponsor
   const handleShowSponsor = (s, e) => {
     setShowSponsor(true)
@@ -108,10 +120,10 @@ export default function SponsorsSection({ sponsors }) {
               </div>
             </div>
           </Modal>
-          {sponsors.diamond?.length > 0 ? (
+          {diamond?.length > 0 ? (
             <div className="platinium_box gold_box">
               <div className="row">
-                {sponsors.diamond.map((sponsor) =>
+                {diamond.map((sponsor) =>
                   sponsor.name !== '' ? (
                     <div className="col-md-4" key={sponsor.id}>
                       <Sponsor
