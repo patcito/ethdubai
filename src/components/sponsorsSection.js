@@ -4,19 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Sponsor from 'components/sponsor'
 export default function SponsorsSection({ sponsors }) {
-  React.useEffect(() => {
-    if (!diamond) {
-      let ds = sponsors.diamond
-      let z = ds[0]
-      let c = ds[2]
-      ds[0] = c
-      ds[2] = z
-      let dds = ds
-
-      setDiamond(ds)
-    }
-  }, [])
-  const [diamond, setDiamond] = React.useState(false)
+  const [diamond, setDiamond] = React.useState(sponsors)
   const [showSponsor, setShowSponsor] = React.useState(false)
   const [currentSponsor, setCurrentSponsor] = React.useState({
     name: 'url',
@@ -120,21 +108,23 @@ export default function SponsorsSection({ sponsors }) {
               </div>
             </div>
           </Modal>
-          {diamond?.length > 0 ? (
+          {sponsors.diamond?.length > 0 ? (
             <div className="platinium_box gold_box">
               <div className="row">
-                {diamond.map((sponsor) =>
-                  sponsor.name !== '' ? (
-                    <div className="col-md-4" key={sponsor.id}>
-                      <Sponsor
-                        imgs={imgs}
-                        sponsor={sponsor}
-                        handleShowSponsor={handleShowSponsor}
-                        key={sponsor.id}
-                      />
-                    </div>
-                  ) : null
-                )}
+                {sponsors.diamond
+                  .slice(1, sponsors.diamond.length)
+                  .map((sponsor) =>
+                    sponsor.name !== '' ? (
+                      <div className="col-md-4" key={sponsor.id}>
+                        <Sponsor
+                          imgs={imgs}
+                          sponsor={sponsor}
+                          handleShowSponsor={handleShowSponsor}
+                          key={sponsor.id}
+                        />
+                      </div>
+                    ) : null
+                  )}
                 <p className="d-none">
                   <a
                     href="mailto:ETHDubai@eventlama.com?subject=sponsoring ETHDubai 2022"
@@ -150,37 +140,7 @@ export default function SponsorsSection({ sponsors }) {
                 </div>
               </div>
             </div>
-          ) : (
-            <div className="platinium_box gold_box">
-              <div className="row">
-                {sponsors.diamond.map((sponsor) =>
-                  sponsor.name !== '' ? (
-                    <div className="col-md-4" key={sponsor.id}>
-                      <Sponsor
-                        imgs={imgs}
-                        sponsor={sponsor}
-                        handleShowSponsor={handleShowSponsor}
-                        key={sponsor.id}
-                      />
-                    </div>
-                  ) : null
-                )}
-                <p className="d-none">
-                  <a
-                    href="mailto:ETHDubai@eventlama.com?subject=sponsoring ETHDubai 2022"
-                    className="spr-link"
-                    target="_blank"
-                  >
-                    <i className="fa fa-envelope"></i>&nbsp; If you would like
-                    to sponsor us, we'd love to hear from you.
-                  </a>
-                </p>
-                <div className="vertical_text diamond">
-                  <h3>DIAMOND</h3>
-                </div>
-              </div>
-            </div>
-          )}
+          ) : null}
 
           {sponsors.platinum?.length > 0 &&
           (sponsors.platinum.length !== 1 || sponsors.platinum[0].name) ? (

@@ -1261,68 +1261,260 @@ export default function NFTTicketsSection() {
 
   const getTicketOptionTitle = (ticketOption) => {
     console.log('is mainnet?', isCurrentNetworkMainnetContract())
+    const workshop1AndPreParty =
+      'Web3 & Graph Protocol workshop with Nader Dabit (March 30th)'
+    const workshop2AndPreParty =
+      'Yearn strategies workshop with Facu Ameal (March 30th)'
+    const workshop3AndPreParty =
+      'Web3 workshop for frontend devs with the MetaMask Team (March 30th)'
+    const workshop4AndPreParty =
+      'BentoBox workshop with Sushi Core Trident Dev Sarang Parikh (March 30th)'
+    const workshop5AndPreParty =
+      'Yearn strategies workshop (Afternoon Session) (March 30th)'
+    const workshop6AndPreParty =
+      'Build your first blockchain application in Python with The Blockchain OS'
+    const hackathonAndPreParty = 'Hackathon (March 30th)'
+    const conference = ' conference (March 31st)'
+    const yachtParty = 'Yacht Party (March 29th) '
+    const preParty = 'pre-Party (March 30th) '
+    const hotel = 'Hotel Simple Room'
+    const hotel2 = 'Hotel Double Room'
+    const hackathon = 'Hackathon (March 30th)'
     switch (ticketOption) {
       case 'conference':
-        return 'conference'
+        return 'Conference Only (March 31st)'
         break
       case 'hotelConference':
-        return 'hotelConference'
+        return (
+          <ul>
+            <li>{hotel}</li>
+            <li>{conference}</li>
+          </ul>
+        )
         break
       case 'workshop1AndPreParty':
-        return 1
+        return (
+          <ul>
+            <li>{yachtParty} </li>
+            <li> {workshop1AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
         break
       case 'workshop2AndPreParty':
-        return 3
+        return (
+          <ul>
+            <li>{yachtParty} </li>
+            <li> {workshop2AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
         break
       case 'workshop3AndPreParty':
-        return 4
+        return (
+          <ul>
+            <li>{yachtParty} </li>
+            <li> {workshop3AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
         break
       case 'hotelWorkshops1AndPreParty':
-        return 6
-        break
+        return (
+          <ul>
+            <li>{hotel} </li>
+            <li>{yachtParty} </li>
+            <li> {workshop1AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
       case 'hotelWorkshops2AndPreParty':
-        return 7
+        return (
+          <ul>
+            <li>{hotel} </li>
+            <li>{yachtParty} </li>
+            <li> {workshop2AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
         break
       case 'hotelWorkshops3AndPreParty':
-        return 8
+        return (
+          <ul>
+            <li>{hotel} </li>
+            <li>{yachtParty} </li>
+            <li> {workshop3AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
         break
       case 'hotel2Workshops1AndPreParty':
-        return 9
+        return (
+          <ul>
+            <li>{hotel2} </li>
+            <li>{yachtParty} </li>
+            <li> {workshop1AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
         break
       case 'hotel2Workshops2AndPreParty':
-        return 10
+        return (
+          <ul>
+            <li>{hotel2} </li>
+            <li>{yachtParty} </li>
+            <li> {workshop2AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+
         break
       case 'hotel2Workshops3AndPreParty':
-        return 11
+        return (
+          <ul>
+            <li>{hotel2} </li>
+            <li>{yachtParty} </li>
+            <li> {workshop3AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+
         break
       case 'hotel2Conference':
-        return 12
+        return (
+          <ul>
+            <li>{hotel2} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+
         break
       case 'workshop4AndPreParty':
-        return 13
+        return (
+          <ul>
+            <li>{yachtParty} </li>
+            <li> {workshop4AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+
         break
       case 'hotelWorkshops4AndPreParty':
-        return 14
+        return (
+          <ul>
+            <li>{hotel} </li>
+            <li>{yachtParty} </li>
+            <li> {workshop4AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
         break
       case 'hotel2Workshops4AndPreParty':
-        return 15
+        return (
+          <ul>
+            <li>{hotel2} </li>
+            <li>{yachtParty} </li>
+            <li> {workshop4AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+
         break
       case 'hackathonAndConferenceOnly':
-        return 16
+        return (
+          <ul>
+            <li> {hackathon}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+        return hackathon + preParty + conference
+        break
       case 'hotelhackathonAndConferenceOnly':
-        return 17
+        return (
+          <ul>
+            <li> {hotel}</li>
+            <li> {hackathon}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+        return hotel + hackathon + preParty + conference
+        break
       case 'hotel2hackathonAndConferenceOnly':
-        return 18
+        return (
+          <ul>
+            <li> {hotel2}</li>
+            <li> {hackathon}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+        return hotel2 + hackathon + preParty + conference
       case 'hackathonAndPreParty':
-        return 19
+        return (
+          <ul>
+            <li> {yachtParty}</li>
+            <li> {hackathon}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+        return yachtParty + hackathon + preParty + conference
       case 'hotelhackathonAndPreParty':
-        return 20
+        return (
+          <ul>
+            <li> {hotel}</li>
+            <li> {yachtParty}</li>
+            <li> {hackathon}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+        return hotel + yachtParty + hackathon + preParty + conference
       case 'hotel2hackathonAndPreParty':
-        return 21
+        return (
+          <ul>
+            <li> {hotel2}</li>
+            <li> {yachtParty}</li>
+            <li> {hackathon}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+        return hotel2 + yachtParty + hackathon + preParty + conference
       case 'workshop5AndPreParty':
-        return 22
+        return (
+          <ul>
+            <li> {yachtParty}</li>
+            <li> {workshop5AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+        return yachtParty + workshop5AndPreParty + preParty + conference
       case 'workshop6AndPreParty':
-        return 25
+        return (
+          <ul>
+            <li> {yachtParty}</li>
+            <li> {workshop6AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+        return yachtParty + workshop6AndPreParty + preParty + conference
       default:
         return 23
         break
@@ -2746,6 +2938,11 @@ export default function NFTTicketsSection() {
                     <Col>
                       <p style={{ paddingTop: '20px' }}>
                         <h1>Your ETHDubai Ticket</h1>
+                        <span>
+                          {getTicketOptionTitle(
+                            getTicketOptionString(tix.ticketOption)
+                          )}
+                        </span>
                         <h2>
                           {tix.attendeeInfo.fname} {tix.attendeeInfo.lname}
                         </h2>
