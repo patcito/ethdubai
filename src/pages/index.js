@@ -200,6 +200,38 @@ export default function IndexPage({ data, location }) {
       </section>
       <section
         className="support"
+        id="vc-partners"
+        style={{ backgroundColor: 'white' }}
+      >
+        <div className="container" id="side-events">
+          <div className="headings">
+            <h2>VC Partners</h2>
+            <p>
+              <a href="/#tickets" className="spr-link" target="_blank">
+                Want to be a VC partner at the event? Get a VC pass!
+              </a>
+            </p>
+          </div>
+          <div className="supporters_logo">
+            <ul>
+              <li>
+                <div>
+                  <div>
+                    <a href="https://psquare.capital/" target="_blank">
+                      <Img
+                        fixed={data.squarecapital.childImageSharp.fixed}
+                        title="psquare capital"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section
+        className="support"
         id="nft-droppers"
         style={{ backgroundColor: 'white' }}
       >
@@ -1015,6 +1047,13 @@ export const pageQuery = graphql`
       }
     }
     matic: file(relativePath: { eq: "matic-token-icon.png" }) {
+      childImageSharp {
+        fixed(width: 120) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    squarecapital: file(relativePath: { eq: "squarecapital.jpeg" }) {
       childImageSharp {
         fixed(width: 120) {
           ...GatsbyImageSharpFixed_withWebp
