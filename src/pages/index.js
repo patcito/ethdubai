@@ -226,6 +226,18 @@ export default function IndexPage({ data, location }) {
                   </div>
                 </div>
               </li>
+              <li>
+                <div>
+                  <div>
+                    <a href="https://www.owlventures.co.uk/" target="_blank">
+                      <Img
+                        fixed={data.owlventures.childImageSharp.fixed}
+                        title="owlventures"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -1054,6 +1066,13 @@ export const pageQuery = graphql`
       }
     }
     squarecapital: file(relativePath: { eq: "squarecapital.jpeg" }) {
+      childImageSharp {
+        fixed(width: 120) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    owlventures: file(relativePath: { eq: "owlventures.jpeg" }) {
       childImageSharp {
         fixed(width: 120) {
           ...GatsbyImageSharpFixed_withWebp
