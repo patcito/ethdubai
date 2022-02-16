@@ -203,7 +203,7 @@ export default function IndexPage({ data, location }) {
         id="vc-partners"
         style={{ backgroundColor: 'white' }}
       >
-        <div className="container" id="side-events">
+        <div className="container">
           <div className="headings">
             <h2>VC Partners</h2>
             <p>

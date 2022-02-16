@@ -1060,6 +1060,9 @@ export default function NFTTicketsSection() {
       if (workshop == 25) {
         return `workshop6AndPreParty`
       }
+      if (workshop == 26) {
+        return `workshop7AndPreParty`
+      }
       return `workshop${workshop}AndPreParty`
     } else if (workshopsAndPreParty && hotelExtra && !hotel2Extra) {
       if (workshop == 5) {
@@ -1180,6 +1183,10 @@ export default function NFTTicketsSection() {
       case 25:
         return 'workshop6AndPreParty'
         break
+      case 26:
+        return 'workshop7AndPreParty'
+        break
+
       default:
         console.log('totalBN fail', ticketOption)
         return 23
@@ -1253,6 +1260,8 @@ export default function NFTTicketsSection() {
         return 22
       case 'workshop6AndPreParty':
         return 25
+      case 'workshop7AndPreParty':
+        return 26
       default:
         return 23
         break
@@ -1280,6 +1289,8 @@ export default function NFTTicketsSection() {
     const hotel = 'Hotel Simple Room'
     const hotel2 = 'Hotel Double Room'
     const hackathon = 'Hackathon (March 30th)'
+    const workshop7AndPreParty =
+      'Initiation to DeFi for Traders, VCs and non-devs (March 30th)'
     switch (ticketOption) {
       case 'conference':
         return 'Conference Only (March 31st)'
@@ -1515,6 +1526,17 @@ export default function NFTTicketsSection() {
           </ul>
         )
         return yachtParty + workshop6AndPreParty + preParty + conference
+      case 'workshop7AndPreParty':
+        return (
+          <ul>
+            <li> {yachtParty}</li>
+            <li> {workshop7AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+        return yachtParty + workshop6AndPreParty + preParty + conference
+
       default:
         return 23
         break
@@ -2707,6 +2729,10 @@ export default function NFTTicketsSection() {
                                             Build your first blockchain
                                             application in Python with The
                                             Blockchain OS
+                                          </option>
+                                          <option value="26">
+                                            Initiation to DeFi for Traders, VCs
+                                            and non-devs
                                           </option>
                                           <option value="5">
                                             Hackathon Only
