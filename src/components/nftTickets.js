@@ -170,7 +170,7 @@ export default function NFTTicketsSection() {
         blockExplorerUrls: ['https://etherscan.io/'],
       },
     },
-    {
+    /*    {
       contract: '0x8339E55273a11c80f75c22Ce0ed647984319B6B0',
       token: '0x420000000000000000000000000000000000000A',
       abi: abiMetis.abi,
@@ -190,7 +190,7 @@ export default function NFTTicketsSection() {
         },
         blockExplorerUrls: ['https://andromeda-explorer.metis.io/'],
       },
-    },
+    },*/
     {
       contract: '0xfb0b3E0f27a2a858cc6656627E662B0D3cd5b19b',
       token: '',
@@ -488,7 +488,7 @@ export default function NFTTicketsSection() {
       },
     },
   ]
-  const networks = networksTest.slice(0, 7)
+  const networks = networksTest.slice(0, 6)
   //console.log(abi)
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
@@ -1063,6 +1063,9 @@ export default function NFTTicketsSection() {
       if (workshop == 26) {
         return `workshop7AndPreParty`
       }
+      if (workshop == 27) {
+        return `workshop8AndPrePartyVCSpeedDating`
+      }
       return `workshop${workshop}AndPreParty`
     } else if (workshopsAndPreParty && hotelExtra && !hotel2Extra) {
       if (workshop == 5) {
@@ -1186,6 +1189,9 @@ export default function NFTTicketsSection() {
       case 26:
         return 'workshop7AndPreParty'
         break
+      case 27:
+        return 'workshop8AndPrePartyVCSpeedDating'
+        break
 
       default:
         console.log('totalBN fail', ticketOption)
@@ -1262,6 +1268,8 @@ export default function NFTTicketsSection() {
         return 25
       case 'workshop7AndPreParty':
         return 26
+      case 'workshop8AndPrePartyVCSpeedDating':
+        return 27
       default:
         return 23
         break
@@ -1536,6 +1544,17 @@ export default function NFTTicketsSection() {
           </ul>
         )
         return yachtParty + workshop6AndPreParty + preParty + conference
+      case 'workshop8AndPrePartyVCSpeedDating':
+        return (
+          <ul>
+            <li> {yachtParty}</li>
+            <li> {workshop7AndPreParty}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+            <li> VC Speed Dating</li>
+          </ul>
+        )
+        return yachtParty + workshop6AndPreParty + preParty + conference
 
       default:
         return 23
@@ -1604,6 +1623,12 @@ export default function NFTTicketsSection() {
         return '0.5'
       case 'workshop5AndPreParty':
         return '0.12'
+      case 'workshop6AndPreParty':
+        return '0.12'
+      case 'workshop7AndPreParty':
+        return '0.12'
+      case 'workshop8AndPrePartyVCSpeedDating':
+        return '0.5'
     }
     if (
       attendeeInfos[currentAttendeeInfoIndex].includeHotelExtra &&
@@ -2056,6 +2081,14 @@ export default function NFTTicketsSection() {
     ihackathon,
     hackathonAndPreParty
   ) => {
+    console.log('iiin', attendeeInfos[currentAttendeeInfoIndex])
+    if (
+      threeDay &&
+      attendeeInfos?.length > 0 &&
+      attendeeInfos[currentAttendeeInfoIndex].workshop == 27
+    ) {
+      return 0.5
+    }
     if (oneDay && !hotel && !hotel2) {
       if (ihackathon) {
         return 0.1
@@ -2733,6 +2766,11 @@ export default function NFTTicketsSection() {
                                           <option value="26">
                                             Initiation to DeFi for Traders, VCs
                                             and non-devs
+                                          </option>
+                                          <option value="27">
+                                            Initiation to DeFi for Traders, VCs
+                                            and non-devs + VC Speed Dating
+                                            (March 31st)
                                           </option>
                                           <option value="5">
                                             Hackathon Only
