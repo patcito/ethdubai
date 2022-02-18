@@ -1373,6 +1373,8 @@ export default function NFTTicketsSection() {
     const hotel = 'Hotel Simple Room'
     const hotel2 = 'Hotel Double Room'
     const hackathon = 'Hackathon (March 30th)'
+    const workshop7AndPreParty =
+      'Initiation to DeFi for Traders, VCs and non-devs (March 30th)'
     const workshop33AndPreParty =
       'Initiation to DeFi for Traders, VCs and non-devs (March 30th)'
     const workshop29AndConferenceOnly =
