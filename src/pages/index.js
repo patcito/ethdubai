@@ -295,6 +295,11 @@ export default function IndexPage({ data, location }) {
                   <Img fixed={data.support7.childImageSharp.fixed} />
                 </a>
               </li>
+              <li style={{ marginLeft: 50 }}>
+                <a href="https://immunefi.com/" target="_blank">
+                  <Img fixed={data.immunefi.childImageSharp.fixed} />
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -1089,6 +1094,13 @@ export const pageQuery = graphql`
     support7: file(relativePath: { eq: "defidubai.png" }) {
       childImageSharp {
         fixed(width: 120) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    immunefi: file(relativePath: { eq: "immunefi.png" }) {
+      childImageSharp {
+        fixed(width: 220) {
           ...GatsbyImageSharpFixed_withWebp
         }
       }
