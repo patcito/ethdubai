@@ -238,6 +238,18 @@ export default function IndexPage({ data, location }) {
                   </div>
                 </div>
               </li>
+              <li style={{ marginLeft: 50 }}>
+                <div>
+                  <div>
+                    <a href="https://portico.vc" target="_blank">
+                      <Img
+                        fixed={data.portico.childImageSharp.fixed}
+                        title="portico"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -1084,6 +1096,14 @@ export const pageQuery = graphql`
         }
       }
     }
+    portico: file(relativePath: { eq: "portico.png" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+
     support6: file(relativePath: { eq: "expo.png" }) {
       childImageSharp {
         fixed(width: 120) {
