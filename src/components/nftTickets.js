@@ -2773,7 +2773,7 @@ export default function NFTTicketsSection() {
       .add(threeDayTotal)
       .add(hotelTotalOneDay)
       .add(hotelTotalThreeDay)
-      .add(twoDayPrice)
+      .add(twoDayTotal)
       .toString()
     return t / 10 ** 18
   }
