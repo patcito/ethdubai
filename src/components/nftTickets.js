@@ -2752,6 +2752,7 @@ export default function NFTTicketsSection() {
   const total = () => {
     const oneDayPrice = ethers.BigNumber.from('10').pow(16).mul(7)
     const threeDayPrice = ethers.BigNumber.from('10').pow(16).mul(12)
+    const twoDayPrice = ethers.BigNumber.from('10').pow(16).mul(10)
     let hotelPrice = ethers.BigNumber.from('10').pow(16).mul(5)
     let hasOneDayHotel = 1
     let hasThreeDayHotel = 1
@@ -2767,10 +2768,12 @@ export default function NFTTicketsSection() {
     )
     let oneDayTotal = oneDayPrice.mul(oneDayTicket)
     let threeDayTotal = threeDayPrice.mul(threeDayTicket)
+    let twoDayTotal = twoDayPrice.mul(twoDayTicket)
     let t = oneDayTotal
       .add(threeDayTotal)
       .add(hotelTotalOneDay)
       .add(hotelTotalThreeDay)
+      .add(twoDayPrice)
       .toString()
     return t / 10 ** 18
   }
@@ -2967,7 +2970,71 @@ export default function NFTTicketsSection() {
               className="list-group-item d-flex justify-content-between align-items-center alignb"
             >
               <div>
-                <strong> Combo Ticket:</strong>
+                <strong> Combo Ticket Workshops+Conference:</strong>
+                <ul>
+                  <li>Conference Ticket (March 31st all-day)</li>
+                  <li>Pre-Conference Party (March 30th night)</li>
+                  <li>All-day Workshops and Hackathon (March 30th)</li>
+                </ul>
+                <strong>Unit Price: 0.1 ETH</strong>
+                <div>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setOpenDesc2(!openDesc4)
+                    }}
+                    aria-controls="open-ticket-description"
+                    aria-expanded={openDesc3}
+                  >
+                    read more
+                  </a>
+                </div>
+                <Collapse in={openDesc4}>
+                  <div className="hidden">
+                    Full day of insightful keynotes with the best innovators and
+                    contributors from the DeFi and Ethereum community on March
+                    31th. Great party on the night before on March 30th.
+                    <br />
+                    <br />
+                    On March 30th, a day full of half-day workshops and
+                    hackathon with some of the best instructors from the DeFi
+                    and Ethereum world. The hackathon will come with a big prize
+                    given cash in DAI, it will start remotely on March 26th to
+                    give participants time to build a great app.
+                    <br />
+                  </div>
+                </Collapse>
+              </div>
+              <span>
+                <select
+                  onChange={(e, v) => {
+                    console.log(e, v)
+                    setTwoDayTicket(e.target.value)
+                    console.log('currentValue', e.target.value)
+                    if (e.target.value <= 0 && oneDayTicket <= 0) {
+                      setIncludeHotel(false)
+                    }
+                  }}
+                  value={twoDayTicket}
+                >
+                  <>
+                    {Array.apply(null, { length: 20 }).map((e, i) => {
+                      return <option value={i}>{i}</option>
+                    })}
+                  </>
+                </select>
+              </span>
+            </li>
+            <li
+              style={{
+                borderTop: '1px solid black',
+                backgroundColor: '#f5f7f7',
+              }}
+              className="list-group-item d-flex justify-content-between align-items-center alignb"
+            >
+              <div>
+                <strong> Combo Ticket Yacht:</strong>
                 <ul>
                   <li>Conference Ticket (March 31st all-day)</li>
                   <li>Pre-Conference Party (March 30th night)</li>
@@ -3010,23 +3077,7 @@ export default function NFTTicketsSection() {
                 </Collapse>
               </div>
               <span>
-                <select
-                  onChange={(e, v) => {
-                    console.log(e, v)
-                    setThreeDayTicket(e.target.value)
-                    console.log('currentValue', e.target.value)
-                    if (e.target.value <= 0 && oneDayTicket <= 0) {
-                      setIncludeHotel(false)
-                    }
-                  }}
-                  value={threeDayTicket}
-                >
-                  <>
-                    {Array.apply(null, { length: 20 }).map((e, i) => {
-                      return <option value={i}>{i}</option>
-                    })}
-                  </>
-                </select>
+                <strong>sold out</strong>
               </span>
             </li>
             {/*
@@ -3094,67 +3145,7 @@ export default function NFTTicketsSection() {
                 </select>
               </span>
             </li>{' '}
-            <li
-              style={{ borderTop: '1px solid black' }}
-              className="list-group-item d-flex justify-content-between align-items-center alignb"
-            >
-              <div>
-                <strong> Combo Ticket 3:</strong>
-                <ul>
-                  <li>Conference Ticket (March 31st all-day)</li>
-                  <li>Pre-Conference Party (March 30th night)</li>
-                  <li>All-day Workshops and Hackathon (March 30th)</li>
-                </ul>
-                <strong>Unit Price: 0.1 ETH</strong>
-                <div>
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      setOpenDesc2(!openDesc4)
-                    }}
-                    aria-controls="open-ticket-description"
-                    aria-expanded={openDesc3}
-                  >
-                    read more
-                  </a>
-                </div>
-                <Collapse in={openDesc4}>
-                  <div className="hidden">
-                    Full day of insightful keynotes with the best innovators and
-                    contributors from the DeFi and Ethereum community on March
-                    31th. Great party on the night before on March 30th.
-                    <br />
-                    <br />
-                    On March 30th, a day full of half-day workshops and
-                    hackathon with some of the best instructors from the DeFi
-                    and Ethereum world. The hackathon will come with a big prize
-                    given cash in DAI, it will start remotely on March 26th to
-                    give participants time to build a great app.
-                    <br />
-                  </div>
-                </Collapse>
-              </div>
-              <span>
-                <select
-                  onChange={(e, v) => {
-                    console.log(e, v)
-                    setTwoDayTicket(e.target.value)
-                    console.log('currentValue', e.target.value)
-                    if (e.target.value <= 0 && oneDayTicket <= 0) {
-                      setIncludeHotel(false)
-                    }
-                  }}
-                  value={twoDayTicket}
-                >
-                  <>
-                    {Array.apply(null, { length: 20 }).map((e, i) => {
-                      return <option value={i}>{i}</option>
-                    })}
-                  </>
-                </select>
-              </span>
-                  </li>*/}
+*/}
             <li
               style={{ borderTop: '1px solid black' }}
               className="list-group-item d-flex justify-content-between align-items-center alignb"
@@ -3463,7 +3454,8 @@ export default function NFTTicketsSection() {
                                 <Form.Group>
                                   <Form.Row>
                                     <Col xs="12" sm="6">
-                                      {attendeeInfos[currentAttendeeInfoIndex]
+                                      {true ||
+                                      attendeeInfos[currentAttendeeInfoIndex]
                                         .hackathon ||
                                       attendeeInfos[currentAttendeeInfoIndex]
                                         .includeWorkshopsAndConferenceOnly ||
