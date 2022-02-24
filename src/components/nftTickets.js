@@ -2967,7 +2967,7 @@ export default function NFTTicketsSection() {
               className="list-group-item d-flex justify-content-between align-items-center alignb"
             >
               <div>
-                <strong> Combo Ticket 1:</strong>
+                <strong> Combo Ticket:</strong>
                 <ul>
                   <li>Conference Ticket (March 31st all-day)</li>
                   <li>Pre-Conference Party (March 30th night)</li>
@@ -3029,6 +3029,7 @@ export default function NFTTicketsSection() {
                 </select>
               </span>
             </li>
+            {/*
             <li
               style={{ borderTop: '1px solid black' }}
               className="list-group-item d-flex justify-content-between align-items-center alignb"
@@ -3153,7 +3154,7 @@ export default function NFTTicketsSection() {
                   </>
                 </select>
               </span>
-            </li>
+                  </li>*/}
             <li
               style={{ borderTop: '1px solid black' }}
               className="list-group-item d-flex justify-content-between align-items-center alignb"
@@ -3480,7 +3481,8 @@ export default function NFTTicketsSection() {
                                           }
                                         />
                                       )}
-                                      {attendeeInfos[currentAttendeeInfoIndex]
+                                      {true ||
+                                      attendeeInfos[currentAttendeeInfoIndex]
                                         .hackathon ||
                                       attendeeInfos[currentAttendeeInfoIndex]
                                         .includeWorkshopsAndConferenceOnly ||
@@ -3590,6 +3592,7 @@ export default function NFTTicketsSection() {
                                           <option value="37">
                                             Build a Dapp using Sway on Fuel
                                           </option>
+                                          {/*
                                           <option value="38">
                                             How to Create a Generative NFT
                                             Project
@@ -3598,7 +3601,7 @@ export default function NFTTicketsSection() {
                                             Chainlink - DeFi for Developers: how
                                             to use UNISwap v2 to automate
                                             trading
-                                          </option>
+                                          </option>*/}
                                         </Form.Control>
                                       </Col>
                                     ) : null}
@@ -3653,6 +3656,7 @@ export default function NFTTicketsSection() {
                                           <option value="47">
                                             Build a Dapp using Sway on Fuel
                                           </option>
+                                          {/*
                                           <option value="48">
                                             How to Create a Generative NFT
                                             Project
@@ -3661,7 +3665,7 @@ export default function NFTTicketsSection() {
                                             Chainlink - DeFi for Developers: how
                                             to use UNISwap v2 to automate
                                             trading
-                                          </option>
+                                          </option>*/}
                                           <option value="50">Hackathon</option>
                                         </Form.Control>
                                       </Col>
@@ -3713,6 +3717,7 @@ export default function NFTTicketsSection() {
                                           <option value="34">
                                             Build a Dapp using Sway on Fuel
                                           </option>
+                                          {/*
                                           <option value="35">
                                             How to Create a Generative NFT
                                             Project
@@ -3722,6 +3727,7 @@ export default function NFTTicketsSection() {
                                             to use UNISwap v2 to automate
                                             trading
                                           </option>
+                                          */}
                                         </Form.Control>
                                       </Col>
                                     ) : null}
