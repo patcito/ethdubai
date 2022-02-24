@@ -239,7 +239,7 @@ export default function ScheduleSection({
                     </Card.Footer>
                     <Card.Footer>
                       <small className="text-muted">
-                        Morning session: 9:30pm to 1:30pm with Sarang Parikh
+                        Morning session: 9:30pm to 12:30pm with Sarang Parikh
                       </small>
                     </Card.Footer>
                   </Card>
@@ -270,7 +270,7 @@ export default function ScheduleSection({
                     </Card.Footer>
                     <Card.Footer>
                       <small className="text-muted">
-                        Morning session: 9:30pm to 1:30pm with Mohammad Fawaz
+                        Morning session: 9:30pm to 12:30pm with Mohammad Fawaz
                         from the Sway team
                       </small>
                     </Card.Footer>
