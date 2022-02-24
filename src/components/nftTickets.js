@@ -1095,6 +1095,7 @@ export default function NFTTicketsSection() {
     includeWorkshopsAndDesertAndConferenceOnly,
     workshopWithDesert
   ) => {
+    console.log('kkk2', includeWorkshopsAndConferenceOnly)
     if (!workshop) {
       workshop = ''
     }
@@ -1144,9 +1145,7 @@ export default function NFTTicketsSection() {
       }
       return `workshop${workshop}AndPreParty`
     } else if (includeWorkshopsAndConferenceOnly) {
-      if (workshopOnly > 27) {
-        return `workshop${workshopOnly}AndConferenceOnly`
-      }
+      return `workshop${workshopOnly}AndConferenceOnly`
     } else if (includeWorkshopsAndDesertAndConferenceOnly) {
       if (workshopWithDesert == 50) {
         return 'hackathonAndDesertAndConference'
@@ -2156,6 +2155,10 @@ export default function NFTTicketsSection() {
       //chainlink
       case 'workshop49AndDesertAndConference':
         return 0.12
+      case 'workshopundefinedAndDesertAndConference':
+        return 0.12
+      case 'workshopundefinedAndConferenceOnly':
+        return 0.1
     }
     if (
       attendeeInfos[currentAttendeeInfoIndex].includeHotelExtra &&
@@ -2642,6 +2645,12 @@ export default function NFTTicketsSection() {
     ) {
       return 0.12
     }
+    if (threeDay2X) {
+      return 0.12
+    }
+    if (twoDayX) {
+      return 0.1
+    }
     if (oneDay && !hotel && !hotel2) {
       if (ihackathon) {
         return 0.1
@@ -2704,6 +2713,7 @@ export default function NFTTicketsSection() {
   }
   const getPreFinalTicketsPrice = (finalTickets) => {
     const pre = finalTickets.map((pft) => {
+      console.log('kkk', pft.includeWorkshopsAndConferenceOnly)
       let ticketOption = getTicketOption(
         pft.includeWorkshopsAndPreParty,
         pft.includeHotelExtra,
@@ -2837,7 +2847,15 @@ export default function NFTTicketsSection() {
         ticketCode: rand,
         resellable: {
           isResellable: false,
-          price: getTicketPrice(false, true, includeHotel, includeHotel2),
+          price: getTicketPrice(
+            false,
+            false,
+            includeHotel,
+            includeHotel2,
+            false,
+            false,
+            true
+          ),
         },
         includeWorkshops,
         includeWorkshopsAndPreParty: false,
@@ -2857,7 +2875,16 @@ export default function NFTTicketsSection() {
         ticketCode: rand,
         resellable: {
           isResellable: false,
-          price: getTicketPrice(false, true, includeHotel, includeHotel2),
+          price: getTicketPrice(
+            false,
+            false,
+            includeHotel,
+            includeHotel2,
+            false,
+            false,
+            false,
+            true
+          ),
         },
         includeWorkshops,
         includeWorkshopsAndPreParty: false,
@@ -2867,11 +2894,16 @@ export default function NFTTicketsSection() {
         includeWorkshopsAndDesertAndConferenceOnly: false,
       })
     }
-    if (threeDayTicket === 0 && oneDayTicket === 0) {
+    if (
+      threeDayTicket === 0 &&
+      twoDayTicket == 0 &&
+      threeDayTicket2 == 0 &&
+      oneDayTicket === 0
+    ) {
       tickets = []
     }
 
-    console.log(tickets)
+    console.log('titi', tickets)
     setAttendeeInfos(tickets)
     setCurrentAttendeeInfoIndex(0)
   }
@@ -3782,7 +3814,11 @@ export default function NFTTicketsSection() {
                                         attendeeInfos[currentAttendeeInfoIndex]
                                           .hackathon,
                                         attendeeInfos[currentAttendeeInfoIndex]
-                                          .hackathonAndPreParty
+                                          .hackathonAndPreParty,
+                                        attendeeInfos[currentAttendeeInfoIndex]
+                                          .includeWorkshopsAndDesertAndConferenceOnly,
+                                        attendeeInfos[currentAttendeeInfoIndex]
+                                          .includeWorkshopsAndConferenceOnly
                                       )}
                                     </span>
                                     <span>
