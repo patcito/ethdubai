@@ -312,7 +312,49 @@ export default function ScheduleSection({
                   </Card>
                 </CardDeck>
 
-                <CardDeck style={{ marginTop: '20px' }}>
+                <CardDeck
+                  style={{ marginTop: '20px' }}
+                  id="defi-initiation-gton-workshop"
+                >
+                  <Card>
+                    <Card.Img
+                      variant="top"
+                      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODIgMjU2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0ODIgMjU2IiB4bWw6c3BhY2U9InByZXNlcnZlIj48Zz48cGF0aCBkPSJNMzkxLjUgNjkuNVY2OWgtLjdjLTIgMC0zLjYtMS41LTMuNy0zLjRWMzIuOEgzOThjMS44LjEgMy4zIDEuNSAzLjMgMy4zdjFoLjZ2LTYuOWMtMS4xLjQtNC40IDEtNi45IDFoLTE5LjRjLTIuNSAwLTUuOC0uNi02LjktMVYzN2guNnYtMWMwLTEuOCAxLjUtMy4yIDMuMy0zLjNoMTAuOXYzMi44Yy0uMSAxLjktMS43IDMuNC0zLjcgMy40aC0uN3YuNWgxMi40em0tMTIzLjYgMFY2OWgtLjVjLTEuNSAwLTMtMS4yLTIuMi0zLjRsMy45LTkuNGgxNS41bDMuNyA5LjNjLjggMi4yLS43IDMuNC0yLjIgMy40aC0uNXYuNWgxMi45VjY5aC0uNWMtMS44IDAtMy45LTEtNS4xLTMuNGwtMTUuNC0zNS4xaC0uNWMwIDEuMi0yLjEgNS42LTIuMSA1LjZsLTEzIDI5LjVjLTEuMiAyLjQtMy4zIDMuNC01IDMuNGgtLjV2LjVoMTEuNXptLTM2LjUuOGM4IDAgMTMuMS0zLjQgMTYuMi04LjJsLjctOC42aC0uNWMtMS4zIDExLjItOC4yIDE1LjEtMTYuNCAxNS4xLTkuNy0uMi0xNi4yLTcuNC0xNi4yLTE4LjQgMC0xMC45IDYuNC0xOC4yIDE2LjUtMTguMiA2LjkgMCAxMi41IDMuNCAxNC4zIDkuOGguNWwtMS4yLTcuN2MtMy40LTIuMS04LTMuNy0xMy42LTMuNy0xMi42IDAtMjAuOSA4LTIwLjkgMTkuOS4xIDEyLjEgOC42IDE5LjkgMjAuNiAyMHptMzguMy0xNS43aDE0LjJsLTctMTcuNi03LjIgMTcuNnptNDkuOSAxNC45VjY5aC0uN2MtMiAwLTMuNi0xLjUtMy43LTMuNFYzMi44aDYuNmM0LjkgMCA3LjYgMy40IDcuOCA4LjQgMCAxLjItLjEgMi41LS40IDMuMy0yLjYgNy44LTEyLjEgNS45LTEyLjEgNS45di41YzcuMiAzLjYgMTYuNy0uOCAxNi43LTkuMiAwLTYuNi00LjUtMTAuNi0xMS45LTEwLjZoLTE1di41aC43YzEuOSAwIDMuNSAxLjQgMy43IDMuMnYzMC42YzAgMS45LTEuNyAzLjQtMy43IDMuNGgtLjZ2LjVoMTIuNnptMzguNi0uNXYuNWgtMTIuNlY2OWguN2MyIDAgMy42LTEuNSAzLjctMy40VjM1LjFjLS4xLTEuOS0xLjctMy40LTMuNy0zLjRoLS43di0uNWgxMi42di41aC0uN2MtMiAwLTMuNiAxLjUtMy43IDMuNHYzMC40YzAgMS45IDEuNyAzLjQgMy43IDMuNGguN3ptNTcuNCAwdi41SDQwNFY2OWguNWMxLjcgMCAzLjktMSA1LTMuNGwxMy0yOS41czIuMS00LjQgMi4xLTUuNmguNWwxNS40IDM1LjFjMS4yIDIuNCAzLjMgMy40IDUuMSAzLjRoLjV2LjVoLTEyLjlWNjloLjVjMS41IDAgMy0xLjIgMi4yLTMuNGwtMy43LTkuM2gtMTUuNWwtMy45IDkuNGMtLjggMi4yLjcgMy40IDIuMiAzLjRoLjZ6bTE2LTE0LjRoLTE0LjJsNy4yLTE3LjYgNyAxNy42em01MC4zIDYuMS0zLjQgOC44aC0yMy44VjY5aC43YzIgMCAzLjYtMS41IDMuNy0zLjRWMzUuMmMwLTEuOS0xLjctMy40LTMuNy0zLjRoLS43di0uNWgxMi42di41aC0uN2MtMiAwLTMuNiAxLjUtMy43IDMuNHYzMi43aDguMmM2LjEgMCA4LjQtMyAxMC4yLTcuMmguNnoiIHN0eWxlPSJmaWxsLXJ1bGU6ZXZlbm9kZDtjbGlwLXJ1bGU6ZXZlbm9kZDtmaWxsOiMwMjAyMDMiLz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMS41MjYiIHkxPSIyNTUuOTk4IiB4Mj0iMS40NjYiIHkyPSIyNTYuOTk4IiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDI1NiAwIDAgLTI1NiAtMjU1IDY1NzkzKSI+PHN0b3Agb2Zmc2V0PSIwIiBzdHlsZT0ic3RvcC1jb2xvcjojZTdiODRiIi8+PHN0b3Agb2Zmc2V0PSIuNDUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmZWU4Y2YiLz48c3RvcCBvZmZzZXQ9IjEiIHN0eWxlPSJzdG9wLWNvbG9yOiNlN2I4NGIiLz48L2xpbmVhckdyYWRpZW50PjxwYXRoIGQ9Ik0yNTYuMSAxMjguMWMwIDIwLjItNC43IDM5LjMtMTMuMSA1Ni4zIDAgLjEtLjEuMS0uMS4yLS4yLjQtLjQuOC0uNCAxLS4xLjItLjIuMy0uMy41LS4xLjItLjIuMy0uMy41LTEwLjIgMTkuNi0yNC44IDM1LjYtNDIgNDcuMi0uMS4xLS4yLjItLjMuMi0uMi4xLS4zLjItLjUuMy0uNC4zLS44LjYtMS4yLjgtLjUuMy0uOS42LTEuNC45LS41LjMtLjkuNi0xLjQuOWwtLjEuMWMtMTkuNSAxMi00Mi40IDE4LjktNjYuOCAxOC45LTIuNCAwLTQuNy0uMS03LjEtLjJoLTFjLS44IDAtMS42LS4xLTIuNC0uMi0uMiAwLS40IDAtLjYtLjEtLjIgMC0uNS0uMS0uNy0uMS0uNy0uMS0xLjMtLjEtMi0uMi0uNSAwLS45LS4xLTEuNC0uMWgtLjJjLS4zIDAtLjYtLjEtLjktLjEtLjMgMC0uNi0uMS0uOS0uMS0uMyAwLS41LS4xLS44LS4xLS4zIDAtLjUtLjEtLjgtLjEtLjMgMC0uNi0uMS0uOS0uMS0uMyAwLS42LS4xLS45LS4xLS4zIDAtLjUtLjEtLjgtLjEtLjMgMC0uNS0uMS0uOC0uMS0uMy0uMS0uNi0uMS0uOS0uMi0uMy0uMS0uNy0uMS0xLS4yLS40LS4xLS44LS4xLTEuMi0uMmgtLjJjLS43LS4xLTEuNS0uMy0yLjItLjUtLjQtLjEtLjgtLjEtMS4xLS4yLTEuMS0uMy0yLjItLjUtMy4zLS44LS4xIDAtLjIgMC0uMy0uMS0uMSAwLS4xIDAtLjItLjEtLjktLjMtMS45LS41LTIuOC0uOC0uNC0uMS0uNy0uMi0xLS4zLS40LS4xLS44LS4yLTEuMS0uMy0uNC0uMS0uOC0uMi0xLjEtLjNsLS45LS4zYy0uMSAwLS4yLS4xLS4yLS4xLS43LS4yLTEuNC0uNS0yLjItLjctLjItLjEtLjQtLjEtLjYtLjItLjItLjEtLjQtLjEtLjYtLjItLjMtLjEtLjctLjMtMS0uNC0uNC0uMS0uNy0uMy0xLS40LS4yLS4xLS4zLS4xLS41LS4ycy0uNS0uMi0uNy0uM2MtLjctLjMtMS40LS41LTIuMS0uOC0uMi0uMS0uNC0uMi0uNi0uMi0uMi0uMS0uNC0uMi0uNi0uMi0uMy0uMS0uNi0uMy0uOS0uNC0uMy0uMS0uNi0uMy0uOS0uNC0xLjItLjUtMi40LTEtMy41LTEuNi0uMSAwLS4xLS4xLS4yLS4xcy0uMS0uMS0uMi0uMWMtLjMtLjEtLjYtLjMtLjgtLjQtLjMtLjEtLjYtLjMtLjktLjUtMS4yLS42LTIuNS0xLjMtMy44LTItLjktLjUtMS43LTEtMi42LTEuNC0uMS0uMS0uMi0uMS0uMy0uMmwtLjEtLjFjLTIyLjItMTIuOC0zOS44LTMxLjYtNTEtNTQuNS0uMS0uMi0uMi0uNS0uMy0uNy0uMS0uMi0uMi0uNS0uMy0uNy0uNC0uOC0uNy0xLjUtMS4xLTIuMy0uNy0xLjUtMS40LTMuMS0yLTQuNyAwLS4xLS4xLS4yLS4xLS4zIDAtLjEtLjEtLjItLjEtLjMtMi4zLTUuNy00LjItMTEuNy01LjYtMTcuOXYtLjJjLS40LTEuNy0uOC0zLjQtMS4xLTUuMS0uMS0uMy0uMS0uNy0uMi0xLS4xLS4zLS4xLS43LS4yLTEtLjItMS4xLS40LTIuMi0uNS0zLjItMi40LTE1LjgtMS43LTMxLjggMS45LTQ3LjQgMC0uMi4xLS4zLjEtLjVzLjEtLjMuMS0uNWMuNC0xLjUuNy0zIDEuMS00LjUuMy0xLjIuNy0yLjUgMS4xLTMuN2wuNi0xLjhjLjUtMS41IDEtMyAxLjYtNC41LjEtLjIuMS0uNC4yLS41LjEtLjIuMS0uNC4yLS41LjYtMS42IDEuMi0zLjIgMS45LTQuOS4xLS4yLjEtLjMuMi0uNXMuMS0uMy4yLS41Yy43LTEuNiAxLjQtMy4xIDIuMS00LjcgMC0uMS4xLS4yLjEtLjMgMC0uMS4xLS4yLjEtLjMuMS0uMy4zLS42LjUtLjkuNi0xLjMgMS4zLTIuNSAyLTMuOC4yLS40LjUtLjkuNy0xLjMuMi0uNC41LS45LjctMS4zIDAtLjEuMS0uMi4yLS4zbC4xLS4xQzMwIDQxLjggNDguOSAyNC4yIDcxLjggMTMuMWMuNS0uMyAxLS41IDEuNS0uNy40LS4yLjgtLjMgMS4xLS41LjQtLjIuOC0uNCAxLjEtLjUgMS41LS43IDMuMS0xLjQgNC43LTIgLjEgMCAuMi0uMS4zLS4xLjEgMCAuMi0uMS4zLS4xQzg2LjYgNi45IDkyLjYgNSA5OC43IDMuNmguMmMxLjctLjQgMy40LS44IDUuMi0xLjEuMy0uMS43LS4xIDEtLjIuMy0uMS42LS4xLjktLjIuNi0uMSAxLjEtLjIgMS43LS4zLjYtLjEgMS4xLS4yIDEuNy0uMyAyNS41LTMuOCA1MS40LjEgNzUgMTEuN2wtMTkuNyA0MC4yYy0xMS42LTUuNy0yNC4xLTguNS0zNi42LTguNS00LjIgMC04LjMuMy0xMi4zLjktLjIgMC0uMy4xLS41LjFzLS4zLjEtLjUuMWMtLjkuMS0xLjkuMy0yLjguNS0uMy4xLS42LjEtLjkuMi0uMy4xLS42LjEtLjkuMi0uMy4xLS42LjItMSAuMi0uMy4xLS42LjEtMSAuMi0uMSAwLS4zLjEtLjQuMS0uNy4yLTEuMy4zLTIgLjUtLjIuMS0uNS4xLS43LjItLjIuMS0uNS4xLS43LjItLjkuMy0xLjguNS0yLjYuOC0uMi4xLS41LjItLjcuMi0uMi4xLS40LjEtLjcuMi0uOC4zLTEuNS42LTIuMy45LS4xIDAtLjMuMS0uNC4yLS41LjItMSAuNC0xLjQuNi0uNC4yLS44LjMtMS4yLjUtLjEuMS0uMi4xLS40LjItLjkuNC0xLjguOC0yLjYgMS4yLS4xIDAtLjIuMS0uMi4xLS4xIDAtLjIuMS0uMi4xLTE1LjYgNy42LTI4LjYgMjAtMzYuOSAzNS4ydi4yYy0uNiAxLjEtMS4xIDIuMi0xLjcgMy4zbC0uMy42LS4zLjZjLS40LjgtLjggMS42LTEuMSAyLjUtLjEuMi0uMi41LS4zLjctLjEuMi0uMi41LS4zLjctLjEuMy0uMi41LS4zLjgtLjIuNS0uNSAxLjEtLjYgMS42IDAgLjEtLjEuMy0uMS40IDAgLjEtLjEuMy0uMS40LTMuMSA4LjctNC44IDE4LjEtNC44IDI3LjggMCA0LjIuMyA4LjMuOSAxMi40IDAgLjEgMCAuMy4xLjQgMCAuMSAwIC4zLjEuNC4yIDEgLjMgMiAuNSAyLjkuMS42LjIgMS4xLjQgMS43LjEuNi4yIDEuMS40IDEuNyAwIC4xLjEuMi4xLjMuMS41LjMgMS4xLjQgMS42LjEuMi4xLjUuMi43LjEuMy4yLjYuMi45LjEuMi4xLjQuMi42LjEuNS4zIDEuMS41IDEuNmwuMy45Yy4yLjUuMyAxIC41IDEuNC4zLjguNSAxLjUuOCAyLjIuMS4zLjMuNi40LjkuMS4zLjIuNi40LjkuMS4yLjIuNS4zLjcuMS4yLjIuNS4zLjdsMS4yIDIuN2MuMS4xLjIuMy4yLjQgNy42IDE1LjcgMjAgMjguNiAzNS4zIDM2LjkgMS4xLjYgMi4zIDEuMiAzLjQgMS44LjMuMi43LjMgMSAuNS4yLjEuMy4xLjUuMi44LjQgMS41LjcgMi4yIDEgLjYuMyAxLjIuNSAxLjguNy4yLjEuMy4xLjUuMmwxLjUuNmMxLjEuNCAyLjEuOCAzLjEgMS4xLjIuMS41LjIuOC4zIDEuMi40IDIuNS44IDMuOCAxLjFoLjJjMS4xLjMgMi4yLjUgMy4zLjguMiAwIC40LjEuNi4xaC4xYy4zLjEuNy4xIDEgLjIuMy4xLjcuMSAxIC4yLjMgMCAuNy4xIDEgLjIuMy4xLjcuMSAxIC4yLjYuMSAxLjIuMiAxLjguMi4zIDAgLjUuMS44LjEuNS4xIDEgLjEgMS41LjIuNCAwIC43LjEgMS4xLjEuMyAwIC43IDAgMSAuMS42LjEgMS4zLjEgMS45LjIuNiAwIDEuMi4xIDEuOC4xaDIuM2MxLjIgMCAyLjQgMCAzLjUtLjFoLjRjMTItLjUgMjMuOC0zLjYgMzQuNS05LjFoLjJjMS0uNSAyLTEgMy0xLjZsMS0uNmMuNy0uNCAxLjQtLjggMi0xLjJsLjktLjYuOS0uNmMuMi0uMS40LS4yLjUtLjQuMi0uMS40LS4yLjUtLjQuOS0uNiAxLjgtMS4yIDIuNy0xLjlsLjEtLjFzLjEgMCAuMS0uMWM5LjUtNy4xIDE3LjUtMTYuMyAyMy4zLTI2LjkgMC0uMS4xLS4yLjItLjMuMS0uMS4xLS4yLjItLjMgNi4zLTExLjcgOS44LTI1IDkuOC0zOS4xaDQ0Ljd6bS00NC44LTQ1LjdoLTQ1Ljd2NDUuN2g0NS43VjgyLjR6IiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7ZmlsbDp1cmwoI2EpIi8+PC9nPjwvc3ZnPg=="
+                      style={{
+                        margin: 'auto',
+                        marginTop: 15,
+                        width: '160px',
+                      }}
+                    />
+                    <Card.Body>
+                      <Card.Title>
+                        Initiation to DeFi with the GTON Capital Team (for
+                        Traders, VCs and non-devs)
+                      </Card.Title>
+                      <Card.Text>
+                        Non-technical workshop for traders, VCs, product
+                        managers. We will review the most popular DeFi
+                        applications and learn basic usage patterns, such as
+                        withdrawing from CEX, taking a loan on AAVE, doing a
+                        swap on Uniswap, investing in Yearn, and so on. The
+                        workshop will cover six protocols: 1. AAVE: lending, 2.
+                        Yearn: staking, 3. Univ3: liquidity provision, 4.
+                        Sushiswap: trading, 5. Gearbox: leverage trading and
+                        farming, 6. Curve: stablecoin swaps.
+                      </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                      <small className="text-muted">
+                        Skills required: No programming skills required
+                      </small>
+                    </Card.Footer>
+                    <Card.Footer>
+                      <small className="text-muted">
+                        Full-day session: 1:30pm to 4:30pm with GTON Capital
+                        team
+                      </small>
+                    </Card.Footer>
+                  </Card>
                   {/*    <Card>
                     <Card.Img
                       variant="top"

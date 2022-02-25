@@ -286,7 +286,7 @@ export default function NFTTicketsSection() {
         blockExplorerUrls: ['https://blockscout.com/xdai/mainnet/'],
       },
     },
-    {
+    /* {
       contract: '0x59B53E086f3c8f002B67A1f945C9e895f013a30f',
       token: '0x74b23882a30290451A17c44f4F05243b6b58C76d',
       abi: abiMetis.abi,
@@ -309,7 +309,7 @@ export default function NFTTicketsSection() {
         },
         blockExplorerUrls: ['https://ftmscan.com/'],
       },
-    },
+    },*/
     {
       ///      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
       contract: '0xa32DBcB19C870e40C9FC7d14E25171313d21C3E0',
@@ -493,7 +493,7 @@ export default function NFTTicketsSection() {
       },
     },
   ]
-  const networks = networksTest.slice(0, 5)
+  const networks = networksTest.slice(0, 4)
   //console.log(abi)
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
@@ -1511,10 +1511,10 @@ export default function NFTTicketsSection() {
     const hotel2 = 'Hotel Double Room'
     const hackathon = 'Hackathon (March 30th)'
     const workshop7AndPreParty =
-      'Initiation to DeFi for Traders, VCs and non-devs (March 30th)'
+      'Initiation to DeFi with GTON Capital team for Traders, VCs and non-devs (March 30th)'
     const vc = workshop7AndPreParty
     const workshop33AndPreParty =
-      'Initiation to DeFi for Traders, VCs and non-devs (March 30th)'
+      'Initiation to DeFi with GTON Capital team for Traders, VCs and non-devs (March 30th)'
     const workshop29AndConferenceOnly =
       'Web3 & Graph Protocol workshop with Nader Dabit (March 30th)'
     const workshop28AndConferenceOnly =
@@ -1526,7 +1526,7 @@ export default function NFTTicketsSection() {
     const workshop32AndConferenceOnly =
       'Build your first blockchain application in Python with The Blockchain OS'
     const workshop33AndConferenceOnly =
-      ' Initiation to DeFi for Traders, VCs and non-devs'
+      ' Initiation to DeFi with GTON Capital team for Traders, VCs and non-devs'
     //fuel
     const fuel = 'Build a Dapp using Sway on Fuel'
 
