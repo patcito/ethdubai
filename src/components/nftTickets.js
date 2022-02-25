@@ -1145,6 +1145,9 @@ export default function NFTTicketsSection() {
       }
       return `workshop${workshop}AndPreParty`
     } else if (includeWorkshopsAndConferenceOnly) {
+      if (workshopOnly == 51) {
+        return 'workshop51AndConferenceOnlyVCSpeedDating'
+      }
       return `workshop${workshopOnly}AndConferenceOnly`
     } else if (includeWorkshopsAndDesertAndConferenceOnly) {
       if (workshopWithDesert == 50) {
@@ -1330,7 +1333,8 @@ export default function NFTTicketsSection() {
 
       case 50:
         return 'hackathonAndDesertAndConference'
-
+      case 51:
+        return 'workshop51AndConferenceOnlyVCSpeedDating'
       default:
         console.log('totalBN fail', ticketOption)
         return 23
@@ -1471,6 +1475,8 @@ export default function NFTTicketsSection() {
       //chainlink
       case 'workshop49AndDesertAndConference':
         return 49
+      case 'workshop51AndConferenceOnlyVCSpeedDating':
+        return 51
 
       default:
         return 23
@@ -2018,6 +2024,15 @@ export default function NFTTicketsSection() {
             <li> {desert}</li>
           </ul>
         )
+      case 'workshop51AndConferenceOnlyVCSpeedDating':
+        return (
+          <ul>
+            <li> {vc}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+            <li> VC Speed Dating</li>
+          </ul>
+        )
 
       default:
         return 23
@@ -2093,26 +2108,26 @@ export default function NFTTicketsSection() {
       case 'workshop8AndPrePartyVCSpeedDating':
         return '0.5'
       case 'workshop28AndConferenceOnly':
-        return 0.1
+        return 0.12
       case 'workshop29AndConferenceOnly':
-        return 0.1
+        return 0.12
       case 'workshop30AndConferenceOnly':
-        return 0.1
+        return 0.12
       case 'workshop31AndConferenceOnly':
-        return 0.1
+        return 0.12
       case 'workshop32AndConferenceOnly':
-        return 0.1
+        return 0.12
       case 'workshop33AndConferenceOnly':
-        return 0.1
+        return 0.12
       //fuel
       case 'workshop34AndConferenceOnly':
-        return 0.1
+        return 0.12
       //alchemy
       case 'workshop35AndConferenceOnly':
-        return 0.1
+        return 0.12
       //chainlink
       case 'workshop36AndConferenceOnly':
-        return 0.1
+        return 0.12
       //fuel
       case 'workshop37AndPreParty':
         return 0.12
@@ -2158,7 +2173,9 @@ export default function NFTTicketsSection() {
       case 'workshopundefinedAndDesertAndConference':
         return 0.12
       case 'workshopundefinedAndConferenceOnly':
-        return 0.1
+        return 0.12
+      case 'workshop51AndConferenceOnlyVCSpeedDating':
+        return 0.5
     }
     if (
       attendeeInfos[currentAttendeeInfoIndex].includeHotelExtra &&
@@ -2400,7 +2417,7 @@ export default function NFTTicketsSection() {
     console.log('final price', getFinalTicketsPrice(finalTickets).toString())
     console.log(
       'final ethers price',
-      ethers.utils.parseEther('0.1').toHexString()
+      ethers.utils.parseEther('0.12').toHexString()
     )
     //const feFinalTicketPrice = getFinalTicketsPrice(finalTickets)
     const feFinalTicketPrice = getPreFinalTicketsPrice(attendeeInfos)
@@ -2622,13 +2639,23 @@ export default function NFTTicketsSection() {
       return 0.5
     }
     if (
+      twoDayX &&
+      attendeeInfos?.length > 0 &&
+      attendeeInfos[currentAttendeeInfoIndex]
+        .includeWorkshopsAndConferenceOnly &&
+      attendeeInfos[currentAttendeeInfoIndex].workshopOnly == 51
+    ) {
+      return 0.5
+    }
+    if (
       attendeeInfos?.length > 0 &&
       attendeeInfos[currentAttendeeInfoIndex]
         .includeWorkshopsAndConferenceOnly &&
       attendeeInfos[currentAttendeeInfoIndex].workshopOnly
     ) {
-      return 0.1
+      return 0.12
     }
+
     if (
       threeDay2X &&
       attendeeInfos?.length > 0 &&
@@ -2649,7 +2676,7 @@ export default function NFTTicketsSection() {
       return 0.12
     }
     if (twoDayX) {
-      return 0.1
+      return 0.12
     }
     if (oneDay && !hotel && !hotel2) {
       if (ihackathon) {
@@ -2752,7 +2779,7 @@ export default function NFTTicketsSection() {
   const total = () => {
     const oneDayPrice = ethers.BigNumber.from('10').pow(16).mul(7)
     const threeDayPrice = ethers.BigNumber.from('10').pow(16).mul(12)
-    const twoDayPrice = ethers.BigNumber.from('10').pow(16).mul(10)
+    const twoDayPrice = ethers.BigNumber.from('10').pow(16).mul(12)
     let hotelPrice = ethers.BigNumber.from('10').pow(16).mul(5)
     let hasOneDayHotel = 1
     let hasThreeDayHotel = 1
@@ -2976,7 +3003,7 @@ export default function NFTTicketsSection() {
                   <li>Pre-Conference Party (March 30th night)</li>
                   <li>All-day Workshops and Hackathon (March 30th)</li>
                 </ul>
-                <strong>Unit Price: 0.1 ETH</strong>
+                <strong>Unit Price: 0.12 ETH</strong>
                 <div>
                   <a
                     href="#"
@@ -3704,6 +3731,11 @@ export default function NFTTicketsSection() {
                                           <option value="33">
                                             Initiation to DeFi for Traders, VCs
                                             and non-devs
+                                          </option>
+                                          <option value="51">
+                                            Initiation to DeFi for Traders, VCs
+                                            and non-devs + VC Speed Dating
+                                            (March 31st)
                                           </option>
                                           <option value="34">
                                             Build a Dapp using Sway on Fuel
