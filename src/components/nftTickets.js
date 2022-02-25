@@ -238,7 +238,6 @@ export default function NFTTicketsSection() {
         blockExplorerUrls: ['https://arbiscan.io/'],
       },
     },
-    /*
     {
       contract: '0x9ed6fe2964f0468f180382470025cb3dbe946d1a',
       token: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
@@ -262,7 +261,7 @@ export default function NFTTicketsSection() {
         },
         blockExplorerUrls: ['https://polygonscan.com/'],
       },
-    },*/
+    },
     {
       contract: '0x9ab1130cdfcE397aB6283e681fDaa2B1D49e7CBD',
       token: '0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1',
@@ -286,7 +285,7 @@ export default function NFTTicketsSection() {
         blockExplorerUrls: ['https://blockscout.com/xdai/mainnet/'],
       },
     },
-    /* {
+    {
       contract: '0x59B53E086f3c8f002B67A1f945C9e895f013a30f',
       token: '0x74b23882a30290451A17c44f4F05243b6b58C76d',
       abi: abiMetis.abi,
@@ -309,7 +308,7 @@ export default function NFTTicketsSection() {
         },
         blockExplorerUrls: ['https://ftmscan.com/'],
       },
-    },*/
+    },
     {
       ///      contract: '0xB5d182B69194aF495685E71cA739EEE41E218F60',
       contract: '0xa32DBcB19C870e40C9FC7d14E25171313d21C3E0',
@@ -493,7 +492,7 @@ export default function NFTTicketsSection() {
       },
     },
   ]
-  const networks = networksTest.slice(0, 4)
+  const networks = networksTest.slice(0, 6)
   //console.log(abi)
   const PUB_KEY =
     '01e32ab579d8a368f879b67a8487bd65093dc6c750a2418c169a146579486f68e08965eab5b00d7dc7349a1374bd9866c895f8997ffdb1d667d143bc555b7854'
