@@ -1506,6 +1506,7 @@ export default function NFTTicketsSection() {
     const conference = ' conference (March 31st)'
     const yachtParty = 'Yacht Party (March 29th) '
     const preParty = 'pre-Party (March 30th) '
+    const prePartyW = 'pre-Workshop Party (March 29th) '
     const hotel = 'Hotel Simple Room'
     const hotel2 = 'Hotel Double Room'
     const hackathon = 'Hackathon (March 30th)'
@@ -1794,6 +1795,7 @@ export default function NFTTicketsSection() {
       case 'workshop28AndConferenceOnly':
         return (
           <ul>
+            <li> {prePartyW}</li>
             <li> {workshop28AndConferenceOnly}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1802,6 +1804,7 @@ export default function NFTTicketsSection() {
       case 'workshop29AndConferenceOnly':
         return (
           <ul>
+            <li> {prePartyW}</li>
             <li> {workshop29AndConferenceOnly}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1810,6 +1813,7 @@ export default function NFTTicketsSection() {
       case 'workshop30AndConferenceOnly':
         return (
           <ul>
+            <li> {prePartyW}</li>
             <li> {workshop30AndConferenceOnly}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1818,6 +1822,7 @@ export default function NFTTicketsSection() {
       case 'workshop31AndConferenceOnly':
         return (
           <ul>
+            <li> {prePartyW}</li>
             <li> {workshop31AndConferenceOnly}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1826,6 +1831,7 @@ export default function NFTTicketsSection() {
       case 'workshop31AndConferenceOnly':
         return (
           <ul>
+            <li> {prePartyW}</li>
             <li> {workshop31AndConferenceOnly}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1834,6 +1840,7 @@ export default function NFTTicketsSection() {
       case 'workshop32AndConferenceOnly':
         return (
           <ul>
+            <li> {prePartyW}</li>
             <li> {workshop32AndConferenceOnly}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1842,6 +1849,7 @@ export default function NFTTicketsSection() {
       case 'workshop33AndConferenceOnly':
         return (
           <ul>
+            <li> {prePartyW}</li>
             <li> {workshop33AndConferenceOnly}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1850,6 +1858,7 @@ export default function NFTTicketsSection() {
       case 'workshop35AndConferenceOnly':
         return (
           <ul>
+            <li> {prePartyW}</li>
             <li> {hackathon}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -3001,6 +3010,7 @@ export default function NFTTicketsSection() {
                   <li>Conference Ticket (March 31st all-day)</li>
                   <li>Pre-Conference Party (March 30th night)</li>
                   <li>All-day Workshops and Hackathon (March 30th)</li>
+                  <li>Pre-Workshop Party (March 29th night)</li>
                 </ul>
                 <strong>Unit Price: 0.12 ETH</strong>
                 <div>
