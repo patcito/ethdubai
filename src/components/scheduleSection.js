@@ -350,8 +350,8 @@ export default function ScheduleSection({
                     </Card.Footer>
                     <Card.Footer>
                       <small className="text-muted">
-                        Full-day session: 1:30pm to 4:30pm with GTON Capital
-                        team
+                        Full-day session: 1:30pm to 4:30pm with Alex P | GC from
+                        GTON Capital team
                       </small>
                     </Card.Footer>
                   </Card>
