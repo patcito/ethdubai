@@ -3035,7 +3035,9 @@ export default function NFTTicketsSection() {
                   <li>Conference Ticket (March 31st all-day)</li>
                   <li>Pre-Conference Party (March 30th night)</li>
                   <li>All-day Workshops and Hackathon (March 30th)</li>
-                  <li>Pre-Workshop Party (March 29th night)</li>
+                  <li>
+                    Pre-Workshop Meet and Greet Bar Night Party (March 29th)
+                  </li>
                 </ul>
                 <strong>Unit Price: 0.12 ETH</strong>
                 <div>
@@ -3043,7 +3045,7 @@ export default function NFTTicketsSection() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault()
-                      setOpenDesc2(!openDesc4)
+                      setOpenDesc3(!openDesc3)
                     }}
                     aria-controls="open-ticket-description"
                     aria-expanded={openDesc3}
@@ -3051,7 +3053,7 @@ export default function NFTTicketsSection() {
                     read more
                   </a>
                 </div>
-                <Collapse in={openDesc4}>
+                <Collapse in={openDesc3}>
                   <div className="hidden">
                     Full day of insightful keynotes with the best innovators and
                     contributors from the DeFi and Ethereum community on March
