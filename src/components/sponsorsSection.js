@@ -109,7 +109,7 @@ export default function SponsorsSection({ sponsors }) {
             </div>
           </Modal>
           {sponsors.diamond?.length > 0 ? (
-            <div className="platinium_box gold_box">
+            <div className="platinium_box gold_box" id="diamond-sprs">
               <div className="row">
                 {sponsors.diamond
                   .slice(1, sponsors.diamond.length)
@@ -144,7 +144,7 @@ export default function SponsorsSection({ sponsors }) {
 
           {sponsors.platinum?.length > 0 &&
           (sponsors.platinum.length !== 1 || sponsors.platinum[0].name) ? (
-            <div className="platinium_box gold_box">
+            <div className="platinium_box gold_box" id="platinum-sprs">
               <div className="row">
                 {sponsors.platinum.map((sponsor) =>
                   sponsor.name !== '' ? (
@@ -180,7 +180,7 @@ export default function SponsorsSection({ sponsors }) {
           {false &&
           sponsors.gold?.length > 0 &&
           (sponsors.gold.length > 1 || sponsors.gold[0].name) ? (
-            <div className="platinium_box gold_box">
+            <div className="platinium_box gold_box" id="gold-sprs">
               <div className="row">
                 {sponsors.gold.map((sponsor) =>
                   sponsor.name !== '' ? (
@@ -214,7 +214,7 @@ export default function SponsorsSection({ sponsors }) {
           )}
           {sponsors.silver?.length > 0 &&
           (sponsors.silver.length !== 1 || sponsors.silver[0].name) ? (
-            <div className="platinium_box silver_box">
+            <div className="platinium_box silver_box" id="silver-sprs">
               <div className="row">
                 {sponsors.silver.map((sponsor) =>
                   sponsor.name !== '' ? (
@@ -245,7 +245,7 @@ export default function SponsorsSection({ sponsors }) {
             </div>
           ) : null}
           {sponsors.bronze?.length > 0 ? (
-            <div className="platinium_box silver_box">
+            <div className="platinium_box silver_box" id="bronze-sprs">
               <div className="row">
                 {sponsors.bronze.map((sponsor) =>
                   sponsor.name !== '' ? (
