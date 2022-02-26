@@ -327,6 +327,10 @@ export default function IndexPage({ data, location }) {
                 </div>
 
                 <div className="office_address">
+                  <h4>
+                    Venue Address: Le Meridien Dubai Hotel &amp; Conference
+                    Centre - Airport Rd - Garhoud - Dubai - United Arab Emirates
+                  </h4>
                   <h3>
                     <a
                       href="https://www.marriott.com/hotels/travel/dxbmd-le-m%C3%A9ridien-dubai-hotel-and-conference-centre/?scid=bb1a189a-fec3-4d19-a255-54ba596febe2&y_source=1_Mjc4MTkyMC03MTUtbG9jYXRpb24uZ29vZ2xlX3dlYnNpdGVfb3ZlcnJpZGU%3D"
