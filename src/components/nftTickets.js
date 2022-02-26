@@ -1506,7 +1506,7 @@ export default function NFTTicketsSection() {
     const conference = ' conference (March 31st)'
     const yachtParty = 'Yacht Party (March 29th) '
     const preParty = 'pre-Party (March 30th) '
-    const prePartyW = 'Pre-Workshop Party (March 29th night)'
+    const prePartyW = 'Pre-Workshop Bar Night Party (March 29th)'
     const hotel = 'Hotel Simple Room'
     const hotel2 = 'Hotel Double Room'
     const hackathon = 'Hackathon (March 30th)'
