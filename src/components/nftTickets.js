@@ -1506,7 +1506,7 @@ export default function NFTTicketsSection() {
     const conference = ' conference (March 31st)'
     const yachtParty = 'Yacht Party (March 29th) '
     const preParty = 'pre-Party (March 30th) '
-    const prePartyW = 'pre-Workshop Party (March 29th) '
+    const prePartyW = 'Pre-Workshop Party (March 29th night)'
     const hotel = 'Hotel Simple Room'
     const hotel2 = 'Hotel Double Room'
     const hackathon = 'Hackathon (March 30th)'
@@ -1536,6 +1536,7 @@ export default function NFTTicketsSection() {
     const chainlink =
       'Chainlink - DeFi for Developers: how to use UNISwap v2  to automate trading'
     const desert = 'Desert Safari'
+    const noYacht = '(note: Yacht not included on March 29th)'
     switch (ticketOption) {
       case 'conference':
         return 'Conference Only (March 31st)'
@@ -1795,6 +1796,9 @@ export default function NFTTicketsSection() {
       case 'workshop28AndConferenceOnly':
         return (
           <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>{' '}
             <li> {prePartyW}</li>
             <li> {workshop28AndConferenceOnly}</li>
             <li> {preParty} </li>
@@ -1804,6 +1808,9 @@ export default function NFTTicketsSection() {
       case 'workshop29AndConferenceOnly':
         return (
           <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>{' '}
             <li> {prePartyW}</li>
             <li> {workshop29AndConferenceOnly}</li>
             <li> {preParty} </li>
@@ -1813,6 +1820,9 @@ export default function NFTTicketsSection() {
       case 'workshop30AndConferenceOnly':
         return (
           <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>{' '}
             <li> {prePartyW}</li>
             <li> {workshop30AndConferenceOnly}</li>
             <li> {preParty} </li>
@@ -1822,6 +1832,9 @@ export default function NFTTicketsSection() {
       case 'workshop31AndConferenceOnly':
         return (
           <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>{' '}
             <li> {prePartyW}</li>
             <li> {workshop31AndConferenceOnly}</li>
             <li> {preParty} </li>
@@ -1831,6 +1844,9 @@ export default function NFTTicketsSection() {
       case 'workshop31AndConferenceOnly':
         return (
           <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>{' '}
             <li> {prePartyW}</li>
             <li> {workshop31AndConferenceOnly}</li>
             <li> {preParty} </li>
@@ -1840,6 +1856,9 @@ export default function NFTTicketsSection() {
       case 'workshop32AndConferenceOnly':
         return (
           <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>{' '}
             <li> {prePartyW}</li>
             <li> {workshop32AndConferenceOnly}</li>
             <li> {preParty} </li>
@@ -1849,6 +1868,9 @@ export default function NFTTicketsSection() {
       case 'workshop33AndConferenceOnly':
         return (
           <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>{' '}
             <li> {prePartyW}</li>
             <li> {workshop33AndConferenceOnly}</li>
             <li> {preParty} </li>
@@ -1858,6 +1880,9 @@ export default function NFTTicketsSection() {
       case 'workshop35AndConferenceOnly':
         return (
           <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>
             <li> {prePartyW}</li>
             <li> {hackathon}</li>
             <li> {preParty} </li>
@@ -3039,6 +3064,8 @@ export default function NFTTicketsSection() {
                     given cash in DAI, it will start remotely on March 26th to
                     give participants time to build a great app.
                     <br />
+                    Pre-Workshop Bar Night Party on March 29th to socialize,
+                    meet and greet.
                   </div>
                 </Collapse>
               </div>
@@ -3062,6 +3089,7 @@ export default function NFTTicketsSection() {
                 </select>
               </span>
             </li>
+            {/*
             <li
               style={{
                 borderTop: '1px solid black',
@@ -3075,7 +3103,7 @@ export default function NFTTicketsSection() {
                   <li>Conference Ticket (March 31st all-day)</li>
                   <li>Pre-Conference Party (March 30th night)</li>
                   <li>All-day Workshops and Hackathon (March 30th)</li>
-                  <li>Special Yacht Meet and Greet Party (March 29th)</li>
+                  <li>Pre-Workshop Bar Night Party (March 29th night)</li>
                 </ul>
                 <div>
                   <a
@@ -3115,7 +3143,6 @@ export default function NFTTicketsSection() {
                 <strong>sold out</strong>
               </span>
             </li>
-            {/*
             <li
               style={{ borderTop: '1px solid black' }}
               className="list-group-item d-flex justify-content-between align-items-center alignb"

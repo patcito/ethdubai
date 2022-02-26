@@ -60,7 +60,7 @@ export default function ScheduleSection({
           </h3>
           <h4 style={{ margin: '30px' }}>Special Yacht Meet and Greet Party</h4>
           <h4 style={{ margin: '30px' }}>
-            Pre-Workshop Meet and Greet Party (night)
+            Pre-Workshop Bar Night Party (night)
           </h4>
           <hr />
           <h3
