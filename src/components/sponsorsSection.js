@@ -177,8 +177,9 @@ export default function SponsorsSection({ sponsors }) {
             <></>
           )}
 
-          {sponsors.gold?.length > 0 &&
-          (sponsors.gold.length !== 1 || sponsors.gold[0].name) ? (
+          {false &&
+          sponsors.gold?.length > 0 &&
+          (sponsors.gold.length > 1 || sponsors.gold[0].name) ? (
             <div className="platinium_box gold_box">
               <div className="row">
                 {sponsors.gold.map((sponsor) =>
