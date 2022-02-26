@@ -1536,7 +1536,7 @@ export default function NFTTicketsSection() {
     const chainlink =
       'Chainlink - DeFi for Developers: how to use UNISwap v2  to automate trading'
     const desert = 'Desert Safari'
-    const noYacht = '(note: Yacht not included on March 29th)'
+    const noYacht = '(please note Yacht not included on March 29th)'
     switch (ticketOption) {
       case 'conference':
         return 'Conference Only (March 31st)'
