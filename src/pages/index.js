@@ -171,6 +171,67 @@ export default function IndexPage({ data, location }) {
           </div>
           <div className="supporters_logo">
             <ul>
+              <li className="side-events">
+                <div>
+                  <div>
+                    <a href="https://gton.capital/" target="_blank">
+                      <Img
+                        fixed={data.gton.childImageSharp.fixed}
+                        title="GTON CAPITAL (𝔾ℂ) is a DAO building DeFi infrastructure and an ecosystem of products for advancing digital capital markets."
+                      />
+                    </a>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <p>
+                      <a href="#schedule" target="_blank">
+                        GTON
+                      </a>{' '}
+                      - March 29th Pre-Workshop Bar Night Party
+                    </p>
+                  </div>
+                </div>
+              </li>
+
+              <li className="side-events">
+                <div>
+                  <div>
+                    <a href="https://syscoin.org/" target="_blank">
+                      <Img
+                        fixed={data.syscoin.childImageSharp.fixed}
+                        title="The best of Bitcoin, Ethereum, and ZK-Rollups, brought together in a plug-and-play network for an ultra-fast, scalable, low gas platform that is secure."
+                      />
+                    </a>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <p>
+                      <a href="#schedule" target="_blank">
+                        Syscoin
+                      </a>{' '}
+                      - March 29th Yacht Party co-host
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li className="side-events">
+                <div>
+                  <div>
+                    <a href="https://www.unore.io/" target="_blank">
+                      <Img
+                        fixed={data.unore.childImageSharp.fixed}
+                        title="Building the first reinsurance risk-trading platform in the world."
+                      />
+                    </a>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <p>
+                      <a href="#schedule" target="_blank">
+                        Uno Re
+                      </a>{' '}
+                      - March 29th Yacht Party co-host
+                    </p>
+                  </div>
+                </div>
+              </li>
               <li>
                 <div>
                   <div>
@@ -1086,6 +1147,28 @@ export const pageQuery = graphql`
         }
       }
     }
+    syscoin: file(relativePath: { eq: "syscoin.png" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    gton: file(relativePath: { eq: "gton.png" }) {
+      childImageSharp {
+        fixed(width: 200) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    unore: file(relativePath: { eq: "unorere.png" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+
     squarecapital: file(relativePath: { eq: "squarecapital.jpeg" }) {
       childImageSharp {
         fixed(width: 120) {

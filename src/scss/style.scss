@@ -3997,3 +3997,17 @@ body {
     margin-bottom: 30px;
   }
 }
+
+.side-events {
+  @media (min-width: 768px) {
+    margin-right: 150px;
+  }
+  @media (max-width: 768px) {
+    width: 100% !important;
+  }
+}
+.searchButton {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}

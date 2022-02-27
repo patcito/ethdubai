@@ -106,7 +106,7 @@ export default function ScheduleSection({
             <a href="https://syscoin.org/" target="_blank">
               Syscoin
             </a>{' '}
-            and Uno
+            and <a href="https://www.unore.io/">Uno Re</a>
           </h4>
           <h4 style={{ margin: '30px' }}>
             Pre-Workshop Bar Night Party Sponsored by{' '}
@@ -564,6 +564,7 @@ export default function ScheduleSection({
                           <i className="fa fa-search" aria-hidden="true"></i>
                         </button>
                         <button
+                          className="searchButton"
                           style={{ right: -60 }}
                           onClick={() => {
                             setScheduleQuery('track1')
@@ -572,6 +573,7 @@ export default function ScheduleSection({
                           Track 1
                         </button>
                         <button
+                          className="searchButton"
                           style={{ right: -125 }}
                           onClick={() => {
                             setScheduleQuery('track2')
