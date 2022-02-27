@@ -13,7 +13,6 @@ export default function ScheduleSection({
   const [currentScheduleTab, setCurrentScheduleTab] = React.useState(0)
   const [scheduleQuery, setScheduleQuery] = React.useState('')
   const [openDesc1, setOpenDesc1] = React.useState(false)
-  const slots = schedule[0].slots.sort((a, b) => (a.id < b.id ? 1 : -1))
   console.log('ssss', schedule)
   const getTags = (slot) => {
     console.log('slot', slot)
@@ -23,7 +22,23 @@ export default function ScheduleSection({
     if (slot.tags?.indexOf('track2') > -1) {
       return '[Track 2]'
     }
+    return ''
   }
+  const getTagsTrack = (slot) => {
+    console.log('slot', slot)
+    if (slot.tags?.indexOf('track1') > -1) {
+      return 'A'
+    }
+    if (slot.tags?.indexOf('track2') > -1) {
+      return 'B'
+    }
+    return ''
+  }
+
+  const slots = schedule[0].slots.sort((a, b) =>
+    a.id + getTagsTrack(a) < b.id + getTagsTrack(a) ? 1 : -1
+  )
+
   const getDayActivity = (i) => {
     switch (i) {
       case 0:
@@ -550,7 +565,10 @@ export default function ScheduleSection({
                             </h3>
                             {day.slots
                               .sort((a, b) =>
-                                a.startDate < b.startDate ? -1 : 1
+                                a.startDate + getTagsTrack(a) <
+                                b.startDate + getTagsTrack(b)
+                                  ? -1
+                                  : 1
                               )
                               .map((slot, i) => {
                                 let slots = day.slots
