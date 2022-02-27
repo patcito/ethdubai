@@ -10,7 +10,7 @@ export default function ScheduleSection({
   event,
   speakers,
 }) {
-  const [currentScheduleTab, setCurrentScheduleTab] = React.useState(0)
+  const [currentScheduleTab, setCurrentScheduleTab] = React.useState(2)
   const [scheduleQuery, setScheduleQuery] = React.useState('')
   const [openDesc1, setOpenDesc1] = React.useState(false)
   console.log('ssss', schedule)
@@ -76,6 +76,10 @@ export default function ScheduleSection({
           let scrolldiv = document.getElementById('schedule-scroll')
           scrolldiv.scrollIntoView()
           scrolldiv.scrollTop = dayd - 200
+        } else {
+          let dayd = document.getElementById('day-3').offsetTop
+          let scrolldiv = document.getElementById('schedule-scroll')
+          scrolldiv.scrollTop = dayd - 120
         }
       }, 1000)
     }
@@ -97,8 +101,19 @@ export default function ScheduleSection({
           >
             March 29th
           </h3>
-          <h4 style={{ margin: '30px' }}>Special Yacht Meet and Greet Party</h4>
-          <h4 style={{ margin: '30px' }}>Pre-Workshop Bar Night Party</h4>
+          <h4 style={{ margin: '30px' }}>
+            Special Yacht Meet and Greet Party Sponsored by{' '}
+            <a href="https://syscoin.org/" target="_blank">
+              Syscoin
+            </a>{' '}
+            and Uno
+          </h4>
+          <h4 style={{ margin: '30px' }}>
+            Pre-Workshop Bar Night Party Sponsored by{' '}
+            <a href="https://gton.capital/" target="_blank">
+              GTON
+            </a>
+          </h4>
           <hr />
           <h3
             style={{
@@ -482,7 +497,7 @@ export default function ScheduleSection({
           </h3>
           <h4 style={{ margin: '30px' }}>
             Listen and learn from the best builders and contributors in the
-            Ethereum and DeFi ecosystem! Our talks so far include:
+            Ethereum and DeFi ecosystem!
           </h4>
         </div>
         <div className="schedule_content">
@@ -547,6 +562,22 @@ export default function ScheduleSection({
                         />
                         <button>
                           <i className="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                        <button
+                          style={{ right: -60 }}
+                          onClick={() => {
+                            setScheduleQuery('track1')
+                          }}
+                        >
+                          Track 1
+                        </button>
+                        <button
+                          style={{ right: -125 }}
+                          onClick={() => {
+                            setScheduleQuery('track2')
+                          }}
+                        >
+                          Track 2
                         </button>
                       </div>
                     </div>
