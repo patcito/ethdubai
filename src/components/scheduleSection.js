@@ -15,6 +15,30 @@ export default function ScheduleSection({
   const [openDesc1, setOpenDesc1] = React.useState(false)
   const slots = schedule[0].slots.sort((a, b) => (a.id < b.id ? 1 : -1))
   console.log('ssss', schedule)
+  const getTags = (slot) => {
+    console.log('slot', slot)
+    if (slot.tags?.indexOf('track1') > -1) {
+      return '[Track 1]'
+    }
+    if (slot.tags?.indexOf('track2') > -1) {
+      return '[Track 2]'
+    }
+  }
+  const getDayActivity = (i) => {
+    switch (i) {
+      case 0:
+        return 'NETWORKING EVENTS'
+        break
+      case 1:
+        return 'WORKSHOPS AND HACKATHON'
+      case 2:
+        return 'CONFERENCE'
+      case 3:
+        'NETWORKING EVENTS'
+      default:
+        break
+    }
+  }
   const data = useStaticQuery(graphql`
     {
       scedual: file(relativePath: { eq: "scedual.png" }) {
@@ -445,40 +469,8 @@ export default function ScheduleSection({
             Listen and learn from the best builders and contributors in the
             Ethereum and DeFi ecosystem! Our talks so far include:
           </h4>
-
-          <ul>
-            {slots.map((slot) => (
-              <div className="card" id={`sslot-${slot.id}`}>
-                <div className="card-body">
-                  {slot.speakers.map((speaker) => (
-                    <Img
-                      fluid={speaker.localFile.childImageSharp.fluid}
-                      style={{ width: '50px', height: '50px' }}
-                      className="float-left"
-                    />
-                  ))}
-
-                  <div
-                    className="message"
-                    style={{
-                      marginLeft: '20px',
-                      textAlign: 'left',
-                      paddingLeft: '20px',
-                    }}
-                  >
-                    <h6
-                      style={{ marginLeft: '20px' }}
-                      className="card-description"
-                    >
-                      {slot.speakers[0].name}: {slot.title}
-                    </h6>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </ul>
         </div>
-        <div className="schedule_content" style={{ display: 'none' }}>
+        <div className="schedule_content">
           <div className="row">
             <div className="col-md-4">
               <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -513,12 +505,7 @@ export default function ScheduleSection({
                         })}{' '}
                         {new Date(day.date).getDate()}
                       </span>{' '}
-                      - DAY {i + 1}{' '}
-                      {i < 3 || i === 6
-                        ? 'WORKSHOPS'
-                        : i == 5
-                        ? 'WORKSHOPS'
-                        : 'CONFERENCE'}
+                      - DAY {i + 1} {getDayActivity(i)}
                     </Link>
                   </li>
                 ))}
@@ -561,73 +548,67 @@ export default function ScheduleSection({
                                 month: 'long',
                               })}
                             </h3>
-                            {day.slots.map((slot, i) => {
-                              let slots = day.slots
-                              if (
-                                slots[i + 1] &&
-                                slots[i + 1].startDate === slots[i].startDate &&
-                                slot.title.indexOf('[Discovery Track]') !== -1
-                              ) {
-                                slot = slots[i + 1]
-                              }
-                              if (
-                                slots[i - 1] &&
-                                slots[i - 1].startDate === slots[i].startDate &&
-                                slots[i - 1].title.indexOf(
-                                  '[Discovery Track]'
-                                ) !== -1
-                              ) {
-                                slot = slots[i - 1]
-                              }
-                              const slot_slug = `${slot.id}-${slot.title
-                                .toString()
-                                .toLowerCase()
-                                .trim()
-                                .replace(/&/g, '-and-')
-                                .replace(/[\s\W-]+/g, '-')}`
-                              return scheduleQuery === '' ||
-                                slot.title
+                            {day.slots
+                              .sort((a, b) =>
+                                a.startDate < b.startDate ? -1 : 1
+                              )
+                              .map((slot, i) => {
+                                let slots = day.slots
+                                if (
+                                  slots[i + 1] &&
+                                  slots[i + 1].startDate ===
+                                    slots[i].startDate &&
+                                  slot.title.indexOf('[Discovery Track]') !== -1
+                                ) {
+                                  slot = slots[i + 1]
+                                }
+                                if (
+                                  slots[i - 1] &&
+                                  slots[i - 1].startDate ===
+                                    slots[i].startDate &&
+                                  slots[i - 1].title.indexOf(
+                                    '[Discovery Track]'
+                                  ) !== -1
+                                ) {
+                                  slot = slots[i - 1]
+                                }
+                                const slot_slug = `${slot.id}-${slot.title
+                                  .toString()
                                   .toLowerCase()
-                                  .indexOf(scheduleQuery.toLowerCase()) !==
-                                  -1 ||
-                                slot.description
-                                  .toLowerCase()
-                                  .indexOf(scheduleQuery.toLowerCase()) !==
-                                  -1 ? (
-                                <div
-                                  className="tab_text first-tab"
-                                  id={slot_slug}
-                                  key={i}
-                                >
-                                  <div className="border_box_tab">
-                                    <h5>
-                                      {new Date(slot.startDate)
-                                        .toLocaleTimeString('default', {
-                                          hour12: false,
-                                          timeZone: event.timezoneId,
-                                        })
-                                        .split(':')[0] +
-                                        ':' +
-                                        new Date(slot.startDate)
+                                  .trim()
+                                  .replace(/&/g, '-and-')
+                                  .replace(/[\s\W-]+/g, '-')}`
+                                return scheduleQuery === '' ||
+                                  slot.title
+                                    .toLowerCase()
+                                    .indexOf(scheduleQuery.toLowerCase()) !==
+                                    -1 ||
+                                  slot.description
+                                    .toLowerCase()
+                                    .indexOf(scheduleQuery.toLowerCase()) !==
+                                    -1 ||
+                                  slot.tags.indexOf(scheduleQuery) !== -1 ? (
+                                  <div
+                                    className="tab_text first-tab"
+                                    id={slot_slug}
+                                    key={i}
+                                  >
+                                    <div className="border_box_tab">
+                                      <h5>
+                                        {new Date(slot.startDate)
                                           .toLocaleTimeString('default', {
                                             hour12: false,
+                                            timeZone: event.timezoneId,
                                           })
-                                          .split(':')[1]}
-                                      {' - '}
-                                      {new Date(
-                                        new Date(slot.startDate).setMinutes(
-                                          new Date(
-                                            slot.startDate
-                                          ).getMinutes() + slot.length
-                                        )
-                                      )
-                                        .toLocaleTimeString('default', {
-                                          hour12: false,
-                                          timeZone: event.timezoneId,
-                                        })
-                                        .split(':')[0] +
-                                        ':' +
-                                        new Date(
+                                          .split(':')[0] +
+                                          ':' +
+                                          new Date(slot.startDate)
+                                            .toLocaleTimeString('default', {
+                                              hour12: false,
+                                            })
+                                            .split(':')[1]}
+                                        {' - '}
+                                        {new Date(
                                           new Date(slot.startDate).setMinutes(
                                             new Date(
                                               slot.startDate
@@ -636,92 +617,106 @@ export default function ScheduleSection({
                                         )
                                           .toLocaleTimeString('default', {
                                             hour12: false,
+                                            timeZone: event.timezoneId,
                                           })
-                                          .split(':')[1]}{' '}
-                                      (Paris time, UTC+2)
-                                    </h5>
-                                    <h4
-                                      style={{
-                                        backgroundColor:
-                                          slot.title.indexOf(
-                                            '[Discovery Track]'
-                                          ) !== -1
-                                            ? '#f5f3f3'
-                                            : null,
-                                      }}
-                                    >
-                                      <Link
-                                        to={`#slot-${slot_slug}`}
-                                        replace
-                                        data-scroll-ignore
-                                        onClick={(e) => {
-                                          e.preventDefault()
-                                          //   navigate(`#slot-${slot_slug}`)
+                                          .split(':')[0] +
+                                          ':' +
+                                          new Date(
+                                            new Date(slot.startDate).setMinutes(
+                                              new Date(
+                                                slot.startDate
+                                              ).getMinutes() + slot.length
+                                            )
+                                          )
+                                            .toLocaleTimeString('default', {
+                                              hour12: false,
+                                            })
+                                            .split(':')[1]}{' '}
+                                        (Dubai time, UTC+4)
+                                      </h5>
+                                      <h4
+                                        style={{
+                                          backgroundColor:
+                                            slot.title.indexOf(
+                                              '[Discovery Track]'
+                                            ) !== -1
+                                              ? '#f5f3f3'
+                                              : null,
                                         }}
                                       >
-                                        {slot.title}
-                                      </Link>
-                                    </h4>
-                                    <ReactMarkdown
-                                      children={slot.description}
-                                    />
-                                    {slot.speakers.map((speaker, i) => (
-                                      <div
-                                        className="tab_profile_inner_box"
-                                        key={i}
-                                      >
-                                        <div className="row no-gutters">
-                                          <div className="col-md-2">
-                                            <div className="tab_profile_inner_box_image">
-                                              <Img
-                                                fluid={
-                                                  speaker.localFile
-                                                    .childImageSharp.fluid
-                                                }
-                                              />
+                                        <Link
+                                          to={`#slot-${slot_slug}`}
+                                          replace
+                                          data-scroll-ignore
+                                          onClick={(e) => {
+                                            e.preventDefault()
+                                            //   navigate(`#slot-${slot_slug}`)
+                                          }}
+                                        >
+                                          {slot.title} {getTags(slot)}
+                                        </Link>
+                                      </h4>
+                                      <ReactMarkdown
+                                        children={slot.description}
+                                      />
+                                      {slot.speakers.map((speaker, i) => (
+                                        <div
+                                          className="tab_profile_inner_box"
+                                          key={i}
+                                        >
+                                          <div className="row no-gutters">
+                                            <div className="col-md-2">
+                                              <div className="tab_profile_inner_box_image">
+                                                <Img
+                                                  fluid={
+                                                    speaker.localFile
+                                                      .childImageSharp.fluid
+                                                  }
+                                                />
+                                              </div>
                                             </div>
-                                          </div>
-                                          <div className="col-md-10">
-                                            <div className="tab_profile_inner_box_content">
-                                              <div className="name_icon">
-                                                <div className="name">
-                                                  <h2>{speaker.name}</h2>
-                                                </div>
-                                                <div className="tab_icons">
-                                                  <ul>
-                                                    {speaker.twitter !== '' ? (
+                                            <div className="col-md-10">
+                                              <div className="tab_profile_inner_box_content">
+                                                <div className="name_icon">
+                                                  <div className="name">
+                                                    <h2>{speaker.name}</h2>
+                                                  </div>
+                                                  <div className="tab_icons">
+                                                    <ul>
+                                                      {speaker.twitter !==
+                                                      '' ? (
+                                                        <li>
+                                                          <a
+                                                            href={`https://twitter.com/${speaker.twitter}`}
+                                                            className="icon-social-button-small"
+                                                          >
+                                                            <i className="fa fa-twitter icon-twitter"></i>
+                                                          </a>
+                                                        </li>
+                                                      ) : null}
                                                       <li>
                                                         <a
-                                                          href={`https://twitter.com/${speaker.twitter}`}
+                                                          href={`https://github.com/${speaker.github}`}
                                                           className="icon-social-button-small"
                                                         >
-                                                          <i className="fa fa-twitter icon-twitter"></i>
+                                                          <i className="fa fa-github icon-github"></i>
                                                         </a>
                                                       </li>
-                                                    ) : null}
-                                                    <li>
-                                                      <a
-                                                        href={`https://github.com/${speaker.github}`}
-                                                        className="icon-social-button-small"
-                                                      >
-                                                        <i className="fa fa-github icon-github"></i>
-                                                      </a>
-                                                    </li>
-                                                  </ul>
+                                                    </ul>
+                                                  </div>
                                                 </div>
+                                                <ReactMarkdown
+                                                  children={speaker.bio}
+                                                />
                                               </div>
-                                              <ReactMarkdown
-                                                children={speaker.bio}
-                                              />
                                             </div>
                                           </div>
                                         </div>
-                                      </div>
-                                    ))}
+                                      ))}
+                                    </div>
                                   </div>
-                                </div>
-                              ) : null
-                            })}
+                                ) : null
+                              })}
                           </>
                         ))}
                       </div>
