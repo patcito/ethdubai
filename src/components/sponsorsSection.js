@@ -177,8 +177,7 @@ export default function SponsorsSection({ sponsors }) {
             <></>
           )}
 
-          {false &&
-          sponsors.gold?.length > 0 &&
+          {sponsors.gold?.length > 0 &&
           (sponsors.gold.length > 1 || sponsors.gold[0].name) ? (
             <div className="platinium_box gold_box" id="gold-sprs">
               <div className="row">
