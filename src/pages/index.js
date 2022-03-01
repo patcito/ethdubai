@@ -299,6 +299,18 @@ export default function IndexPage({ data, location }) {
                   </div>
                 </div>
               </li>
+              <li>
+                <div>
+                  <div>
+                    <a href="https://comdex.one" target="_blank">
+                      <Img
+                        fixed={data.comdex.childImageSharp.fixed}
+                        title="comdex"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
               <li style={{ marginLeft: 50 }}>
                 <div>
                   <div>
@@ -1177,6 +1189,13 @@ export const pageQuery = graphql`
       }
     }
     owlventures: file(relativePath: { eq: "owlventures.jpeg" }) {
+      childImageSharp {
+        fixed(width: 120) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    comdex: file(relativePath: { eq: "comdex.png" }) {
       childImageSharp {
         fixed(width: 120) {
           ...GatsbyImageSharpFixed_withWebp
