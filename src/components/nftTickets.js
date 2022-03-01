@@ -3645,6 +3645,7 @@ export default function NFTTicketsSection() {
                                           <option value="5">
                                             Hackathon Only
                                           </option>
+
                                           <option value="37">
                                             Build a Dapp using Sway on Fuel
                                           </option>
@@ -3777,6 +3778,10 @@ export default function NFTTicketsSection() {
                                           </option>
                                           <option value="34">
                                             Build a Dapp using Sway on Fuel
+                                          </option>
+                                          <option value="35">
+                                            How to Code and Deploy a Generative
+                                            NFT Collection with Alchemy
                                           </option>
                                           {/*
                                           <option value="35">
