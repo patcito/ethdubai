@@ -302,7 +302,7 @@ export default function IndexPage({ data, location }) {
               <li>
                 <div>
                   <div>
-                    <a href="https://palisade-crypto.org/" target="_blank">
+                    <a href="https://www.palisadecrypto.com/" target="_blank">
                       <Img
                         fixed={data.palisade.childImageSharp.fixed}
                         title="palisade"
