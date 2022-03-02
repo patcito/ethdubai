@@ -302,16 +302,28 @@ export default function IndexPage({ data, location }) {
               <li>
                 <div>
                   <div>
-                    <a href="https://comdex.one" target="_blank">
+                    <a href="https://palisade-crypto.org/" target="_blank">
                       <Img
-                        fixed={data.comdex.childImageSharp.fixed}
-                        title="comdex"
+                        fixed={data.palisade.childImageSharp.fixed}
+                        title="palisade"
                       />
                     </a>
                   </div>
                 </div>
               </li>
-              <li style={{ marginLeft: 50 }}>
+              <li style={{ marginLeft: 100 }}>
+                <div>
+                  <div>
+                    <a href="https://wowswap.io/" target="_blank">
+                      <Img
+                        fixed={data.wowswap.childImageSharp.fixed}
+                        title="wowswap"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li style={{ marginLeft: 100 }}>
                 <div>
                   <div>
                     <a href="https://portico.vc" target="_blank">
@@ -1210,7 +1222,20 @@ export const pageQuery = graphql`
         }
       }
     }
-
+    wowswap: file(relativePath: { eq: "wowswap.png" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    palisade: file(relativePath: { eq: "palisade.jpg" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
     support6: file(relativePath: { eq: "expo.png" }) {
       childImageSharp {
         fixed(width: 120) {
