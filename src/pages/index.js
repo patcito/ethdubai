@@ -327,6 +327,7 @@ export default function IndexPage({ data, location }) {
           </div>
         </div>
       </section>
+      {/*
       <section
         className="support"
         id="nft-droppers"
@@ -348,12 +349,11 @@ export default function IndexPage({ data, location }) {
           </div>
           <div className="supporters_logo">
             <ul>
-              {/**   <li>
+                 <li>
                 <a href="https://epoch.hysek.swiss/" target="_blank">
                   <Img fixed={data.hysek.childImageSharp.fixed} />
                 </a>
               </li>
-*/}
               <li>
                 <a href="https://www.niftyrocks-studios.com/" target="_blank">
                   <Img fixed={data.niftyrocks.childImageSharp.fixed} />
@@ -363,7 +363,7 @@ export default function IndexPage({ data, location }) {
           </div>
         </div>
       </section>
-
+*/}
       <section className="support" id="supporters">
         <div className="container">
           <div className="headings">
