@@ -18,7 +18,7 @@ export default class HTML extends React.Component {
           <meta property="twitter:title" content="ETHDubai" />
           <meta
             property="twitter:description"
-            content="The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!"
+            content="The Dev Conference for everything DeFi, Web3, Smart Contracts, scaling, EVM and more!"
           />
           <meta
             property="twitter:image"
@@ -26,7 +26,7 @@ export default class HTML extends React.Component {
           />
           <meta
             property="og:title"
-            content="ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more"
+            content="ETHDubai - The Dev Conference for everything DeFi, Web3, Smart Contracts, scaling, EVM and more"
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://www.ethdubaiconf.org" />
@@ -36,7 +36,7 @@ export default class HTML extends React.Component {
           />
           <meta
             property="og:description"
-            content="ETHDubai is the conference by passionate devs and for passionate devs and contributors to everything Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more!. Expect great speakers, talks, workshops and tons of great social events you will not forget. Dubai is one of the easiest place on Earth to get to without a visa wherever you are from, with beautiful prestine sand beaches, great weather, affordable accommodation and endless entertainment for all."
+            content="ETHDubai is the conference by passionate devs and for passionate devs and contributors to everything Ethereum, DeFi, NFTs, EVM and more!. Expect great speakers, talks, workshops and tons of great social events you will not forget. Dubai is one of the easiest place on Earth to get to without a visa wherever you are from, with beautiful prestine sand beaches, great weather, affordable accommodation and endless entertainment for all."
           />
           {this.props.headComponents}
           <link

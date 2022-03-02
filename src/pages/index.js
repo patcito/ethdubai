@@ -93,7 +93,7 @@ export default function IndexPage({ data, location }) {
             <ReactMarkdown
               children={
                 'ETHDubai is the conference for passionate devs and contributors on anything related to ' +
-                ' **Ethereum, DeFi, NFTs, EVM, Gaming on the EVM and more** with a focus on decentralization and **community projects such as Yearn and its ecosystem**. ' +
+                ' **Ethereum, DeFi, EVM and more** with a focus on decentralization and **community projects such as Yearn and its ecosystem**. ' +
                 'Expect **great speakers, talks, workshops for both experts and beginners and tons of great social events** you will not forget. ' +
                 'Dubai is one of the easiest place on Earth to get to **without a visa and without a vaccine passport (only PCR test)** wherever you are from, with ' +
                 'beautiful pristine sand beaches, great weather, affordable accommodation and endless entertainment for all.'

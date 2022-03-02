@@ -1,14 +1,14 @@
 module.exports = {
   siteMetadata: {
     title:
-      'ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
+      'ETHDubai - The Dev Conference for everything DeFi, Web3, Smart Contracts, scaling , EVM and more!',
     description:
-      'ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
+      'ETHDubai - The Dev Conference for everything DeFi, Web3, Smart Contracts, scaling , EVM and more!',
     siteUrl: 'https://www.ethdubaiconf.org',
     author: 'ETHDubai',
     twitter: 'ETHDubai',
     'og:title':
-      'ETHDubai - The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
+      'ETHDubai - The Dev Conference for everything DeFi, Web3, Smart Contracts, scaling , EVM and more!',
     'og:type': 'website',
     'og:image': 'https://www.ethdubaiconf.org/images/ethdubai.png',
     'twitter:card': 'summary_large_image',
@@ -17,7 +17,7 @@ module.exports = {
     'twitter:creator': '@ETHDubaiConf',
     'twitter:title': 'ETHDubai',
     'twitter:description':
-      'The Dev Conference for everything DeFi, Web3, NFTs, Smart Contracts, scaling , EVM and more!',
+      'The Dev Conference for everything DeFi, Web3, Smart Contracts, scaling , EVM and more!',
     'twitter:image': 'https://www.ethdubaiconf.org/images/mosaic.png',
   },
   pathPrefix: '/',
