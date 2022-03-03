@@ -398,6 +398,11 @@ export default function IndexPage({ data, location }) {
                   <Img fixed={data.immunefi.childImageSharp.fixed} />
                 </a>
               </li>
+              <li style={{ marginLeft: 100 }}>
+                <a href="https://www.optimism.io/" target="_blank">
+                  <Img fixed={data.optimism.childImageSharp.fixed} />
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -1251,6 +1256,13 @@ export const pageQuery = graphql`
       }
     }
     immunefi: file(relativePath: { eq: "immunefi.png" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    optimism: file(relativePath: { eq: "optimism.png" }) {
       childImageSharp {
         fixed(width: 220) {
           ...GatsbyImageSharpFixed_withWebp
