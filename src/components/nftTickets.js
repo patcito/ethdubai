@@ -3783,16 +3783,17 @@ export default function NFTTicketsSection() {
                                             How to Code and Deploy a Generative
                                             NFT Collection with Alchemy
                                           </option>
-                                          {/*
-                                          <option value="35">
-                                            How to Create a Generative NFT
-                                            Project
-                                          </option>
                                           <option value="36">
                                             Chainlink - DeFi for Developers: how
                                             to use UNISwap v2 to automate
                                             trading
                                           </option>
+                                          {/*
+                                          <option value="35">
+                                            How to Create a Generative NFT
+                                            Project
+                                          </option>
+                                          
                                           */}
                                         </Form.Control>
                                       </Col>

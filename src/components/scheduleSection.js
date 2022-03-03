@@ -446,11 +446,10 @@ export default function ScheduleSection({
                       </small>
                     </Card.Footer>
                   </Card>
-                  {/**
                   <Card>
                     <Card.Img
                       variant="top"
-                      src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjAwMCAxNzI5LjUiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDIwMDAgMTcyOS41OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggc3R5bGU9ImZpbGw6IzAyMDA0MTsiIGQ9Ik0xMDAyLjgsMGM5MC44LDE1My42LDE3OC40LDMwOS4xLDI2OC4zLDQ2My4yYzEzLDIwLDE2LjgsNDQsMTYuNSw2Ny41YzAsMTg1LDAsMzY5LjksMCw1NTQuOAoJCWMtMTIzLjQtNDMuNy0yNjAuOS01MS4zLTM4Ni4xLTEwLjNjLTY3LDIwLjYtMTI3LjUsNTcuMS0xODQuOCw5Ni43YzAuMi0yMTcuNSwwLjItNDM1LjEsMC02NTIuN2MwLTE1LjksMC41LTMyLjQsMTAuMy00NS44CgkJQzgxOS4zLDMxNS45LDkxMS4zLDE1OC4xLDEwMDIuOCwweiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzAyMDA0MTsiIGQ9Ik0wLDE3MjUuN2MxNjguNC0yOTAuNSwzMzcuMy01ODAuNyw1MDYuOC04NzAuOGMzLjIsMjkwLjYsMS4yLDU4MS40LDEuMSw4NzIKCQlDMzM4LjcsMTcyNS40LDE2OS4zLDE3MjYuOSwwLDE3MjUuNyIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzAyMDA0MTsiIGQ9Ik0xNDk0LjgsODU2LjRjMTcxLjUsMjg5LjEsMzM2LjQsNTgyLjIsNTA1LjIsODczYy0xNjguNiwwLjYtMzM3LjEtMS01MDUuNiwwCgkJQzE0OTMuOCwxNDM4LjMsMTQ5Mi45LDExNDcuMywxNDk0LjgsODU2LjQiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMwMjAwNDE7IiBkPSJNMTAwOC41LDEyNDMuMWM5NC43LTE2LjEsMTkzLjMsNS4xLDI3NS43LDUzLjdjMi40LDE0My45LTEuNywyODcuOSwzLjksNDMxLjYKCQljLTE4My41LDAuNy0zNjcuMS0wLjYtNTUwLjYtMS4zYy0xOS4xLTc2LTI4LTE1Ny02LjYtMjMzLjZDNzY0LjksMTM2NS45LDg3Ny45LDEyNjMuNCwxMDA4LjUsMTI0My4xIi8+CjwvZz4KPC9zdmc+Cg=="
+                      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNy44IDQzLjYiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojMmE1YWRhO308L3N0eWxlPjwvZGVmcz48dGl0bGU+QXNzZXQgMTwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9IkxheWVyXzEtMiIgZGF0YS1uYW1lPSJMYXllciAxIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xOC45LDBsLTQsMi4zTDQsOC42LDAsMTAuOVYzMi43TDQsMzVsMTEsNi4zLDQsMi4zLDQtMi4zTDMzLjgsMzVsNC0yLjNWMTAuOWwtNC0yLjNMMjIuOSwyLjNaTTgsMjguMVYxNS41TDE4LjksOS4ybDEwLjksNi4zVjI4LjFMMTguOSwzNC40WiIvPjwvZz48L2c+PC9zdmc+"
                       style={{
                         height: '80px',
                         margin: 'auto',
@@ -459,29 +458,27 @@ export default function ScheduleSection({
                     />
                     <Card.Body>
                       <Card.Title>
-                        Web3 &amp; Graph Protocol workshop with Nader Dabit
+                        Chainlink: DeFi for Developers: how to use UNISwap v2 to
+                        automate trading
                       </Card.Title>
                       <Card.Text>
-                        Writing your Smart Contract is only half the work, you
-                        also need a Web3 frontend and a way to query this
-                        contract easily. In this workshop, you will learn how to
-                        index your contract in order to query it easily in you
-                        Web3 app. This allows building powerful Web3 dapp with
-                        great UX.
+                        In this workshop you will learn from the Chainlink team
+                        how to use Chainlink oracles to automate trading on
+                        UNISwap v2 and more.
                       </Card.Text>
                     </Card.Body>
                     <Card.Footer>
                       <small className="text-muted">
-                        Skills required: Basic solidity and frontend level
+                        Skills required: Basic solidity skills
                       </small>
                     </Card.Footer>
                     <Card.Footer>
                       <small className="text-muted">
-                        Afternoon session: 1:30pm to 4:30pm with Nader Dabit
+                        Afternoon session: 1:30pm to 4:30pm with Solange Gueiros
+                        from the Chainlink Team
                       </small>
                     </Card.Footer>
                   </Card>
- */}
                 </CardDeck>
               </Col>
             </Row>
