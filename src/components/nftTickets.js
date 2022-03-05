@@ -3351,7 +3351,6 @@ export default function NFTTicketsSection() {
                                       <Form.Control
                                         required="true"
                                         placeholder="Last name*"
-                                        onChange={handleAttendeeInfo}
                                         name="lname"
                                         value={
                                           attendeeInfos[
