@@ -441,7 +441,7 @@ export default function ScheduleSection({
                     </Card.Footer>
                     <Card.Footer>
                       <small className="text-muted">
-                        Afternoon session: 12:30pm to 4:30pm with Albert Hu from
+                        Afternoon session: 1:30pm to 4:30pm with Albert Hu from
                         the Alchemy team
                       </small>
                     </Card.Footer>
