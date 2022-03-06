@@ -1486,57 +1486,58 @@ export default function NFTTicketsSection() {
   const getTicketOptionTitle = (ticketOption) => {
     console.log('is mainnet?', isCurrentNetworkMainnetContract())
     const workshop1AndPreParty =
-      'Web3 & Graph Protocol workshop with Nader Dabit (March 30th)'
+      'Web3 & Graph Protocol workshop with Nader Dabit (March 30th @ 1:30pm)'
     const thegraph = workshop1AndPreParty
     const workshop2AndPreParty =
-      'Yearn strategies workshop with Facu Ameal (March 30th)'
+      'Yearn strategies workshop with Facu Ameal (March 30th @ 9:30am)'
     const workshop3AndPreParty =
-      'Web3 workshop for frontend devs with the MetaMask Team (March 30th)'
+      'Web3 workshop for frontend devs with the MetaMask Team (March 30th @ 9:30am)'
     const metamask = workshop3AndPreParty
     const workshop4AndPreParty =
-      'BentoBox workshop with Sushi Core Trident Dev Sarang Parikh (March 30th)'
+      'BentoBox workshop with Sushi Core Trident Dev Sarang Parikh (March 30th @ 9:30am)'
     const bentobox = workshop4AndPreParty
     const workshop5AndPreParty =
-      'Yearn strategies workshop (Afternoon Session) (March 30th)'
+      'Yearn strategies workshop (Afternoon Session) (March 30th @ 1:30pm)'
     const yearn = workshop5AndPreParty
     const workshop6AndPreParty =
-      'Build your first blockchain application in Python with The Blockchain OS'
+      'Build your first blockchain application in Python with Cartesi (March 30th @9:30am)'
     const cartesi = workshop6AndPreParty
-    const hackathonAndPreParty = 'Hackathon (March 30th)'
-    const conference = ' conference (March 31st)'
-    const yachtParty = 'Yacht Party (March 29th) '
-    const preParty = 'pre-Party (March 30th) '
-    const prePartyW = 'Pre-Workshop Bar Night Party (March 29th)'
+    const hackathonAndPreParty = 'Hackathon (March 30th @ 9:30am)'
+    const conference = 'conference (March 31st @ 8:30am)'
+    const yachtParty = 'Yacht Party (March 29th)'
+    const yachtParty2 =
+      'Important: Yacht Party Checkin @ 2:15pm | Departure: 3pm!'
+    const yachtParty3 =
+      'Yacht Location: Dubai La Marina Pier 7 Lotus https://bit.ly/ethYacht'
+    const preParty =
+      'pre-Party (March 30th) @Le Meridien Conference Center "Beer Garden" 6PM-11PM'
+    const prePartyW =
+      'Opening Bar Night Party (March 29th, 7pm) Location https://bit.ly/GTONParty'
     const hotel = 'Hotel Simple Room'
     const hotel2 = 'Hotel Double Room'
     const hackathon = 'Hackathon (March 30th)'
     const workshop7AndPreParty =
-      'Initiation to DeFi with GTON Capital team for Traders, VCs and non-devs (March 30th)'
+      'Initiation to DeFi with GTON Capital team (March 30th @ 1:30pm)'
     const vc = workshop7AndPreParty
     const workshop33AndPreParty =
-      'Initiation to DeFi with GTON Capital team for Traders, VCs and non-devs (March 30th)'
-    const workshop29AndConferenceOnly =
-      'Web3 & Graph Protocol workshop with Nader Dabit (March 30th)'
-    const workshop28AndConferenceOnly =
-      'Web3 workshop for frontend devs with the MetaMask Team (March 30th)'
-    const workshop31AndConferenceOnly =
-      'BentoBox workshop with Sushi Core Trident Dev Sarang Parikh (March 30th)'
-    const workshop30AndConferenceOnly =
-      'Yearn strategies workshop (Afternoon Session) (March 30th)'
-    const workshop32AndConferenceOnly =
-      'Build your first blockchain application in Python with The Blockchain OS'
-    const workshop33AndConferenceOnly =
-      ' Initiation to DeFi with GTON Capital team for Traders, VCs and non-devs'
+      'Initiation to DeFi with GTON Capital team (March 30th @ 1:30pm)'
+    const workshop29AndConferenceOnly = workshop1AndPreParty
+    const workshop28AndConferenceOnly = workshop3AndPreParty
+    const workshop31AndConferenceOnly = workshop4AndPreParty
+    const workshop30AndConferenceOnly = workshop5AndPreParty
+    const workshop32AndConferenceOnly = workshop6AndPreParty
+    const workshop33AndConferenceOnly = workshop7AndPreParty
     //fuel
-    const fuel = 'Build a Dapp using Sway on Fuel'
+    const fuel = 'Build a Dapp using Sway on Fuel (March 30th @ 9:30am)'
 
     //alchemy
-    const alchemy = 'How to Create a Generative NFT Project'
+    const alchemy =
+      'How to Create a Generative NFT Project (March 30th @ 1:30pm)'
     //chainlink
-    const chainlink =
-      'Chainlink - DeFi for Developers: how to use UNISwap v2  to automate trading'
+    const chainlink = 'Chainlink - DeFi for Developers (March 30th @ 1:30pm)'
     const desert = 'Desert Safari'
     const noYacht = '(please note Yacht not included on March 29th)'
+
     switch (ticketOption) {
       case 'conference':
         return 'Conference Only (March 31st)'

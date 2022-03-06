@@ -8,13 +8,13 @@ const NFTTicketsSection = loadable(() => import('components/nftTickets'))
 export default function InlineTicketsSection({ event }) {
   const [isFrench, setIsFrench] = React.useState(false)
   const [isPL, setIsPL] = React.useState(false)
-  const [isAE, setIsAE] = React.useState(false)
+  const [isAE, setIsAE] = React.useState(true)
   const [tickets, setTickets] = React.useState(event.tickets)
   const [discountCode, setDiscountCode] = React.useState('')
   const [discountMessage, setDiscountMessage] = React.useState('')
   const [discountCodeApplied, setDiscountCodeApplied] = React.useState(false)
   const [message, setMessage] = React.useState({ message: '', status: 'error' })
-  const [payInDollar, setPayInDollar] = React.useState('')
+  const [payInDollar, setPayInDollar] = React.useState(true)
 
   const imgs = useStaticQuery(graphql`
     {
@@ -150,7 +150,13 @@ export default function InlineTicketsSection({ event }) {
           if (typeof web3 === 'undefined') {
             setPayInDollar(true)
             setIsAE(true)
+          } else {
+            setPayInDollar(true)
+            setIsAE(false)
           }
+        } else {
+          setPayInDollar(false)
+          setIsAE(false)
         }
       })
       .catch((err) => {})
