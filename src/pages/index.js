@@ -335,6 +335,30 @@ export default function IndexPage({ data, location }) {
                   </div>
                 </div>
               </li>
+              <li style={{ marginLeft: 100 }}>
+                <div>
+                  <div>
+                    <a href="https://40acresdao.netlify.app/" target="_blank">
+                      <Img
+                        fixed={data.acresdao.childImageSharp.fixed}
+                        title="acresdao"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li style={{ marginLeft: 100 }}>
+                <div>
+                  <div>
+                    <a href="https://www.hashed.com/" target="_blank">
+                      <Img
+                        fixed={data.hashed.childImageSharp.fixed}
+                        title="hashed"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -1219,6 +1243,20 @@ export const pageQuery = graphql`
       }
     }
     portico: file(relativePath: { eq: "portico.png" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    acresdao: file(relativePath: { eq: "40acres.jpeg" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    hashed: file(relativePath: { eq: "hashed.png" }) {
       childImageSharp {
         fixed(width: 220) {
           ...GatsbyImageSharpFixed_withWebp
