@@ -1512,7 +1512,7 @@ export default function NFTTicketsSection() {
     const preParty =
       'pre-Party (March 30th) @Le Meridien Conference Center "Beer Garden" 6PM-11PM'
     const prePartyW =
-      'Opening Bar Night Party (March 29th, 7pm) Location https://bit.ly/GTONParty'
+      'Opening Bar Night GTON Capital Party (March 29th, 7pm-11pm) Location https://bit.ly/GTONParty'
     const hotel = 'Hotel Simple Room'
     const hotel2 = 'Hotel Double Room'
     const hackathon = 'Hackathon (March 30th)'
@@ -3131,7 +3131,9 @@ export default function NFTTicketsSection() {
                   <li>Conference Ticket (March 31st all-day)</li>
                   <li>Pre-Conference Party (March 30th night)</li>
                   <li>All-day Workshops and Hackathon (March 30th)</li>
-                  <li>Pre-Workshop Bar Night Party (March 29th night)</li>
+                  <li>
+                    Opening Bar Night GTON Capital Party (March 29th night)
+                  </li>
                 </ul>
                 <strong>Unit Price: 0.25 ETH</strong>
                 <div>

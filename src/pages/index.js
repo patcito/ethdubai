@@ -186,7 +186,7 @@ export default function IndexPage({ data, location }) {
                       <a href="#schedule" target="_blank">
                         GTON
                       </a>{' '}
-                      - March 29th Pre-Workshop Bar Night Party
+                      - March 29th Opening Bar Night GTON Capital Party
                     </p>
                   </div>
                 </div>
