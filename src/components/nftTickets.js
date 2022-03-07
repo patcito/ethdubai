@@ -3134,7 +3134,7 @@ export default function NFTTicketsSection() {
                   <li>Conference Ticket (March 31st all-day)</li>
                   <li>Pre-Conference Party (March 30th night)</li>
                   <li>All-day Workshops and Hackathon (March 30th)</li>
-                  <li>Meet and Greet Bar Yacht Party (March 29th)</li>
+                  <li>Meet and Greet Bar Yacht Party (March 29th afternoon)</li>
                 </ul>
                 <strong>Unit Price: 0.25 ETH</strong>
                 <div>
