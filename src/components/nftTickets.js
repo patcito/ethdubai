@@ -3058,13 +3058,16 @@ export default function NFTTicketsSection() {
               className="list-group-item d-flex justify-content-between align-items-center alignb"
             >
               <div>
-                <strong> Combo Ticket Workshops+Conference:</strong>
+                <strong>
+                  {' '}
+                  Combo Ticket Workshops+Conference+GTON Capital Party:
+                </strong>
                 <ul>
                   <li>Conference Ticket (March 31st all-day)</li>
                   <li>Pre-Conference Party (March 30th night)</li>
                   <li>All-day Workshops and Hackathon (March 30th)</li>
                   <li>
-                    Pre-Workshop Meet and Greet Bar Night Party (March 29th)
+                    Opening Bar Night GTON Capital Party (March 29th night)
                   </li>
                 </ul>
                 <strong>Unit Price: 0.12 ETH</strong>
@@ -3126,14 +3129,12 @@ export default function NFTTicketsSection() {
               className="list-group-item d-flex justify-content-between align-items-center alignb"
             >
               <div>
-                <strong> Combo Ticket Yacht:</strong>
+                <strong> Combo Ticket Workshops+Conference+Yacht:</strong>
                 <ul>
                   <li>Conference Ticket (March 31st all-day)</li>
                   <li>Pre-Conference Party (March 30th night)</li>
                   <li>All-day Workshops and Hackathon (March 30th)</li>
-                  <li>
-                    Opening Bar Night GTON Capital Party (March 29th night)
-                  </li>
+                  <li>Meet and Greet Bar Yacht Party (March 29th)</li>
                 </ul>
                 <strong>Unit Price: 0.25 ETH</strong>
                 <div>
