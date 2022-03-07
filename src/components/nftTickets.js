@@ -1554,6 +1554,8 @@ export default function NFTTicketsSection() {
         return (
           <ul>
             <li>{yachtParty} </li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {workshop1AndPreParty}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1564,6 +1566,8 @@ export default function NFTTicketsSection() {
         return (
           <ul>
             <li>{yachtParty} </li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {workshop2AndPreParty}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1574,6 +1578,8 @@ export default function NFTTicketsSection() {
         return (
           <ul>
             <li>{yachtParty} </li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {workshop3AndPreParty}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1585,6 +1591,8 @@ export default function NFTTicketsSection() {
           <ul>
             <li>{hotel} </li>
             <li>{yachtParty} </li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {workshop1AndPreParty}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1595,6 +1603,8 @@ export default function NFTTicketsSection() {
           <ul>
             <li>{hotel} </li>
             <li>{yachtParty} </li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {workshop2AndPreParty}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1660,7 +1670,9 @@ export default function NFTTicketsSection() {
         return (
           <ul>
             <li>{yachtParty} </li>
-            <li> {workshop4AndPreParty}</li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
+            <li>{workshop4AndPreParty}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
           </ul>
@@ -1672,6 +1684,8 @@ export default function NFTTicketsSection() {
           <ul>
             <li>{hotel} </li>
             <li>{yachtParty} </li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {workshop4AndPreParty}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1725,6 +1739,8 @@ export default function NFTTicketsSection() {
         return (
           <ul>
             <li> {yachtParty}</li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {hackathon}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1757,6 +1773,8 @@ export default function NFTTicketsSection() {
         return (
           <ul>
             <li> {yachtParty}</li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {workshop5AndPreParty}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1767,6 +1785,8 @@ export default function NFTTicketsSection() {
         return (
           <ul>
             <li> {yachtParty}</li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {workshop6AndPreParty}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1777,6 +1797,8 @@ export default function NFTTicketsSection() {
         return (
           <ul>
             <li> {yachtParty}</li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {workshop7AndPreParty}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1787,6 +1809,8 @@ export default function NFTTicketsSection() {
         return (
           <ul>
             <li> {yachtParty}</li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {workshop7AndPreParty}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -2086,17 +2110,20 @@ export default function NFTTicketsSection() {
       case 'hotel2Conference':
         return '0.3'
         break
+      case 'workshopAndPreParty':
+        return '0.25'
+        break
       case 'workshop1AndPreParty':
-        return '0.12'
+        return '0.25'
         break
       case 'workshop2AndPreParty':
-        return '0.12'
+        return '0.25'
         break
       case 'workshop3AndPreParty':
-        return '0.12'
+        return '0.25'
         break
       case 'workshop4AndPreParty':
-        return '0.12'
+        return '0.25'
         break
       case 'hotelWorkshops1AndPreParty':
         return '0.4'
@@ -2128,17 +2155,17 @@ export default function NFTTicketsSection() {
       case 'hotel2hackathonAndConferenceOnly':
         return '0.4'
       case 'hackathonAndPreParty':
-        return '0.12'
+        return '0.25'
       case 'hotelhackathonAndPreParty':
         return '0.4'
       case 'hotel2hackathonAndPreParty':
         return '0.5'
       case 'workshop5AndPreParty':
-        return '0.12'
+        return '0.25'
       case 'workshop6AndPreParty':
-        return '0.12'
+        return '0.25'
       case 'workshop7AndPreParty':
-        return '0.12'
+        return '0.25'
       case 'workshop8AndPrePartyVCSpeedDating':
         return '0.5'
       case 'workshop28AndConferenceOnly':
@@ -2164,13 +2191,13 @@ export default function NFTTicketsSection() {
         return 0.12
       //fuel
       case 'workshop37AndPreParty':
-        return 0.12
+        return 0.25
       //alchemy
       case 'workshop38AndPreParty':
-        return 0.12
+        return 0.25
       //chainlink
       case 'workshop39AndPreParty':
-        return 0.12
+        return 0.25
       //metamask
       case 'workshop40AndDesertAndConference':
         return 0.12
@@ -2725,7 +2752,7 @@ export default function NFTTicketsSection() {
       return 0.2
     }
     if (threeDay && !hotel && !hotel2) {
-      return 0.12
+      return 0.25
     }
     if (threeDay && hotel && !hotel2) {
       return 0.4
@@ -2744,7 +2771,7 @@ export default function NFTTicketsSection() {
     }
 
     if (hackathonAndPreParty && !hotel && !hotel2) {
-      return 0.12
+      return 0.25
     }
     if (hackathonAndPreParty && hotel && !hotel2) {
       return 0.4
@@ -2812,7 +2839,7 @@ export default function NFTTicketsSection() {
   }
   const total = () => {
     const oneDayPrice = ethers.BigNumber.from('10').pow(16).mul(7)
-    const threeDayPrice = ethers.BigNumber.from('10').pow(16).mul(12)
+    const threeDayPrice = ethers.BigNumber.from('10').pow(16).mul(25)
     const twoDayPrice = ethers.BigNumber.from('10').pow(16).mul(12)
     let hotelPrice = ethers.BigNumber.from('10').pow(16).mul(5)
     let hasOneDayHotel = 1
@@ -3092,11 +3119,9 @@ export default function NFTTicketsSection() {
                 </select>
               </span>
             </li>
-            {/*
             <li
               style={{
                 borderTop: '1px solid black',
-                backgroundColor: '#f5f7f7',
               }}
               className="list-group-item d-flex justify-content-between align-items-center alignb"
             >
@@ -3108,6 +3133,7 @@ export default function NFTTicketsSection() {
                   <li>All-day Workshops and Hackathon (March 30th)</li>
                   <li>Pre-Workshop Bar Night Party (March 29th night)</li>
                 </ul>
+                <strong>Unit Price: 0.25 ETH</strong>
                 <div>
                   <a
                     href="#"
@@ -3143,9 +3169,28 @@ export default function NFTTicketsSection() {
                 </Collapse>
               </div>
               <span>
-                <strong>sold out</strong>
+                <strong>
+                  <select
+                    onChange={(e, v) => {
+                      console.log(e, v)
+                      setThreeDayTicket(e.target.value)
+                      console.log('currentValue', e.target.value)
+                      if (e.target.value <= 0 && oneDayTicket <= 0) {
+                        setIncludeHotel(false)
+                      }
+                    }}
+                    value={threeDayTicket}
+                  >
+                    <>
+                      {Array.apply(null, { length: 20 }).map((e, i) => {
+                        return <option value={i}>{i}</option>
+                      })}
+                    </>
+                  </select>
+                </strong>
               </span>
             </li>
+            {/*
             <li
               style={{ borderTop: '1px solid black' }}
               className="list-group-item d-flex justify-content-between align-items-center alignb"
@@ -3518,8 +3563,7 @@ export default function NFTTicketsSection() {
                                 <Form.Group>
                                   <Form.Row>
                                     <Col xs="12" sm="6">
-                                      {true ||
-                                      attendeeInfos[currentAttendeeInfoIndex]
+                                      {attendeeInfos[currentAttendeeInfoIndex]
                                         .hackathon ||
                                       attendeeInfos[currentAttendeeInfoIndex]
                                         .includeWorkshopsAndConferenceOnly ||

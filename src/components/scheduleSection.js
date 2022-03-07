@@ -15,7 +15,7 @@ export default function ScheduleSection({
   const [openDesc1, setOpenDesc1] = React.useState(false)
   console.log('ssss', schedule)
   const getTags = (slot) => {
-    console.log('slot', slot)
+    //console.log('slot', slot)
     if (slot.tags?.indexOf('track1') > -1) {
       return '[Track 1]'
     }
@@ -25,7 +25,7 @@ export default function ScheduleSection({
     return ''
   }
   const getTagsTrack = (slot) => {
-    console.log('slot', slot)
+    //console.log('slot', slot)
     if (slot.tags?.indexOf('track1') > -1) {
       return 'A'
     }
