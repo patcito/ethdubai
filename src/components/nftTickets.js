@@ -3612,7 +3612,7 @@ export default function NFTTicketsSection() {
                                         .includeWorkshopsAndDesertAndConferenceOnly ? null : (
                                         <Form.Check
                                           type="checkbox"
-                                          label="Include Workshop only (March 30th) and pre-conference party (March 30th)"
+                                          label="Include Workshop only (March 30th) and pre-conference party (March 30th) and GTON Capital Party (March 29th)"
                                           onClick={handleAttendeeInfoCheck}
                                           name="includeWorkshopsAndConferenceOnly"
                                           checked={
