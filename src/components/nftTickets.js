@@ -3952,10 +3952,6 @@ export default function NFTTicketsSection() {
                                       )}
                                     </span>
                                     <span>
-                                      All tickets include conference on March
-                                      31st
-                                    </span>
-                                    <span>
                                       {' | '}
                                       <a
                                         href="https://ramp.network/buy/"
@@ -3963,6 +3959,12 @@ export default function NFTTicketsSection() {
                                       >
                                         Buy ETH here
                                       </a>
+                                    </span>
+                                  </div>
+                                  <div>
+                                    <span>
+                                      All tickets include conference on March
+                                      31st
                                     </span>
                                   </div>
                                   <div>
