@@ -106,13 +106,14 @@ export default function ScheduleSection({
             <a href="https://syscoin.org/" target="_blank">
               Syscoin
             </a>{' '}
-            and <a href="https://www.unore.io/">Uno Re</a>
+            and <a href="https://www.unore.io/">Uno Re</a> (2:30pm-6pm)
           </h4>
           <h4 style={{ margin: '30px' }}>
-            Pre-Workshop Bar Night Party Sponsored by{' '}
+            Opening Bar Night{' '}
             <a href="https://gton.capital/" target="_blank">
-              GTON
-            </a>
+              GTON Capital Party
+            </a>{' '}
+            (7pm-11pm)
           </h4>
           <hr />
           <h3
