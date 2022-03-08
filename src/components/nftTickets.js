@@ -3952,6 +3952,10 @@ export default function NFTTicketsSection() {
                                       )}
                                     </span>
                                     <span>
+                                      All tickets include conference on March
+                                      31st
+                                    </span>
+                                    <span>
                                       {' | '}
                                       <a
                                         href="https://ramp.network/buy/"
