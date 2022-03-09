@@ -866,7 +866,8 @@ export default function IndexPage({ data, location }) {
                 target="_blank"
               >
                 2
-              </a>
+              </a>{' '}
+              | Schedule is subject to change and not final
             </p>
           </div>
         </div>
