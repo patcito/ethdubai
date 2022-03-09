@@ -113,7 +113,7 @@ export default function ScheduleSection({
             <a href="https://gton.capital/" target="_blank">
               GTON Capital Party
             </a>{' '}
-            (7pm-11pm)
+            (7pm-11:30pm)
           </h4>
           <hr />
           <h3
