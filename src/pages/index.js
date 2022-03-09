@@ -366,7 +366,7 @@ export default function IndexPage({ data, location }) {
       <section
         className="support"
         id="nft-droppers"
-        style={{ backgroundColor: 'white' }}
+        style={{ backgroundColor: 'white', display: 'none' }}
       >
         <div className="container">
           <div className="headings">
