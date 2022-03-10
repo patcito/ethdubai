@@ -1540,7 +1540,8 @@ export default function NFTTicketsSection() {
     const alchemy =
       'How to Create a Generative NFT Project (March 30th @ 1:30pm)'
     //chainlink
-    const chainlink = 'Chainlink - DeFi for Developers (March 30th @ 1:30pm)'
+    const chainlink =
+      'Chainlink your smart contracts: data feeds, vrf, keepers (March 30th @ 1:30pm)'
     const desert = 'Desert Safari'
     const noYacht = '(please note Yacht not included on March 29th)'
 
@@ -3840,9 +3841,8 @@ export default function NFTTicketsSection() {
                                             NFT Collection with Alchemy
                                           </option>
                                           <option value="36">
-                                            Chainlink - DeFi for Developers: how
-                                            to use UNISwap v2 to automate
-                                            trading
+                                            Chainlink your smart contracts: data
+                                            feeds, vrf, keepers
                                           </option>
                                           {/*
                                           <option value="35">

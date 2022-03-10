@@ -459,13 +459,11 @@ export default function ScheduleSection({
                     />
                     <Card.Body>
                       <Card.Title>
-                        Chainlink: DeFi for Developers: how to use UNISwap v2 to
-                        automate trading
+                        Chainlink your smart contracts: data feeds, vrf, keepers
                       </Card.Title>
                       <Card.Text>
                         In this workshop you will learn from the Chainlink team
-                        how to use Chainlink oracles to automate trading on
-                        UNISwap v2 and more.
+                        how to use Chainlink oracles feeds and keepers.
                       </Card.Text>
                     </Card.Body>
                     <Card.Footer>
