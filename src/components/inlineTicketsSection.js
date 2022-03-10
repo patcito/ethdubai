@@ -142,9 +142,11 @@ export default function InlineTicketsSection({ event }) {
       .then((json) => {
         if (json.CountryCode === 'FR') {
           setIsFrench(true)
+          return
         }
         if (json.CountryCode === 'PL') {
           setIsPL(true)
+          return
         }
         if (json.CountryCode === 'AE') {
           if (typeof web3 === 'undefined') {
@@ -154,12 +156,22 @@ export default function InlineTicketsSection({ event }) {
             setPayInDollar(true)
             setIsAE(false)
           }
+          return
         } else {
           setPayInDollar(false)
           setIsAE(false)
+          return
         }
       })
-      .catch((err) => {})
+      .catch((err) => {
+        if (typeof web3 === 'undefined') {
+          setPayInDollar(true)
+          setIsAE(true)
+        } else {
+          setPayInDollar(true)
+          setIsAE(false)
+        }
+      })
   }, [])
   return (
     <>
