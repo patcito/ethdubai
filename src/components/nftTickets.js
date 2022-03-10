@@ -1290,12 +1290,15 @@ export default function NFTTicketsSection() {
         return 'workshop32AndConferenceOnly'
       case 33:
         return 'workshop33AndConferenceOnly'
+      case 35:
+        return 'workshop35AndConferenceOnly'
+
       //fuel
       case 34:
         return 'workshop34AndConferenceOnly'
       //alchemy
-      case 35:
-        return 'workshop35AndConferenceOnly'
+      case 68:
+        return 'workshop68AndConferenceOnly'
       //chainlink
       case 36:
         return 'workshop36AndConferenceOnly'
@@ -1429,6 +1432,9 @@ export default function NFTTicketsSection() {
       //alchemy
       case 'workshop35AndConferenceOnly':
         return 35
+      //alchemy
+      case 'workshop68AndConferenceOnly':
+        return 68
       //chainlink
       case 'workshop36AndConferenceOnly':
         return 36
@@ -1924,7 +1930,7 @@ export default function NFTTicketsSection() {
           </ul>
         )
       //alchemy
-      case 'workshop35AndConferenceOnly':
+      case 'workshop68AndConferenceOnly':
         return (
           <ul>
             <li> {alchemy}</li>
@@ -2183,8 +2189,11 @@ export default function NFTTicketsSection() {
       //fuel
       case 'workshop34AndConferenceOnly':
         return 0.12
-      //alchemy
       case 'workshop35AndConferenceOnly':
+        return 0.12
+
+      //alchemy
+      case 'workshop68AndConferenceOnly':
         return 0.12
       //chainlink
       case 'workshop36AndConferenceOnly':
@@ -3826,7 +3835,7 @@ export default function NFTTicketsSection() {
                                           <option value="34">
                                             Build a Dapp using Sway on Fuel
                                           </option>
-                                          <option value="35">
+                                          <option value="68">
                                             How to Code and Deploy a Generative
                                             NFT Collection with Alchemy
                                           </option>
