@@ -359,6 +359,18 @@ export default function IndexPage({ data, location }) {
                   </div>
                 </div>
               </li>
+              <li style={{ marginLeft: 100 }}>
+                <div>
+                  <div>
+                    <a href="https://hypra.fund/" target="_blank">
+                      <Img
+                        fixed={data.hypra.childImageSharp.fixed}
+                        title="hypra"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -1258,6 +1270,13 @@ export const pageQuery = graphql`
       }
     }
     hashed: file(relativePath: { eq: "hashed.png" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    hypra: file(relativePath: { eq: "hypra.jpg" }) {
       childImageSharp {
         fixed(width: 220) {
           ...GatsbyImageSharpFixed_withWebp
