@@ -1556,6 +1556,8 @@ export default function NFTTicketsSection() {
     const workshop7AndPreParty =
       'Initiation to DeFi with GTON Capital team (March 30th @ 1:30pm)'
     const vc = workshop7AndPreParty
+    const vcmorning =
+      'Initiation to DeFi with GTON Capital team (March 30th @ 9:30am)'
     const workshop33AndPreParty =
       'Initiation to DeFi with GTON Capital team (March 30th @ 1:30pm)'
     const workshop29AndConferenceOnly = workshop1AndPreParty
@@ -1564,6 +1566,7 @@ export default function NFTTicketsSection() {
     const workshop30AndConferenceOnly = workshop5AndPreParty
     const workshop32AndConferenceOnly = workshop6AndPreParty
     const workshop33AndConferenceOnly = workshop7AndPreParty
+
     //fuel
     const fuel = 'Build a Dapp using Sway on Fuel (March 30th @ 9:30am)'
 
@@ -2151,7 +2154,7 @@ export default function NFTTicketsSection() {
             <li>{yachtParty}</li>
             <li>{yachtParty2} </li>
             <li>{yachtParty3} </li>
-            <li> {vc}</li>
+            <li> {vcmorning}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
             <li> VC Speed Dating</li>
@@ -2163,7 +2166,7 @@ export default function NFTTicketsSection() {
             <li>{yachtParty}</li>
             <li>{yachtParty2} </li>
             <li>{yachtParty3} </li>
-            <li> {vc}</li>
+            <li> {vcmorning}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
             <li> VC Speed Dating</li>
@@ -2175,7 +2178,7 @@ export default function NFTTicketsSection() {
             <li>
               <b>{noYacht}</b>
             </li>
-            <li> {vc}</li>
+            <li> {vcmorning}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
             <li> VC Speed Dating</li>
@@ -2187,7 +2190,7 @@ export default function NFTTicketsSection() {
             <li>
               <b>{noYacht}</b>
             </li>
-            <li> {vc}</li>
+            <li> {vcmorning}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
             <li> VC Speed Dating</li>
