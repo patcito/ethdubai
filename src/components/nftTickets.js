@@ -1095,6 +1095,7 @@ export default function NFTTicketsSection() {
     workshopWithDesert
   ) => {
     console.log('kkk2', includeWorkshopsAndConferenceOnly)
+    console.log('kkkj', workshop)
     if (!workshop) {
       workshop = ''
     }
@@ -1142,11 +1143,26 @@ export default function NFTTicketsSection() {
       if (workshop == 27) {
         return `workshop8AndPrePartyVCSpeedDating`
       }
+      if (workshop == 70) {
+        return 'workshop70AndPreParty'
+      }
+      if (workshop == 71) {
+        return 'workshop71MorningAndPrePartyvcspeeddating'
+      }
+
       return `workshop${workshop}AndPreParty`
     } else if (includeWorkshopsAndConferenceOnly) {
+      console.log('kkk22', workshopOnly)
       if (workshopOnly == 51) {
         return 'workshop51AndConferenceOnlyVCSpeedDating'
       }
+      if (workshopOnly == 72) {
+        return 'workshop72AndConferenceOnly'
+      }
+      if (workshopOnly == 73) {
+        return 'workshop73MorningAndConferenceOnlyvcspeeddating'
+      }
+      console.log('wwww', workshop)
       return `workshop${workshopOnly}AndConferenceOnly`
     } else if (includeWorkshopsAndDesertAndConferenceOnly) {
       if (workshopWithDesert == 50) {
@@ -1336,7 +1352,15 @@ export default function NFTTicketsSection() {
       case 50:
         return 'hackathonAndDesertAndConference'
       case 51:
-        return 'workshop51AndConferenceOnlyVCSpeedDating'
+        return 'workshop51andconferenceonlyvcspeeddating'
+      case 70:
+        return 'workshop70AndPreParty'
+      case 71:
+        return 'workshop71MorningAndPrePartyvcspeeddating'
+      case 72:
+        return 'workshop72AndConferenceOnly'
+      case 73:
+        return 'workshop73MorningAndConferenceOnlyvcspeeddating'
       default:
         console.log('totalBN fail', ticketOption)
         return 23
@@ -1482,7 +1506,14 @@ export default function NFTTicketsSection() {
         return 49
       case 'workshop51AndConferenceOnlyVCSpeedDating':
         return 51
-
+      case 'workshop70AndPreParty':
+        return 70
+      case 'workshop71MorningAndPrePartyvcspeeddating':
+        return 71
+      case 'workshop72AndConferenceOnly':
+        return 72
+      case 'workshop73MorningAndConferenceOnlyvcspeeddating':
+        return 73
       default:
         return 23
         break
@@ -1925,6 +1956,9 @@ export default function NFTTicketsSection() {
       case 'workshop34AndConferenceOnly':
         return (
           <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>
             <li> {fuel}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1934,6 +1968,9 @@ export default function NFTTicketsSection() {
       case 'workshop68AndConferenceOnly':
         return (
           <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>
             <li> {alchemy}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1942,6 +1979,9 @@ export default function NFTTicketsSection() {
       case 'workshop36AndConferenceOnly':
         return (
           <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>
             <li> {chainlink}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1952,6 +1992,8 @@ export default function NFTTicketsSection() {
         return (
           <ul>
             <li> {yachtParty}</li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {fuel}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1962,6 +2004,8 @@ export default function NFTTicketsSection() {
         return (
           <ul>
             <li> {yachtParty}</li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
             <li> {alchemy}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1971,7 +2015,10 @@ export default function NFTTicketsSection() {
       case 'workshop39AndPreParty':
         return (
           <ul>
-            <li> {yachtParty}</li>
+            <li>{yachtParty}</li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
+
             <li> {chainlink}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -2098,7 +2145,54 @@ export default function NFTTicketsSection() {
             <li> VC Speed Dating</li>
           </ul>
         )
-
+      case 'workshop70AndPreParty':
+        return (
+          <ul>
+            <li>{yachtParty}</li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
+            <li> {vc}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+            <li> VC Speed Dating</li>
+          </ul>
+        )
+      case 'workshop71MorningAndPrePartyvcspeeddating':
+        return (
+          <ul>
+            <li>{yachtParty}</li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
+            <li> {vc}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+            <li> VC Speed Dating</li>
+          </ul>
+        )
+      case 'workshop72AndConferenceOnly':
+        return (
+          <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>
+            <li> {vc}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+            <li> VC Speed Dating</li>
+          </ul>
+        )
+      case 'workshop73MorningAndConferenceOnlyvcspeeddating':
+        return (
+          <ul>
+            <li>
+              <b>{noYacht}</b>
+            </li>
+            <li> {vc}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+            <li> VC Speed Dating</li>
+          </ul>
+        )
       default:
         return 23
         break
@@ -2246,6 +2340,14 @@ export default function NFTTicketsSection() {
       case 'workshopundefinedAndConferenceOnly':
         return 0.12
       case 'workshop51AndConferenceOnlyVCSpeedDating':
+        return 0.5
+      case 'workshop70AndPreParty':
+        return 0.25
+      case 'workshop71MorningAndPrePartyvcspeeddating':
+        return 0.5
+      case 'workshop72AndConferenceOnly':
+        return 0.12
+      case 'workshop73MorningAndConferenceOnlyvcspeeddating':
         return 0.5
     }
     if (
@@ -3690,19 +3792,20 @@ export default function NFTTicketsSection() {
                                             application in Python with The
                                             Blockchain OS
                                           </option>
-                                          <option value="26">
+
+                                          <option value="70">
                                             Initiation to DeFi for Traders, VCs
-                                            and non-devs
+                                            and non-devs (Morning Session)
                                           </option>
-                                          <option value="27">
+                                          <option value="71">
                                             Initiation to DeFi for Traders, VCs
-                                            and non-devs + VC Speed Dating
-                                            (March 31st)
+                                            and non-devs (Morning Session) + VC
+                                            Speed Dating (March 31st)
                                           </option>
+
                                           <option value="5">
                                             Hackathon Only
                                           </option>
-
                                           <option value="37">
                                             Build a Dapp using Sway on Fuel
                                           </option>
@@ -3758,15 +3861,7 @@ export default function NFTTicketsSection() {
                                             application in Python with The
                                             Blockchain OS
                                           </option>
-                                          <option value="45">
-                                            Initiation to DeFi for Traders, VCs
-                                            and non-devs
-                                          </option>
-                                          <option value="46">
-                                            Initiation to DeFi for Traders, VCs
-                                            and non-devs + VC Speed Dating
-                                            (March 31st)
-                                          </option>
+
                                           <option value="47">
                                             Build a Dapp using Sway on Fuel
                                           </option>
@@ -3824,7 +3919,7 @@ export default function NFTTicketsSection() {
                                             application in Python with The
                                             Blockchain OS
                                           </option>
-                                          <option value="33">
+                                          {/**                                          <option value="33">
                                             Initiation to DeFi for Traders, VCs
                                             and non-devs
                                           </option>
@@ -3832,6 +3927,16 @@ export default function NFTTicketsSection() {
                                             Initiation to DeFi for Traders, VCs
                                             and non-devs + VC Speed Dating
                                             (March 31st)
+                                          </option>
+*/}
+                                          <option value="72">
+                                            Initiation to DeFi for Traders, VCs
+                                            and non-devs (Morning Session)
+                                          </option>
+                                          <option value="73">
+                                            Initiation to DeFi for Traders, VCs
+                                            and non-devs (Morning Session) + VC
+                                            Speed Dating (March 31st)
                                           </option>
                                           <option value="34">
                                             Build a Dapp using Sway on Fuel
