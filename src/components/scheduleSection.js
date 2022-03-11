@@ -406,8 +406,14 @@ export default function ScheduleSection({
                     </Card.Footer>
                     <Card.Footer>
                       <small className="text-muted">
-                        Full-day session: 1:30pm to 4:30pm with Alex P | GC from
-                        GTON Capital team
+                        Morning session: 9:30pm to 12:30pm with Ilya Sapranidi |
+                        GC and Alex P | GC from GTON Capital team
+                      </small>
+                    </Card.Footer>
+                    <Card.Footer>
+                      <small className="text-muted">
+                        Afternoon session: 1:30pm to 4:30pm with Ilya Sapranidi
+                        | GC
                       </small>
                     </Card.Footer>
                   </Card>
