@@ -9,7 +9,7 @@ export default function Navi() {
     {
       logo: file(relativePath: { eq: "ethdubailogo-white.png" }) {
         childImageSharp {
-          fixed(height: 90) {
+          fixed(height: 80) {
             ...GatsbyImageSharpFixed_withWebp
           }
         }
