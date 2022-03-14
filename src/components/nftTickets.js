@@ -1361,6 +1361,10 @@ export default function NFTTicketsSection() {
         return 'workshop72AndConferenceOnly'
       case 73:
         return 'workshop73MorningAndConferenceOnlyvcspeeddating'
+      case 74:
+        return 'workshop74AndPreParty'
+      case 75:
+        return 'workshop75AndPreParty'
       default:
         console.log('totalBN fail', ticketOption)
         return 23
@@ -1514,6 +1518,10 @@ export default function NFTTicketsSection() {
         return 72
       case 'workshop73MorningAndConferenceOnlyvcspeeddating':
         return 73
+      case 'workshop74AndPreParty':
+        return 74
+      case 'workshop75AndPreParty':
+        return 75
       default:
         return 23
         break
@@ -2201,6 +2209,30 @@ export default function NFTTicketsSection() {
             <li> VC Speed Dating</li>
           </ul>
         )
+      case 'workshop74AndPreParty':
+        return (
+          <ul>
+            <li>{yachtParty} </li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
+            <li> {alchemy}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+        break
+      case 'workshop75AndPreParty':
+        return (
+          <ul>
+            <li>{yachtParty} </li>
+            <li>{yachtParty2} </li>
+            <li>{yachtParty3} </li>
+            <li> {chainlink}</li>
+            <li> {preParty} </li>
+            <li> {conference}</li>
+          </ul>
+        )
+        break
       default:
         return 23
         break
@@ -2357,6 +2389,10 @@ export default function NFTTicketsSection() {
         return 0.12
       case 'workshop73MorningAndConferenceOnlyvcspeeddating':
         return 0.5
+      case 'workshop74AndPreParty':
+        return 0.25
+      case 'workshop75AndPreParty':
+        return 0.25
     }
     if (
       attendeeInfos[currentAttendeeInfoIndex].includeHotelExtra &&
@@ -3817,6 +3853,14 @@ export default function NFTTicketsSection() {
                                           <option value="37">
                                             Build a Dapp using Sway on Fuel
                                           </option>
+                                          <option value="74">
+                                            How to Code and Deploy a Generative
+                                            NFT Collection with Alchemy
+                                          </option>
+                                          <option value="75">
+                                            Chainlink your smart contracts: data
+                                            feeds, vrf, keepers
+                                          </option>
                                           {/*
                                           <option value="38">
                                             How to Create a Generative NFT
@@ -3873,6 +3917,7 @@ export default function NFTTicketsSection() {
                                           <option value="47">
                                             Build a Dapp using Sway on Fuel
                                           </option>
+
                                           {/*
                                           <option value="48">
                                             How to Create a Generative NFT
