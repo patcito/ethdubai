@@ -1962,6 +1962,7 @@ export default function NFTTicketsSection() {
             <li>
               <b>{noYacht}</b>
             </li>
+            <li> {prePartyW}</li>
             <li> {fuel}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
@@ -1974,6 +1975,7 @@ export default function NFTTicketsSection() {
             <li>
               <b>{noYacht}</b>
             </li>
+            <li> {prePartyW}</li>
             <li> {alchemy}</li>
             <li> {preParty} </li>
             <li> {conference}</li>
