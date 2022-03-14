@@ -54,6 +54,19 @@ export default function ScheduleSection({
         break
     }
   }
+  const getDayActivityDate = (i) => {
+    switch (i) {
+      case 0:
+        return '29'
+        break
+      case 1:
+        return '30'
+      case 2:
+        return '31'
+      default:
+        break
+    }
+  }
   const data = useStaticQuery(graphql`
     {
       scedual: file(relativePath: { eq: "scedual.png" }) {
@@ -536,7 +549,7 @@ export default function ScheduleSection({
                         {new Date(day.date).toLocaleString('default', {
                           month: 'long',
                         })}{' '}
-                        {new Date(day.date).getDate()}
+                        {getDayActivityDate(i)}
                       </span>{' '}
                       - DAY {i + 1} {getDayActivity(i)}
                     </Link>
@@ -594,7 +607,7 @@ export default function ScheduleSection({
                               {new Date(day.date).toLocaleString('default', {
                                 weekday: 'long',
                               })}
-                              , {new Date(day.date).getDate()}{' '}
+                              , {getDayActivityDate(i)}{' '}
                               {new Date(day.date).toLocaleString('default', {
                                 month: 'long',
                               })}
