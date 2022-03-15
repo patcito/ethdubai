@@ -437,6 +437,11 @@ export default function IndexPage({ data, location }) {
                   <Img fixed={data.optimism.childImageSharp.fixed} />
                 </a>
               </li>
+              <li style={{ marginLeft: 100 }}>
+                <a href="https://nethermind.io/" target="_blank">
+                  <Img fixed={data.nethermind.childImageSharp.fixed} />
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -1191,6 +1196,14 @@ export const pageQuery = graphql`
         }
       }
     }
+    nethermind: file(relativePath: { eq: "nethermind.png" }) {
+      childImageSharp {
+        fixed(width: 200) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+
     hysek: file(relativePath: { eq: "hyseksquare.png" }) {
       childImageSharp {
         fixed(width: 120) {
