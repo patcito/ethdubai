@@ -216,7 +216,7 @@ export default function SponsorsSection({ sponsors }) {
             <div className="platinium_box silver_box" id="silver-sprs">
               <div className="row">
                 {sponsors.silver.map((sponsor) =>
-                  sponsor.name !== '' ? (
+                  sponsor.name !== '' && sponsor.name !== 'Gnosis Chain' ? (
                     <div className="col-md-4" key={sponsor.id}>
                       <Sponsor
                         key={sponsor.id}

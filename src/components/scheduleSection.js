@@ -140,8 +140,21 @@ export default function ScheduleSection({
           </h3>
           <h4 style={{ margin: '30px' }}>
             Learn from the best to level-up your web3 skills with our awesome
-            workshops.
+            workshops (9:30am - 4:30pm | Note: some workshops start at 9:30am
+            and others at 1:30pm).
           </h4>
+          <h4 style={{ margin: '30px' }}>
+            Pre-Party Sponsored by{' '}
+            <a href="https://ezil.me/" target={'_blank'}>
+              Ezil
+            </a>{' '}
+            and{' '}
+            <a href="https://octusbridge.io/" target={'_blank'}>
+              Octus Bridge
+            </a>
+            .
+          </h4>
+
           <Container>
             <Row>
               <Col>

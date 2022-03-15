@@ -152,7 +152,7 @@ export default function IndexPage({ data, location }) {
       <SponsorsSection sponsors={event.sponsors} />
       <section
         className="support"
-        id="nft-droppers"
+        id="social-events-partners"
         style={{ backgroundColor: 'white' }}
       >
         <div className="container" id="side-events">
@@ -228,6 +228,46 @@ export default function IndexPage({ data, location }) {
                         Uno Re
                       </a>{' '}
                       - March 29th Yacht Party co-host
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li className="side-events">
+                <div>
+                  <div>
+                    <a href="https://ezil.me/" target="_blank">
+                      <Img
+                        fixed={data.ezil.childImageSharp.fixed}
+                        title="Ezil.me"
+                      />
+                    </a>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <p>
+                      <a href="#schedule" target="_blank">
+                        Ezil
+                      </a>{' '}
+                      - March 30th Pre-Party co-host
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li className="side-events">
+                <div>
+                  <div>
+                    <a href="https://octusbridge.io" target="_blank">
+                      <Img
+                        fixed={data.octobridge.childImageSharp.fixed}
+                        title="Ezil.me"
+                      />
+                    </a>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <p>
+                      <a href="https://octusbridge.io/bridge" target="_blank">
+                        OctoBridge
+                      </a>{' '}
+                      - March 30th Pre-Party co-host
                     </p>
                   </div>
                 </div>
@@ -366,6 +406,30 @@ export default function IndexPage({ data, location }) {
                       <Img
                         fixed={data.hypra.childImageSharp.fixed}
                         title="hypra"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li style={{ marginLeft: 100 }}>
+                <div>
+                  <div>
+                    <a href="https://www.genshards.com/" target="_blank">
+                      <Img
+                        fixed={data.genesisshard.childImageSharp.fixed}
+                        title="genshards"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li style={{ marginLeft: 100 }}>
+                <div>
+                  <div>
+                    <a href="http://momentum6.com/venture" target="_blank">
+                      <Img
+                        fixed={data.m6.childImageSharp.fixed}
+                        title="mgenshardsm66"
                       />
                     </a>
                   </div>
@@ -1232,6 +1296,20 @@ export const pageQuery = graphql`
         }
       }
     }
+    octobridge: file(relativePath: { eq: "octobridge.png" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    ezil: file(relativePath: { eq: "ezil.png" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
     gton: file(relativePath: { eq: "gton.png" }) {
       childImageSharp {
         fixed(width: 200) {
@@ -1304,6 +1382,20 @@ export const pageQuery = graphql`
       }
     }
     palisade: file(relativePath: { eq: "palisade.jpg" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    genesisshard: file(relativePath: { eq: "genesisshard.png" }) {
+      childImageSharp {
+        fixed(width: 220) {
+          ...GatsbyImageSharpFixed_withWebp
+        }
+      }
+    }
+    m6: file(relativePath: { eq: "m6.png" }) {
       childImageSharp {
         fixed(width: 220) {
           ...GatsbyImageSharpFixed_withWebp
