@@ -144,15 +144,15 @@ export default function ScheduleSection({
             and others at 1:30pm).
           </h4>
           <h4 style={{ margin: '30px' }}>
-            Pre-Party Sponsored by{' '}
+            Conference Pre-Party Sponsored by{' '}
             <a href="https://ezil.me/" target={'_blank'}>
               Ezil
             </a>{' '}
             and{' '}
             <a href="https://octusbridge.io/" target={'_blank'}>
               Octus Bridge
-            </a>
-            .
+            </a>{' '}
+            (6pm-11pm) .
           </h4>
 
           <Container>

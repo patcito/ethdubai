@@ -247,7 +247,7 @@ export default function IndexPage({ data, location }) {
                       <a href="#schedule" target="_blank">
                         Ezil
                       </a>{' '}
-                      - March 30th Pre-Party co-host
+                      - March 30th Conference Pre-Party co-host
                     </p>
                   </div>
                 </div>
@@ -267,7 +267,7 @@ export default function IndexPage({ data, location }) {
                       <a href="https://octusbridge.io/bridge" target="_blank">
                         OctoBridge
                       </a>{' '}
-                      - March 30th Pre-Party co-host
+                      - March 30th Conference Pre-Party co-host
                     </p>
                   </div>
                 </div>
